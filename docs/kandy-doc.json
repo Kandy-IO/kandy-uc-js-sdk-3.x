@@ -102,7 +102,7 @@
           "column": 35
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/index.common.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/index.common.js"
     },
     "augments": [],
     "examples": [
@@ -291,7 +291,7 @@
           "column": 59
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/events/interface/api.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/events/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -437,7 +437,7 @@
                 "column": 3
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/events/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/events/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -778,7 +778,7 @@
                 "column": 3
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/events/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/events/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -1105,7 +1105,7 @@
                 "column": 3
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/events/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/events/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -1371,7 +1371,7 @@
                 "column": 3
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/events/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/events/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -1638,7 +1638,7 @@
           "column": 36
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/auth/interface/api.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/auth/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -1808,7 +1808,7 @@
                 "column": 40
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/auth/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/auth/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -2032,7 +2032,7 @@
                 "column": 38
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/auth/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/auth/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -2320,7 +2320,7 @@
                 "column": 38
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/auth/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/auth/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -2562,6 +2562,363 @@
                 "children": [
                   {
                     "type": "text",
+                    "value": "Connect by providing an OAuth token.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 37,
+                        "offset": 36
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 37,
+                    "offset": 36
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 37,
+                "offset": 36
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "Authentication",
+              "lineNumber": 4
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 5,
+              "name": "oauthToken"
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 6,
+              "name": "connect"
+            },
+            {
+              "title": "param",
+              "description": "The credentials object.",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "credentials"
+            },
+            {
+              "title": "param",
+              "description": "The username without the application's domain.",
+              "lineNumber": 8,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.username"
+            },
+            {
+              "title": "param",
+              "description": "An OAuth token provided by an outside service.",
+              "lineNumber": 9,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.oauthToken"
+            },
+            {
+              "title": "example",
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});",
+              "lineNumber": 10
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 109,
+              "column": 4
+            },
+            "end": {
+              "line": 124,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 125,
+                "column": 4
+              },
+              "end": {
+                "line": 127,
+                "column": 5
+              }
+            },
+            "file": "/home/circleci/kandy/packages/kandy/src/auth/interface/api.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});"
+            }
+          ],
+          "params": [
+            {
+              "title": "param",
+              "name": "credentials",
+              "lineNumber": 7,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The credentials object.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 24,
+                            "offset": 23
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 24,
+                        "offset": 23
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 24,
+                    "offset": 23
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "credentials.username",
+                  "lineNumber": 8,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The username without the application's domain.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 47,
+                                "offset": 46
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 47,
+                            "offset": 46
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 47,
+                        "offset": 46
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.oauthToken",
+                  "lineNumber": 9,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "An OAuth token provided by an outside service.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 47,
+                                "offset": 46
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 47,
+                            "offset": 46
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 47,
+                        "offset": 46
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                }
+              ]
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "Authentication",
+          "kind": "function",
+          "name": "connect",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Authentication",
+              "kind": "module"
+            },
+            {
+              "name": "connect",
+              "kind": "function"
+            }
+          ],
+          "namespace": "Authenticationconnect"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
                     "value": "Connect with user credentials.",
                     "position": {
                       "start": {
@@ -2700,7 +3057,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/auth/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -3147,7 +3504,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/auth/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -3645,7 +4002,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/auth/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -3941,7 +4298,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Connect by providing an OAuth token.",
+                    "value": "Disconnects from the backend. This will close the websocket and you will stop receiving events.",
                     "position": {
                       "start": {
                         "line": 1,
@@ -3950,8 +4307,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 37,
-                        "offset": 36
+                        "column": 96,
+                        "offset": 95
                       },
                       "indent": []
                     }
@@ -3965,8 +4322,8 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 37,
-                    "offset": 36
+                    "column": 96,
+                    "offset": 95
                   },
                   "indent": []
                 }
@@ -3980,8 +4337,220 @@
               },
               "end": {
                 "line": 1,
-                "column": 37,
-                "offset": 36
+                "column": 96,
+                "offset": 95
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 4,
+              "name": "userCredentialsAuth"
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 5,
+              "name": "userCredentialsDAKAuth"
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 6,
+              "name": "accessTokenAuth"
+            },
+            {
+              "title": "memberof",
+              "description": "Authentication",
+              "lineNumber": 7
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 8,
+              "name": "disconnect"
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 129,
+              "column": 4
+            },
+            "end": {
+              "line": 138,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 139,
+                "column": 4
+              },
+              "end": {
+                "line": 141,
+                "column": 5
+              }
+            },
+            "file": "/home/circleci/kandy/packages/kandy/src/auth/interface/api.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "Authentication",
+          "kind": "function",
+          "name": "disconnect",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Authentication",
+              "kind": "module"
+            },
+            {
+              "name": "disconnect",
+              "kind": "function"
+            }
+          ],
+          "namespace": "Authenticationdisconnect"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "If you're authenticating with tokens that expire and have not provided a refresh token to the ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 95,
+                        "offset": 94
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "inlineCode",
+                    "value": "connect",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 95,
+                        "offset": 94
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 104,
+                        "offset": 103
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " function, you can update your access token with ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 104,
+                        "offset": 103
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 153,
+                        "offset": 152
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "inlineCode",
+                    "value": "updateToken",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 153,
+                        "offset": 152
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 166,
+                        "offset": 165
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " before it expires to stay connected.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 166,
+                        "offset": 165
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 203,
+                        "offset": 202
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 203,
+                    "offset": 202
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 203,
+                "offset": 202
               }
             }
           },
@@ -4007,7 +4576,7 @@
               "title": "method",
               "description": null,
               "lineNumber": 6,
-              "name": "connect"
+              "name": "updateToken"
             },
             {
               "title": "param",
@@ -4041,37 +4610,37 @@
             },
             {
               "title": "example",
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});",
+              "description": "client.updateToken({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});",
               "lineNumber": 10
             }
           ],
           "loc": {
             "start": {
-              "line": 109,
+              "line": 156,
               "column": 4
             },
             "end": {
-              "line": 124,
+              "line": 171,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 125,
+                "line": 172,
                 "column": 4
               },
               "end": {
-                "line": 127,
+                "line": 174,
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/auth/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [
             {
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});"
+              "description": "client.updateToken({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});"
             }
           ],
           "params": [
@@ -4269,7 +4838,7 @@
           "access": "public",
           "memberof": "Authentication",
           "kind": "function",
-          "name": "connect",
+          "name": "updateToken",
           "members": {
             "global": [],
             "inner": [],
@@ -4283,155 +4852,11 @@
               "kind": "module"
             },
             {
-              "name": "connect",
+              "name": "updateToken",
               "kind": "function"
             }
           ],
-          "namespace": "Authenticationconnect"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "Disconnects from the backend. This will close the websocket and you will stop receiving events.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 96,
-                        "offset": 95
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 96,
-                    "offset": 95
-                  },
-                  "indent": []
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 1,
-                "column": 96,
-                "offset": 95
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 3,
-              "type": null
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 4,
-              "name": "userCredentialsAuth"
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 5,
-              "name": "userCredentialsDAKAuth"
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 6,
-              "name": "accessTokenAuth"
-            },
-            {
-              "title": "memberof",
-              "description": "Authentication",
-              "lineNumber": 7
-            },
-            {
-              "title": "method",
-              "description": null,
-              "lineNumber": 8,
-              "name": "disconnect"
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 129,
-              "column": 4
-            },
-            "end": {
-              "line": 138,
-              "column": 7
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 139,
-                "column": 4
-              },
-              "end": {
-                "line": 141,
-                "column": 5
-              }
-            },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/auth/interface/api.js"
-          },
-          "augments": [],
-          "examples": [],
-          "params": [],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "memberof": "Authentication",
-          "kind": "function",
-          "name": "disconnect",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "Authentication",
-              "kind": "module"
-            },
-            {
-              "name": "disconnect",
-              "kind": "function"
-            }
-          ],
-          "namespace": "Authenticationdisconnect"
+          "namespace": "AuthenticationupdateToken"
         },
         {
           "description": {
@@ -4650,7 +5075,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/auth/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -5000,431 +5425,6 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "If you're authenticating with tokens that expire and have not provided a refresh token to the ",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 95,
-                        "offset": 94
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "inlineCode",
-                    "value": "connect",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 95,
-                        "offset": 94
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 104,
-                        "offset": 103
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": " function, you can update your access token with ",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 104,
-                        "offset": 103
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 153,
-                        "offset": 152
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "inlineCode",
-                    "value": "updateToken",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 153,
-                        "offset": 152
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 166,
-                        "offset": 165
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": " before it expires to stay connected.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 166,
-                        "offset": 165
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 203,
-                        "offset": 202
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 203,
-                    "offset": 202
-                  },
-                  "indent": []
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 1,
-                "column": 203,
-                "offset": 202
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 3,
-              "type": null
-            },
-            {
-              "title": "memberof",
-              "description": "Authentication",
-              "lineNumber": 4
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 5,
-              "name": "oauthToken"
-            },
-            {
-              "title": "method",
-              "description": null,
-              "lineNumber": 6,
-              "name": "updateToken"
-            },
-            {
-              "title": "param",
-              "description": "The credentials object.",
-              "lineNumber": 7,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "credentials"
-            },
-            {
-              "title": "param",
-              "description": "The username without the application's domain.",
-              "lineNumber": 8,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.username"
-            },
-            {
-              "title": "param",
-              "description": "An OAuth token provided by an outside service.",
-              "lineNumber": 9,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.oauthToken"
-            },
-            {
-              "title": "example",
-              "description": "client.updateToken({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});",
-              "lineNumber": 10
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 156,
-              "column": 4
-            },
-            "end": {
-              "line": 171,
-              "column": 7
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 172,
-                "column": 4
-              },
-              "end": {
-                "line": 174,
-                "column": 5
-              }
-            },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/auth/interface/api.js"
-          },
-          "augments": [],
-          "examples": [
-            {
-              "description": "client.updateToken({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});"
-            }
-          ],
-          "params": [
-            {
-              "title": "param",
-              "name": "credentials",
-              "lineNumber": 7,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The credentials object.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 24,
-                            "offset": 23
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 24,
-                        "offset": 23
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 24,
-                    "offset": 23
-                  }
-                }
-              },
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "properties": [
-                {
-                  "title": "param",
-                  "name": "credentials.username",
-                  "lineNumber": 8,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The username without the application's domain.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 47,
-                                "offset": 46
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 47,
-                            "offset": 46
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 47,
-                        "offset": 46
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "credentials.oauthToken",
-                  "lineNumber": 9,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "An OAuth token provided by an outside service.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 47,
-                                "offset": 46
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 47,
-                            "offset": 46
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 47,
-                        "offset": 46
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                }
-              ]
-            }
-          ],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "memberof": "Authentication",
-          "kind": "function",
-          "name": "updateToken",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "Authentication",
-              "kind": "module"
-            },
-            {
-              "name": "updateToken",
-              "kind": "function"
-            }
-          ],
-          "namespace": "AuthenticationupdateToken"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
                     "value": "Retrieves information about the current user.",
                     "position": {
                       "start": {
@@ -5536,7 +5536,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/auth/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -5904,7 +5904,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/auth/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -6400,7 +6400,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/auth/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -6616,7 +6616,7 @@
                 "column": 42
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/auth/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -7004,7 +7004,7 @@
           "column": 20
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -7146,7 +7146,7 @@
                 "column": 40
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -7375,7 +7375,7 @@
                 "column": 43
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [
@@ -7613,7 +7613,7 @@
                 "column": 36
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -7898,7 +7898,7 @@
                 "column": 44
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -8183,7 +8183,7 @@
                 "column": 51
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [
@@ -8734,7 +8734,7 @@
                 "column": 62
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -9025,7 +9025,7 @@
                 "column": 63
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -9265,7 +9265,7 @@
                 "column": 38
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -9553,7 +9553,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -9774,7 +9774,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -10048,7 +10048,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -10262,7 +10262,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -10511,7 +10511,7 @@
                 "column": 27
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -11021,7 +11021,7 @@
                 "column": 33
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -11816,7 +11816,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -13118,7 +13118,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -13900,7 +13900,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -14104,7 +14104,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -14314,7 +14314,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -14524,7 +14524,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -14734,7 +14734,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -14944,7 +14944,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -15154,7 +15154,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -15399,7 +15399,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -15736,7 +15736,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -16089,7 +16089,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -16559,7 +16559,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -16769,7 +16769,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -16979,7 +16979,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -17251,7 +17251,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -17719,7 +17719,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -17939,7 +17939,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -18264,7 +18264,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -18478,7 +18478,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -18753,7 +18753,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -19028,7 +19028,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -19303,7 +19303,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -19593,7 +19593,7 @@
           "column": 20
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -19729,7 +19729,7 @@
                 "column": 55
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -19953,7 +19953,7 @@
                 "column": 53
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -20183,7 +20183,7 @@
                 "column": 61
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -20413,7 +20413,7 @@
                 "column": 45
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -20673,7 +20673,7 @@
                 "column": 51
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -21131,7 +21131,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -21477,7 +21477,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -21627,7 +21627,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -21862,7 +21862,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -22033,7 +22033,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -22347,7 +22347,7 @@
           "column": 36
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/callHistory/interface/api.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/callHistory/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -22491,7 +22491,7 @@
                 "column": 55
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/callHistory/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/callHistory/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -22636,7 +22636,7 @@
                 "column": 53
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/callHistory/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/callHistory/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -22834,7 +22834,7 @@
                 "column": 66
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/callHistory/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/callHistory/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -23037,7 +23037,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/callHistory/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/callHistory/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -23304,7 +23304,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/callHistory/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/callHistory/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -23498,7 +23498,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/callHistory/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/callHistory/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -23685,7 +23685,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/callHistory/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/callHistory/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -23890,7 +23890,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/callHistory/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/callHistory/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -24091,7 +24091,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/callHistory/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/callHistory/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -24358,7 +24358,7 @@
           "column": 40
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/api.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -24468,7 +24468,7 @@
                 "column": 52
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -24623,7 +24623,7 @@
                 "column": 58
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -25031,7 +25031,7 @@
                 "column": 48
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -25472,7 +25472,7 @@
                 "column": 46
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -25744,7 +25744,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -26179,7 +26179,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -26462,7 +26462,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -26760,7 +26760,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -27121,7 +27121,7 @@
           "column": 42
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/mixins.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/mixins.js"
     },
     "augments": [],
     "examples": [],
@@ -27468,7 +27468,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/mixins.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/mixins.js"
           },
           "augments": [],
           "examples": [
@@ -27975,7 +27975,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/mixins.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/mixins.js"
           },
           "augments": [],
           "examples": [],
@@ -28185,7 +28185,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/mixins.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/mixins.js"
           },
           "augments": [],
           "examples": [],
@@ -28871,7 +28871,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/mixins.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/mixins.js"
           },
           "augments": [],
           "examples": [],
@@ -29152,7 +29152,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/mixins.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/mixins.js"
           },
           "augments": [],
           "examples": [],
@@ -29544,7 +29544,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/mixins.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/mixins.js"
           },
           "augments": [],
           "examples": [],
@@ -29756,7 +29756,7 @@
           "column": 42
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/mixins.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/mixins.js"
     },
     "augments": [],
     "examples": [],
@@ -29868,7 +29868,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/mixins.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/mixins.js"
           },
           "augments": [],
           "examples": [],
@@ -30053,7 +30053,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/messaging/interface/mixins.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/mixins.js"
           },
           "augments": [],
           "examples": [],
@@ -30547,7 +30547,7 @@
           "column": 36
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/presence/interface/api.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/presence/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -30713,7 +30713,7 @@
                 "column": 41
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/presence/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/presence/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -31172,7 +31172,7 @@
                 "column": 37
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/presence/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/presence/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -31416,7 +31416,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/presence/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -31772,7 +31772,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/presence/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -32112,7 +32112,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/presence/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -32334,7 +32334,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/presence/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -32538,7 +32538,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/presence/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -32777,7 +32777,7 @@
           "column": 36
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/mwi/interface/api.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/mwi/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -32973,7 +32973,7 @@
                 "column": 44
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/mwi/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/mwi/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -33615,7 +33615,7 @@
                 "column": 42
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/mwi/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/mwi/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -33860,7 +33860,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/mwi/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/mwi/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -33992,7 +33992,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/mwi/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/mwi/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -34165,7 +34165,7 @@
           "column": 45
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/sipEvents/interface/api.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/sipEvents/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -34331,7 +34331,7 @@
                 "column": 66
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/sipEvents/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/sipEvents/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -34738,7 +34738,7 @@
                 "column": 38
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/sipEvents/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/sipEvents/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -34982,7 +34982,7 @@
                 "column": 48
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/sipEvents/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/sipEvents/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -35406,7 +35406,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/sipEvents/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/sipEvents/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -35787,7 +35787,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/sipEvents/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/sipEvents/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -36188,7 +36188,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/sipEvents/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/sipEvents/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -36404,7 +36404,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/sipEvents/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/sipEvents/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -36700,7 +36700,7 @@
           "column": 54
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/connectivity/interface/api.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/connectivity/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -36830,7 +36830,7 @@
                 "column": 36
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/connectivity/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/connectivity/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -37045,7 +37045,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/connectivity/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/connectivity/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -37244,7 +37244,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/connectivity/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/connectivity/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -37473,7 +37473,7 @@
           "column": 3
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/api/users.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/users/interface/api/users.js"
     },
     "augments": [],
     "examples": [],
@@ -37603,7 +37603,7 @@
                 "column": 50
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/events/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/users/interface/events/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -37821,7 +37821,7 @@
                 "column": 48
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/events/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/users/interface/events/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -38070,7 +38070,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/api/users.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/users/interface/api/users.js"
           },
           "augments": [],
           "examples": [],
@@ -38296,7 +38296,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/api/users.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/users/interface/api/users.js"
           },
           "augments": [],
           "examples": [],
@@ -38432,7 +38432,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/api/users.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/users/interface/api/users.js"
           },
           "augments": [],
           "examples": [],
@@ -38620,7 +38620,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/api/users.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/users/interface/api/users.js"
           },
           "augments": [],
           "examples": [],
@@ -38937,7 +38937,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/api/users.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/users/interface/api/users.js"
           },
           "augments": [],
           "examples": [],
@@ -39874,7 +39874,7 @@
           "column": 3
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/api/contacts.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/users/interface/api/contacts.js"
     },
     "augments": [],
     "examples": [],
@@ -39994,7 +39994,7 @@
                 "column": 42
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/events/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/users/interface/events/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -40201,7 +40201,7 @@
                 "column": 46
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/events/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/users/interface/events/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -40404,7 +40404,7 @@
                 "column": 48
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/events/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/users/interface/events/eventTypes.js"
           },
           "augments": [],
           "examples": [
@@ -40724,7 +40724,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -41634,7 +41634,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -41891,7 +41891,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -42115,7 +42115,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -42289,7 +42289,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -42535,7 +42535,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -42832,7 +42832,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -42946,6 +42946,337 @@
           "children": [
             {
               "type": "text",
+              "value": "A set of handlers for manipulating SDP information.\nThese handlers are used to customize low-level call behaviour for very specific\nenvironments and/or scenarios. They can be provided during SDK instantiation\nto be used for all calls.",
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 4,
+                  "column": 26,
+                  "offset": 234
+                },
+                "indent": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 26,
+              "offset": 234
+            },
+            "indent": [
+              1,
+              1,
+              1
+            ]
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 26,
+          "offset": 234
+        }
+      }
+    },
+    "tags": [
+      {
+        "title": "public",
+        "description": null,
+        "lineNumber": 5,
+        "type": null
+      },
+      {
+        "title": "module",
+        "description": null,
+        "lineNumber": 6,
+        "type": null,
+        "name": "sdpHandlers"
+      }
+    ],
+    "loc": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 34,
+        "column": 3
+      }
+    },
+    "context": {
+      "loc": {
+        "start": {
+          "line": 62,
+          "column": 0
+        },
+        "end": {
+          "line": 62,
+          "column": 35
+        }
+      },
+      "file": "/home/circleci/kandy/packages/kandy/src/index.common.js"
+    },
+    "augments": [],
+    "examples": [],
+    "params": [],
+    "properties": [],
+    "returns": [],
+    "sees": [],
+    "throws": [],
+    "todos": [],
+    "access": "public",
+    "kind": "module",
+    "name": "sdpHandlers",
+    "members": {
+      "global": [],
+      "inner": [],
+      "instance": [],
+      "events": [],
+      "static": [
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party. While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 264,
+                        "offset": 263
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 264,
+                    "offset": 263
+                  },
+                  "indent": []
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "To facilitate this common task, the SDK provides a codec removal handler that can be used for this purpose.",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 1,
+                        "offset": 265
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 108,
+                        "offset": 372
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 3,
+                    "column": 1,
+                    "offset": 265
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 108,
+                    "offset": 372
+                  },
+                  "indent": []
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1,
+                        "offset": 374
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 167,
+                        "offset": 540
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 5,
+                    "column": 1,
+                    "offset": 374
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 167,
+                    "offset": 540
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 5,
+                "column": 167,
+                "offset": 540
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 7,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "sdpHandlers",
+              "lineNumber": 8
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 9,
+              "name": "createCodecRemover"
+            },
+            {
+              "title": "example",
+              "description": "import { create, sdpHandlers } from 'kandy';\nconst codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])\nconst client = create({\n  call: {\n    sdpHandlers: [codecRemover]\n  }\n})",
+              "lineNumber": 10
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 38,
+              "column": 0
+            },
+            "end": {
+              "line": 57,
+              "column": 3
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 62,
+                "column": 0
+              },
+              "end": {
+                "line": 62,
+                "column": 35
+              }
+            },
+            "file": "/home/circleci/kandy/packages/kandy/src/index.common.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "import { create, sdpHandlers } from 'kandy';\nconst codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])\nconst client = create({\n  call: {\n    sdpHandlers: [codecRemover]\n  }\n})"
+            }
+          ],
+          "params": [],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "sdpHandlers",
+          "kind": "function",
+          "name": "createCodecRemover",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "sdpHandlers",
+              "kind": "module"
+            },
+            {
+              "name": "createCodecRemover",
+              "kind": "function"
+            }
+          ],
+          "namespace": "sdpHandlerscreateCodecRemover"
+        }
+      ]
+    },
+    "path": [
+      {
+        "name": "sdpHandlers",
+        "kind": "module"
+      }
+    ],
+    "namespace": "sdpHandlers"
+  },
+  {
+    "description": {
+      "type": "root",
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
               "value": "The configuration object. This object defines what different configuration\nvalues you can use when instantiating the SDK.",
               "position": {
                 "start": {
@@ -43030,7 +43361,7 @@
           "column": 35
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/index.common.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/index.common.js"
     },
     "augments": [],
     "examples": [],
@@ -43280,7 +43611,7 @@
                 "column": 1
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/logs/index.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/logs/index.js"
           },
           "augments": [],
           "examples": [],
@@ -44274,7 +44605,7 @@
                 "column": 1
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/auth/cpaas/index.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/auth/cpaas/index.js"
           },
           "augments": [],
           "examples": [],
@@ -45193,7 +45524,7 @@
                 "column": 1
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/oldLink/index.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/oldLink/index.js"
           },
           "augments": [],
           "examples": [],
@@ -45738,7 +46069,7 @@
                 "column": 1
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/connectivity/index.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/connectivity/index.js"
           },
           "augments": [],
           "examples": [],
@@ -46901,7 +47232,7 @@
                 "column": 1
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/notifications/link/index.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/notifications/link/index.js"
           },
           "augments": [],
           "examples": [],
@@ -47531,337 +47862,6 @@
           "children": [
             {
               "type": "text",
-              "value": "A set of handlers for manipulating SDP information.\nThese handlers are used to customize low-level call behaviour for very specific\nenvironments and/or scenarios. They can be provided during SDK instantiation\nto be used for all calls.",
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 4,
-                  "column": 26,
-                  "offset": 234
-                },
-                "indent": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 4,
-              "column": 26,
-              "offset": 234
-            },
-            "indent": [
-              1,
-              1,
-              1
-            ]
-          }
-        }
-      ],
-      "position": {
-        "start": {
-          "line": 1,
-          "column": 1,
-          "offset": 0
-        },
-        "end": {
-          "line": 4,
-          "column": 26,
-          "offset": 234
-        }
-      }
-    },
-    "tags": [
-      {
-        "title": "public",
-        "description": null,
-        "lineNumber": 5,
-        "type": null
-      },
-      {
-        "title": "module",
-        "description": null,
-        "lineNumber": 6,
-        "type": null,
-        "name": "sdpHandlers"
-      }
-    ],
-    "loc": {
-      "start": {
-        "line": 27,
-        "column": 0
-      },
-      "end": {
-        "line": 34,
-        "column": 3
-      }
-    },
-    "context": {
-      "loc": {
-        "start": {
-          "line": 62,
-          "column": 0
-        },
-        "end": {
-          "line": 62,
-          "column": 35
-        }
-      },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/index.common.js"
-    },
-    "augments": [],
-    "examples": [],
-    "params": [],
-    "properties": [],
-    "returns": [],
-    "sees": [],
-    "throws": [],
-    "todos": [],
-    "access": "public",
-    "kind": "module",
-    "name": "sdpHandlers",
-    "members": {
-      "global": [],
-      "inner": [],
-      "instance": [],
-      "events": [],
-      "static": [
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party. While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 264,
-                        "offset": 263
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 264,
-                    "offset": 263
-                  },
-                  "indent": []
-                }
-              },
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "To facilitate this common task, the SDK provides a codec removal handler that can be used for this purpose.",
-                    "position": {
-                      "start": {
-                        "line": 3,
-                        "column": 1,
-                        "offset": 265
-                      },
-                      "end": {
-                        "line": 3,
-                        "column": 108,
-                        "offset": 372
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 3,
-                    "column": 1,
-                    "offset": 265
-                  },
-                  "end": {
-                    "line": 3,
-                    "column": 108,
-                    "offset": 372
-                  },
-                  "indent": []
-                }
-              },
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.",
-                    "position": {
-                      "start": {
-                        "line": 5,
-                        "column": 1,
-                        "offset": 374
-                      },
-                      "end": {
-                        "line": 5,
-                        "column": 167,
-                        "offset": 540
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 5,
-                    "column": 1,
-                    "offset": 374
-                  },
-                  "end": {
-                    "line": 5,
-                    "column": 167,
-                    "offset": 540
-                  },
-                  "indent": []
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 5,
-                "column": 167,
-                "offset": 540
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 7,
-              "type": null
-            },
-            {
-              "title": "memberof",
-              "description": "sdpHandlers",
-              "lineNumber": 8
-            },
-            {
-              "title": "method",
-              "description": null,
-              "lineNumber": 9,
-              "name": "createCodecRemover"
-            },
-            {
-              "title": "example",
-              "description": "import { create, sdpHandlers } from 'kandy';\nconst codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])\nconst client = create({\n  call: {\n    sdpHandlers: [codecRemover]\n  }\n})",
-              "lineNumber": 10
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 38,
-              "column": 0
-            },
-            "end": {
-              "line": 57,
-              "column": 3
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 62,
-                "column": 0
-              },
-              "end": {
-                "line": 62,
-                "column": 35
-              }
-            },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/index.common.js"
-          },
-          "augments": [],
-          "examples": [
-            {
-              "description": "import { create, sdpHandlers } from 'kandy';\nconst codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])\nconst client = create({\n  call: {\n    sdpHandlers: [codecRemover]\n  }\n})"
-            }
-          ],
-          "params": [],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "memberof": "sdpHandlers",
-          "kind": "function",
-          "name": "createCodecRemover",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "sdpHandlers",
-              "kind": "module"
-            },
-            {
-              "name": "createCodecRemover",
-              "kind": "function"
-            }
-          ],
-          "namespace": "sdpHandlerscreateCodecRemover"
-        }
-      ]
-    },
-    "path": [
-      {
-        "name": "sdpHandlers",
-        "kind": "module"
-      }
-    ],
-    "namespace": "sdpHandlers"
-  },
-  {
-    "description": {
-      "type": "root",
-      "children": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
               "value": "The internal logger used to provide information about the SDK's behaviour.\nThe logger can provide two types of logs: basic logs and action logs. Basic\nlogs are simple lines of information about what the SDK is doing during operations.\nAction logs are complete information about a specific action that occurred\nwithin the SDK, prodiving debug information describing it.\nThe amount of information logged can be configured as part of the SDK\n(see ",
               "position": {
                 "start": {
@@ -47990,7 +47990,7 @@
           "column": 1
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/logs/interface/api.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/logs/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -48146,7 +48146,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/logs/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/logs/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -48588,7 +48588,7 @@
           "column": 36
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/config/interface/api.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/config/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -48715,7 +48715,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/config/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/config/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -48917,7 +48917,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/config/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/config/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -49131,7 +49131,7 @@
           "column": 16
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/errors/index.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/errors/index.js"
     },
     "augments": [],
     "examples": [],
@@ -49416,7 +49416,7 @@
           "column": 20
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -49546,7 +49546,7 @@
                 "column": 49
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -49762,7 +49762,7 @@
                 "column": 47
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -49972,7 +49972,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -50168,7 +50168,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -50376,7 +50376,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -50645,7 +50645,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -50904,7 +50904,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -51102,7 +51102,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -51300,7 +51300,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -51498,7 +51498,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -51695,7 +51695,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -51900,7 +51900,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/call/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -52160,7 +52160,7 @@
           "column": 36
         }
       },
-      "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/clickToCall/interface/api.js"
+      "file": "/home/circleci/kandy/packages/kandy/src/clickToCall/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -52296,7 +52296,7 @@
                 "column": 56
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/clickToCall/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/clickToCall/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -52530,7 +52530,7 @@
                 "column": 54
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/clickToCall/interface/eventTypes.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/clickToCall/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -52821,7 +52821,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/clickToCall/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/clickToCall/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -53145,7 +53145,7 @@
                 "column": 5
               }
             },
-            "file": "/Users/jbassey/Desktop/Kandy.js/packages/kandy/src/clickToCall/interface/api.js"
+            "file": "/home/circleci/kandy/packages/kandy/src/clickToCall/interface/api.js"
           },
           "augments": [],
           "examples": [],
