@@ -1,7 +1,7 @@
 /**
  * Kandy.js (Next)
  * kandy.cpaas.js
- * Version: 3.1.0-beta.53677
+ * Version: 3.1.0-beta.53775
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -62572,7 +62572,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.1.0-beta.53677';
+  let version = '3.1.0-beta.53775';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];
@@ -68682,7 +68682,13 @@ function* unsubscribePresence({ payload }) {
 
 function* receivePresence(wsAction) {
   const params = wsAction.payload.notificationMessage.presenceWatcherNotificationParams;
-  yield (0, _effects.put)(actions.presenceReceived(params));
+  const presence = {
+    userId: params.name,
+    activity: params.activity,
+    status: params.status,
+    note: params.note
+  };
+  yield (0, _effects.put)(actions.presenceReceived(presence));
 }
 
 /***/ }),
