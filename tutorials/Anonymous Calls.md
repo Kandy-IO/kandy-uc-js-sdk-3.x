@@ -9,7 +9,7 @@ permalink: /quickstarts/javascript/cpaas/Anonymous%20Calls
 
 Anonymous Calls is a Kandy feature that enables a user to make a call without needing their own user account. It allows for scenarios such as a visitor to a website making a call to a support line.
 
-This quickstart will outline the differences between a Voice & Video Call scenario and a Anonymous Call scenario. Since Anonymous calls are an extension of Voice & Video calls, it is expected that the reader understands [Voice & Video calls](index.html#Voice%20%26%20Video%20Calls) fully.
+This quickstart will outline the differences between a Voice and Video Call scenario and a Anonymous Call scenario. Since Anonymous calls are an extension of Voice and Video calls, it is expected that the reader understands [Voice and Video calls](index.html#Voice%20%26%20Video%20Calls) fully.
 
 ## Prerequisites
 
