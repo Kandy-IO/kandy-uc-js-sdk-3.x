@@ -17,9 +17,9 @@
   description: # Messaging
   link: /quickstarts/javascript/cpaas/Messaging
 
-- name: Voice & Video Calls
-  description: # Voice & Video Calls
-  link: /quickstarts/javascript/cpaas/Voice%20%26%20Video%20Calls
+- name: Voice and Video Calls
+  description: # Voice and Video Calls
+  link: /quickstarts/javascript/cpaas/Voice%20and%20Video%20Calls
 
 - name: Rich Messaging
   description: # Rich Messaging

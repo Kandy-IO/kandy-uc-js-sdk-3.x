@@ -134,7 +134,7 @@ The reference documentation lists all of the events that can be emitted by diffe
 
 #### Config
 
-In Kandy v3, call configuration defaults are set at the instantiation of the Kandy object. It is then possible to override these defaults on any future call for that instance of Kandy. To learn more about this configuration check out the [Voice & Video Calls Quickstart](index.html#Voice%20%26%20Video%20Calls) for a simple setup, and the [Configuration Docs](index.html#Configurations) for more in depth information.
+In Kandy v3, call configuration defaults are set at the instantiation of the Kandy object. It is then possible to override these defaults on any future call for that instance of Kandy. To learn more about this configuration check out the [Voice and Video Calls Quickstart](index.html#Voice%20%26%20Video%20Calls) for a simple setup, and the [Configuration Docs](index.html#Configurations) for more in depth information.
 
 As well, Events for calls have changed. Please see the [Call Events Docs](../docs#calls) to learn more about what events you may encounter.
 
