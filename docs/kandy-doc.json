@@ -2996,6 +2996,440 @@
                 "children": [
                   {
                     "type": "text",
+                    "value": "Connect with user credentials.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 31,
+                        "offset": 30
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 31,
+                    "offset": 30
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 31,
+                "offset": 30
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "Authentication",
+              "lineNumber": 4
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 5,
+              "name": "userCredentialsAuth"
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 6,
+              "name": "connect"
+            },
+            {
+              "title": "param",
+              "description": "The credentials object.",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "credentials"
+            },
+            {
+              "title": "param",
+              "description": "The username including the application's domain.",
+              "lineNumber": 8,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.username"
+            },
+            {
+              "title": "param",
+              "description": "The user's password.",
+              "lineNumber": 9,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.password"
+            },
+            {
+              "title": "param",
+              "description": "The user's authorization name.",
+              "lineNumber": 10,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "credentials.authname"
+            },
+            {
+              "title": "example",
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});",
+              "lineNumber": 11
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 35,
+              "column": 4
+            },
+            "end": {
+              "line": 52,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 125,
+                "column": 4
+              },
+              "end": {
+                "line": 127,
+                "column": 5
+              }
+            },
+            "file": "/home/circleci/kandy/packages/kandy/src/auth/interface/api.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});"
+            }
+          ],
+          "params": [
+            {
+              "title": "param",
+              "name": "credentials",
+              "lineNumber": 7,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The credentials object.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 24,
+                            "offset": 23
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 24,
+                        "offset": 23
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 24,
+                    "offset": 23
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "credentials.username",
+                  "lineNumber": 8,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The username including the application's domain.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 49,
+                                "offset": 48
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 49,
+                            "offset": 48
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 49,
+                        "offset": 48
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.password",
+                  "lineNumber": 9,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The user's password.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 21,
+                                "offset": 20
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 21,
+                            "offset": 20
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 21,
+                        "offset": 20
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.authname",
+                  "lineNumber": 10,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The user's authorization name.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 31,
+                                "offset": 30
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 31,
+                            "offset": 30
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 31,
+                        "offset": 30
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "Authentication",
+          "kind": "function",
+          "name": "connect",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Authentication",
+              "kind": "module"
+            },
+            {
+              "name": "connect",
+              "kind": "function"
+            }
+          ],
+          "namespace": "Authenticationconnect"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
                     "value": "Connect by providing an OAuth token.",
                     "position": {
                       "start": {
@@ -3821,440 +4255,6 @@
                     "expression": {
                       "type": "NameExpression",
                       "name": "number"
-                    }
-                  }
-                }
-              ]
-            }
-          ],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "memberof": "Authentication",
-          "kind": "function",
-          "name": "connect",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "Authentication",
-              "kind": "module"
-            },
-            {
-              "name": "connect",
-              "kind": "function"
-            }
-          ],
-          "namespace": "Authenticationconnect"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "Connect with user credentials.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 31,
-                        "offset": 30
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 31,
-                    "offset": 30
-                  },
-                  "indent": []
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 1,
-                "column": 31,
-                "offset": 30
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 3,
-              "type": null
-            },
-            {
-              "title": "memberof",
-              "description": "Authentication",
-              "lineNumber": 4
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 5,
-              "name": "userCredentialsAuth"
-            },
-            {
-              "title": "method",
-              "description": null,
-              "lineNumber": 6,
-              "name": "connect"
-            },
-            {
-              "title": "param",
-              "description": "The credentials object.",
-              "lineNumber": 7,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "credentials"
-            },
-            {
-              "title": "param",
-              "description": "The username including the application's domain.",
-              "lineNumber": 8,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.username"
-            },
-            {
-              "title": "param",
-              "description": "The user's password.",
-              "lineNumber": 9,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.password"
-            },
-            {
-              "title": "param",
-              "description": "The user's authorization name.",
-              "lineNumber": 10,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "string"
-                }
-              },
-              "name": "credentials.authname"
-            },
-            {
-              "title": "example",
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});",
-              "lineNumber": 11
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 35,
-              "column": 4
-            },
-            "end": {
-              "line": 52,
-              "column": 7
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 125,
-                "column": 4
-              },
-              "end": {
-                "line": 127,
-                "column": 5
-              }
-            },
-            "file": "/home/circleci/kandy/packages/kandy/src/auth/interface/api.js"
-          },
-          "augments": [],
-          "examples": [
-            {
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});"
-            }
-          ],
-          "params": [
-            {
-              "title": "param",
-              "name": "credentials",
-              "lineNumber": 7,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The credentials object.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 24,
-                            "offset": 23
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 24,
-                        "offset": 23
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 24,
-                    "offset": 23
-                  }
-                }
-              },
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "properties": [
-                {
-                  "title": "param",
-                  "name": "credentials.username",
-                  "lineNumber": 8,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The username including the application's domain.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 49,
-                                "offset": 48
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 49,
-                            "offset": 48
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 49,
-                        "offset": 48
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "credentials.password",
-                  "lineNumber": 9,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The user's password.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 21,
-                                "offset": 20
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 21,
-                            "offset": 20
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 21,
-                        "offset": 20
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "credentials.authname",
-                  "lineNumber": 10,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The user's authorization name.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 31,
-                                "offset": 30
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 31,
-                            "offset": 30
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 31,
-                        "offset": 30
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "string"
                     }
                   }
                 }
@@ -26064,289 +26064,6 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Get a conversation object matching the user ID provided\nIf successful, the event 'conversations:change' will be emitted.\nIf a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 3,
-                        "column": 138,
-                        "offset": 258
-                      },
-                      "indent": [
-                        1,
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 3,
-                    "column": 138,
-                    "offset": 258
-                  },
-                  "indent": [
-                    1,
-                    1
-                  ]
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 3,
-                "column": 138,
-                "offset": 258
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 5,
-              "type": null
-            },
-            {
-              "title": "memberof",
-              "description": "Messaging",
-              "lineNumber": 6
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 7,
-              "name": "onlyInternalMessaging"
-            },
-            {
-              "title": "method",
-              "description": null,
-              "lineNumber": 8,
-              "name": "get"
-            },
-            {
-              "title": "param",
-              "description": "The destination for messages created in this conversation. This will\nbe a user's sip address.",
-              "lineNumber": 9,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "destination"
-            },
-            {
-              "title": "returns",
-              "description": "A Conversation object.",
-              "lineNumber": 11,
-              "type": {
-                "type": "NameExpression",
-                "name": "Conversation"
-              }
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 42,
-              "column": 4
-            },
-            "end": {
-              "line": 54,
-              "column": 7
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 82,
-                "column": 4
-              },
-              "end": {
-                "line": 116,
-                "column": 5
-              }
-            },
-            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/api.js"
-          },
-          "augments": [],
-          "examples": [],
-          "params": [
-            {
-              "title": "param",
-              "name": "destination",
-              "lineNumber": 9,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The destination for messages created in this conversation. This will\nbe a user's sip address.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 2,
-                            "column": 25,
-                            "offset": 93
-                          },
-                          "indent": [
-                            1
-                          ]
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 2,
-                        "column": 25,
-                        "offset": 93
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 2,
-                    "column": 25,
-                    "offset": 93
-                  }
-                }
-              },
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              }
-            }
-          ],
-          "properties": [],
-          "returns": [
-            {
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "A Conversation object.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 23,
-                            "offset": 22
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 23,
-                        "offset": 22
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 23,
-                    "offset": 22
-                  }
-                }
-              },
-              "title": "returns",
-              "type": {
-                "type": "NameExpression",
-                "name": "Conversation"
-              }
-            }
-          ],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "memberof": "Messaging",
-          "kind": "function",
-          "name": "get",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "Messaging",
-              "kind": "module"
-            },
-            {
-              "name": "get",
-              "kind": "function"
-            }
-          ],
-          "namespace": "Messagingget"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
                     "value": "Get a conversation object matching the user IDs provided.\nIf successful, the event 'conversations:change' will be emitted.\nMulti-user conversations have a destination comprised of multiple user IDs.",
                     "position": {
                       "start": {
@@ -26530,6 +26247,289 @@
               "type": {
                 "type": "NameExpression",
                 "name": "Array"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "A Conversation object.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 23,
+                            "offset": 22
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 23,
+                        "offset": 22
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 23,
+                    "offset": 22
+                  }
+                }
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Conversation"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "Messaging",
+          "kind": "function",
+          "name": "get",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Messaging",
+              "kind": "module"
+            },
+            {
+              "name": "get",
+              "kind": "function"
+            }
+          ],
+          "namespace": "Messagingget"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Get a conversation object matching the user ID provided\nIf successful, the event 'conversations:change' will be emitted.\nIf a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 138,
+                        "offset": 258
+                      },
+                      "indent": [
+                        1,
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 138,
+                    "offset": 258
+                  },
+                  "indent": [
+                    1,
+                    1
+                  ]
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 3,
+                "column": 138,
+                "offset": 258
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 5,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "Messaging",
+              "lineNumber": 6
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 7,
+              "name": "onlyInternalMessaging"
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 8,
+              "name": "get"
+            },
+            {
+              "title": "param",
+              "description": "The destination for messages created in this conversation. This will\nbe a user's sip address.",
+              "lineNumber": 9,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "destination"
+            },
+            {
+              "title": "returns",
+              "description": "A Conversation object.",
+              "lineNumber": 11,
+              "type": {
+                "type": "NameExpression",
+                "name": "Conversation"
+              }
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 42,
+              "column": 4
+            },
+            "end": {
+              "line": 54,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 82,
+                "column": 4
+              },
+              "end": {
+                "line": 116,
+                "column": 5
+              }
+            },
+            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/api.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "destination",
+              "lineNumber": 9,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The destination for messages created in this conversation. This will\nbe a user's sip address.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 25,
+                            "offset": 93
+                          },
+                          "indent": [
+                            1
+                          ]
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 25,
+                        "offset": 93
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 25,
+                    "offset": 93
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
               }
             }
           ],
@@ -32409,6 +32409,372 @@
                 "children": [
                   {
                     "type": "text",
+                    "value": "Retrieve the presence information for all users.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 49,
+                        "offset": 48
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 49,
+                    "offset": 48
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 49,
+                "offset": 48
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "Presence",
+              "lineNumber": 4
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 5,
+              "name": "presence"
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 6,
+              "name": "getAll"
+            },
+            {
+              "title": "return",
+              "description": "List of user presence information.",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "Array"
+              }
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 56,
+              "column": 4
+            },
+            "end": {
+              "line": 64,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 65,
+                "column": 4
+              },
+              "end": {
+                "line": 67,
+                "column": 5
+              }
+            },
+            "file": "/home/circleci/kandy/packages/kandy/src/presence/interface/api.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "List of user presence information.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 35,
+                            "offset": 34
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 35,
+                        "offset": 34
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 35,
+                    "offset": 34
+                  }
+                }
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Array"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "Presence",
+          "kind": "function",
+          "name": "getAll",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Presence",
+              "kind": "module"
+            },
+            {
+              "name": "getAll",
+              "kind": "function"
+            }
+          ],
+          "namespace": "PresencegetAll"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Retrieves the presence information for the current user.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 57,
+                        "offset": 56
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 57,
+                    "offset": 56
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 57,
+                "offset": 56
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "Presence",
+              "lineNumber": 4
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 5,
+              "name": "presence"
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 6,
+              "name": "getSelf"
+            },
+            {
+              "title": "return",
+              "description": null,
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              }
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 69,
+              "column": 4
+            },
+            "end": {
+              "line": 77,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 78,
+                "column": 4
+              },
+              "end": {
+                "line": 80,
+                "column": 5
+              }
+            },
+            "file": "/home/circleci/kandy/packages/kandy/src/presence/interface/api.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  }
+                }
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "Presence",
+          "kind": "function",
+          "name": "getSelf",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Presence",
+              "kind": "module"
+            },
+            {
+              "name": "getSelf",
+              "kind": "function"
+            }
+          ],
+          "namespace": "PresencegetSelf"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
                     "value": "Fetch (from the server) the presence for the given users.\nThis will update the store with the retrieved values, which can then\nbe accessed using ",
                     "position": {
                       "start": {
@@ -32548,22 +32914,22 @@
           ],
           "loc": {
             "start": {
-              "line": 56,
+              "line": 82,
               "column": 4
             },
             "end": {
-              "line": 66,
+              "line": 92,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 67,
+                "line": 93,
                 "column": 4
               },
               "end": {
-                "line": 70,
+                "line": 96,
                 "column": 5
               }
             },
@@ -32770,22 +33136,22 @@
           ],
           "loc": {
             "start": {
-              "line": 72,
+              "line": 98,
               "column": 4
             },
             "end": {
-              "line": 80,
+              "line": 106,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 81,
+                "line": 107,
                 "column": 4
               },
               "end": {
-                "line": 83,
+                "line": 109,
                 "column": 5
               }
             },
@@ -32974,22 +33340,22 @@
           ],
           "loc": {
             "start": {
-              "line": 85,
+              "line": 111,
               "column": 4
             },
             "end": {
-              "line": 93,
+              "line": 119,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 94,
+                "line": 120,
                 "column": 4
               },
               "end": {
-                "line": 96,
+                "line": 122,
                 "column": 5
               }
             },

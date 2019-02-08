@@ -112,6 +112,27 @@ client.connect({
 
 ### connect
 
+Connect with user credentials.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.username` **[string][2]** The username including the application's domain.
+    -   `credentials.password` **[string][2]** The user's password.
+    -   `credentials.authname` **[string][2]?** The user's authorization name.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  password: '********'
+  authname: '********'
+});
+```
+
+### connect
+
 Connect by providing an OAuth token.
 
 **Parameters**
@@ -149,27 +170,6 @@ client.connect({
   accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
   refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
   expires: 3600
-});
-```
-
-### connect
-
-Connect with user credentials.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username including the application's domain.
-    -   `credentials.password` **[string][2]** The user's password.
-    -   `credentials.authname` **[string][2]?** The user's authorization name.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
 });
 ```
 
@@ -748,19 +748,6 @@ These conversations can then be retrieved from the store using get().
 
 ### get
 
-Get a conversation object matching the user ID provided
-If successful, the event 'conversations:change' will be emitted.
-If a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.
-
-**Parameters**
-
--   `destination` **[string][2]** The destination for messages created in this conversation. This will
-    be a user's sip address.
-
-Returns **[Conversation][10]** A Conversation object.
-
-### get
-
 Get a conversation object matching the user IDs provided.
 If successful, the event 'conversations:change' will be emitted.
 Multi-user conversations have a destination comprised of multiple user IDs.
@@ -769,6 +756,19 @@ Multi-user conversations have a destination comprised of multiple user IDs.
 
 -   `destination` **[Array][8]** An array of destinations for messages created in this conversation.
     These will be a user's sip address.
+
+Returns **[Conversation][10]** A Conversation object.
+
+### get
+
+Get a conversation object matching the user ID provided
+If successful, the event 'conversations:change' will be emitted.
+If a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.
+
+**Parameters**
+
+-   `destination` **[string][2]** The destination for messages created in this conversation. This will
+    be a user's sip address.
 
 Returns **[Conversation][10]** A Conversation object.
 
@@ -956,6 +956,18 @@ Retrieve the presence information for specified users.
 -   `users` **([Array][8]&lt;[string][2]> | [string][2])** A user id or an array of user ids.
 
 Returns **[Array][8]** List of user presence information.
+
+### getAll
+
+Retrieve the presence information for all users.
+
+Returns **[Array][8]** List of user presence information.
+
+### getSelf
+
+Retrieves the presence information for the current user.
+
+Returns **[Object][5]** 
 
 ### fetch
 
