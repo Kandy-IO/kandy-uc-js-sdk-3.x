@@ -9,8 +9,9 @@
 
 The information about tutorials and documents can be found in the links below
 
-* `Documents`: [docs](https://github.com/Kandy-IO/kandy-uc-js-sdk/tree/beta/docs) directory.
-* `Tutorials`:  [tutorials](https://github.com/Kandy-IO/kandy-uc-js-sdk/tree/beta/tutorials) directory.
+* `Documents`: [docs](https://kandy-io.github.io/kandy-uc-js-sdk/docs).
+* `Tutorials`:  [Getting Started](https://kandy-io.github.io/kandy-uc-js-sdk/tutorials/#/Getting%20Started)
+
 
 
 

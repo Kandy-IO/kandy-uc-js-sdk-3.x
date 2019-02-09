@@ -1,0 +1,35 @@
+# "Display" data about quickstarts.
+# Information to be displayed on the Quickstarts page.
+
+- name: Getting Started
+  description: # Getting Started
+  link: /quickstarts/javascript/cpaas/Getting%20Started
+
+- name: Configurations
+  description: # Kandy Configurations
+  link: /quickstarts/javascript/cpaas/Configurations
+
+- name: User Connect
+  description: # Connecting and Disconnecting
+  link: /quickstarts/javascript/cpaas/User%20Connect
+
+- name: Messaging
+  description: # Messaging
+  link: /quickstarts/javascript/cpaas/Messaging
+
+- name: Voice and Video Calls
+  description: # Voice and Video Calls
+  link: /quickstarts/javascript/cpaas/Voice%20and%20Video%20Calls
+
+- name: Rich Messaging
+  description: # Rich Messaging
+  link: /quickstarts/javascript/cpaas/Rich%20Messaging
+
+- name: SMS Messaging
+  description: # SMS Messaging
+  link: /quickstarts/javascript/cpaas/SMS%20Messaging
+
+- name: Anonymous Calls
+  description: # Anonymous Calls
+  link: /quickstarts/javascript/cpaas/Anonymous%20Calls
+

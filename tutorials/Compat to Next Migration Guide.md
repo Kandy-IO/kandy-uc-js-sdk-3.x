@@ -19,13 +19,8 @@ Kandy v3.0 moved to a plugin based architecture. This means that different secti
 
 When using Kandy v3.0, you have to create your own instance of Kandy to use. It is at this instantiation point that you would configure any parts of Kandy that need configuration.
 
-``` exclude javascript
+```  javascript
 import { create } from kandy
-var kandy = create(configuration)
-```
-
-``` hidden javascript
-const { create } = Kandy
 var kandy = create(configuration)
 ```
 
@@ -40,21 +35,11 @@ kandyInstance1 = create(config1)
 kandyInstance2 = create(config2)
 ```
 
-``` hidden javascript
-const { create } = Kandy
-
-// Create two individual instances of kandy with different configurations
-var config1 = {...}
-var config2 = {...}
-kandyInstance1 = create(config1)
-kandyInstance2 = create(config2)
-```
-
 ## Configuration
 
 In Kandy v3.0, configuration options are passed into Kandy when you are creating an instance. These config values will only apply to the returned instance of Kandy. If config values are provided, they are separated by the plugin that you are configuring, such as the `call` plugin or the `connectivity` plugin.
 
-``` exclude javascript
+```  javascript
 import { create } from kandy
 var kandy = create({
     logs: {
@@ -69,22 +54,7 @@ var kandy = create({
 })
 ```
 
-``` hidden javascript
-const { create } = Kandy
-var kandy = create({
-    logs: {
-        logLevel: 'error'
-        // Other logs configuration
-    },
-    call: {
-        callDefaults: {...},
-        webrtcdtls: true,
-        // Other call configuration
-    },
-})
-```
-
-You can learn more about the possible config values for different plugins [here](index.html#Configurations).
+You can learn more about the possible config values for different plugins [here](Configurations).
 
 ## State
 
@@ -134,9 +104,9 @@ The reference documentation lists all of the events that can be emitted by diffe
 
 #### Config
 
-In Kandy v3, call configuration defaults are set at the instantiation of the Kandy object. It is then possible to override these defaults on any future call for that instance of Kandy. To learn more about this configuration check out the [Voice and Video Calls Quickstart](index.html#Voice%20%26%20Video%20Calls) for a simple setup, and the [Configuration Docs](index.html#Configurations) for more in depth information.
+In Kandy v3, call configuration defaults are set at the instantiation of the Kandy object. It is then possible to override these defaults on any future call for that instance of Kandy. To learn more about this configuration check out the [Voice and Video Calls Quickstart](Voice%20%26%20Video%20Calls) for a simple setup, and the [Configuration Docs](index.html#Configurations) for more in depth information.
 
-As well, Events for calls have changed. Please see the [Call Events Docs](../docs#calls) to learn more about what events you may encounter.
+As well, Events for calls have changed. Please see the [Call Events Docs](../../references/cpaas#calls) to learn more about what events you may encounter.
 
 #### Call Object
 
@@ -171,12 +141,11 @@ It is important to note that the `callId` returned by `kandy.call.getById()` is 
 
 You may have noticed above that the events look a little different for Kandy v3.0 calls. All events are entirely new, so events you may have expected to be emitted in Kandy v2.0 will no longer be emitted. In most cases, Kandy v2.0 events will have a corresponding v3.0 event, however not always.
 
-Take a look at the [Calls Events doc](../docs#calls) to check out what events exist.
+Take a look at the [Calls Events doc](../../references/cpaas#calls) to check out what events exist.
 
 #### State
 
 Like most things in Kandy v3, calls are tracked by the internal store or state of the Kandy SDK. This offsets some of the responsibility of tracking states in an app onto the SDK, hopefully making it a little easier to develop using the SDK.
-
 
 ## Messaging
 
@@ -188,7 +157,7 @@ kandy.sendImWithFile(userId, file, success, failure, options)
 kandy.sendImWithImage(userId, image, success, failure, options)
 ```
 
-In Kandy v3.0, messaging is handled in a much more organized way. Messages are associated with a conversation, and have `parts` associated with them to make sending rich messages of various types far easier. As well, there are no callback functions. Instead, there are a few events to listen for that will allow you to easily update your app when something occurs. Messaging related events can be found [here](../docs#messaging).
+In Kandy v3.0, messaging is handled in a much more organized way. Messages are associated with a conversation, and have `parts` associated with them to make sending rich messages of various types far easier. As well, there are no callback functions. Instead, there are a few events to listen for that will allow you to easily update your app when something occurs. Messaging related events can be found [here](../../references/cpaas#messaging).
 
 ``` javascript
 // Create a conversation with a user.
@@ -236,3 +205,6 @@ kandy.contacts.refresh()
 // Get information for a specific user from the local store.
 kandy.user.get(userId)
 ```
+
+
+

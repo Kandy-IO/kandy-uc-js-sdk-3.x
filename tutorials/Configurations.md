@@ -9,7 +9,7 @@ permalink: /quickstarts/javascript/cpaas/Configurations
 
 The first step for any application is to initialize Kandy.js. When doing this, you can customize certain features by providing a configurations object. Kandy's configuration object is separated by feature, and is provided to the Kandy Factory as seen in the example below.
 
-``` exclude javascript
+```  javascript
 // Initialize an instance of Kandy.js.
 import { create } from kandy
 const kandy = create({
@@ -24,22 +24,7 @@ const kandy = create({
 });
 ```
 
-``` hidden javascript
-// Initialize an instance of Kandy.js.
-const { create } = Kandy
-const kandy = create({
-    authentication: {
-        // Server connection configs.
-    },
-    logs: {
-        // Log output configs.
-    },
-    // Other feature configs.
-    ...
-});
-```
-
-In most cases, the default values will suffice for an application, but specifying your own configurations allows you to customize certain behaviours. The exception is the authentication configurations, which are always required. This quickstart will showcase a few samples of why you may want to use certain configurations. For a full list of the possible configurations, see the [Configuration Documentation](../docs#configurations).
+In most cases, the default values will suffice for an application, but specifying your own configurations allows you to customize certain behaviours. The exception is the authentication configurations, which are always required. This quickstart will showcase a few samples of why you may want to use certain configurations. For a full list of the possible configurations, see the [Configuration Documentation](../../references/cpaas#configurations).
 
 ## Example Configurations
 
@@ -102,3 +87,6 @@ connectivity: {
     maxMissedPings: 3
 }
 ```
+
+
+
