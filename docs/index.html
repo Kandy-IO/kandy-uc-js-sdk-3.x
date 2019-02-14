@@ -1985,7 +1985,7 @@ interact with the server without worrying about authenticating.</p>
 
   
 
-  <p>Connect by providing an OAuth token.</p>
+  <p>Connect with user credentials.</p>
 
 
   <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
@@ -2026,16 +2026,25 @@ interact with the server without worrying about authenticating.</p>
                 <tr>
   <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
   </td>
-  <td class='break-word'><span>The username without the application's domain.
+  <td class='break-word'><span>The username including the application's domain.
 </span></td>
 </tr>
 
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>credentials.oauthToken</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  <td class='break-word'><span class='code bold'>credentials.password</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
   </td>
-  <td class='break-word'><span>An OAuth token provided by an outside service.
+  <td class='break-word'><span>The user's password.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.authname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>The user's authorization name.
 </span></td>
 </tr>
 
@@ -2061,7 +2070,8 @@ interact with the server without worrying about authenticating.</p>
       
       <pre class='p1 overflow-auto round fill-light'>client.connect({
   <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
-  <span class="hljs-attr">oauthToken</span>: <span class="hljs-string">'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'</span>
+  <span class="hljs-attr">password</span>: <span class="hljs-string">'********'</span>
+  authname: <span class="hljs-string">'********'</span>
 });</pre>
     
   
@@ -2211,7 +2221,7 @@ interact with the server without worrying about authenticating.</p>
 
   
 
-  <p>Connect with user credentials.</p>
+  <p>Connect by providing an OAuth token.</p>
 
 
   <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
@@ -2252,25 +2262,16 @@ interact with the server without worrying about authenticating.</p>
                 <tr>
   <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
   </td>
-  <td class='break-word'><span>The username including the application's domain.
+  <td class='break-word'><span>The username without the application's domain.
 </span></td>
 </tr>
 
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>credentials.password</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  <td class='break-word'><span class='code bold'>credentials.oauthToken</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
   </td>
-  <td class='break-word'><span>The user's password.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.authname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
-  </td>
-  <td class='break-word'><span>The user's authorization name.
+  <td class='break-word'><span>An OAuth token provided by an outside service.
 </span></td>
 </tr>
 
@@ -2296,8 +2297,7 @@ interact with the server without worrying about authenticating.</p>
       
       <pre class='p1 overflow-auto round fill-light'>client.connect({
   <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
-  <span class="hljs-attr">password</span>: <span class="hljs-string">'********'</span>
-  authname: <span class="hljs-string">'********'</span>
+  <span class="hljs-attr">oauthToken</span>: <span class="hljs-string">'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'</span>
 });</pre>
     
   
