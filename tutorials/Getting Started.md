@@ -11,11 +11,11 @@ In this quickstart, we will help you dip your toes into Kandy before you dive in
 
 ## Using Kandy.js
 
-To begin, you will need to include the Kandy javascript library in your application. The Kandy.js library can be found here: [Kandy.js](https://localhost:3000/kandy/kandy.cpaas.js).
+To begin, you will need to include the Kandy javascript library in your application. The Kandy.js library can be found here: [Kandy.js](https://cdn.jsdelivr.net/gh/Kandy-IO/kandy-uc-js-sdk@57418/dist/kandy.js).
 
 Kandy.js will expose a factory function to your page called `create`. This function is used to create an instance of the SDK, as well as to configure that instance.
 
-``` exclude javascript
+```  javascript
 // Instantiate the SDK.
 import { create } from kandy
 const kandy = create(configs);
@@ -24,57 +24,7 @@ const kandy = create(configs);
 kandy.on( ... );
 ```
 
-``` hidden javascript
-// Instantiate the SDK.
-const { create } = Kandy
-const kandy = create(configs);
-
-// Use the Kandy API.
-kandy.on( ... );
-```
-After you've created your instance of Kandy, you can begin playing around with it to learn its functionality and see how it fits in your application. The [Kandy API reference documentation](../docs#) will help to explain the details of the features available.
-
-## Configurations
-
-An important part of Kandy configurations is the server information. You will need to provide the server information that is part of your Kandy package. This can be done by providing a configuration object to the Kandy factory as shown below.
-
-``` exclude javascript
-// Instantiate the SDK.
-import { create } from kandy
-const kandy = create({
-    // Required: Server connection configs.
-    authentication: {
-        subscription: {
-            // Specify the connection information for REST requests.
-        },
-        websocket: {
-            // Specify the connection information for websockets.
-        }
-    }
-    // Other feature configs.
-    ...
-});
-```
-
-``` hidden javascript
-// Instantiate the SDK.
-const { create } = Kandy
-const kandy = create({
-    // Required: Server connection configs.
-    authentication: {
-        subscription: {
-            // Specify the connection information for REST requests.
-        },
-        websocket: {
-            // Specify the connection information for websockets.
-        }
-    }
-    // Other feature configs.
-    ...
-});
-```
-
-To learn more about configuring Kandy, please see the [Configuration Quickstart](index.html#Configurations).
+To learn more about configuring Kandy, please see the [Configuration Quickstart](Configurations).
 
 ## Further Reading
 
@@ -88,3 +38,6 @@ The best way to learn is usually by example and the best way to learn Kandy is b
 | Firefox | Latest 3 Major Versions |
 |   IE    |           11            |
 | Safari  |  Latest Major Version   |
+
+
+

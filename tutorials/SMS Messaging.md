@@ -34,4 +34,7 @@ function createConvo() {
 
 If this is specified, then the conversation and all messages created from it will have a type of `sms`.
 
-The rest of SMS messaging is the same as [Messaging](index.html#Messaging). All API functions and events will work the same.
+The rest of SMS messaging is the same as [Messaging](Messaging). All API functions and events will work the same.
+
+
+

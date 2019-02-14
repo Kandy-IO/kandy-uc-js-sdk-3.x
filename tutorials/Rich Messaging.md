@@ -9,17 +9,11 @@ permalink: /quickstarts/javascript/cpaas/Rich%20Messaging
 
 In this quickstart we will cover how to send rich messages. We will provide snippets of code below, which together will form a working demo application.
 
-This quickstart assumes that you are familiar with chat messages. For a refresher on chat messages, please read through our [Messaging Quickstart](index.html#Messaging).
+This quickstart assumes that you are familiar with chat messages. For a refresher on chat messages, please read through our [Messaging Quickstart](Messaging).
 
 The first step with Kandy.js is always to initialize it. In this quickstart, the default config values will work just fine, so this step is simple.
 
-``` hidden javascript
-// Variables for connecting.
-var username = "UsernameHere";
-var password = "PasswordHere";
-```
-
-``` exclude javascript
+```  javascript
 // Setup Kandy.
 import { create } from kandy
 const kandy = create({
@@ -30,18 +24,7 @@ const kandy = create({
 })
 ```
 
-``` hidden javascript
-// Setup Kandy.
-const { create } = Kandy
-const kandy = create({
-    authentication: {
-        // Required: Server connection configs.
-        ...
-    }
-})
-```
-
-To learn more about initializing Kandy, see our [Configuration Quickstart](index.html#Configurations). __This example does not provide data for `authentication` but it is required.__
+To learn more about initializing Kandy, see our [Configuration Quickstart](Configurations). __This example does not provide data for `authentication` but it is required.__
 
 #### HTML
 
@@ -82,40 +65,11 @@ Finally, we have a div to print messages to.
 
 #### Connection
 
-To send messages, we first must be connected. For this section we can reuse the code from the [Connection Quickstart](index.html#User%20Connect).
-
-``` hidden javascript
-/*
- * Authentication functionality.
- */
-
-// Listen for changes to the auth state.
-kandy.on('auth:change', function() {
-  var isConnected = kandy.getConnection().isConnected;
-  document.getElementById('auth-state').innerHTML = 'Connected: ' + isConnected;
-  log('Connection state changed.');
-});
-
-// Listen for authentication errors.
-kandy.on('auth:error', function(params) {
-  log('Connect error: ' + params.error.message + ' (' + params.error.code + ')');
-});
-
-// Login on page load.
-kandy.connect({
-  username: username,
-  password: password
-});
-
-// Utility function for appending messages to the message div.
-function log(message) {
-  document.getElementById('messages').innerHTML += '<div>' + message + '</div>';
-}
-```
+To send messages, we first must be connected. For this section we can reuse the code from the [Connection Quickstart](User%20Connect).
 
 ### Step 1: Creating a Conversation
 
-Creating a conversation is covered in depth in the [Messaging Tutorial](index.html#Messaging). The relevant code is below.
+Creating a conversation is covered in depth in the [Messaging Tutorial](Messaging). The relevant code is below.
 
 ``` javascript
 /*
@@ -194,37 +148,10 @@ function getFileUrl() {
 }
 ```
 
-``` hidden javascript
-/*
- * Listen for new messages sent or received.
- * This event occurs when a new message is added to a conversation.
- */
-kandy.on('messages:change', function(params) {
-  log('New message in conversation with ' + params.conversationId);
-});
-
-/*
- * Listen for a change in the list of conversations.
- * In our case, it will occur when we receive a message from a user that
- * we do not have a conversation created with.
- */
-kandy.on('conversations:change', function(params) {
-  log('New conversation with ' + params.conversationId);
-
-  if(!currentConvo) {
-    currentConvo = kandy.conversation.get(params.conversationId);
-  }
-});
-```
-
 ### Live Demo
 
 Want to play around with this example for yourself? Feel free to edit this code on Codepen.
 
-``` codepen
-{
-	"title": "Kandy.io Rich Messaging Demo",
-	"editors": "101",
-	"js_external": "https://localhost:3000/kandy/kandy.cpaas.js"
-}
-```
+
+
+<form action="https://codepen.io/pen/define" method="POST" target="_blank" class="codepen-form"><input type="hidden" name="data" value=' {&quot;js&quot;:&quot;/**\n * Kandy.io Rich Messaging Demo\n */\n\n// Variables for connecting.\nvar username = \&quot;UsernameHere\&quot;;\nvar password = \&quot;PasswordHere\&quot;;\n\n// Setup Kandy.\nconst { create } = Kandy\nconst kandy = create({\n    authentication: {\n        // Required: Server connection configs.\n        ...\n    }\n})\n\n/*\n * Authentication functionality.\n */\n\n// Listen for changes to the auth state.\nkandy.on(&apos;auth:change&apos;, function() {\n  var isConnected = kandy.getConnection().isConnected;\n  document.getElementById(&apos;auth-state&apos;).innerHTML = &apos;Connected: &apos; + isConnected;\n  log(&apos;Connection state changed.&apos;);\n});\n\n// Listen for authentication errors.\nkandy.on(&apos;auth:error&apos;, function(params) {\n  log(&apos;Connect error: &apos; + params.error.message + &apos; (&apos; + params.error.code + &apos;)&apos;);\n});\n\n// Login on page load.\nkandy.connect({\n  username: username,\n  password: password\n});\n\n// Utility function for appending messages to the message div.\nfunction log(message) {\n  document.getElementById(&apos;messages&apos;).innerHTML += &apos;<div>&apos; + message + &apos;</div>&apos;;\n}\n\n/*\n *  Basic Chat functionality.\n */\n\n// We will only track one conversation in this demo.\nvar currentConvo;\n\n// Create a new conversation with another user.\nfunction createConvo() {\n  var participant = document.getElementById(&apos;convo-participant&apos;).value;\n\n  // Pass in the full username of a user to create a conversation with them.\n  currentConvo = kandy.conversation.get(participant);\n\n  log(&apos;Conversation created with: &apos; + participant);\n}\n\n// Create and send a message to the current conversation.\nfunction sendMessage() {\n  if(currentConvo) {\n    var file = document.getElementById(\&quot;file-input\&quot;).files[0];\n\n    // Create the message object, passing in the file for the message.\n    var message = currentConvo.createMessage({type: &apos;file&apos;, file: file});\n\n    // Send the message!\n    message.send();\n  } else {\n    log(&apos;No current conversation to send message to.&apos;);\n  }\n}\n\n// Print out the URL for a Rich Message\nfunction getFileUrl() {\n  // Ensure that the convo exists.\n  if(currentConvo){\n    // Grab the first message from the conversation.\n    message = currentConvo.getMessages()[0];\n\n    // Check the first message for a part containing a url.\n    if(message){\n      // Grab the url from the part, and grab an access token from Kandy.\n      url = message.parts[0].url;\n      accessToken = kandy.getUserInfo().token;\n\n      // Append the access token to the end of the url.\n      // This ensures our request for the file is authenticated.\n      url = url + accessToken;\n\n      // Print.\n      log(&apos;File URL: &apos; + url);\n    } else {\n      log(&apos;There are no messages in this conversation yet. Send a Rich Message first!&apos;);\n    }\n  } else {\n    log(&apos;There is no conversation yet. Create a convo and send a Rich Message first!&apos;);\n  }\n}\n\n/*\n * Listen for new messages sent or received.\n * This event occurs when a new message is added to a conversation.\n */\nkandy.on(&apos;messages:change&apos;, function(params) {\n  log(&apos;New message in conversation with &apos; + params.conversationId);\n});\n\n/*\n * Listen for a change in the list of conversations.\n * In our case, it will occur when we receive a message from a user that\n * we do not have a conversation created with.\n */\nkandy.on(&apos;conversations:change&apos;, function(params) {\n  log(&apos;New conversation with &apos; + params.conversationId);\n\n  if(!currentConvo) {\n    currentConvo = kandy.conversation.get(params.conversationId);\n  }\n});\n\n&quot;,&quot;html&quot;:&quot;<div id=&apos;auth-state&apos;>Connected: false</div>\n\n<fieldset>\n  <legend>Conversations</legend>\n  <input type=&apos;button&apos; value=&apos;Create&apos; onclick=&apos;createConvo();&apos; />\n  conversation with:\n  <input type=&apos;text&apos; id=&apos;convo-participant&apos; />\n  <br/><br/>\n\n  <input type=\&quot;file\&quot; id=\&quot;file-input\&quot;/>\n  <br/><br/>\n\n  <input type=&apos;button&apos; value=&apos;Send&apos; onclick=&apos;sendMessage();&apos; />\n  <br/><br/>\n\n  <input type=&apos;button&apos; value=&apos;Get File URL&apos; onclick=&apos;getFileUrl();&apos; />\n\n</fieldset>\n\n<div id=\&quot;messages\&quot;> </div>\n\n&quot;,&quot;css&quot;:&quot;&quot;,&quot;title&quot;:&quot;Kandy.io Rich Messaging Demo&quot;,&quot;editors&quot;:&quot;101&quot;,&quot;js_external&quot;:&quot;https://cdn.jsdelivr.net/gh/Kandy-IO/kandy-uc-js-sdk@57418/dist/kandy.js&quot;} '><input type="image" src="./TryItOn-CodePen.png"></form>

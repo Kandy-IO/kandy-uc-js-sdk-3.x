@@ -9,7 +9,7 @@ permalink: /quickstarts/javascript/cpaas/Anonymous%20Calls
 
 Anonymous Calls is a Kandy feature that enables a user to make a call without needing their own user account. It allows for scenarios such as a visitor to a website making a call to a support line.
 
-This quickstart will outline the differences between a Voice and Video Call scenario and a Anonymous Call scenario. Since Anonymous calls are an extension of Voice and Video calls, it is expected that the reader understands [Voice and Video calls](index.html#Voice%20%26%20Video%20Calls) fully.
+This quickstart will outline the differences between a Voice and Video Call scenario and a Anonymous Call scenario. Since Anonymous calls are an extension of Voice and Video calls, it is expected that the reader understands [Voice and Video calls](Voice%20%26%20Video%20Calls) fully.
 
 ## Prerequisites
 
@@ -109,3 +109,6 @@ As a pre-requisite of using time-limited calls, Kandy server configuration will 
 #### Algorithm
 
 The algorithm that should be used to encrypt the token is the AES/ECB/PKCS5Padding cipher. The key used for it, which is configured as part of the realm, should be 128 bits (16 characters).
+
+
+

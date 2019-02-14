@@ -17,7 +17,7 @@ Note that there are different SDKs for different kinds of solutions. The SDK you
 
 You need to configure the SDK to point to the proper backend. Specifically, you need to put this information in the `authentication` configuration. Here's an example that contains the required configuration for KBS.
 
-``` exclude javascript
+```  javascript
 // Initialize an instance of Kandy.js.
 import { create } from kandy
 const kandy = create({
@@ -32,23 +32,11 @@ const kandy = create({
 });
 ```
 
-``` hidden javascript
-// Initialize an instance of Kandy.js.
-const { create } = Kandy
-const kandy = create({
-    authentication: {
-        subscription: {
-            server: 'kbs-na-kl.kandy.io'
-        },
-        websocket: {
-            server: 'kbs-na-kl.kandy.io'
-        }
-    }
-});
-```
-
-You can learn more about other configuration options in [Configuration Quickstart](index.html#Configurations)
+You can learn more about other configuration options in [Configuration Quickstart](Configurations)
 
 ## Login with your subscribers
 
-The next step is to authenticate on the SDK. You can use your KBS subscribers's credentials to do that. You can learn more about authenticating on the SDK in the [User Connect Quickstart](index.html#User%20Connect)
+The next step is to authenticate on the SDK. You can use your KBS subscribers's credentials to do that. You can learn more about authenticating on the SDK in the [User Connect Quickstart](User%20Connect)
+
+
+
