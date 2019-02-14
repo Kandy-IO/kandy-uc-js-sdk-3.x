@@ -38,4 +38,3 @@ The best way to learn is usually by example and the best way to learn Kandy is b
 | Firefox | Latest 3 Major Versions |
 |   IE    |           11            |
 | Safari  |  Latest Major Version   |
-
