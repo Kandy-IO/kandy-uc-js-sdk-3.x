@@ -39,5 +39,3 @@ The best way to learn is usually by example and the best way to learn Kandy is b
 |   IE    |           11            |
 | Safari  |  Latest Major Version   |
 
-
-
