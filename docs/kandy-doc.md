@@ -91,24 +91,20 @@ interact with the server without worrying about authenticating.
 
 ### connect
 
-Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.
+Connect by providing an OAuth token.
 
 **Parameters**
 
 -   `credentials` **[Object][5]** The credentials object.
     -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][2]** An access token for the user with the provided user Id.
-    -   `credentials.refreshToken` **[string][2]?** A refresh token for the same user.
-    -   `credentials.expires` **[number][6]?** The time in seconds until the access token will expire.
+    -   `credentials.oauthToken` **[string][2]** An OAuth token provided by an outside service.
 
 **Examples**
 
 ```javascript
 client.connect({
   username: 'alfred@example.com',
-  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
-  expires: 3600
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
 
@@ -135,25 +131,6 @@ client.connect({
 
 ### connect
 
-Connect by providing an OAuth token.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][2]** An OAuth token provided by an outside service.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-});
-```
-
-### connect
-
 Connect by providing a refresh token.
 
 **Parameters**
@@ -169,6 +146,29 @@ Connect by providing a refresh token.
 client.connect({
   username: 'alfred@example.com',
   refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+  expires: 3600
+});
+```
+
+### connect
+
+Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.username` **[string][2]** The username without the application's domain.
+    -   `credentials.accessToken` **[string][2]** An access token for the user with the provided user Id.
+    -   `credentials.refreshToken` **[string][2]?** A refresh token for the same user.
+    -   `credentials.expires` **[number][6]?** The time in seconds until the access token will expire.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
   expires: 3600
 });
 ```
@@ -748,19 +748,6 @@ These conversations can then be retrieved from the store using get().
 
 ### get
 
-Get a conversation object matching the user IDs provided.
-If successful, the event 'conversations:change' will be emitted.
-Multi-user conversations have a destination comprised of multiple user IDs.
-
-**Parameters**
-
--   `destination` **[Array][8]** An array of destinations for messages created in this conversation.
-    These will be a user's sip address.
-
-Returns **[Conversation][10]** A Conversation object.
-
-### get
-
 Get a conversation object matching the user ID provided
 If successful, the event 'conversations:change' will be emitted.
 If a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.
@@ -769,6 +756,19 @@ If a conversation with the given user ID already exists in the store, it will be
 
 -   `destination` **[string][2]** The destination for messages created in this conversation. This will
     be a user's sip address.
+
+Returns **[Conversation][10]** A Conversation object.
+
+### get
+
+Get a conversation object matching the user IDs provided.
+If successful, the event 'conversations:change' will be emitted.
+Multi-user conversations have a destination comprised of multiple user IDs.
+
+**Parameters**
+
+-   `destination` **[Array][8]** An array of destinations for messages created in this conversation.
+    These will be a user's sip address.
 
 Returns **[Conversation][10]** A Conversation object.
 
@@ -1080,6 +1080,41 @@ Enables or disables connectivity checking.
 **Parameters**
 
 -   `enable` **[boolean][7]** Whether to enable or disable connectivity checking.
+
+## Notification
+
+### process
+
+Provides an external notification to the system for processing.
+
+**Parameters**
+
+-   `notification` **[Object][5]** 
+-   `channel` **[string][2]?** The channel that the notification came from.
+
+### registerPush
+
+Registers a device token for push notifications.
+
+**Parameters**
+
+-   `params` **[Object][5]** 
+    -   `params.deviceToken` **[string][2]** The device token to be registered.
+    -   `params.services` **[Array][8]&lt;[string][2]>** Array of services to register for.
+    -   `params.pushProvider` **[string][2]** The push provider, can be either 'apple' or 'google'.
+    -   `params.clientCorrelator` **[string][2]** Unique identifier for a client device.
+
+### deregisterPush
+
+Deregisters for push notifications.
+
+### enableWebsocket
+
+Enables, or disables, the processing of websocket notifications.
+
+**Parameters**
+
+-   `enable` **[boolean][7]** Whether the websocket channel should be enabled.
 
 ## Users
 
