@@ -1,7 +1,7 @@
 /**
  * Kandy.js (Next)
  * kandy.cpaas.js
- * Version: 3.2.0-beta.59135
+ * Version: 3.2.0-beta.59194
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -54591,6 +54591,7 @@ const MEDIA_PERMISSIONS = exports.MEDIA_PERMISSIONS = 'media:permissions';
 
 /**
  * An error occurred while performing a device operation.
+ * @public
  * @memberof Media
  * @requires call
  * @requires callMe
@@ -62614,7 +62615,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.2.0-beta.59135';
+  let version = '3.2.0-beta.59194';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];

@@ -20654,22 +20654,22 @@
           ],
           "loc": {
             "start": {
-              "line": 190,
+              "line": 191,
               "column": 0
             },
             "end": {
-              "line": 202,
+              "line": 203,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 203,
+                "line": 204,
                 "column": 0
               },
               "end": {
-                "line": 203,
+                "line": 204,
                 "column": 51
               }
             },
@@ -22208,6 +22208,235 @@
             }
           ],
           "namespace": "MediapromptUserMedia"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "An error occurred while performing a device operation.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 55,
+                        "offset": 54
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 55,
+                    "offset": 54
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 55,
+                "offset": 54
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 2,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "Media",
+              "lineNumber": 3
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 4,
+              "name": "call"
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 5,
+              "name": "callMe"
+            },
+            {
+              "title": "param",
+              "description": null,
+              "lineNumber": 6,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "params"
+            },
+            {
+              "title": "param",
+              "description": "The Basic error object.",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "BasicError"
+              },
+              "name": "params.error"
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 180,
+              "column": 0
+            },
+            "end": {
+              "line": 188,
+              "column": 3
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 189,
+                "column": 0
+              },
+              "end": {
+                "line": 189,
+                "column": 43
+              }
+            },
+            "file": "/home/circleci/kandy/packages/kandy/src/call/interface/eventTypes.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "params",
+              "lineNumber": 6,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "params.error",
+                  "lineNumber": 7,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The Basic error object.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 24,
+                                "offset": 23
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 24,
+                            "offset": 23
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 24,
+                        "offset": 23
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "BasicError"
+                  }
+                }
+              ]
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "Media",
+          "name": "DEVICE_ERROR",
+          "kind": "constant",
+          "type": {
+            "type": "NameExpression",
+            "name": "string"
+          },
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Media",
+              "kind": "module"
+            },
+            {
+              "name": "DEVICE_ERROR",
+              "kind": "constant"
+            }
+          ],
+          "namespace": "MediaDEVICE_ERROR"
         }
       ]
     },
@@ -26064,289 +26293,6 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Get a conversation object matching the user ID provided\nIf successful, the event 'conversations:change' will be emitted.\nIf a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 3,
-                        "column": 138,
-                        "offset": 258
-                      },
-                      "indent": [
-                        1,
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 3,
-                    "column": 138,
-                    "offset": 258
-                  },
-                  "indent": [
-                    1,
-                    1
-                  ]
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 3,
-                "column": 138,
-                "offset": 258
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 5,
-              "type": null
-            },
-            {
-              "title": "memberof",
-              "description": "Messaging",
-              "lineNumber": 6
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 7,
-              "name": "onlyInternalMessaging"
-            },
-            {
-              "title": "method",
-              "description": null,
-              "lineNumber": 8,
-              "name": "get"
-            },
-            {
-              "title": "param",
-              "description": "The destination for messages created in this conversation. This will\nbe a user's sip address.",
-              "lineNumber": 9,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "destination"
-            },
-            {
-              "title": "returns",
-              "description": "A Conversation object.",
-              "lineNumber": 11,
-              "type": {
-                "type": "NameExpression",
-                "name": "Conversation"
-              }
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 42,
-              "column": 4
-            },
-            "end": {
-              "line": 54,
-              "column": 7
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 82,
-                "column": 4
-              },
-              "end": {
-                "line": 116,
-                "column": 5
-              }
-            },
-            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/api.js"
-          },
-          "augments": [],
-          "examples": [],
-          "params": [
-            {
-              "title": "param",
-              "name": "destination",
-              "lineNumber": 9,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The destination for messages created in this conversation. This will\nbe a user's sip address.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 2,
-                            "column": 25,
-                            "offset": 93
-                          },
-                          "indent": [
-                            1
-                          ]
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 2,
-                        "column": 25,
-                        "offset": 93
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 2,
-                    "column": 25,
-                    "offset": 93
-                  }
-                }
-              },
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              }
-            }
-          ],
-          "properties": [],
-          "returns": [
-            {
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "A Conversation object.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 23,
-                            "offset": 22
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 23,
-                        "offset": 22
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 23,
-                    "offset": 22
-                  }
-                }
-              },
-              "title": "returns",
-              "type": {
-                "type": "NameExpression",
-                "name": "Conversation"
-              }
-            }
-          ],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "memberof": "Messaging",
-          "kind": "function",
-          "name": "get",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "Messaging",
-              "kind": "module"
-            },
-            {
-              "name": "get",
-              "kind": "function"
-            }
-          ],
-          "namespace": "Messagingget"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
                     "value": "Get a conversation object matching the user IDs provided.\nIf successful, the event 'conversations:change' will be emitted.\nMulti-user conversations have a destination comprised of multiple user IDs.",
                     "position": {
                       "start": {
@@ -26530,6 +26476,289 @@
               "type": {
                 "type": "NameExpression",
                 "name": "Array"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "A Conversation object.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 23,
+                            "offset": 22
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 23,
+                        "offset": 22
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 23,
+                    "offset": 22
+                  }
+                }
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Conversation"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "Messaging",
+          "kind": "function",
+          "name": "get",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Messaging",
+              "kind": "module"
+            },
+            {
+              "name": "get",
+              "kind": "function"
+            }
+          ],
+          "namespace": "Messagingget"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Get a conversation object matching the user ID provided\nIf successful, the event 'conversations:change' will be emitted.\nIf a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 138,
+                        "offset": 258
+                      },
+                      "indent": [
+                        1,
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 138,
+                    "offset": 258
+                  },
+                  "indent": [
+                    1,
+                    1
+                  ]
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 3,
+                "column": 138,
+                "offset": 258
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 5,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "Messaging",
+              "lineNumber": 6
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 7,
+              "name": "onlyInternalMessaging"
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 8,
+              "name": "get"
+            },
+            {
+              "title": "param",
+              "description": "The destination for messages created in this conversation. This will\nbe a user's sip address.",
+              "lineNumber": 9,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "destination"
+            },
+            {
+              "title": "returns",
+              "description": "A Conversation object.",
+              "lineNumber": 11,
+              "type": {
+                "type": "NameExpression",
+                "name": "Conversation"
+              }
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 42,
+              "column": 4
+            },
+            "end": {
+              "line": 54,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 82,
+                "column": 4
+              },
+              "end": {
+                "line": 116,
+                "column": 5
+              }
+            },
+            "file": "/home/circleci/kandy/packages/kandy/src/messaging/interface/api.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "destination",
+              "lineNumber": 9,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The destination for messages created in this conversation. This will\nbe a user's sip address.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 25,
+                            "offset": 93
+                          },
+                          "indent": [
+                            1
+                          ]
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 25,
+                        "offset": 93
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 25,
+                    "offset": 93
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
               }
             }
           ],
@@ -52093,22 +52322,22 @@
           ],
           "loc": {
             "start": {
-              "line": 205,
+              "line": 206,
               "column": 0
             },
             "end": {
-              "line": 212,
+              "line": 213,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 213,
+                "line": 214,
                 "column": 0
               },
               "end": {
-                "line": 213,
+                "line": 214,
                 "column": 49
               }
             },
@@ -52309,22 +52538,22 @@
           ],
           "loc": {
             "start": {
-              "line": 215,
+              "line": 216,
               "column": 0
             },
             "end": {
-              "line": 222,
+              "line": 223,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 223,
+                "line": 224,
                 "column": 0
               },
               "end": {
-                "line": 223,
+                "line": 224,
                 "column": 47
               }
             },

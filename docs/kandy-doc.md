@@ -661,6 +661,17 @@ Prompt the user for permission to use their audio and/or video devices.
     -   `options.video` **[boolean][7]?** Whether to get permission for video.
     -   `options.audio` **[boolean][7]?** Whether to get permission for audio.
 
+### DEVICE_ERROR
+
+An error occurred while performing a device operation.
+
+Type: [string][2]
+
+**Parameters**
+
+-   `params` **[Object][5]** 
+    -   `params.error` **[BasicError][10]** The Basic error object.
+
 ## CallHistory
 
 The call history feature is used to retrieve and inspect the authenticated
@@ -748,19 +759,6 @@ These conversations can then be retrieved from the store using get().
 
 ### get
 
-Get a conversation object matching the user ID provided
-If successful, the event 'conversations:change' will be emitted.
-If a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.
-
-**Parameters**
-
--   `destination` **[string][2]** The destination for messages created in this conversation. This will
-    be a user's sip address.
-
-Returns **[Conversation][10]** A Conversation object.
-
-### get
-
 Get a conversation object matching the user IDs provided.
 If successful, the event 'conversations:change' will be emitted.
 Multi-user conversations have a destination comprised of multiple user IDs.
@@ -770,7 +768,20 @@ Multi-user conversations have a destination comprised of multiple user IDs.
 -   `destination` **[Array][8]** An array of destinations for messages created in this conversation.
     These will be a user's sip address.
 
-Returns **[Conversation][10]** A Conversation object.
+Returns **[Conversation][11]** A Conversation object.
+
+### get
+
+Get a conversation object matching the user ID provided
+If successful, the event 'conversations:change' will be emitted.
+If a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.
+
+**Parameters**
+
+-   `destination` **[string][2]** The destination for messages created in this conversation. This will
+    be a user's sip address.
+
+Returns **[Conversation][11]** A Conversation object.
 
 ### create
 
@@ -814,7 +825,7 @@ Create and return a message object. You must specify the part. If this is a simp
 conversation.createMessage({type: 'text', text: 'This is the message'});
 ```
 
-Returns **[Message][11]** The newly created Message object.
+Returns **[Message][12]** The newly created Message object.
 
 ### clearMessages
 
@@ -1536,6 +1547,8 @@ Returns **[Array][8]** A list of clickToCall records, ordered by earliest reques
 
 [9]: https://developer.mozilla.org/docs/Web/HTML/Element
 
-[10]: #conversation
+[10]: #basicerror
 
-[11]: #message
+[11]: #conversation
+
+[12]: #message
