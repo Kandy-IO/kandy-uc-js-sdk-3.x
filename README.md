@@ -1,4 +1,4 @@
-@kandy-io/uc-sdk
+# @kandy-io/uc-sdk
 
 ### Npm Install
 
