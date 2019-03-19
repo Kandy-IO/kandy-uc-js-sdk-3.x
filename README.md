@@ -16,8 +16,8 @@ Install with the beta branch or a particular build with the Github URL
 
 The information about tutorials and documents can be found in the links below
 
-* `Documents`: [docs](https://Kandy-IO.github.io/docs).
-* `Tutorials`: [Get Started](https://Kandy-IO.github.io/@kandy-io/uc-sdk/tutorials/#/Getting%20Started)
+* `Documents`: [docs](https://kandy-io.github.io/docs).
+* `Tutorials`: [tutorials](https://kandy-io.github.io/kandy-uc-js-sdk/tutorials/?KANDYFQDN=oauth-cpaas.att.com#/Get%20Started).
 
 
 
