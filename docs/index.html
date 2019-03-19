@@ -2163,6 +2163,129 @@ interact with the server without worrying about authenticating.</p>
 
   
 
+  <p>Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.</p>
+
+
+  <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    The credentials object.
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>The username without the application's domain.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.accessToken</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>An access token for the user with the provided user Id.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.refreshToken</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>A refresh token for the same user.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.expires</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?</code>
+  </td>
+  <td class='break-word'><span>The time in seconds until the access token will expire.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>client.connect({
+  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
+  <span class="hljs-attr">accessToken</span>: <span class="hljs-string">'AT0V1fswAiJadokx1iJMQdG04pRf'</span>,
+  <span class="hljs-attr">refreshToken</span>: <span class="hljs-string">'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'</span>,
+  <span class="hljs-attr">expires</span>: <span class="hljs-number">3600</span>
+});</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='authenticationconnect'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>connect(credentials)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
   <p>Connect with user credentials.</p>
 
 
@@ -2363,129 +2486,6 @@ interact with the server without worrying about authenticating.</p>
   <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
   <span class="hljs-attr">refreshToken</span>: <span class="hljs-string">'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'</span>
   expires: <span class="hljs-number">3600</span>
-});</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='authenticationconnect'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>connect(credentials)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.</p>
-
-
-  <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    The credentials object.
-
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>The username without the application's domain.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.accessToken</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>An access token for the user with the provided user Id.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.refreshToken</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
-  </td>
-  <td class='break-word'><span>A refresh token for the same user.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.expires</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?</code>
-  </td>
-  <td class='break-word'><span>The time in seconds until the access token will expire.
-</span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>client.connect({
-  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
-  <span class="hljs-attr">accessToken</span>: <span class="hljs-string">'AT0V1fswAiJadokx1iJMQdG04pRf'</span>,
-  <span class="hljs-attr">refreshToken</span>: <span class="hljs-string">'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'</span>,
-  <span class="hljs-attr">expires</span>: <span class="hljs-number">3600</span>
 });</pre>
     
   
@@ -8214,12 +8214,12 @@ the back-end making use of the most recent date value provided in a previous req
 
   
 
-  <p>Get a conversation object matching the user ID provided
+  <p>Get a conversation object matching the user IDs provided.
 If successful, the event 'conversations:change' will be emitted.
-If a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.</p>
+Multi-user conversations have a destination comprised of multiple user IDs.</p>
 
 
-  <div class='pre p1 fill-light mt0'>get(destination: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="#conversation">Conversation</a></div>
+  <div class='pre p1 fill-light mt0'>get(destination: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>): <a href="#conversation">Conversation</a></div>
   
   
 
@@ -8236,9 +8236,9 @@ If a conversation with the given user ID already exists in the store, it will be
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>destination</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    The destination for messages created in this conversation. This will
-be a user's sip address.
+            <span class='code bold'>destination</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>)</code>
+	    An array of destinations for messages created in this conversation.
+These will be a user's sip address.
 
           </div>
           
@@ -8287,12 +8287,12 @@ be a user's sip address.
 
   
 
-  <p>Get a conversation object matching the user IDs provided.
+  <p>Get a conversation object matching the user ID provided
 If successful, the event 'conversations:change' will be emitted.
-Multi-user conversations have a destination comprised of multiple user IDs.</p>
+If a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.</p>
 
 
-  <div class='pre p1 fill-light mt0'>get(destination: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>): <a href="#conversation">Conversation</a></div>
+  <div class='pre p1 fill-light mt0'>get(destination: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="#conversation">Conversation</a></div>
   
   
 
@@ -8309,9 +8309,9 @@ Multi-user conversations have a destination comprised of multiple user IDs.</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>destination</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>)</code>
-	    An array of destinations for messages created in this conversation.
-These will be a user's sip address.
+            <span class='code bold'>destination</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    The destination for messages created in this conversation. This will
+be a user's sip address.
 
           </div>
           
