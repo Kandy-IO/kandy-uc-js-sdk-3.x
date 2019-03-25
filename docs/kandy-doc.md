@@ -91,6 +91,27 @@ interact with the server without worrying about authenticating.
 
 ### connect
 
+Connect by providing a refresh token.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.username` **[string][2]** The username without the application's domain.
+    -   `credentials.refreshToken` **[string][2]** A refresh token for the same user.
+    -   `credentials.expires` **[number][6]?** The time in seconds until the access token will expire.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+  expires: 3600
+});
+```
+
+### connect
+
 Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.
 
 **Parameters**
@@ -108,27 +129,6 @@ client.connect({
   username: 'alfred@example.com',
   accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
   refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
-  expires: 3600
-});
-```
-
-### connect
-
-Connect by providing a refresh token.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.refreshToken` **[string][2]** A refresh token for the same user.
-    -   `credentials.expires` **[number][6]?** The time in seconds until the access token will expire.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
   expires: 3600
 });
 ```
@@ -759,19 +759,6 @@ These conversations can then be retrieved from the store using get().
 
 ### get
 
-Get a conversation object matching the user IDs provided.
-If successful, the event 'conversations:change' will be emitted.
-Multi-user conversations have a destination comprised of multiple user IDs.
-
-**Parameters**
-
--   `destination` **[Array][8]** An array of destinations for messages created in this conversation.
-    These will be a user's sip address.
-
-Returns **[Conversation][11]** A Conversation object.
-
-### get
-
 Get a conversation object matching the user ID provided
 If successful, the event 'conversations:change' will be emitted.
 If a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.
@@ -780,6 +767,19 @@ If a conversation with the given user ID already exists in the store, it will be
 
 -   `destination` **[string][2]** The destination for messages created in this conversation. This will
     be a user's sip address.
+
+Returns **[Conversation][11]** A Conversation object.
+
+### get
+
+Get a conversation object matching the user IDs provided.
+If successful, the event 'conversations:change' will be emitted.
+Multi-user conversations have a destination comprised of multiple user IDs.
+
+**Parameters**
+
+-   `destination` **[Array][8]** An array of destinations for messages created in this conversation.
+    These will be a user's sip address.
 
 Returns **[Conversation][11]** A Conversation object.
 
