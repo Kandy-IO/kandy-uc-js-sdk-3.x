@@ -1588,7 +1588,7 @@
   </div>
   
 
-  <p>The SDK creation factory. Create an instance of the SDK by calling this factory with the the desired configurations.</p>
+  <p>The SDK creation factory. Create an instance of the SDK by calling this factory with the desired configurations.</p>
 
 
   <div class='pre p1 fill-light mt0'>create(config: <a href="#config">config</a>)</div>
@@ -8214,12 +8214,12 @@ the back-end making use of the most recent date value provided in a previous req
 
   
 
-  <p>Get a conversation object matching the user IDs provided.
+  <p>Get a conversation object matching the user ID provided
 If successful, the event 'conversations:change' will be emitted.
-Multi-user conversations have a destination comprised of multiple user IDs.</p>
+If a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.</p>
 
 
-  <div class='pre p1 fill-light mt0'>get(destination: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>): <a href="#conversation">Conversation</a></div>
+  <div class='pre p1 fill-light mt0'>get(destination: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="#conversation">Conversation</a></div>
   
   
 
@@ -8236,9 +8236,9 @@ Multi-user conversations have a destination comprised of multiple user IDs.</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>destination</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>)</code>
-	    An array of destinations for messages created in this conversation.
-These will be a user's sip address.
+            <span class='code bold'>destination</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    The destination for messages created in this conversation. This will
+be a user's sip address.
 
           </div>
           
@@ -8287,12 +8287,12 @@ These will be a user's sip address.
 
   
 
-  <p>Get a conversation object matching the user ID provided
+  <p>Get a conversation object matching the user IDs provided.
 If successful, the event 'conversations:change' will be emitted.
-If a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.</p>
+Multi-user conversations have a destination comprised of multiple user IDs.</p>
 
 
-  <div class='pre p1 fill-light mt0'>get(destination: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="#conversation">Conversation</a></div>
+  <div class='pre p1 fill-light mt0'>get(destination: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>): <a href="#conversation">Conversation</a></div>
   
   
 
@@ -8309,9 +8309,9 @@ If a conversation with the given user ID already exists in the store, it will be
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>destination</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    The destination for messages created in this conversation. This will
-be a user's sip address.
+            <span class='code bold'>destination</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>)</code>
+	    An array of destinations for messages created in this conversation.
+These will be a user's sip address.
 
           </div>
           

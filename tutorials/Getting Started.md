@@ -11,7 +11,7 @@ In this quickstart, we will help you dip your toes into Kandy before you dive in
 
 ## Using Kandy.js
 
-To begin, you will need to include the Kandy javascript library in your application. The Kandy.js library can be found here: [Kandy.js](https://localhost:3000/kandy/kandy.cpaas.js).
+To begin, you will need to include the Kandy javascript library in your application. The Kandy.js library can be found here: [Kandy.js](https://cdn.jsdelivr.net/gh/Kandy-IO/kandy-uc-js-sdk@67033/dist/kandy.js).
 
 Kandy.js will expose a factory function to your page called `create`. This function is used to create an instance of the SDK, as well as to configure that instance.
 
@@ -32,7 +32,7 @@ The best way to learn is usually by example and the best way to learn Kandy is b
 
 ## Browser Support
 
-| Browser |        versions         |
+| Browser |        Versions         |
 |:-------:|:-----------------------:|
 | Chrome  | Latest 3 Major Versions |
 | Firefox | Latest 3 Major Versions |
