@@ -1,7 +1,7 @@
 /**
  * Kandy.js (Next)
  * kandy.cpaas.js
- * Version: 3.3.0-KAA-1440.67317
+ * Version: 3.3.0-local
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -320,10 +320,10 @@ exports.default = function (arr) {
 ;(function(root) {
 
 	// Detect free variables `exports`.
-	var freeExports = true && exports;
+	var freeExports =  true && exports;
 
 	// Detect free variable `module`.
-	var freeModule = true && module &&
+	var freeModule =  true && module &&
 		module.exports == freeExports && module;
 
 	// Detect free variable `global`, from Node.js or Browserified code, and use
@@ -1464,7 +1464,7 @@ module.exports = function (it) {
 /***/ "../../node_modules/core-js/library/modules/_core.js":
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.5.7' };
+var core = module.exports = { version: '2.6.3' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -2604,7 +2604,7 @@ var store = global[SHARED] || (global[SHARED] = {});
 })('versions', []).push({
   version: core.version,
   mode: __webpack_require__("../../node_modules/core-js/library/modules/_library.js") ? 'pure' : 'global',
-  copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
+  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 
 
@@ -3767,108 +3767,6 @@ for (var i = 0; i < DOMIterables.length; i++) {
   if (proto && !proto[TO_STRING_TAG]) hide(proto, TO_STRING_TAG, NAME);
   Iterators[NAME] = Iterators.Array;
 }
-
-
-/***/ }),
-
-/***/ "../../node_modules/decode-uri-component/index.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var token = '%[a-f0-9]{2}';
-var singleMatcher = new RegExp(token, 'gi');
-var multiMatcher = new RegExp('(' + token + ')+', 'gi');
-
-function decodeComponents(components, split) {
-	try {
-		// Try to decode the entire string first
-		return decodeURIComponent(components.join(''));
-	} catch (err) {
-		// Do nothing
-	}
-
-	if (components.length === 1) {
-		return components;
-	}
-
-	split = split || 1;
-
-	// Split the array in 2 parts
-	var left = components.slice(0, split);
-	var right = components.slice(split);
-
-	return Array.prototype.concat.call([], decodeComponents(left), decodeComponents(right));
-}
-
-function decode(input) {
-	try {
-		return decodeURIComponent(input);
-	} catch (err) {
-		var tokens = input.match(singleMatcher);
-
-		for (var i = 1; i < tokens.length; i++) {
-			input = decodeComponents(tokens, i).join('');
-
-			tokens = input.match(singleMatcher);
-		}
-
-		return input;
-	}
-}
-
-function customDecodeURIComponent(input) {
-	// Keep track of all the replacements and prefill the map with the `BOM`
-	var replaceMap = {
-		'%FE%FF': '\uFFFD\uFFFD',
-		'%FF%FE': '\uFFFD\uFFFD'
-	};
-
-	var match = multiMatcher.exec(input);
-	while (match) {
-		try {
-			// Decode as big chunks as possible
-			replaceMap[match[0]] = decodeURIComponent(match[0]);
-		} catch (err) {
-			var result = decode(match[0]);
-
-			if (result !== match[0]) {
-				replaceMap[match[0]] = result;
-			}
-		}
-
-		match = multiMatcher.exec(input);
-	}
-
-	// Add `%C2` at the end of the map to make sure it does not replace the combinator before everything else
-	replaceMap['%C2'] = '\uFFFD';
-
-	var entries = Object.keys(replaceMap);
-
-	for (var i = 0; i < entries.length; i++) {
-		// Replace all decoded components
-		var key = entries[i];
-		input = input.replace(new RegExp(key, 'g'), replaceMap[key]);
-	}
-
-	return input;
-}
-
-module.exports = function (encodedURI) {
-	if (typeof encodedURI !== 'string') {
-		throw new TypeError('Expected `encodedURI` to be of type `string`, got `' + typeof encodedURI + '`');
-	}
-
-	try {
-		encodedURI = encodedURI.replace(/\+/g, ' ');
-
-		// Try the built in decoder first
-		return decodeURIComponent(encodedURI);
-	} catch (err) {
-		// Fallback to a more advanced decoder
-		return customDecodeURIComponent(encodedURI);
-	}
-};
 
 
 /***/ }),
@@ -6419,7 +6317,7 @@ return r}function s(n,t,r,e){var u=null==n?0:n.length;for(e&&u&&(r=n[--u]);u--;)
 }var T,$=1/0,F=NaN,N=[["ary",128],["bind",1],["bindKey",2],["curry",8],["curryRight",16],["flip",512],["partial",32],["partialRight",64],["rearg",256]],P=/\b__p\+='';/g,Z=/\b(__p\+=)''\+/g,q=/(__e\(.*?\)|\b__t\))\+'';/g,V=/&(?:amp|lt|gt|quot|#39);/g,K=/[&<>"']/g,G=RegExp(V.source),H=RegExp(K.source),J=/<%-([\s\S]+?)%>/g,Y=/<%([\s\S]+?)%>/g,Q=/<%=([\s\S]+?)%>/g,X=/\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,nn=/^\w*$/,tn=/[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,rn=/[\\^$.*+?()[\]{}|]/g,en=RegExp(rn.source),un=/^\s+|\s+$/g,on=/^\s+/,fn=/\s+$/,cn=/\{(?:\n\/\* \[wrapped with .+\] \*\/)?\n?/,an=/\{\n\/\* \[wrapped with (.+)\] \*/,ln=/,? & /,sn=/[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g,hn=/\\(\\)?/g,pn=/\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g,_n=/\w*$/,vn=/^[-+]0x[0-9a-f]+$/i,gn=/^0b[01]+$/i,dn=/^\[object .+?Constructor\]$/,yn=/^0o[0-7]+$/i,bn=/^(?:0|[1-9]\d*)$/,xn=/[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g,jn=/($^)/,wn=/['\n\r\u2028\u2029\\]/g,mn="[\\ufe0e\\ufe0f]?(?:[\\u0300-\\u036f\\ufe20-\\ufe2f\\u20d0-\\u20ff]|\\ud83c[\\udffb-\\udfff])?(?:\\u200d(?:[^\\ud800-\\udfff]|(?:\\ud83c[\\udde6-\\uddff]){2}|[\\ud800-\\udbff][\\udc00-\\udfff])[\\ufe0e\\ufe0f]?(?:[\\u0300-\\u036f\\ufe20-\\ufe2f\\u20d0-\\u20ff]|\\ud83c[\\udffb-\\udfff])?)*",An="(?:[\\u2700-\\u27bf]|(?:\\ud83c[\\udde6-\\uddff]){2}|[\\ud800-\\udbff][\\udc00-\\udfff])"+mn,kn="(?:[^\\ud800-\\udfff][\\u0300-\\u036f\\ufe20-\\ufe2f\\u20d0-\\u20ff]?|[\\u0300-\\u036f\\ufe20-\\ufe2f\\u20d0-\\u20ff]|(?:\\ud83c[\\udde6-\\uddff]){2}|[\\ud800-\\udbff][\\udc00-\\udfff]|[\\ud800-\\udfff])",En=RegExp("['\u2019]","g"),Sn=RegExp("[\\u0300-\\u036f\\ufe20-\\ufe2f\\u20d0-\\u20ff]","g"),On=RegExp("\\ud83c[\\udffb-\\udfff](?=\\ud83c[\\udffb-\\udfff])|"+kn+mn,"g"),In=RegExp(["[A-Z\\xc0-\\xd6\\xd8-\\xde]?[a-z\\xdf-\\xf6\\xf8-\\xff]+(?:['\u2019](?:d|ll|m|re|s|t|ve))?(?=[\\xac\\xb1\\xd7\\xf7\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf\\u2000-\\u206f \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000]|[A-Z\\xc0-\\xd6\\xd8-\\xde]|$)|(?:[A-Z\\xc0-\\xd6\\xd8-\\xde]|[^\\ud800-\\udfff\\xac\\xb1\\xd7\\xf7\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf\\u2000-\\u206f \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000\\d+\\u2700-\\u27bfa-z\\xdf-\\xf6\\xf8-\\xffA-Z\\xc0-\\xd6\\xd8-\\xde])+(?:['\u2019](?:D|LL|M|RE|S|T|VE))?(?=[\\xac\\xb1\\xd7\\xf7\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf\\u2000-\\u206f \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000]|[A-Z\\xc0-\\xd6\\xd8-\\xde](?:[a-z\\xdf-\\xf6\\xf8-\\xff]|[^\\ud800-\\udfff\\xac\\xb1\\xd7\\xf7\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf\\u2000-\\u206f \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000\\d+\\u2700-\\u27bfa-z\\xdf-\\xf6\\xf8-\\xffA-Z\\xc0-\\xd6\\xd8-\\xde])|$)|[A-Z\\xc0-\\xd6\\xd8-\\xde]?(?:[a-z\\xdf-\\xf6\\xf8-\\xff]|[^\\ud800-\\udfff\\xac\\xb1\\xd7\\xf7\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf\\u2000-\\u206f \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000\\d+\\u2700-\\u27bfa-z\\xdf-\\xf6\\xf8-\\xffA-Z\\xc0-\\xd6\\xd8-\\xde])+(?:['\u2019](?:d|ll|m|re|s|t|ve))?|[A-Z\\xc0-\\xd6\\xd8-\\xde]+(?:['\u2019](?:D|LL|M|RE|S|T|VE))?|\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])|\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])|\\d+",An].join("|"),"g"),Rn=RegExp("[\\u200d\\ud800-\\udfff\\u0300-\\u036f\\ufe20-\\ufe2f\\u20d0-\\u20ff\\ufe0e\\ufe0f]"),zn=/[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/,Wn="Array Buffer DataView Date Error Float32Array Float64Array Function Int8Array Int16Array Int32Array Map Math Object Promise RegExp Set String Symbol TypeError Uint8Array Uint8ClampedArray Uint16Array Uint32Array WeakMap _ clearTimeout isFinite parseInt setTimeout".split(" "),Un={};
 Un["[object Float32Array]"]=Un["[object Float64Array]"]=Un["[object Int8Array]"]=Un["[object Int16Array]"]=Un["[object Int32Array]"]=Un["[object Uint8Array]"]=Un["[object Uint8ClampedArray]"]=Un["[object Uint16Array]"]=Un["[object Uint32Array]"]=true,Un["[object Arguments]"]=Un["[object Array]"]=Un["[object ArrayBuffer]"]=Un["[object Boolean]"]=Un["[object DataView]"]=Un["[object Date]"]=Un["[object Error]"]=Un["[object Function]"]=Un["[object Map]"]=Un["[object Number]"]=Un["[object Object]"]=Un["[object RegExp]"]=Un["[object Set]"]=Un["[object String]"]=Un["[object WeakMap]"]=false;
 var Bn={};Bn["[object Arguments]"]=Bn["[object Array]"]=Bn["[object ArrayBuffer]"]=Bn["[object DataView]"]=Bn["[object Boolean]"]=Bn["[object Date]"]=Bn["[object Float32Array]"]=Bn["[object Float64Array]"]=Bn["[object Int8Array]"]=Bn["[object Int16Array]"]=Bn["[object Int32Array]"]=Bn["[object Map]"]=Bn["[object Number]"]=Bn["[object Object]"]=Bn["[object RegExp]"]=Bn["[object Set]"]=Bn["[object String]"]=Bn["[object Symbol]"]=Bn["[object Uint8Array]"]=Bn["[object Uint8ClampedArray]"]=Bn["[object Uint16Array]"]=Bn["[object Uint32Array]"]=true,
-Bn["[object Error]"]=Bn["[object Function]"]=Bn["[object WeakMap]"]=false;var Ln={"\\":"\\","'":"'","\n":"n","\r":"r","\u2028":"u2028","\u2029":"u2029"},Cn=parseFloat,Dn=parseInt,Mn=typeof global=="object"&&global&&global.Object===Object&&global,Tn=typeof self=="object"&&self&&self.Object===Object&&self,$n=Mn||Tn||Function("return this")(),Fn=true&&exports&&!exports.nodeType&&exports,Nn=Fn&&typeof module=="object"&&module&&!module.nodeType&&module,Pn=Nn&&Nn.exports===Fn,Zn=Pn&&Mn.process,qn=function(){
+Bn["[object Error]"]=Bn["[object Function]"]=Bn["[object WeakMap]"]=false;var Ln={"\\":"\\","'":"'","\n":"n","\r":"r","\u2028":"u2028","\u2029":"u2029"},Cn=parseFloat,Dn=parseInt,Mn=typeof global=="object"&&global&&global.Object===Object&&global,Tn=typeof self=="object"&&self&&self.Object===Object&&self,$n=Mn||Tn||Function("return this")(),Fn= true&&exports&&!exports.nodeType&&exports,Nn=Fn&&typeof module=="object"&&module&&!module.nodeType&&module,Pn=Nn&&Nn.exports===Fn,Zn=Pn&&Mn.process,qn=function(){
 try{var n=Nn&&Nn.require&&Nn.require("util").types;return n?n:Zn&&Zn.binding&&Zn.binding("util")}catch(n){}}(),Vn=qn&&qn.isArrayBuffer,Kn=qn&&qn.isDate,Gn=qn&&qn.isMap,Hn=qn&&qn.isRegExp,Jn=qn&&qn.isSet,Yn=qn&&qn.isTypedArray,Qn=b("length"),Xn=x({"\xc0":"A","\xc1":"A","\xc2":"A","\xc3":"A","\xc4":"A","\xc5":"A","\xe0":"a","\xe1":"a","\xe2":"a","\xe3":"a","\xe4":"a","\xe5":"a","\xc7":"C","\xe7":"c","\xd0":"D","\xf0":"d","\xc8":"E","\xc9":"E","\xca":"E","\xcb":"E","\xe8":"e","\xe9":"e","\xea":"e","\xeb":"e",
 "\xcc":"I","\xcd":"I","\xce":"I","\xcf":"I","\xec":"i","\xed":"i","\xee":"i","\xef":"i","\xd1":"N","\xf1":"n","\xd2":"O","\xd3":"O","\xd4":"O","\xd5":"O","\xd6":"O","\xd8":"O","\xf2":"o","\xf3":"o","\xf4":"o","\xf5":"o","\xf6":"o","\xf8":"o","\xd9":"U","\xda":"U","\xdb":"U","\xdc":"U","\xf9":"u","\xfa":"u","\xfb":"u","\xfc":"u","\xdd":"Y","\xfd":"y","\xff":"y","\xc6":"Ae","\xe6":"ae","\xde":"Th","\xfe":"th","\xdf":"ss","\u0100":"A","\u0102":"A","\u0104":"A","\u0101":"a","\u0103":"a","\u0105":"a",
 "\u0106":"C","\u0108":"C","\u010a":"C","\u010c":"C","\u0107":"c","\u0109":"c","\u010b":"c","\u010d":"c","\u010e":"D","\u0110":"D","\u010f":"d","\u0111":"d","\u0112":"E","\u0114":"E","\u0116":"E","\u0118":"E","\u011a":"E","\u0113":"e","\u0115":"e","\u0117":"e","\u0119":"e","\u011b":"e","\u011c":"G","\u011e":"G","\u0120":"G","\u0122":"G","\u011d":"g","\u011f":"g","\u0121":"g","\u0123":"g","\u0124":"H","\u0126":"H","\u0125":"h","\u0127":"h","\u0128":"I","\u012a":"I","\u012c":"I","\u012e":"I","\u0130":"I",
@@ -7582,6 +7480,22 @@ function Inflate(options) {
   this.header = new GZheader();
 
   zlib_inflate.inflateGetHeader(this.strm, this.header);
+
+  // Setup dictionary
+  if (opt.dictionary) {
+    // Convert data if needed
+    if (typeof opt.dictionary === 'string') {
+      opt.dictionary = strings.string2buf(opt.dictionary);
+    } else if (toString.call(opt.dictionary) === '[object ArrayBuffer]') {
+      opt.dictionary = new Uint8Array(opt.dictionary);
+    }
+    if (opt.raw) { //In raw mode we need to set the dictionary early
+      status = zlib_inflate.inflateSetDictionary(this.strm, opt.dictionary);
+      if (status !== c.Z_OK) {
+        throw new Error(msg[status]);
+      }
+    }
+  }
 }
 
 /**
@@ -7618,7 +7532,6 @@ Inflate.prototype.push = function (data, mode) {
   var dictionary = this.options.dictionary;
   var status, _mode;
   var next_out_utf8, tail, utf8str;
-  var dict;
 
   // Flag to properly process Z_BUF_ERROR on testing inflate call
   // when we check that all output data was flushed.
@@ -7650,17 +7563,7 @@ Inflate.prototype.push = function (data, mode) {
     status = zlib_inflate.inflate(strm, c.Z_NO_FLUSH);    /* no bad return value */
 
     if (status === c.Z_NEED_DICT && dictionary) {
-      // Convert data if needed
-      if (typeof dictionary === 'string') {
-        dict = strings.string2buf(dictionary);
-      } else if (toString.call(dictionary) === '[object ArrayBuffer]') {
-        dict = new Uint8Array(dictionary);
-      } else {
-        dict = dictionary;
-      }
-
-      status = zlib_inflate.inflateSetDictionary(this.strm, dict);
-
+      status = zlib_inflate.inflateSetDictionary(this.strm, dictionary);
     }
 
     if (status === c.Z_BUF_ERROR && allowBufError === true) {
@@ -8060,8 +7963,10 @@ exports.string2buf = function (str) {
 
 // Helper (used in 2 places)
 function buf2binstring(buf, len) {
-  // use fallback for big arrays to avoid stack overflow
-  if (len < 65537) {
+  // On Chrome, the arguments in a function call that are allowed is `65534`.
+  // If the length of the buffer is smaller than that, we can use this optimization,
+  // otherwise we will take a slower path.
+  if (len < 65534) {
     if ((buf.subarray && STR_APPLY_UIA_OK) || (!buf.subarray && STR_APPLY_OK)) {
       return String.fromCharCode.apply(null, utils.shrinkBuf(buf, len));
     }
@@ -9826,7 +9731,7 @@ function deflate(strm, flush) {
                     (!s.gzhead.extra ? 0 : 4) +
                     (!s.gzhead.name ? 0 : 8) +
                     (!s.gzhead.comment ? 0 : 16)
-                );
+        );
         put_byte(s, s.gzhead.time & 0xff);
         put_byte(s, (s.gzhead.time >> 8) & 0xff);
         put_byte(s, (s.gzhead.time >> 16) & 0xff);
@@ -12647,6 +12552,8 @@ module.exports = {
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
+/* eslint-disable space-unary-ops */
+
 var utils = __webpack_require__("../../node_modules/pako/lib/utils/common.js");
 
 /* Public constants ==========================================================*/
@@ -14595,6 +14502,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_ownKeys__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../../node_modules/redux-actions/es/utils/ownKeys.js");
 /* harmony import */ var _utils_flattenReducerMap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../../node_modules/redux-actions/es/utils/flattenReducerMap.js");
 /* harmony import */ var _handleAction__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../../node_modules/redux-actions/es/handleAction.js");
+/* harmony import */ var _utils_get__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../../node_modules/redux-actions/es/utils/get.js");
 
 
 
@@ -14602,10 +14510,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-function get(key, x) {
-  return Object(_utils_isMap__WEBPACK_IMPORTED_MODULE_3__["default"])(x) ? x.get(key) : x[key];
-}
 
 function handleActions(handlers, defaultState, options) {
   if (options === void 0) {
@@ -14615,7 +14519,7 @@ function handleActions(handlers, defaultState, options) {
   invariant__WEBPACK_IMPORTED_MODULE_1___default()(Object(_utils_isPlainObject__WEBPACK_IMPORTED_MODULE_2__["default"])(handlers) || Object(_utils_isMap__WEBPACK_IMPORTED_MODULE_3__["default"])(handlers), 'Expected handlers to be a plain object.');
   var flattenedReducerMap = Object(_utils_flattenReducerMap__WEBPACK_IMPORTED_MODULE_5__["default"])(handlers, options);
   var reducers = Object(_utils_ownKeys__WEBPACK_IMPORTED_MODULE_4__["default"])(flattenedReducerMap).map(function (type) {
-    return Object(_handleAction__WEBPACK_IMPORTED_MODULE_6__["default"])(type, get(type, flattenedReducerMap), defaultState);
+    return Object(_handleAction__WEBPACK_IMPORTED_MODULE_6__["default"])(type, Object(_utils_get__WEBPACK_IMPORTED_MODULE_7__["default"])(type, flattenedReducerMap), defaultState);
   });
   var reducer = reduce_reducers__WEBPACK_IMPORTED_MODULE_0__["default"].apply(void 0, reducers.concat([defaultState]));
   return function (state, action) {
@@ -14685,9 +14589,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var namespacer = '/';
 /* harmony default export */ __webpack_exports__["default"] = (function (type) {
-  return type.indexOf(namespacer) === -1 ? to_camel_case__WEBPACK_IMPORTED_MODULE_0___default()(type) : type.split(namespacer).map(function (part) {
-    return to_camel_case__WEBPACK_IMPORTED_MODULE_0___default()(part);
-  }).join(namespacer);
+  return type.includes(namespacer) ? type.split(namespacer).map(to_camel_case__WEBPACK_IMPORTED_MODULE_0___default.a).join(namespacer) : to_camel_case__WEBPACK_IMPORTED_MODULE_0___default()(type);
 });
 
 /***/ }),
@@ -14730,15 +14632,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../../node_modules/redux-actions/es/constants.js");
-/* harmony import */ var _isMap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../../node_modules/redux-actions/es/utils/isMap.js");
-/* harmony import */ var _ownKeys__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../../node_modules/redux-actions/es/utils/ownKeys.js");
+/* harmony import */ var _ownKeys__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../../node_modules/redux-actions/es/utils/ownKeys.js");
+/* harmony import */ var _get__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../../node_modules/redux-actions/es/utils/get.js");
 
 
-
-
-function get(key, x) {
-  return Object(_isMap__WEBPACK_IMPORTED_MODULE_1__["default"])(x) ? x.get(key) : x[key];
-}
 
 /* harmony default export */ __webpack_exports__["default"] = (function (predicate) {
   return function flatten(map, _temp, partialFlatMap, partialFlatActionType) {
@@ -14776,9 +14673,9 @@ function get(key, x) {
       return "" + prefix + namespace + type;
     }
 
-    Object(_ownKeys__WEBPACK_IMPORTED_MODULE_2__["default"])(map).forEach(function (type) {
+    Object(_ownKeys__WEBPACK_IMPORTED_MODULE_1__["default"])(map).forEach(function (type) {
       var nextNamespace = connectPrefix(connectNamespace(type));
-      var mapValue = get(type, map);
+      var mapValue = Object(_get__WEBPACK_IMPORTED_MODULE_2__["default"])(type, map);
 
       if (predicate(mapValue)) {
         flatten(mapValue, {
@@ -14792,6 +14689,20 @@ function get(key, x) {
     return partialFlatMap;
   };
 });
+
+/***/ }),
+
+/***/ "../../node_modules/redux-actions/es/utils/get.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return get; });
+/* harmony import */ var _isMap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../../node_modules/redux-actions/es/utils/isMap.js");
+
+function get(key, x) {
+  return Object(_isMap__WEBPACK_IMPORTED_MODULE_0__["default"])(x) ? x.get(key) : x[key];
+}
 
 /***/ }),
 
@@ -14874,7 +14785,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function (value) {
-  return value instanceof Map;
+  return typeof Map !== 'undefined' && value instanceof Map;
 });
 
 /***/ }),
@@ -15017,14 +14928,6 @@ function unflattenActionCreators(flatActionCreators, _temp) {
       prefix = _ref.prefix;
 
   function unflatten(flatActionType, partialNestedActionCreators, partialFlatActionTypePath) {
-    if (partialNestedActionCreators === void 0) {
-      partialNestedActionCreators = {};
-    }
-
-    if (partialFlatActionTypePath === void 0) {
-      partialFlatActionTypePath = [];
-    }
-
     var nextNamespace = Object(_camelCase__WEBPACK_IMPORTED_MODULE_2__["default"])(partialFlatActionTypePath.shift());
 
     if (Object(_isEmpty__WEBPACK_IMPORTED_MODULE_1__["default"])(partialFlatActionTypePath)) {
@@ -16226,7 +16129,7 @@ function take(patternOrChannel, multicastPattern) {
     patternOrChannel = '*';
   }
 
-  if (true && arguments.length) {
+  if ( true && arguments.length) {
     (0, _utils.check)(arguments[0], _utils.is.notUndef, 'take(patternOrChannel): patternOrChannel is undefined');
   }
 
@@ -16398,7 +16301,7 @@ function cancel() {
 
   var task = tasks[0];
 
-  if (true && tasks.length === 1) {
+  if ( true && tasks.length === 1) {
     (0, _utils.check)(task, _utils.is.notUndef, 'cancel(task): argument task is undefined');
     (0, _utils.check)(task, _utils.is.task, "cancel(task): argument " + task + " is not a valid Task object " + TEST_HINT);
   }
@@ -16414,7 +16317,7 @@ function select(selector) {
     args[_key7 - 1] = arguments[_key7];
   }
 
-  if (true && arguments.length) {
+  if ( true && arguments.length) {
     (0, _utils.check)(arguments[0], _utils.is.notUndef, 'select(selector, [...]): argument selector is undefined');
     (0, _utils.check)(selector, _utils.is.func, "select(selector, [...]): argument " + selector + " is not a function");
   }
@@ -17708,7 +17611,7 @@ function runSaga(options, saga) {
     });
   }
 
-  if ((true) && _utils.is.notUndef(effectMiddlewares)) {
+  if (( true) && _utils.is.notUndef(effectMiddlewares)) {
     var MIDDLEWARE_TYPE_ERROR = 'effectMiddlewares must be an array of functions';
     (0, _utils.check)(effectMiddlewares, _utils.is.array, MIDDLEWARE_TYPE_ERROR);
     effectMiddlewares.forEach(function (effectMiddleware) {
@@ -19363,7 +19266,7 @@ function applyMiddleware() {
 
 function isCrushed() {}
 
-if (true && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
+if ( true && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
   warning('You are currently using minified code outside of NODE_ENV === "production". ' + 'This means that you are running a slower development build of Redux. ' + 'You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify ' + 'or setting mode to production in webpack (https://webpack.js.org/concepts/mode/) ' + 'to ensure you have the correct code for your production build.');
 }
 
@@ -19967,7 +19870,7 @@ __webpack_require__.r(__webpack_exports__);
 */
 function isCrushed() {}
 
-if (true && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
+if ( true && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
   Object(_utils_warning__WEBPACK_IMPORTED_MODULE_5__["default"])('You are currently using minified code outside of NODE_ENV === \'production\'. ' + 'This means that you are running a slower development build of Redux. ' + 'You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify ' + 'or DefinePlugin for webpack (http://stackoverflow.com/questions/30030031) ' + 'to ensure you have the correct code for your production build.');
 }
 
@@ -20335,6 +20238,29 @@ var grammar = module.exports = {
       reg: /^source-filter: *(excl|incl) (\S*) (IP4|IP6|\*) (\S*) (.*)/,
       names: ['filterMode', 'netType', 'addressTypes', 'destAddress', 'srcList'],
       format: 'source-filter: %s %s %s %s %s'
+    },
+    { //a=bundle-only
+      name: 'bundleOnly',
+      reg: /^(bundle-only)/
+    },
+    { //a=label:1
+      name: 'label',
+      reg: /^label:(.+)/,
+      format: 'label:%s'
+    },
+    {
+      // RFC version 26 for SCTP over DTLS
+      // https://tools.ietf.org/html/draft-ietf-mmusic-sctp-sdp-26#section-5
+      name:'sctpPort',
+      reg: /^sctp-port:(\d+)$/,
+      format: 'sctp-port:%s'
+    },
+    {
+      // RFC version 26 for SCTP over DTLS
+      // https://tools.ietf.org/html/draft-ietf-mmusic-sctp-sdp-26#section-6
+      name:'maxMessageSize',
+      reg: /^max-message-size:(\d+)$/,
+      format: 'max-message-size:%s'
     },
     { // any a= that we don't understand is kepts verbatim on media.invalid
       push: 'invalid',
@@ -21493,10 +21419,10 @@ function toSpaceCase(string) {
 ;(function(root) {
 
 	// Detect free variables `exports`
-	var freeExports = true && exports;
+	var freeExports =  true && exports;
 
 	// Detect free variable `module`
-	var freeModule = true && module &&
+	var freeModule =  true && module &&
 		module.exports == freeExports && module;
 
 	// Detect free variable `global`, from Node.js or Browserified code,
@@ -21855,7 +21781,7 @@ g = (function() {
 
 try {
 	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1, eval)("this");
+	g = g || new Function("return this")();
 } catch (e) {
 	// This works if the window reference is available
 	if (typeof window === "object") g = window;
@@ -32666,13 +32592,13 @@ function CallControlServiceImpl(_ref) {
             };
         }
 
-        //TODO JF verify if we need to always do that and not only for callMe realm;
+        //TODO JF verify if we need to always do that and not only for callme realm;
         if (realm) {
             callid = callid.split('%0A')[0];
         }
 
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
             'data': data
         }, onSuccess, onFailure, null, errorParser);
     };
@@ -32706,7 +32632,7 @@ function CallControlServiceImpl(_ref) {
             }
         }
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
             'data': data
         }, onSuccess, onFailure, null, errorParser);
     };
@@ -32741,7 +32667,7 @@ function CallControlServiceImpl(_ref) {
         }
 
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
             'data': data
         }, onSuccess, onFailure, null, errorParser);
     };
@@ -32777,7 +32703,7 @@ function CallControlServiceImpl(_ref) {
         }
 
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
             'data': data
         }, onSuccess, onFailure, null, errorParser);
     };
@@ -32814,7 +32740,7 @@ function CallControlServiceImpl(_ref) {
         }
 
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
             'data': data
         }, onSuccess, onFailure, null, errorParser);
     };
@@ -32885,7 +32811,7 @@ function CallControlServiceImpl(_ref) {
         var realm = _config.realm;
         logger.info('endCall Function: ' + callid);
 
-        var endUrl = (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid;
+        var endUrl = (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid;
         var queryString = localReasonText ? '?reasonText=' + localReasonText : '';
         if (realm) {
             var delimiter = queryString ? '&' : '?';
@@ -32960,7 +32886,7 @@ function CallControlServiceImpl(_ref) {
             };
         }
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
             'data': data
         }, onSuccess, onFailure, null, errorParser);
     };
@@ -33099,7 +33025,7 @@ function CallControlServiceImpl(_ref) {
         var realm = _config.realm;
 
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callData.id + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callData.id + (realm ? '?tokenrealm=' + realm : '')),
             'data': {
                 'callControlRequest': {
                     'type': 'updateIceCandidate',
@@ -49396,13 +49322,115 @@ function loadModule(module) {
 
 /***/ }),
 
+/***/ "./node_modules/decode-uri-component/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var token = '%[a-f0-9]{2}';
+var singleMatcher = new RegExp(token, 'gi');
+var multiMatcher = new RegExp('(' + token + ')+', 'gi');
+
+function decodeComponents(components, split) {
+	try {
+		// Try to decode the entire string first
+		return decodeURIComponent(components.join(''));
+	} catch (err) {
+		// Do nothing
+	}
+
+	if (components.length === 1) {
+		return components;
+	}
+
+	split = split || 1;
+
+	// Split the array in 2 parts
+	var left = components.slice(0, split);
+	var right = components.slice(split);
+
+	return Array.prototype.concat.call([], decodeComponents(left), decodeComponents(right));
+}
+
+function decode(input) {
+	try {
+		return decodeURIComponent(input);
+	} catch (err) {
+		var tokens = input.match(singleMatcher);
+
+		for (var i = 1; i < tokens.length; i++) {
+			input = decodeComponents(tokens, i).join('');
+
+			tokens = input.match(singleMatcher);
+		}
+
+		return input;
+	}
+}
+
+function customDecodeURIComponent(input) {
+	// Keep track of all the replacements and prefill the map with the `BOM`
+	var replaceMap = {
+		'%FE%FF': '\uFFFD\uFFFD',
+		'%FF%FE': '\uFFFD\uFFFD'
+	};
+
+	var match = multiMatcher.exec(input);
+	while (match) {
+		try {
+			// Decode as big chunks as possible
+			replaceMap[match[0]] = decodeURIComponent(match[0]);
+		} catch (err) {
+			var result = decode(match[0]);
+
+			if (result !== match[0]) {
+				replaceMap[match[0]] = result;
+			}
+		}
+
+		match = multiMatcher.exec(input);
+	}
+
+	// Add `%C2` at the end of the map to make sure it does not replace the combinator before everything else
+	replaceMap['%C2'] = '\uFFFD';
+
+	var entries = Object.keys(replaceMap);
+
+	for (var i = 0; i < entries.length; i++) {
+		// Replace all decoded components
+		var key = entries[i];
+		input = input.replace(new RegExp(key, 'g'), replaceMap[key]);
+	}
+
+	return input;
+}
+
+module.exports = function (encodedURI) {
+	if (typeof encodedURI !== 'string') {
+		throw new TypeError('Expected `encodedURI` to be of type `string`, got `' + typeof encodedURI + '`');
+	}
+
+	try {
+		encodedURI = encodedURI.replace(/\+/g, ' ');
+
+		// Try the built in decoder first
+		return decodeURIComponent(encodedURI);
+	} catch (err) {
+		// Fallback to a more advanced decoder
+		return customDecodeURIComponent(encodedURI);
+	}
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/query-string/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 const strictUriEncode = __webpack_require__("./node_modules/strict-uri-encode/index.js");
-const decodeComponent = __webpack_require__("../../node_modules/decode-uri-component/index.js");
+const decodeComponent = __webpack_require__("./node_modules/decode-uri-component/index.js");
 
 function encoderForArrayFormat(options) {
 	switch (options.arrayFormat) {
@@ -54270,9 +54298,9 @@ function api({ dispatch, getState }) {
      */
     getRemoteVideoResolutions(callId) {
       /* Implement this in the API temporarily, since this should be done
-             *   automatically on a state change, but we can't due to FCS timing
-             *   issues. See KAA-424.
-             */
+       *   automatically on a state change, but we can't due to FCS timing
+       *   issues. See KAA-424.
+       */
       let call = (0, _selectors.getCallById)(getState(), callId);
       // If the remote side is sending video and we're rendering it..
       if (call && call.remoteVideoState.indexOf('send') > -1 && call.remoteVideoContainer) {
@@ -55241,9 +55269,9 @@ reducers[actionTypes.JOIN_CALL_FINISH] = {
 };
 
 /*
-* Call-tier reducers.
-* Receive a single call's state as state.
-*/
+ * Call-tier reducers.
+ * Receive a single call's state as state.
+ */
 
 /*
  * Reducer to handle SET_CUSTOM_PARAMETERS actions.
@@ -55819,8 +55847,8 @@ function shim(context) {
   var audioBridges = {};
 
   /*
-     * Information about the local, non-call video stream.
-     */
+   * Information about the local, non-call video stream.
+   */
   var localStream = null;
 
   /**
@@ -56056,12 +56084,12 @@ function shim(context) {
   }
 
   /*
-     * Register a listener to FCS for incoming calls.
-     * Process the call as needed by the shim,
-     *      then go to the redux level.
-     * @method onReceived
-     * @param  {Object}   call - FCS call object.
-     */
+   * Register a listener to FCS for incoming calls.
+   * Process the call as needed by the shim,
+   *      then go to the redux level.
+   * @method onReceived
+   * @param  {Object}   call - FCS call object.
+   */
   fcs.call.onReceived = function (call) {
     // Create our own call ID for storing in state.
     const callId = (0, _v2.default)();
@@ -57542,10 +57570,10 @@ function middleware({ dispatch, getState }) {
   }
 
   /*
-     * Register a listener on FCS to dispatch an action when we receive a call.
-     * @method onReceived
-     * @param  {Object} call An FCS call object.
-     */
+   * Register a listener on FCS to dispatch an action when we receive a call.
+   * @method onReceived
+   * @param  {Object} call An FCS call object.
+   */
   callShim.onIncomingCall = function (callId, callInfo) {
     dispatch(_actions3.callsActions.callIncoming(callId, callInfo));
   };
@@ -62002,8 +62030,8 @@ function eventEmitter(prototype = {}) {
   var strictMode = false;
 
   /*
-     * Check if the event is a valid event type.
-     */
+   * Check if the event is a valid event type.
+   */
   function checkEvent(type) {
     if (strictMode && !eventMap[type]) {
       throw new Error('Invalid event type: ' + type);
@@ -62012,23 +62040,23 @@ function eventEmitter(prototype = {}) {
 
   return (0, _assign2.default)(prototype, {
     /*
-         * Define an event type with the event emitter.
-         *
-         * @method define
-         * @param {String} type The name for the event type.
-         */
+     * Define an event type with the event emitter.
+     *
+     * @method define
+     * @param {String} type The name for the event type.
+     */
     define: function (type) {
       eventMap[type] = eventMap[type] || [];
     },
 
     /*
-         * Define an alias for an event type.
-         *
-         * @method alias
-         * @param {String} type The event type for which to add an alias.
-         * @param {String} alias The alias name for the event type.
-         * @throws {Error} Invalid event type
-         */
+     * Define an alias for an event type.
+     *
+     * @method alias
+     * @param {String} type The event type for which to add an alias.
+     * @param {String} alias The alias name for the event type.
+     * @throws {Error} Invalid event type
+     */
     alias: function (type, alias) {
       checkEvent(type);
 
@@ -62036,26 +62064,26 @@ function eventEmitter(prototype = {}) {
     },
 
     /*
-         * Add an event listener for the specified event type.
-         *
-         * @method on
-         * @param {String} type The event type for which to add the listener.
-         * @param {Function} listener The listener for the event type. The parameters
-         *                            of the listener depend on the event type.
-         * @throws {Error} Invalid event type
-         */
+     * Add an event listener for the specified event type.
+     *
+     * @method on
+     * @param {String} type The event type for which to add the listener.
+     * @param {Function} listener The listener for the event type. The parameters
+     *                            of the listener depend on the event type.
+     * @throws {Error} Invalid event type
+     */
     on: function (type, listener) {
       checkEvent(type);(eventMap[type] = eventMap[type] || []).push(listener);
     },
 
     /*
-         * Removes an event listener for the specified event type.
-         *
-         * @method off
-         * @param {String} type The event type for which to remote the listener.
-         * @param {Function} listener The listener to remove.
-         * @throws {Error} Invalid event type
-         */
+     * Removes an event listener for the specified event type.
+     *
+     * @method off
+     * @param {String} type The event type for which to remote the listener.
+     * @param {Function} listener The listener to remove.
+     * @throws {Error} Invalid event type
+     */
     off: function (type, listener) {
       checkEvent(type);
 
@@ -62069,13 +62097,13 @@ function eventEmitter(prototype = {}) {
     },
 
     /*
-         * Emits an event of the specified type.
-         *
-         * @method emit
-         * @param {String} type The event type to emit.
-         * @param {any} [...args] The arguments to pass to the listeners of the event.
-         * @throws {Error} Invalid event type
-         */
+     * Emits an event of the specified type.
+     *
+     * @method emit
+     * @param {String} type The event type to emit.
+     * @param {any} [...args] The arguments to pass to the listeners of the event.
+     * @throws {Error} Invalid event type
+     */
     emit: function (type) {
       checkEvent(type);
 
@@ -62092,12 +62120,12 @@ function eventEmitter(prototype = {}) {
     },
 
     /*
-         * Add a subscription for all event types.
-         *
-         * @method subscribe
-         * @param {Function} listener The listener for all event types.
-         * @throws {Error} Listener not a function
-         */
+     * Add a subscription for all event types.
+     *
+     * @method subscribe
+     * @param {Function} listener The listener for all event types.
+     * @throws {Error} Listener not a function
+     */
     subscribe: function (listener) {
       if (typeof listener === 'function') {
         subscribeMap.push(listener);
@@ -62107,12 +62135,12 @@ function eventEmitter(prototype = {}) {
     },
 
     /*
-         * Remove a subscription for all event types.
-         *
-         * @method unsubscribe
-         * @param {Function} listener The listener for all event types.
-         * @throws {Error} Listener not a function
-         */
+     * Remove a subscription for all event types.
+     *
+     * @method unsubscribe
+     * @param {Function} listener The listener for all event types.
+     * @throws {Error} Listener not a function
+     */
     unsubscribe: function (listener) {
       if (typeof listener === 'function') {
         var i = subscribeMap.length;
@@ -62127,11 +62155,11 @@ function eventEmitter(prototype = {}) {
     },
 
     /*
-         * Sets the emitter in strict mode where it only allows events that have been defined or aliases.
-         *
-         * @method setStrictMode
-         * @param {Boolean} strict Whether to set strict mode for the emitter.
-         */
+     * Sets the emitter in strict mode where it only allows events that have been defined or aliases.
+     *
+     * @method setStrictMode
+     * @param {Boolean} strict Whether to set strict mode for the emitter.
+     */
     setStrictMode: function (strict) {
       strictMode = strict;
     }
@@ -62714,7 +62742,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.3.0-KAA-1440.67317';
+  let version = '3.3.0-local';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];

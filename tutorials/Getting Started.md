@@ -32,7 +32,7 @@ The best way to learn is usually by example and the best way to learn Kandy is b
 
 ## Browser Support
 
-| Browser |        Versions         |
+| Browser |        versions         |
 |:-------:|:-----------------------:|
 | Chrome  | Latest 3 Major Versions |
 | Firefox | Latest 3 Major Versions |
