@@ -91,6 +91,25 @@ interact with the server without worrying about authenticating.
 
 ### connect
 
+Connect by providing an OAuth token.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.username` **[string][2]** The username without the application's domain.
+    -   `credentials.oauthToken` **[string][2]** An OAuth token provided by an outside service.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+});
+```
+
+### connect
+
 Connect with user credentials.
 
 **Parameters**
@@ -151,25 +170,6 @@ client.connect({
   username: 'alfred@example.com',
   refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
   expires: 3600
-});
-```
-
-### connect
-
-Connect by providing an OAuth token.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][2]** An OAuth token provided by an outside service.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
 
@@ -1140,7 +1140,7 @@ Will trigger a `directory:change` event.
 
 **Parameters**
 
--   `userId` **[string][2]** The URI uniquely identifying the user.
+-   `primaryContact` **[string][2]** The URI uniquely identifying the user.
 
 ### fetchSelfInfo
 
@@ -1153,7 +1153,7 @@ Retrieves local information about a previously fetched user.
 
 **Parameters**
 
--   `userId` **[string][2]** The URI uniquely identifying the user.
+-   `primaryContact` **[string][2]** The URI uniquely identifying the user.
 
 ### getAll
 
