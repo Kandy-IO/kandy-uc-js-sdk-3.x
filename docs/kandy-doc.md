@@ -91,6 +91,46 @@ interact with the server without worrying about authenticating.
 
 ### connect
 
+Connect by providing an OAuth token.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.username` **[string][2]** The username without the application's domain.
+    -   `credentials.oauthToken` **[string][2]** An OAuth token provided by an outside service.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+});
+```
+
+### connect
+
+Connect with user credentials.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.username` **[string][2]** The username including the application's domain.
+    -   `credentials.password` **[string][2]** The user's password.
+    -   `credentials.authname` **[string][2]?** The user's authorization name.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  password: '********'
+  authname: '********'
+});
+```
+
+### connect
+
 Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.
 
 **Parameters**
@@ -133,61 +173,9 @@ client.connect({
 });
 ```
 
-### connect
-
-Connect by providing an OAuth token.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][2]** An OAuth token provided by an outside service.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-});
-```
-
-### connect
-
-Connect with user credentials.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username including the application's domain.
-    -   `credentials.password` **[string][2]** The user's password.
-    -   `credentials.authname` **[string][2]?** The user's authorization name.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
-});
-```
-
 ### disconnect
 
 Disconnects from the backend. This will close the websocket and you will stop receiving events.
-
-### updateToken
-
-If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.accessToken` **[string][2]** The new access token.
-    -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][2]** An access token for the user with the provided user Id.
--   `credentials` **[Object][5]** The credentials object.
 
 ### updateToken
 
@@ -207,6 +195,18 @@ client.updateToken({
   oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
+
+### updateToken
+
+If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.accessToken` **[string][2]** The new access token.
+    -   `credentials.username` **[string][2]** The username without the application's domain.
+    -   `credentials.accessToken` **[string][2]** An access token for the user with the provided user Id.
+-   `credentials` **[Object][5]** The credentials object.
 
 ### getUserInfo
 
@@ -759,19 +759,6 @@ These conversations can then be retrieved from the store using get().
 
 ### get
 
-Get a conversation object matching the user IDs provided.
-If successful, the event 'conversations:change' will be emitted.
-Multi-user conversations have a destination comprised of multiple user IDs.
-
-**Parameters**
-
--   `destination` **[Array][8]** An array of destinations for messages created in this conversation.
-    These will be a user's sip address.
-
-Returns **[Conversation][11]** A Conversation object.
-
-### get
-
 Get a conversation object matching the user ID provided
 If successful, the event 'conversations:change' will be emitted.
 If a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.
@@ -780,6 +767,19 @@ If a conversation with the given user ID already exists in the store, it will be
 
 -   `destination` **[string][2]** The destination for messages created in this conversation. This will
     be a user's sip address.
+
+Returns **[Conversation][11]** A Conversation object.
+
+### get
+
+Get a conversation object matching the user IDs provided.
+If successful, the event 'conversations:change' will be emitted.
+Multi-user conversations have a destination comprised of multiple user IDs.
+
+**Parameters**
+
+-   `destination` **[Array][8]** An array of destinations for messages created in this conversation.
+    These will be a user's sip address.
 
 Returns **[Conversation][11]** A Conversation object.
 
@@ -1194,16 +1194,19 @@ Will trigger the `contacts:new` event.
 
 -   `contact` **[Object][5]** The contact object.
     -   `contact.primaryContact` **[string][2]** The primary userId for the contact
-    -   `contact.name` **[string][2]?** The name for the contact entry
+    -   `contact.contactId` **[string][2]** The contact's unique contact ID
     -   `contact.firstName` **[string][2]?** The contact's first name
     -   `contact.lastName` **[string][2]?** The contact's last name
-    -   `contact.contactId` **[string][2]?** The contact's unique contact ID
-    -   `contact.email` **[string][2]?** The contact's email address
-    -   `contact.homePhoneNumber` **[string][2]?** The contact's home phone number
-    -   `contact.businessPhoneNumber` **[string][2]?** The contact's business phone number
-    -   `contact.mobilePhoneNumber` **[string][2]?** The contact's mobile phone number
-    -   `contact.list` **[string][2]?** The name of the contact list for which to add this contact to ("friends" by default)
-    -   `contact.buddy` **[boolean][7]?** Indicates whether or not the contact is a friend of the user
+    -   `contact.photoUrl` **[string][2]?** The URL address identifying location of user's picture
+    -   `contact.emailAddress` **[string][2]?** The contact's email address
+    -   `contact.homePhone` **[string][2]?** The contact's home phone number
+    -   `contact.workPhone` **[string][2]?** The contact's business phone number
+    -   `contact.mobilePhone` **[string][2]?** The contact's mobile phone number
+    -   `contact.conferenceURL` **[string][2]?** Conference URL and access code for this user's address book entry
+    -   `contact.fax` **[string][2]?** The user's fax number
+    -   `contact.pager` **[string][2]?** The user's pager number
+    -   `contact.groupList` **[string][2]?** The name of the contact list for which to add this contact to ("friends" by default)
+    -   `contact.friendStatus` **[boolean][7]?** Indicates whether or not the contact is a friend of the user
 
 ### get
 
@@ -1244,6 +1247,20 @@ Will trigger the `contacts:change` event.
 
 -   `contactId` **[string][2]** The unique contact ID.
 -   `contact` **[Object][5]** The contact object.
+    -   `contact.primaryContact` **[string][2]** The primary userId for the contact
+    -   `contact.contactId` **[string][2]** The contact's unique contact ID
+    -   `contact.firstName` **[string][2]?** The contact's first name
+    -   `contact.lastName` **[string][2]?** The contact's last name
+    -   `contact.photoUrl` **[string][2]?** The URL address identifying location of user's picture
+    -   `contact.emailAddress` **[string][2]?** The contact's email address
+    -   `contact.homePhone` **[string][2]?** The contact's home phone number
+    -   `contact.workPhone` **[string][2]?** The contact's business phone number
+    -   `contact.mobilePhone` **[string][2]?** The contact's mobile phone number
+    -   `contact.conferenceURL` **[string][2]?** Conference URL and access code for this user's address book entry
+    -   `contact.fax` **[string][2]?** The user's fax number
+    -   `contact.pager` **[string][2]?** The user's pager number
+    -   `contact.groupList` **[string][2]?** The name of the contact list for which to add this contact to ("friends" by default)
+    -   `contact.friendStatus` **[boolean][7]?** Indicates whether or not the contact is a friend of the user
 
 ### fetch
 
@@ -1253,33 +1270,6 @@ Will trigger the `contacts:change` event.
 **Parameters**
 
 -   `contactId` **[string][2]** The unique contact ID of the contact.
-
-## sdpHandlers
-
-A set of handlers for manipulating SDP information.
-These handlers are used to customize low-level call behaviour for very specific
-environments and/or scenarios. They can be provided during SDK instantiation
-to be used for all calls.
-
-### createCodecRemover
-
-In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party. While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.
-
-To facilitate this common task, the SDK provides a codec removal handler that can be used for this purpose.
-
-The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.
-
-**Examples**
-
-```javascript
-import { create, sdpHandlers } from 'kandy';
-const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
-const client = create({
-  call: {
-    sdpHandlers: [codecRemover]
-  }
-})
-```
 
 ## config
 
@@ -1371,6 +1361,33 @@ Configuration options for the notification feature.
         -   `notifications.pushRegistration.version` **[string][2]?** Version for the push registration server.
     -   `notifications.realm` **[string][2]?** The realm used for push notifications
     -   `notifications.bundleId` **[string][2]?** The bundle id used for push notifications
+
+## sdpHandlers
+
+A set of handlers for manipulating SDP information.
+These handlers are used to customize low-level call behaviour for very specific
+environments and/or scenarios. They can be provided during SDK instantiation
+to be used for all calls.
+
+### createCodecRemover
+
+In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party. While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.
+
+To facilitate this common task, the SDK provides a codec removal handler that can be used for this purpose.
+
+The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.
+
+**Examples**
+
+```javascript
+import { create, sdpHandlers } from 'kandy';
+const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
+const client = create({
+  call: {
+    sdpHandlers: [codecRemover]
+  }
+})
+```
 
 ## Logger
 
