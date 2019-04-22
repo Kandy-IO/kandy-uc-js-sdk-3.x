@@ -1,7 +1,7 @@
 /**
  * Kandy.js (Next)
  * kandy.cpaas.js
- * Version: 3.4.0-beta.71044
+ * Version: 3.4.0-beta.71360
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -63088,7 +63088,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.4.0-beta.71044';
+  let version = '3.4.0-beta.71360';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];
@@ -64448,14 +64448,29 @@ function* send() {
         delete usedParts.file.file;
         usedParts.file = (0, _extends3.default)({}, usedParts.file, response.payload.body.success.attachments[0]);
       }
-      yield (0, _effects3.put)(_actions.messageActions.sendMessageFinish({
-        sender: userInfo.username,
-        destination: action.payload.destination,
-        type: type,
-        parts: (0, _fp.values)(usedParts),
-        timestamp: action.payload.message.timestamp,
-        messageId: response.payload.body.success.id
-      }));
+      if (response.payload.body.success) {
+        yield (0, _effects3.put)(_actions.messageActions.sendMessageFinish({
+          sender: userInfo.username,
+          destination: action.payload.destination,
+          type: type,
+          parts: (0, _fp.values)(usedParts),
+          timestamp: action.payload.message.timestamp,
+          messageId: response.payload.body.success.id
+        }));
+      } else if (response.payload.body.error) {
+        yield (0, _effects3.put)(_actions.messageActions.sendMessageFinish({
+          sender: userInfo.username,
+          destination: action.payload.destination,
+          type: type,
+          parts: (0, _fp.values)(usedParts),
+          timestamp: action.payload.message.timestamp,
+          error: new _errors2.default({
+            message: response.payload.body.error.human,
+            code: response.payload.body.error.code
+          })
+        }));
+      }
+
       if (isGroup && !id) {
         // If a group conversation as created in tandem with the sending of this message, then we need to update that conversation in the state and provide it with its ID as it exists in the back end. This will allow us to send REST requests that are related to this conversation.
         yield (0, _effects3.put)(_actions.convoActions.updateConversation({
@@ -64700,7 +64715,7 @@ function* fetchConversations() {
     } else {
       let formattedConversationsArray = [];
       response.payload.body.success.forEach(convo => {
-        const { handle, handles, members, thread, type, lastreceived, lastpull } = convo;
+        const { handle, handles, members, thread, type, lastreceived, lastpull, lastmsg } = convo;
         // TODO: we should use a better naming convention than `handle`, as this complicates things for group convos
         if (handle && !handles) {
           formattedConversationsArray.push({
@@ -64711,6 +64726,7 @@ function* fetchConversations() {
             type: type === 'internal' ? 'im' : type,
             lastReceived: lastreceived ? lastreceived * 1000 : undefined, // convert seconds to miliseconds
             lastPull: lastpull ? lastpull * 1000 : undefined, // convert seconds to miliseconds
+            lastMessage: lastmsg,
             messages: []
           });
         } else if (handles && !handle) {
@@ -65528,6 +65544,7 @@ function api(context) {
             id: id,
             description,
             messages: messages,
+            lastMessage: conversation.lastMessage,
             isTypingList: conversation.isTypingList,
             lastReceived: conversation ? conversation.lastReceived : undefined,
             lastPull: conversation ? conversation.lastPull : undefined
@@ -65916,6 +65933,12 @@ const log = (0, _logs.getLogManager)().getLogger('MESSAGING');
  * Base conversation stamp
  * @param {Array} destination The Destination for messages being sent through
  * this conversation in this instance of the SDK. This should be an Array with any number of user IDs
+ * @param {string} type=im The type of the message.
+ * @param {string} id=undefined The unique identifier for base conversation.
+ * @param {string} description='' The description associated with base conversation.
+ * @param {Array} messages=[] An array containing the conversation's messages.
+ * @param {number} lastReceived The timestamp associated with the last received message.
+ * @param {string} lastMessage This is the last received message in a given conversation, as delivered by server.
  */
 
 // Events
@@ -65928,12 +65951,14 @@ const conversationBase = {
     messages = [],
     isTypingList = [],
     lastReceived,
-    lastPull
+    lastPull,
+    lastMessage = ''
   }) {
     this.destination = destination;
     this.type = type;
     this.description = description;
     this.messages = messages;
+    this.lastMessage = lastMessage;
     this.isTypingList = isTypingList;
     this.id = id;
     const features = (0, _selectors.getMessagingConfig)(this.context.getState()).features;
