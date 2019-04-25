@@ -1,7 +1,7 @@
 /**
  * Kandy.js (Next)
  * kandy.cpaas.js
- * Version: 3.4.0-beta.72055
+ * Version: 3.4.0-beta.72110
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -50677,7 +50677,31 @@ var _selectors = __webpack_require__("./src/auth/interface/selectors.js");
 
 var _constants = __webpack_require__("./src/auth/constants.js");
 
+var _logs = __webpack_require__("./src/logs/index.js");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+/**
+ * The authentication feature allows for setting authentication token which will be used for all communications
+ * with the platform. Authentication is used by all other features for
+ * fulfilling requests made to the backend server.
+ * @public
+ * @requires cpaas2auth
+ * @module Authentication
+ */
+
+/**
+ * The authentication feature handles connecting and disconnecting from any
+ * backend services that the SDK deals with. As well, it handles and stores
+ * authentication information on the behalf of the user. This allows the user to
+ * interact with the server without worrying about authenticating.
+ *
+ * @public
+ * @requires connect
+ * @module Authentication
+ */
+
+const log = (0, _logs.getLogManager)().getLogger('AUTH');
 
 /**
  * Authentication API.
@@ -50780,6 +50804,9 @@ function api({ dispatch, getState }) {
      * });
      */
     connect(credentials) {
+      // We won't expose oauthToken because it essentially acts as a password being used in conjunction with username
+      // ..and passwords should NOT be logged.
+      log.debug(_logs.API_LOG_TAG + 'connect: ', credentials.username);
       dispatch(actions.connect(credentials));
     },
 
@@ -50794,6 +50821,7 @@ function api({ dispatch, getState }) {
      * @method disconnect
      */
     disconnect() {
+      log.debug(_logs.API_LOG_TAG + 'disconnect');
       dispatch(actions.disconnect());
     },
 
@@ -50827,6 +50855,9 @@ function api({ dispatch, getState }) {
      * });
      */
     updateToken(credentials) {
+      // We won't expose oauthToken because it essentially acts as a password being used in conjunction with username
+      // ..and passwords should NOT be logged.
+      log.debug(_logs.API_LOG_TAG + 'updateToken: ', credentials.username);
       dispatch(actions.refreshTokens(credentials));
     },
 
@@ -50845,6 +50876,7 @@ function api({ dispatch, getState }) {
      * })
      */
     updateConnection(connection) {
+      log.debug(_logs.API_LOG_TAG + 'updateConnection: ', connection);
       dispatch(actions.updateSubscription(connection));
     },
 
@@ -50860,6 +50892,7 @@ function api({ dispatch, getState }) {
      * @returns {string} user.token The current access token.
      */
     getUserInfo() {
+      log.debug(_logs.API_LOG_TAG + 'getUserInfo');
       return (0, _selectors.getUserInfo)(getState());
     },
 
@@ -50878,6 +50911,7 @@ function api({ dispatch, getState }) {
      * @returns {string} connection.error.stack The stack trace of the error.
      */
     getConnection() {
+      log.debug(_logs.API_LOG_TAG + 'getConnection');
       const { isConnected, isPending, error } = getState().authentication;
       return {
         isConnected,
@@ -50897,6 +50931,7 @@ function api({ dispatch, getState }) {
      * @return {Array} A list of subscribed-to services.
      */
     getServices() {
+      log.debug(_logs.API_LOG_TAG + 'getServices');
       return (0, _selectors.getServices)(getState());
     },
 
@@ -50930,28 +50965,12 @@ function api({ dispatch, getState }) {
      * })
      */
     setTokens({ accessToken, idToken }) {
+      // We won't log both tokens, just the id one, so that we can still be able to debug.
+      log.debug(_logs.API_LOG_TAG + 'setTokens: ', idToken);
       dispatch(actions.setTokens({ accessToken, idToken }));
     }
   };
-} /**
-   * The authentication feature allows for setting authentication token which will be used for all communications
-   * with the platform. Authentication is used by all other features for
-   * fulfilling requests made to the backend server.
-   * @public
-   * @requires cpaas2auth
-   * @module Authentication
-   */
-
-/**
- * The authentication feature handles connecting and disconnecting from any
- * backend services that the SDK deals with. As well, it handles and stores
- * authentication information on the behalf of the user. This allows the user to
- * interact with the server without worrying about authenticating.
- *
- * @public
- * @requires connect
- * @module Authentication
- */
+}
 
 /***/ }),
 
@@ -53699,6 +53718,7 @@ function api({ dispatch, getState }) {
      * });
      */
     setDefaultDevices(devices) {
+      log.debug(_logs.API_LOG_TAG + 'media.setDefaultDevices: ', devices);
       dispatch(_actions.devicesActions.setDefaultDevices(devices));
     },
 
@@ -53710,6 +53730,7 @@ function api({ dispatch, getState }) {
      * @method getDevices
      */
     getDevices() {
+      log.debug(_logs.API_LOG_TAG + 'media.getDevices');
       dispatch(_actions.devicesActions.checkDevices());
     },
 
@@ -53727,6 +53748,7 @@ function api({ dispatch, getState }) {
      * ```
      */
     startPreviewVideo(videoContainer) {
+      log.debug(_logs.API_LOG_TAG + 'media.startPreviewVideo: ', videoContainer);
       dispatch(_actions.localVideoActions.startLocalVideo(videoContainer));
     },
 
@@ -53738,6 +53760,7 @@ function api({ dispatch, getState }) {
      * @method stopPreviewVideo
      */
     stopPreviewVideo() {
+      log.debug(_logs.API_LOG_TAG + 'media.stopPreviewVideo');
       dispatch(_actions.localVideoActions.stopLocalVideo());
     },
 
@@ -53754,6 +53777,7 @@ function api({ dispatch, getState }) {
      * @param {string} [options.chromeExtensionId] The ID of the Chrome Screenshare extension, if your application will be using screenshare on Chrome.
      */
     init(options) {
+      log.debug(_logs.API_LOG_TAG + 'media.init: ', options);
       dispatch(_actions.mediaActions.initMedia(options));
     },
 
@@ -53769,6 +53793,7 @@ function api({ dispatch, getState }) {
      * @param {boolean} [options.audio] Whether to get permission for audio.
      */
     promptUserMedia(options = {}) {
+      log.debug(_logs.API_LOG_TAG + 'media.promptUserMedia: ', options);
       dispatch(_actions.mediaActions.promptUserMedia(options));
     }
   };
@@ -53790,6 +53815,7 @@ function api({ dispatch, getState }) {
      * });
      */
     getAll() {
+      log.debug(_logs.API_LOG_TAG + 'call.getAll');
       return (0, _selectors.getCalls)(getState());
     },
 
@@ -53805,6 +53831,7 @@ function api({ dispatch, getState }) {
      * @return {Object} A call object.
      */
     getById(callId) {
+      log.debug(_logs.API_LOG_TAG + 'call.getById: ', callId);
       return (0, _selectors.getCallById)(getState(), callId);
     },
 
@@ -53818,6 +53845,7 @@ function api({ dispatch, getState }) {
      * @return {Object}
      */
     getMediaInfo() {
+      log.debug(_logs.API_LOG_TAG + 'call.getMediaInfo');
       return (0, _selectors.getMediaInfo)(getState());
     },
 
@@ -53833,6 +53861,7 @@ function api({ dispatch, getState }) {
      * @param {string} callId The ID of the call to act upon.
      */
     changeInputDevices(callId) {
+      log.debug(_logs.API_LOG_TAG + 'call.changeInputDevices: ', callId);
       dispatch(_actions.devicesActions.changeInputDevices(callId));
     },
 
@@ -53848,6 +53877,7 @@ function api({ dispatch, getState }) {
      * @param  {string} speakerId ID of the speaker to use for call audio.
      */
     changeSpeaker(speakerId) {
+      log.debug(_logs.API_LOG_TAG + 'call.changeSpeaker: ', speakerId);
       dispatch(_actions.devicesActions.changeSpeaker(speakerId));
     },
 
@@ -53927,6 +53957,7 @@ function api({ dispatch, getState }) {
      * });
      */
     make(callee, options = {}) {
+      log.debug(_logs.API_LOG_TAG + 'call.make: ', callee, options);
       const callOptions = ['from', 'contact', 'isAudioEnabled', 'isVideoEnabled', 'sendInitialVideo', 'webrtcdtls', 'remoteVideoContainer', 'localVideoContainer', 'normalizeAddress', 'videoResolution', 'customParameters',
       // Internal options.
       'sendScreenShare', 'mediaSourceId'];
@@ -53969,6 +54000,7 @@ function api({ dispatch, getState }) {
      * @param {HTMLElement} [options.remoteVideoContainer] The HTML element to use as a container for the remote video.
      */
     answer(callId, options) {
+      log.debug(_logs.API_LOG_TAG + 'call.answer: ', callId, options);
       dispatch(_actions.callsActions.answerCall(callId, options));
     },
 
@@ -53982,6 +54014,7 @@ function api({ dispatch, getState }) {
      * @param {string} callId The ID of the call to ignore.
      */
     ignore(callId) {
+      log.debug(_logs.API_LOG_TAG + 'call.ignore: ', callId);
       dispatch(_actions.callsActions.ignoreCall(callId));
     },
 
@@ -53995,6 +54028,7 @@ function api({ dispatch, getState }) {
      * @param {string} callId The ID of the call to reject.
      */
     reject(callId) {
+      log.debug(_logs.API_LOG_TAG + 'call.reject: ', callId);
       dispatch(_actions.callsActions.rejectCall(callId));
     },
 
@@ -54009,6 +54043,7 @@ function api({ dispatch, getState }) {
      * @param {string} callId Id of the call to end.
      */
     end(callId) {
+      log.debug(_logs.API_LOG_TAG + 'call.end: ', callId);
       dispatch(_actions.callsActions.endCall(callId));
     },
 
@@ -54027,6 +54062,7 @@ function api({ dispatch, getState }) {
      * @param {string} callId The ID of the call being acted on.
      */
     mute(callId) {
+      log.debug(_logs.API_LOG_TAG + 'call.mute: ', callId);
       dispatch(_actions.callsActions.muteCall(callId));
     },
 
@@ -54041,6 +54077,7 @@ function api({ dispatch, getState }) {
      * @param {string} callId The ID of the call being acted on.
      */
     unmute(callId) {
+      log.debug(_logs.API_LOG_TAG + 'call.unmute: ', callId);
       dispatch(_actions.callsActions.unMuteCall(callId));
     },
 
@@ -54055,6 +54092,7 @@ function api({ dispatch, getState }) {
      * @param {string} callId The ID of the call being acted on.
      */
     silence(callId) {
+      log.debug(_logs.API_LOG_TAG + 'call.silence: ', callId);
       dispatch(_actions.callsActions.silenceCall(callId));
     },
 
@@ -54069,6 +54107,7 @@ function api({ dispatch, getState }) {
      * @param {string} callId The ID of the call being acted on.
      */
     unsilence(callId) {
+      log.debug(_logs.API_LOG_TAG + 'call.unsilence: ', callId);
       dispatch(_actions.callsActions.unSilenceCall(callId));
     },
 
@@ -54084,6 +54123,7 @@ function api({ dispatch, getState }) {
      * @return {Array.<{name: string, value:string}>} Custom parameters of the call.
      */
     getCustomParameters(callId) {
+      log.debug(_logs.API_LOG_TAG + 'call.getCustomParameters: ', callId);
       return (0, _selectors.getCustomParametersById)(getState(), callId);
     },
 
@@ -54109,6 +54149,7 @@ function api({ dispatch, getState }) {
      * });
      */
     setCustomParameters(callId, params = {}) {
+      log.debug(_logs.API_LOG_TAG + 'call.setCustomParameters: ', callId, params);
       dispatch(_actions.callsActions.setCustomParameters(callId, params));
     },
 
@@ -54127,6 +54168,7 @@ function api({ dispatch, getState }) {
      * @param {number} [options.videoResolution.width] The width of the outoing video in pixels.
      */
     startVideo(callId, options = {}) {
+      log.debug(_logs.API_LOG_TAG + 'call.startVideo: ', callId, options);
       dispatch(_actions.callsActions.startVideo(callId, options));
     },
 
@@ -54141,6 +54183,7 @@ function api({ dispatch, getState }) {
      * @param {string} callId Id of the call being acted on.
      */
     stopVideo(callId) {
+      log.debug(_logs.API_LOG_TAG + 'call.stopVideo: ', callId);
       dispatch(_actions.callsActions.stopVideo(callId));
     },
 
@@ -54155,6 +54198,7 @@ function api({ dispatch, getState }) {
      * @param {string} callId Id of the call being acted on.
      */
     hold(callId) {
+      log.debug(_logs.API_LOG_TAG + 'call.hold: ', callId);
       dispatch(_actions.callsActions.holdCall(callId));
     },
 
@@ -54169,6 +54213,7 @@ function api({ dispatch, getState }) {
      * @param {string} callId Id of the call being acted on.
      */
     unhold(callId) {
+      log.debug(_logs.API_LOG_TAG + 'call.unhold: ', callId);
       dispatch(_actions.callsActions.unHoldCall(callId));
     },
 
@@ -54188,6 +54233,7 @@ function api({ dispatch, getState }) {
      * @param  {Number} [options.frameRate=15] The number of frames per second to request.
      */
     startScreenshare(callId, options = {}) {
+      log.debug(_logs.API_LOG_TAG + 'call.startScreenshare: ', callId, options);
       dispatch(_actions.callsActions.startScreenshare(callId, options));
     },
 
@@ -54202,6 +54248,7 @@ function api({ dispatch, getState }) {
      * @param {string} callId Id of the call being acted on.
      */
     stopScreenshare(callId) {
+      log.debug(_logs.API_LOG_TAG + 'call.stopScreenshare: ', callId);
       dispatch(_actions.callsActions.stopScreenshare(callId));
     },
 
@@ -54218,6 +54265,7 @@ function api({ dispatch, getState }) {
      *
      */
     sendDTMF(callId, tone) {
+      log.debug(_logs.API_LOG_TAG + 'call.sendDTMF: ', callId, tone);
       dispatch(_actions.callsActions.sendDTMF(callId, tone));
     },
 
@@ -54232,6 +54280,7 @@ function api({ dispatch, getState }) {
      * @param {string} callId Id of the call being acted on.
      */
     sendCustomParameters(callId) {
+      log.debug(_logs.API_LOG_TAG + 'call.sendCustomParameters: ', callId);
       dispatch(_actions.callsActions.sendCustomParameters(callId));
     },
 
@@ -54246,6 +54295,7 @@ function api({ dispatch, getState }) {
      * @param {string} destination The user to forward the call to.
      */
     forwardCall(callId, destination) {
+      log.debug(_logs.API_LOG_TAG + 'call.forwardCall: ', callId, destination);
       dispatch(_actions.callsActions.forwardCall(callId, destination));
     },
 
@@ -54260,6 +54310,7 @@ function api({ dispatch, getState }) {
      * @param {string} destination The user to transfer the call to.
      */
     directTransfer(callId, destination) {
+      log.debug(_logs.API_LOG_TAG + 'call.directTransfer: ', callId, destination);
       dispatch(_actions.callsActions.directTransfer(callId, destination));
     },
 
@@ -54274,6 +54325,7 @@ function api({ dispatch, getState }) {
      * @param {string} destinationCallId The callId to transfer the call to.
      */
     consultativeTransfer(callId, destinationCallId) {
+      log.debug(_logs.API_LOG_TAG + 'call.consultativeTransfer: ', callId, destinationCallId);
       dispatch(_actions.callsActions.consultativeTransfer(callId, destinationCallId));
     },
 
@@ -54288,6 +54340,7 @@ function api({ dispatch, getState }) {
      * @param {string} destinationCallId The callId to join the call with.
      */
     join(callId, destinationCallId) {
+      log.debug(_logs.API_LOG_TAG + 'call.join: ', callId, destinationCallId);
       dispatch(_actions.callsActions.joinCall(callId, destinationCallId));
     },
 
@@ -54301,6 +54354,7 @@ function api({ dispatch, getState }) {
      * @return {Object} Height and width properties of the remote video.
      */
     getRemoteVideoResolutions(callId) {
+      log.debug(_logs.API_LOG_TAG + 'call.getRemoteVideoResolutions: ', callId);
       /* Implement this in the API temporarily, since this should be done
              *   automatically on a state change, but we can't due to FCS timing
              *   issues. See KAA-424.
@@ -54337,6 +54391,7 @@ function api({ dispatch, getState }) {
      * @return {string} ID used to identify the bridge.
      */
     create() {
+      log.debug(_logs.API_LOG_TAG + 'audioBridge.create');
       // Create our own ID for storing in state.
       const bridgeId = (0, _v2.default)();
       dispatch(_actions.audioBridgeActions.createAudioBridge(bridgeId));
@@ -54351,6 +54406,7 @@ function api({ dispatch, getState }) {
      * @param  {string} bridgeId Identifier for the bridge to act on.
      */
     close(bridgeId) {
+      log.debug(_logs.API_LOG_TAG + 'audioBridge.close: ', bridgeId);
       dispatch(_actions.audioBridgeActions.closeAudioBridge(bridgeId));
     },
 
@@ -54363,6 +54419,7 @@ function api({ dispatch, getState }) {
      * @param  {string} callId Identifier for the call to add.
      */
     addCall(bridgeId, callId) {
+      log.debug(_logs.API_LOG_TAG + 'audioBridge.addCall: ', bridgeId, callId);
       dispatch(_actions.audioBridgeActions.addCallToBridge(bridgeId, callId));
     },
 
@@ -54375,6 +54432,7 @@ function api({ dispatch, getState }) {
      * @param  {string} callId Identifier for the call to remove.
      */
     removeCall(bridgeId, callId) {
+      log.debug(_logs.API_LOG_TAG + 'audioBridge.removeCall: ', bridgeId, callId);
       dispatch(_actions.audioBridgeActions.removeCallFromBridge(bridgeId, callId));
     },
 
@@ -54386,6 +54444,7 @@ function api({ dispatch, getState }) {
      * @param  {string} bridgeId Identifier for the bridge to act on.
      */
     mute(bridgeId) {
+      log.debug(_logs.API_LOG_TAG + 'audioBridge.mute: ', bridgeId);
       dispatch(_actions.audioBridgeActions.muteAudioBridge(bridgeId));
     },
 
@@ -54397,6 +54456,7 @@ function api({ dispatch, getState }) {
      * @param  {string} bridgeId Identifier for the bridge to act on.
      */
     unmute(bridgeId) {
+      log.debug(_logs.API_LOG_TAG + 'audioBridge.unmute: ', bridgeId);
       dispatch(_actions.audioBridgeActions.unmuteAudioBridge(bridgeId));
     },
 
@@ -54408,6 +54468,7 @@ function api({ dispatch, getState }) {
      * @param  {string} bridgeId Identifier for the bridge to act on.
      */
     silence(bridgeId) {
+      log.debug(_logs.API_LOG_TAG + 'audioBridge.silence: ', bridgeId);
       dispatch(_actions.audioBridgeActions.silenceAudioBridge(bridgeId));
     },
 
@@ -54419,6 +54480,7 @@ function api({ dispatch, getState }) {
      * @param  {string} bridgeId Identifier for the bridge to act on.
      */
     unsilence(bridgeId) {
+      log.debug(_logs.API_LOG_TAG + 'audioBridge.unsilence: ', bridgeId);
       dispatch(_actions.audioBridgeActions.unsilenceAudioBridge(bridgeId));
     },
 
@@ -54430,6 +54492,7 @@ function api({ dispatch, getState }) {
      * @return {Array} List of active audio bridges.
      */
     getAll() {
+      log.debug(_logs.API_LOG_TAG + 'audioBridge.getAll');
       return (0, _selectors.getAudioBridges)(getState());
     },
 
@@ -54442,6 +54505,7 @@ function api({ dispatch, getState }) {
      * @return {Array} List of calls currently part of the specified audio bridge.
      */
     getBridgeCalls(bridgeId) {
+      log.debug(_logs.API_LOG_TAG + 'audioBridge.getBridgeCalls: ', bridgeId);
       return (0, _selectors.getBridgeCalls)(getState(), bridgeId);
     }
   };
@@ -59097,9 +59161,13 @@ var actions = _interopRequireWildcard(_actions);
 
 var _selectors = __webpack_require__("./src/callHistory/interface/selectors.js");
 
+var _logs = __webpack_require__("./src/logs/index.js");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const log = (0, _logs.getLogManager)().getLogger('CALLHISTORY');
 
 /**
  * Call History API.
@@ -59134,6 +59202,7 @@ function api({ dispatch, getState }) {
      * @param  {number} [offset=0] Starting offset for records to retrieve.
      */
     fetch(amount = 50, offset = 0) {
+      log.debug(_logs.API_LOG_TAG + 'call.history.fetch: ', amount, offset);
       dispatch(actions.retrieveCallLogs(amount, offset));
     },
 
@@ -59146,6 +59215,7 @@ function api({ dispatch, getState }) {
      * @param  {number} recordId The ID of the call log to be removed.
      */
     remove(recordId) {
+      log.debug(_logs.API_LOG_TAG + 'call.history.remove: ', recordId);
       dispatch(actions.removeCallLogs(recordId));
     },
 
@@ -59157,6 +59227,7 @@ function api({ dispatch, getState }) {
      * @method clear
      */
     clear() {
+      log.debug(_logs.API_LOG_TAG + 'call.history.clear');
       dispatch(actions.removeCallLogs('all'));
     },
 
@@ -59176,6 +59247,7 @@ function api({ dispatch, getState }) {
      * @returns {Array} A list of call log records, ordered by latest first.
      */
     get() {
+      log.debug(_logs.API_LOG_TAG + 'call.history.get');
       return (0, _selectors.getCallHistory)(getState());
     },
 
@@ -59188,6 +59260,7 @@ function api({ dispatch, getState }) {
      * @returns {Array} A list of call log records from the cache, ordered by latest first.
      */
     getCache() {
+      log.debug(_logs.API_LOG_TAG + 'call.history.getCache');
       return (0, _stringify2.default)((0, _selectors.getCachedHistory)(getState()));
     },
 
@@ -59200,6 +59273,7 @@ function api({ dispatch, getState }) {
      * @param {*} data The data to restore in the cache.
      */
     setCache(data) {
+      log.debug(_logs.API_LOG_TAG + 'call.history.setCache: ', data);
       dispatch(actions.setCache(JSON.parse(data)));
     }
   };
@@ -60115,9 +60189,20 @@ var _v = __webpack_require__("../../node_modules/uuid/v4.js");
 
 var _v2 = _interopRequireDefault(_v);
 
+var _logs = __webpack_require__("./src/logs/index.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+/**
+ * The clickToCall feature is used to bridge a call between two specified devices
+ *
+ * @public
+ * @module ClickToCall
+ * @requires clickToCall
+ */
+const log = (0, _logs.getLogManager)().getLogger('CLICKTOCALL');
 
 function api(context) {
   const clickToCallApi = {
@@ -60132,6 +60217,7 @@ function api(context) {
      * @returns {string} callId A unique id representing the call
      */
     make: function (caller, callee) {
+      log.debug(_logs.API_LOG_TAG + 'clickToCall.make: ', caller, callee);
       const callId = (0, _v2.default)();
       context.dispatch(actions.clickToCall(callId, caller, callee));
       return callId;
@@ -60146,6 +60232,7 @@ function api(context) {
      * @returns {Array} A list of clickToCall records, ordered by earliest requestTime
      */
     get: function () {
+      log.debug(_logs.API_LOG_TAG + 'clickToCall.get');
       return (0, _selectors.getAll)(context.getState());
     }
   };
@@ -60153,13 +60240,7 @@ function api(context) {
   return {
     clickToCall: clickToCallApi
   };
-} /**
-   * The clickToCall feature is used to bridge a call between two specified devices
-   *
-   * @public
-   * @module ClickToCall
-   * @requires clickToCall
-   */
+}
 
 /***/ }),
 
@@ -60700,15 +60781,17 @@ var actions = _interopRequireWildcard(_actions);
 
 var _selectors = __webpack_require__("./src/config/interface/selectors.js");
 
+var _logs = __webpack_require__("./src/logs/index.js");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-/**
- * An interface for getting and updating the configuration Object.
- *
- * @public
- * @module Config
- * @requires config
- */
+const log = (0, _logs.getLogManager)().getLogger('CONFIG'); /**
+                                                             * An interface for getting and updating the configuration Object.
+                                                             *
+                                                             * @public
+                                                             * @module Config
+                                                             * @requires config
+                                                             */
 function api(context) {
   const configApi = {
     /**
@@ -60721,6 +60804,7 @@ function api(context) {
      * @returns {Object} A configuration Object
      */
     getConfig: function () {
+      log.debug(_logs.API_LOG_TAG + 'getConfig');
       return (0, _selectors.getConfiguration)(context.getState());
     },
 
@@ -60734,6 +60818,7 @@ function api(context) {
      * @param {Object} newConfigValues Key Value pairs that will be placed into the store.
      */
     updateConfig: function (newConfigValues) {
+      log.debug(_logs.API_LOG_TAG + 'updateConfig: ', newConfigValues);
       context.dispatch(actions.update(newConfigValues));
     }
   };
@@ -61080,6 +61165,11 @@ var _actions = __webpack_require__("./src/connectivity/interface/actions.js");
 
 var _selectors = __webpack_require__("./src/connectivity/interface/selectors.js");
 
+var _logs = __webpack_require__("./src/logs/index.js");
+
+// Constants
+const log = (0, _logs.getLogManager)().getLogger('CONNECTIVITY');
+
 /**
  * The connection feature is used to connect and maintain connections between
  * the SDK and one or more backend servers.
@@ -61100,6 +61190,7 @@ function api({ dispatch, getState }) {
      * @param  {string} [platform='link'] Backend platform for which websocket's state to request.
      */
     getSocketState(platform = _constants.platforms.LINK) {
+      log.debug(_logs.API_LOG_TAG + 'connection.getSocketState: ', platform);
       return (0, _selectors.getConnectionState)(getState(), platform);
     },
 
@@ -61111,12 +61202,13 @@ function api({ dispatch, getState }) {
      * @param {boolean} enable Whether to enable or disable connectivity checking.
      */
     enableConnectivityChecking(enable) {
+      log.debug(_logs.API_LOG_TAG + 'connection.enableConnectivityChecking: ', enable);
       dispatch((0, _actions.changeConnectivityChecking)(enable));
     }
   };
 
   return { connection: connectivityApi };
-} // Constants
+}
 
 /***/ }),
 
@@ -62825,6 +62917,18 @@ exports.default = api;
 
 var _actions = __webpack_require__("./src/events/interface/actions.js");
 
+var _logs = __webpack_require__("./src/logs/index.js");
+
+/**
+ * The Events feature allows an application to listen for events that the SDK emits.
+ * Each other feature has a set of event types that can be subscribed to using
+ * the Event APIs.
+ * @public
+ * @module Events
+ */
+// Actions the interface uses.
+const log = (0, _logs.getLogManager)().getLogger('EVENTS');
+
 /**
  * API for Event Emitter plugin.
  * Defines the public end-points exposed by event plugins.
@@ -62850,6 +62954,7 @@ function api({ dispatch }) {
    * })
    */
   api.on = function (type, listener) {
+    log.debug(_logs.API_LOG_TAG + 'on: ', type);
     dispatch((0, _actions.on)(type, listener));
   };
 
@@ -62864,6 +62969,7 @@ function api({ dispatch }) {
    * @throws {Error} Invalid event type
    */
   api.off = function (type, listener) {
+    log.debug(_logs.API_LOG_TAG + 'off: ', type);
     dispatch((0, _actions.off)(type, listener));
   };
 
@@ -62877,6 +62983,7 @@ function api({ dispatch }) {
    * @throws {Error} Listener not a function
    */
   api.subscribe = function (listener) {
+    log.debug(_logs.API_LOG_TAG + 'subscribe');
     dispatch((0, _actions.subscribe)(listener));
   };
 
@@ -62890,18 +62997,12 @@ function api({ dispatch }) {
    * @throws {Error} Listener not a function
    */
   api.unsubscribe = function (listener) {
+    log.debug(_logs.API_LOG_TAG + 'unsubscribe');
     dispatch((0, _actions.unsubscribe)(listener));
   };
 
   return api;
-} /**
-   * The Events feature allows an application to listen for events that the SDK emits.
-   * Each other feature has a set of event types that can be subscribed to using
-   * the Event APIs.
-   * @public
-   * @module Events
-   */
-// Actions the interface uses.
+}
 
 /***/ }),
 
@@ -63089,7 +63190,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.4.0-beta.72055';
+  let version = '3.4.0-beta.72110';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];
@@ -63487,6 +63588,7 @@ root.sdpHandlers = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.API_LOG_TAG = undefined;
 
 var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/extends.js");
 
@@ -63546,7 +63648,7 @@ const defaultOptions = {
   },
   enableFcsLogs: true
 
-  // Instantiate the log manager
+  // Logs generated as a result of invoking the public API will contain this tag
 };
 
 // Redux Logger middleware
@@ -63556,6 +63658,9 @@ const defaultOptions = {
 
 
 // Libraries.
+const API_LOG_TAG = exports.API_LOG_TAG = 'API invoked: ';
+
+// Instantiate the log manager
 const logMgr = getLogManager(defaultOptions);
 
 /**
@@ -65451,7 +65556,7 @@ var _selectors = __webpack_require__("./src/messaging/interface/selectors.js");
 var _logs = __webpack_require__("./src/logs/index.js");
 
 // Retrieve logger
-const log = (0, _logs.getLogManager)().getLogger('Messaging'); /**
+const log = (0, _logs.getLogManager)().getLogger('MESSAGING'); /**
                                                                 * The messaging feature revolves around a "conversation" structure. It is responsible to store the conversations
                                                                 * and its messages, and return conversation objects when requested.
                                                                 *
@@ -65484,6 +65589,7 @@ function api(context) {
      * @method fetch
      */
     fetch: function (options = {}) {
+      log.debug(_logs.API_LOG_TAG + 'conversation.fetch: ', options);
       context.dispatch(_actions.convoActions.fetchConversations(options));
     },
     /**
@@ -65527,6 +65633,7 @@ function api(context) {
      * @returns {Object} A Conversation object.
      */
     get: function (recipient, options = { type: 'im' }) {
+      log.debug(_logs.API_LOG_TAG + 'conversation.get: ', recipient, options);
       let destination = Array.isArray(recipient) ? [...recipient] : [recipient];
       let description = 'Conversation';
       let messages;
@@ -65584,6 +65691,7 @@ function api(context) {
      * @returns {Object} a Conversation object
      */
     create: function (recipient, options = { type: 'im' }) {
+      log.debug(_logs.API_LOG_TAG + 'conversation.create: ', recipient, options);
       const destination = Array.isArray(recipient) ? recipient : [recipient];
       const prevConv = (0, _selectors.findConversation)(context.getState(), destination, options.type);
 
@@ -65606,6 +65714,7 @@ function api(context) {
      * @returns {Array} An array of conversation objects.
      */
     getAll: function () {
+      log.debug(_logs.API_LOG_TAG + 'conversation.getAll');
       return (0, _selectors.getConversations)(context.getState());
     }
   };
@@ -66793,18 +66902,20 @@ var actions = _interopRequireWildcard(_actions);
 
 var _selectors = __webpack_require__("./src/mwi/interface/selectors.js");
 
+var _logs = __webpack_require__("./src/logs/index.js");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-/**
- * The voicemail features are used to retrieve and view
- * voicemail indicators.
- *
- * Voicemail functions are all part of the 'voicemail' namespace.
- *
- * @public
- * @requires voicemail
- * @module Voicemail
- */
+const log = (0, _logs.getLogManager)().getLogger('MWI'); /**
+                                                          * The voicemail features are used to retrieve and view
+                                                          * voicemail indicators.
+                                                          *
+                                                          * Voicemail functions are all part of the 'voicemail' namespace.
+                                                          *
+                                                          * @public
+                                                          * @requires voicemail
+                                                          * @module Voicemail
+                                                          */
 
 function api({ dispatch, getState }) {
   const mwiApi = {
@@ -66818,6 +66929,7 @@ function api({ dispatch, getState }) {
      * @method fetch
      */
     fetch() {
+      log.debug(_logs.API_LOG_TAG + 'voicemail.fetch');
       dispatch(actions.fetchMwi());
     },
 
@@ -66830,6 +66942,7 @@ function api({ dispatch, getState }) {
      * @method get
      */
     get() {
+      log.debug(_logs.API_LOG_TAG + 'voicemail.get');
       return (0, _selectors.getMwi)(getState());
     }
   };
@@ -67428,9 +67541,13 @@ var actions = _interopRequireWildcard(_actions);
 
 var _constants = __webpack_require__("./src/constants.js");
 
+var _logs = __webpack_require__("./src/logs/index.js");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const log = (0, _logs.getLogManager)().getLogger('NOTIFICATION');
 
 /**
  * Notifications API.
@@ -67456,6 +67573,7 @@ function api({ dispatch }) {
      * @param {string} [channel] - The channel that the notification came from.
      */
     process(notification, channel, platform = _constants.platforms.LINK) {
+      log.debug(_logs.API_LOG_TAG + 'notification.process: ', notification, channel, platform);
       dispatch(actions.externalNotification(notification, channel, platform));
     },
 
@@ -67473,6 +67591,7 @@ function api({ dispatch }) {
      * @param {string} params.clientCorrelator - Unique identifier for a client device.
      */
     registerPush(params) {
+      log.debug(_logs.API_LOG_TAG + 'notification.registerPush', params);
       dispatch(actions.enableNotificationChannel('PUSH', (0, _extends3.default)({}, params, {
         channelEnabled: true
       })));
@@ -67487,6 +67606,7 @@ function api({ dispatch }) {
      * @method deregisterPush
      */
     deregisterPush() {
+      log.debug(_logs.API_LOG_TAG + 'notification.deregisterPush');
       dispatch(actions.enableNotificationChannel('PUSH', {
         channelEnabled: false
       }));
@@ -67502,6 +67622,7 @@ function api({ dispatch }) {
      * @param {boolean} enable - Whether the websocket channel should be enabled.
      */
     enableWebsocket(enable) {
+      log.debug(_logs.API_LOG_TAG + 'notification.enableWebsocket: ', enable);
       dispatch(actions.enableNotificationChannel('WEBSOCKET', {
         channelEnabled: enable
       }));
@@ -68551,6 +68672,7 @@ exports.default = function (context) {
      * @param  {string} [note] An additional note to be provided when the activity is "other".
      */
     update(status, activity, note) {
+      log.debug(_logs.API_LOG_TAG + 'presence.update: ', status, activity, note);
       context.dispatch(actions.updatePresence(status, activity, note));
     },
 
@@ -68565,6 +68687,7 @@ exports.default = function (context) {
      * @return {Array} List of user presence information.
      */
     get(user) {
+      log.debug(_logs.API_LOG_TAG + 'presence.get: ', user);
       const users = Array.isArray(user) ? user : [user];
       const storedUsers = selectors.getPresence(context.getState(), users);
       // return something sensible based on the input
@@ -68587,6 +68710,7 @@ exports.default = function (context) {
      * @return {Array} List of user presence information.
      */
     getAll() {
+      log.debug(_logs.API_LOG_TAG + 'presence.getAll');
       return selectors.getAllPresence(context.getState());
     },
 
@@ -68600,6 +68724,7 @@ exports.default = function (context) {
      * @return {Object}
      */
     getSelf() {
+      log.debug(_logs.API_LOG_TAG + 'presence.getSelf');
       return selectors.getSelfPresence(context.getState());
     },
 
@@ -68615,6 +68740,7 @@ exports.default = function (context) {
      * @param  {Array<string>|string} users  A user id or an array of user ids.
      */
     fetch(user) {
+      log.debug(_logs.API_LOG_TAG + 'presence.fetch: ', user);
       const users = Array.isArray(user) ? user : [user];
       context.dispatch(actions.getPresence(users));
     },
@@ -68629,6 +68755,7 @@ exports.default = function (context) {
      * @param  {string} user  The ID of the user to subscribe to.
      */
     subscribe(users) {
+      log.debug(_logs.API_LOG_TAG + 'presence.subscribe: ', users);
       context.dispatch(actions.subscribePresence(users));
     },
 
@@ -68642,6 +68769,7 @@ exports.default = function (context) {
      * @param  {string} user  The ID of the user to unsubscribe from.
      */
     unsubscribe(users) {
+      log.debug(_logs.API_LOG_TAG + 'presence.unsubscribe: ', users);
       context.dispatch(actions.unsubscribePresence(users));
     }
   };
@@ -68656,7 +68784,20 @@ var _selectors = __webpack_require__("./src/presence/interface/selectors.js");
 
 var selectors = _interopRequireWildcard(_selectors);
 
+var _logs = __webpack_require__("./src/logs/index.js");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+const log = (0, _logs.getLogManager)().getLogger('PRESENCE'); /**
+                                                               * The presence features are used to update the authenticated users presence
+                                                               * on the server, as well as retrieve other users presence information.
+                                                               *
+                                                               * Presence functions are all part of the 'presence' namespace.
+                                                               *
+                                                               * @public
+                                                               * @requires presence
+                                                               * @module Presence
+                                                               */
 
 /***/ }),
 
@@ -69978,7 +70119,11 @@ var _actions = __webpack_require__("./src/sipEvents/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
+var _logs = __webpack_require__("./src/logs/index.js");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+const log = (0, _logs.getLogManager)().getLogger('SIPEVENTS');
 
 /**
  * Sip Events API.
@@ -70012,6 +70157,7 @@ function api({ dispatch, getState }) {
      * @param  {Array} [customParameters] List of custom options provided as part of the subscription.
      */
     subscribe(eventType, subscribeUserList, clientCorrelator, customParameters = []) {
+      log.debug(_logs.API_LOG_TAG + 'sip.subscribe: ', eventType, subscribeUserList, clientCorrelator, customParameters);
       dispatch(actions.sipEventSubscribe(eventType, subscribeUserList, clientCorrelator, customParameters));
     },
 
@@ -70028,6 +70174,7 @@ function api({ dispatch, getState }) {
      * @param  {Array} [customParameters] List of custom options provided as part of the subscription.
      */
     update(eventType, userLists, customParameters = []) {
+      log.debug(_logs.API_LOG_TAG + 'sip.update: ', eventType, userLists, customParameters);
       dispatch(actions.sipEventUpdate(eventType, userLists, customParameters));
     },
 
@@ -70040,6 +70187,7 @@ function api({ dispatch, getState }) {
      * @param  {string} eventType The sip event to unsubscribe from.
      */
     unsubscribe(eventType) {
+      log.debug(_logs.API_LOG_TAG + 'sip.unsubscribe: ', eventType);
       dispatch(actions.sipEventUnsubscribe(eventType));
     },
 
@@ -70053,6 +70201,7 @@ function api({ dispatch, getState }) {
      * @return {Object} Returns all information related to the chosen eventType that is contained in the store. If no eventType is specified, it will return information for all eventTypes.
      */
     getDetails(eventType) {
+      log.debug(_logs.API_LOG_TAG + 'sip.getDetails: ', eventType);
       return (0, _selectors.getSipEventInfo)(getState(), eventType);
     }
   };
@@ -71090,9 +71239,11 @@ var actions = _interopRequireWildcard(_contacts);
 
 var _selectors = __webpack_require__("./src/users/interface/selectors.js");
 
+var _logs = __webpack_require__("./src/logs/index.js");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-// Users plugin.
+const log = (0, _logs.getLogManager)().getLogger('USERS'); // Users plugin.
 function contactsAPI({ dispatch, getState, primitives }) {
   /**
    * The Contacts feature allows users to store personal contacts to their account.
@@ -71148,6 +71299,7 @@ function contactsAPI({ dispatch, getState, primitives }) {
      * @param {boolean} [contact.buddy] Indicates whether or not the contact is a friend of the user
      */
     add(contact) {
+      log.debug(_logs.API_LOG_TAG + 'contacts.add: ', contact);
       dispatch(actions.addContact(contact));
     },
 
@@ -71161,6 +71313,7 @@ function contactsAPI({ dispatch, getState, primitives }) {
      * @return {Object} Contact information.
      */
     get(contactId) {
+      log.debug(_logs.API_LOG_TAG + 'contacts.get: ', contactId);
       return (0, _selectors.getContact)(getState(), contactId);
     },
 
@@ -71173,6 +71326,7 @@ function contactsAPI({ dispatch, getState, primitives }) {
      * @return {Array} List of contact information.
      */
     getAll() {
+      log.debug(_logs.API_LOG_TAG + 'contacts.getAll');
       return (0, _selectors.getContacts)(getState());
     },
 
@@ -71185,6 +71339,7 @@ function contactsAPI({ dispatch, getState, primitives }) {
      * @method refresh
      */
     refresh() {
+      log.debug(_logs.API_LOG_TAG + 'contacts.refresh');
       dispatch(actions.refreshContacts());
     },
 
@@ -71198,6 +71353,7 @@ function contactsAPI({ dispatch, getState, primitives }) {
      * @param  {string} id The Id of the contact that will be removed.
      */
     remove(id) {
+      log.debug(_logs.API_LOG_TAG + 'contacts.remove: ', id);
       dispatch(actions.removeContact(id));
     },
 
@@ -71248,6 +71404,7 @@ function contactsAPI({ dispatch, getState, primitives }) {
      * @param {boolean} [contact.buddy] Indicates whether or not the contact is a friend of the user
      */
     update(contactId, contact) {
+      log.debug(_logs.API_LOG_TAG + 'contacts.update: ', contactId, contact);
       dispatch(actions.updateContact(contactId, contact));
     },
 
@@ -71261,6 +71418,7 @@ function contactsAPI({ dispatch, getState, primitives }) {
      * @param  {string} contactId The unique contact ID of the contact.
      */
     fetch(contactId) {
+      log.debug(_logs.API_LOG_TAG + 'contacts.fetch: ', contactId);
       dispatch(actions.fetchContact(contactId));
     }
   };
@@ -71325,9 +71483,11 @@ var actions = _interopRequireWildcard(_users);
 
 var _selectors = __webpack_require__("./src/users/interface/selectors.js");
 
+var _logs = __webpack_require__("./src/logs/index.js");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-// Users plugin.
+const log = (0, _logs.getLogManager)().getLogger('USERS'); // Users plugin.
 function usersAPI({ dispatch, getState, primitives }) {
   /**
    * The Users feature allows access to user information for users within the same domain.
@@ -71349,6 +71509,7 @@ function usersAPI({ dispatch, getState, primitives }) {
      * @param {string} userId The URI uniquely identifying the user.
      */
     fetch(userId) {
+      log.debug(_logs.API_LOG_TAG + 'user.fetch: ', userId);
       dispatch(actions.fetchUser(userId));
     },
 
@@ -71361,6 +71522,7 @@ function usersAPI({ dispatch, getState, primitives }) {
      * @method fetchSelfInfo
      */
     fetchSelfInfo() {
+      log.debug(_logs.API_LOG_TAG + 'user.fetchSelfInfo');
       dispatch(actions.fetchSelfInfo());
     },
 
@@ -71372,6 +71534,7 @@ function usersAPI({ dispatch, getState, primitives }) {
      * @param {string} userId The URI uniquely identifying the user.
      */
     get(userId) {
+      log.debug(_logs.API_LOG_TAG + 'user.get: ', userId);
       return (0, _selectors.getUser)(getState(), userId);
     },
 
@@ -71382,6 +71545,7 @@ function usersAPI({ dispatch, getState, primitives }) {
      * @method getAll
      */
     getAll() {
+      log.debug(_logs.API_LOG_TAG + 'user.getAll');
       return (0, _selectors.getUsers)(getState());
     },
 
@@ -71406,6 +71570,7 @@ function usersAPI({ dispatch, getState, primitives }) {
      * @param {string} [options.next] The pointer for a chunk of results, which may be returned from other a previous query.
      */
     search(filters = {}, options = {}) {
+      log.debug(_logs.API_LOG_TAG + 'user.search: ', filters, options);
       dispatch(actions.searchDirectory(filters, options));
     }
   };
