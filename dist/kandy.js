@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.cpaas.js
- * Version: 3.5.0-beta.73700
+ * Version: 3.5.0-beta.74224
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -16776,7 +16776,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.5.0-beta.73700';
+  let version = '3.5.0-beta.74224';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];
@@ -59232,10 +59232,10 @@ function* receiveMessage() {
     }
     const conversation = yield (0, _effects3.select)(_selectors.findConversation, destination);
     let newConversation = false;
+
     // If this message should correspond to a conversation which doesn't exist
     // the state, we will need to dispatch an action to create it
     if (!conversation) {
-      yield (0, _effects3.put)(_actions.convoActions.createConversation(destination, { type: type }));
       newConversation = true;
     }
     // Dispatch the messageReceived action so we can update the conversation
