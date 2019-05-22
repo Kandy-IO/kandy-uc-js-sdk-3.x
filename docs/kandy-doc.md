@@ -759,19 +759,6 @@ These conversations can then be retrieved from the store using get().
 
 ### get
 
-Get a conversation object matching the user ID provided
-If successful, the event 'conversations:change' will be emitted.
-If a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.
-
-**Parameters**
-
--   `destination` **[string][2]** The destination for messages created in this conversation. This will
-    be a user's sip address.
-
-Returns **[Conversation][11]** A Conversation object.
-
-### get
-
 Get a conversation object matching the user IDs provided.
 If successful, the event 'conversations:change' will be emitted.
 Multi-user conversations have a destination comprised of multiple user IDs.
@@ -780,6 +767,9 @@ Multi-user conversations have a destination comprised of multiple user IDs.
 
 -   `destination` **[Array][8]** An array of destinations for messages created in this conversation.
     These will be a user's sip address.
+-   `options` **[Object][5]?** An optional configuration object to query for more specific results.
+    If this object is not passed, the function will query for "im" conversations associated with those destinations.
+    -   `options.type` **[string][2]?** The type of conversation to retrieve. Can be one of "im", "sms" or "other".
 
 Returns **[Conversation][11]** A Conversation object.
 

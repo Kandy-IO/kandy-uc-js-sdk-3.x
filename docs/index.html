@@ -639,12 +639,6 @@
                       </a></li>
                     
                       <li><a
-                        href='#messagingget'
-                        class='regular pre-open'>
-                        .get
-                      </a></li>
-                    
-                      <li><a
                         href='#messagingcreate'
                         class='regular pre-open'>
                         .create
@@ -8206,80 +8200,7 @@ the back-end making use of the most recent date value provided in a previous req
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>get(destination)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>Get a conversation object matching the user ID provided
-If successful, the event 'conversations:change' will be emitted.
-If a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.</p>
-
-
-  <div class='pre p1 fill-light mt0'>get(destination: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="#conversation">Conversation</a></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>destination</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    The destination for messages created in this conversation. This will
-be a user's sip address.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Returns</div>
-    
-      <div>
-        <code><a href="#conversation">Conversation</a></code>:
-          A Conversation object.
-
-        
-      </div>
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='messagingget'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>get(destination)</span>
+            <span class='code strong strong truncate'>get(destination, options?)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -8292,7 +8213,7 @@ If successful, the event 'conversations:change' will be emitted.
 Multi-user conversations have a destination comprised of multiple user IDs.</p>
 
 
-  <div class='pre p1 fill-light mt0'>get(destination: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>): <a href="#conversation">Conversation</a></div>
+  <div class='pre p1 fill-light mt0'>get(destination: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?): <a href="#conversation">Conversation</a></div>
   
   
 
@@ -8314,6 +8235,41 @@ Multi-user conversations have a destination comprised of multiple user IDs.</p>
 These will be a user's sip address.
 
           </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</code>
+	    An optional configuration object to query for more specific results.
+If this object is not passed, the function will query for "im" conversations associated with those destinations.
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.type</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>The type of conversation to retrieve. Can be one of "im", "sms" or "other".
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
           
         </div>
       
