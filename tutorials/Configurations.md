@@ -2,7 +2,7 @@
 layout: page
 categories: quickstarts-javascript
 title: Configurations
-permalink: /quickstarts/javascript/cpaas/Configurations
+permalink: /quickstarts/javascript/uc/Configurations
 ---
 
 # Kandy Configurations
@@ -24,7 +24,7 @@ const kandy = create({
 });
 ```
 
-In most cases, the default values will suffice for an application, but specifying your own configurations allows you to customize certain behaviours. The exception is the authentication configurations, which are always required. This quickstart will showcase a few samples of why you may want to use certain configurations. For a full list of the possible configurations, see the [Configuration Documentation](../../references/cpaas#configurations).
+In most cases, the default values will suffice for an application, but specifying your own configurations allows you to customize certain behaviours. The exception is the authentication configurations, which are always required. This quickstart will showcase a few samples of why you may want to use certain configurations. For a full list of the possible configurations, see the [Configuration Documentation](../../references/uc#configurations).
 
 ## Example Configurations
 

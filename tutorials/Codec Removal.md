@@ -2,7 +2,7 @@
 layout: page
 categories: quickstarts-javascript
 title: Codec Removal
-permalink: /quickstarts/javascript/cpaas/Codec%20Removal
+permalink: /quickstarts/javascript/uc/Codec%20Removal
 ---
 
 # Codec Removal

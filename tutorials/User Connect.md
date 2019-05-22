@@ -2,7 +2,7 @@
 layout: page
 categories: quickstarts-javascript
 title: User Connect
-permalink: /quickstarts/javascript/cpaas/User%20Connect
+permalink: /quickstarts/javascript/uc/User%20Connect
 ---
 
 # Connecting and Disconnecting
@@ -62,7 +62,7 @@ function login() {
 
 ## Step 2: Connection Events
 
-The `kandy.connect()` function does not return a value. Instead, Kandy.js uses events to tell you when something has changed. You can find a list of the authentication events [here](../../references/cpaas#authentication).
+The `kandy.connect()` function does not return a value. Instead, Kandy.js uses events to tell you when something has changed. You can find a list of the authentication events [here](../../references/uc#authentication).
 
 To subscribe to these events, you use `kandy.on()`. Here is the example for our demo app:
 
@@ -89,7 +89,7 @@ In the above piece of code we subscribe an anonymous function to the `auth:chang
 { isConnected: true, isPending: false, error: undefined }
 ```
 
-To learn more about the response from this API checkout the documentation for `getConnection` [here](../../references/cpaas#authentication).
+To learn more about the response from this API checkout the documentation for `getConnection` [here](../../references/uc#authentication).
 
 ## Step 3: Disconnecting
 
@@ -109,4 +109,4 @@ Want to play around with this example for yourself? Feel free to edit this code 
 
 
 
-<form action="https://codepen.io/pen/define" method="POST" target="_blank" class="codepen-form"><input type="hidden" name="data" value=' {&quot;js&quot;:&quot;/**\n * Kandy.io Authentication Demo\n */\n\nconst { create } = Kandy\nconst kandy = create({\n    // Required: Server connection configs.\n    authentication: {\n        subscription: {\n            server: ...,\n            ...\n        },\n        websocket: {\n            server: ...,\n            ...\n        }\n    }\n})\n\nvar username = \&quot;UsernameHere\&quot;;\nvar password = \&quot;PasswordHere\&quot;;\n\nfunction login() {\n  kandy.connect({\n    username: username,\n    password: password\n  });\n}\n\nkandy.on(&apos;auth:change&apos;, function() {\n   let isConnected = kandy.getConnection().isConnected;\n   document.getElementById(&apos;auth-state&apos;).innerHTML = &apos;Connected: &apos; + isConnected;\n   log(&apos;Connection state changed.&apos;);\n});\n\n// Listen for authentication errors.\nkandy.on(&apos;auth:error&apos;, function(params) {\n  log(&apos;Connect error: &apos; + params.error.message + &apos; (&apos; + params.error.code + &apos;)&apos;);\n});\n\nfunction logout() {\n  kandy.disconnect();\n}\n\n// Utility function for appending messages to the message div.\nfunction log(message) {\n  document.getElementById(&apos;messages&apos;).innerHTML += &apos;<div>&apos; + message + &apos;</div>&apos;;\n}\n\n&quot;,&quot;html&quot;:&quot;<div id=&apos;auth-state&apos;>Connected: false</div>\n\n<input type=\&quot;submit\&quot; value=\&quot;Login\&quot; onclick=\&quot;login();\&quot;>\n<input type=\&quot;submit\&quot; value=\&quot;Logout\&quot; onclick=\&quot;logout();\&quot;>\n\n<div id=\&quot;messages\&quot;> </div>\n\n&quot;,&quot;css&quot;:&quot;&quot;,&quot;title&quot;:&quot;Kandy.io Authentication Demo&quot;,&quot;editors&quot;:&quot;101&quot;,&quot;js_external&quot;:&quot;https://cdn.jsdelivr.net/npm/@kandy-io/uc-sdk@77378/dist/kandy.js&quot;} '><input type="image" src="./TryItOn-CodePen.png"></form>
+<form action="https://codepen.io/pen/define" method="POST" target="_blank" class="codepen-form"><input type="hidden" name="data" value=' {&quot;js&quot;:&quot;/**\n * Kandy.io Authentication Demo\n */\n\nconst { create } = Kandy\nconst kandy = create({\n    // Required: Server connection configs.\n    authentication: {\n        subscription: {\n            server: ...,\n            ...\n        },\n        websocket: {\n            server: ...,\n            ...\n        }\n    }\n})\n\nvar username = \&quot;UsernameHere\&quot;;\nvar password = \&quot;PasswordHere\&quot;;\n\nfunction login() {\n  kandy.connect({\n    username: username,\n    password: password\n  });\n}\n\nkandy.on(&apos;auth:change&apos;, function() {\n   let isConnected = kandy.getConnection().isConnected;\n   document.getElementById(&apos;auth-state&apos;).innerHTML = &apos;Connected: &apos; + isConnected;\n   log(&apos;Connection state changed.&apos;);\n});\n\n// Listen for authentication errors.\nkandy.on(&apos;auth:error&apos;, function(params) {\n  log(&apos;Connect error: &apos; + params.error.message + &apos; (&apos; + params.error.code + &apos;)&apos;);\n});\n\nfunction logout() {\n  kandy.disconnect();\n}\n\n// Utility function for appending messages to the message div.\nfunction log(message) {\n  document.getElementById(&apos;messages&apos;).innerHTML += &apos;<div>&apos; + message + &apos;</div>&apos;;\n}\n\n&quot;,&quot;html&quot;:&quot;<div id=&apos;auth-state&apos;>Connected: false</div>\n\n<input type=\&quot;submit\&quot; value=\&quot;Login\&quot; onclick=\&quot;login();\&quot;>\n<input type=\&quot;submit\&quot; value=\&quot;Logout\&quot; onclick=\&quot;logout();\&quot;>\n\n<div id=\&quot;messages\&quot;> </div>\n\n&quot;,&quot;css&quot;:&quot;&quot;,&quot;title&quot;:&quot;Kandy.io Authentication Demo&quot;,&quot;editors&quot;:&quot;101&quot;,&quot;js_external&quot;:&quot;https://cdn.jsdelivr.net/npm/@kandy-io/uc-sdk@77806/dist/kandy.js&quot;} '><input type="image" src="./TryItOn-CodePen.png"></form>

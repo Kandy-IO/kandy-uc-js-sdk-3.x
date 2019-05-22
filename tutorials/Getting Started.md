@@ -2,7 +2,7 @@
 layout: page
 categories: quickstarts-javascript
 title: Getting Started
-permalink: /quickstarts/javascript/cpaas/Getting%20Started
+permalink: /quickstarts/javascript/uc/Getting%20Started
 ---
 
 # Getting Started
@@ -11,7 +11,7 @@ In this quickstart, we will help you dip your toes into Kandy before you dive in
 
 ## Using Kandy.js
 
-To begin, you will need to include the Kandy javascript library in your application. The Kandy.js library can be found here: [Kandy.js](https://cdn.jsdelivr.net/npm/@kandy-io/uc-sdk@77378/dist/kandy.js).
+To begin, you will need to include the Kandy javascript library in your application. The Kandy.js library can be found here: [Kandy.js](https://cdn.jsdelivr.net/npm/@kandy-io/uc-sdk@77806/dist/kandy.js).
 
 Kandy.js will expose a factory function to your page called `create`. This function is used to create an instance of the SDK, as well as to configure that instance.
 

@@ -1,17 +1,17 @@
 ---
 layout: page
 categories: quickstarts-javascript
-title: Using CPaaS on KBS
-permalink: /quickstarts/javascript/cpaas/Using%20CPaaS%20on%20KBS
+title: Using UC on KBS
+permalink: /quickstarts/javascript/uc/Using%20UC%20on%20KBS
 ---
 
-# Using CPaaS on KBS
+# Using UC on KBS
 
-To use the CPaaS on Kandy Business Solutions, you'll need to ensure you do the following.
+To use the UC on Kandy Business Solutions, you'll need to ensure you do the following.
 
-## Use the CPaaS SDK
+## Use the UC SDK
 
-Note that there are different SDKs for different kinds of solutions. The SDK you'll need is the Kandy CPaaS SDK. You can find it in the [Releases page](../../releases).
+Note that there are different SDKs for different kinds of solutions. The SDK you'll need is the Kandy UC SDK. You can find it in the [Releases page](../../releases).
 
 ## Configuration
 

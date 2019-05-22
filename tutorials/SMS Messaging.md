@@ -2,7 +2,7 @@
 layout: page
 categories: quickstarts-javascript
 title: SMS Messaging
-permalink: /quickstarts/javascript/cpaas/SMS%20Messaging
+permalink: /quickstarts/javascript/uc/SMS%20Messaging
 ---
 
 # SMS Messaging

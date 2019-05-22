@@ -2,7 +2,7 @@
 layout: page
 categories: quickstarts-javascript
 title: Anonymous Calls
-permalink: /quickstarts/javascript/cpaas/Anonymous%20Calls
+permalink: /quickstarts/javascript/uc/Anonymous%20Calls
 ---
 
 # Anonymous Calls
