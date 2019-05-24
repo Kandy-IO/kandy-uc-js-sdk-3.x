@@ -2,7 +2,7 @@
 layout: page
 categories: quickstarts-javascript
 title: Rich Messaging
-permalink: /quickstarts/javascript/cpaas/Rich%20Messaging
+permalink: /quickstarts/javascript/uc/Rich%20Messaging
 ---
 
 # Rich Messaging

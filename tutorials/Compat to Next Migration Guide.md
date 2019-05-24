@@ -2,7 +2,7 @@
 layout: page
 categories: quickstarts-javascript
 title: Compat to Next Migration Guide
-permalink: /quickstarts/javascript/cpaas/Compat%20to%20Next%20Migration%20Guide
+permalink: /quickstarts/javascript/uc/Compat%20to%20Next%20Migration%20Guide
 ---
 
 # Migrating to Kandy v3.0
@@ -106,7 +106,7 @@ The reference documentation lists all of the events that can be emitted by diffe
 
 In Kandy v3, call configuration defaults are set at the instantiation of the Kandy object. It is then possible to override these defaults on any future call for that instance of Kandy. To learn more about this configuration check out the [Voice and Video Calls Quickstart](Voice%20%26%20Video%20Calls) for a simple setup, and the [Configuration Docs](index.html#Configurations) for more in depth information.
 
-As well, Events for calls have changed. Please see the [Call Events Docs](../../references/cpaas#calls) to learn more about what events you may encounter.
+As well, Events for calls have changed. Please see the [Call Events Docs](../../references/uc#calls) to learn more about what events you may encounter.
 
 #### Call Object
 
@@ -141,7 +141,7 @@ It is important to note that the `callId` returned by `kandy.call.getById()` is 
 
 You may have noticed above that the events look a little different for Kandy v3.0 calls. All events are entirely new, so events you may have expected to be emitted in Kandy v2.0 will no longer be emitted. In most cases, Kandy v2.0 events will have a corresponding v3.0 event, however not always.
 
-Take a look at the [Calls Events doc](../../references/cpaas#calls) to check out what events exist.
+Take a look at the [Calls Events doc](../../references/uc#calls) to check out what events exist.
 
 #### State
 
@@ -157,7 +157,7 @@ kandy.sendImWithFile(userId, file, success, failure, options)
 kandy.sendImWithImage(userId, image, success, failure, options)
 ```
 
-In Kandy v3.0, messaging is handled in a much more organized way. Messages are associated with a conversation, and have `parts` associated with them to make sending rich messages of various types far easier. As well, there are no callback functions. Instead, there are a few events to listen for that will allow you to easily update your app when something occurs. Messaging related events can be found [here](../../references/cpaas#messaging).
+In Kandy v3.0, messaging is handled in a much more organized way. Messages are associated with a conversation, and have `parts` associated with them to make sending rich messages of various types far easier. As well, there are no callback functions. Instead, there are a few events to listen for that will allow you to easily update your app when something occurs. Messaging related events can be found [here](../../references/uc#messaging).
 
 ``` javascript
 // Create a conversation with a user.

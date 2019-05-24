@@ -2,7 +2,7 @@
 layout: page
 categories: quickstarts-javascript
 title: Getting Started
-permalink: /quickstarts/javascript/cpaas/Getting%20Started
+permalink: /quickstarts/javascript/uc/Getting%20Started
 ---
 
 # Getting Started

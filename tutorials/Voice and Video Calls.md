@@ -2,7 +2,7 @@
 layout: page
 categories: quickstarts-javascript
 title: Voice and Video Calls
-permalink: /quickstarts/javascript/cpaas/Voice%20%26%20Video%20Calls
+permalink: /quickstarts/javascript/uc/Voice%20%26%20Video%20Calls
 ---
 
 # Voice and Video Calls

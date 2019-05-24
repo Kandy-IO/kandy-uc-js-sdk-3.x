@@ -3,33 +3,33 @@
 
 - name: Getting Started
   description: # Getting Started
-  link: /quickstarts/javascript/cpaas/Getting%20Started
+  link: /quickstarts/javascript/uc/Getting%20Started
 
 - name: Configurations
   description: # Kandy Configurations
-  link: /quickstarts/javascript/cpaas/Configurations
+  link: /quickstarts/javascript/uc/Configurations
 
 - name: User Connect
   description: # Connecting and Disconnecting
-  link: /quickstarts/javascript/cpaas/User%20Connect
+  link: /quickstarts/javascript/uc/User%20Connect
 
 - name: Messaging
   description: # Messaging
-  link: /quickstarts/javascript/cpaas/Messaging
+  link: /quickstarts/javascript/uc/Messaging
 
 - name: Voice and Video Calls
   description: # Voice and Video Calls
-  link: /quickstarts/javascript/cpaas/Voice%20and%20Video%20Calls
+  link: /quickstarts/javascript/uc/Voice%20and%20Video%20Calls
 
 - name: Rich Messaging
   description: # Rich Messaging
-  link: /quickstarts/javascript/cpaas/Rich%20Messaging
+  link: /quickstarts/javascript/uc/Rich%20Messaging
 
 - name: SMS Messaging
   description: # SMS Messaging
-  link: /quickstarts/javascript/cpaas/SMS%20Messaging
+  link: /quickstarts/javascript/uc/SMS%20Messaging
 
 - name: Anonymous Calls
   description: # Anonymous Calls
-  link: /quickstarts/javascript/cpaas/Anonymous%20Calls
+  link: /quickstarts/javascript/uc/Anonymous%20Calls
 

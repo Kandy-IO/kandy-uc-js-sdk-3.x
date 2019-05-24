@@ -2,7 +2,7 @@
 layout: page
 categories: quickstarts-javascript
 title: Messaging
-permalink: /quickstarts/javascript/cpaas/Messaging
+permalink: /quickstarts/javascript/uc/Messaging
 ---
 
 # Messaging
@@ -107,7 +107,7 @@ function createConvo() {
 }
 ```
 
-A `Conversation` has a few functions on it, such as `getMessages()`. You can learn more about these functions [here](../../references/cpaas#conversation). An important thing to note is that `conversation.get()` will create a conversation in the state of Kandy if it doesn't already exist. If the conversation does already exist, Kandy will simply return that object.
+A `Conversation` has a few functions on it, such as `getMessages()`. You can learn more about these functions [here](../../references/uc#conversation). An important thing to note is that `conversation.get()` will create a conversation in the state of Kandy if it doesn't already exist. If the conversation does already exist, Kandy will simply return that object.
 
 ## Step 2: Creating and Sending a Message
 
@@ -136,7 +136,7 @@ There are a few messaging events we care about. We will go over two such events 
 
 ### `messages:change`
 
-One such event is `messages:change`. This event is fired whenever a message is added to a conversation that is present in Kandy.js's state (including outgoing messages). Any subscribers to this event will receive the participant for which there is a new message. You can read more about this event [here](../../references/cpaas#messaging).
+One such event is `messages:change`. This event is fired whenever a message is added to a conversation that is present in Kandy.js's state (including outgoing messages). Any subscribers to this event will receive the participant for which there is a new message. You can read more about this event [here](../../references/uc#messaging).
 
 ``` javascript
 /*
@@ -155,7 +155,7 @@ kandy.on('messages:change', function(params) {
 
 ### `conversations:change`
 
-This event is fired whenever a new conversation is added to the conversation list in the Kandy store. One such example of this occurring is when Kandy.js receives a message from a conversation it does not yet have a record for. In this instance, Kandy.js will create a representation of the new convo in the store, and emit this event. Any subscribers to this event will receive a conversation ID. You can read more about this event [here](../../references/cpaas#messaging).
+This event is fired whenever a new conversation is added to the conversation list in the Kandy store. One such example of this occurring is when Kandy.js receives a message from a conversation it does not yet have a record for. In this instance, Kandy.js will create a representation of the new convo in the store, and emit this event. Any subscribers to this event will receive a conversation ID. You can read more about this event [here](../../references/uc#messaging).
 
 ``` javascript
 /*

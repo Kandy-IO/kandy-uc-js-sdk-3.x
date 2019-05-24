@@ -2,7 +2,7 @@
 layout: page
 categories: quickstarts-javascript
 title: User Connect
-permalink: /quickstarts/javascript/cpaas/User%20Connect
+permalink: /quickstarts/javascript/uc/User%20Connect
 ---
 
 # Connecting and Disconnecting
@@ -62,7 +62,7 @@ function login() {
 
 ## Step 2: Connection Events
 
-The `kandy.connect()` function does not return a value. Instead, Kandy.js uses events to tell you when something has changed. You can find a list of the authentication events [here](../../references/cpaas#authentication).
+The `kandy.connect()` function does not return a value. Instead, Kandy.js uses events to tell you when something has changed. You can find a list of the authentication events [here](../../references/uc#authentication).
 
 To subscribe to these events, you use `kandy.on()`. Here is the example for our demo app:
 
@@ -89,7 +89,7 @@ In the above piece of code we subscribe an anonymous function to the `auth:chang
 { isConnected: true, isPending: false, error: undefined }
 ```
 
-To learn more about the response from this API checkout the documentation for `getConnection` [here](../../references/cpaas#authentication).
+To learn more about the response from this API checkout the documentation for `getConnection` [here](../../references/uc#authentication).
 
 ## Step 3: Disconnecting
 
