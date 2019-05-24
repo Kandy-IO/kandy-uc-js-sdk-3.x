@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.uc.js
- * Version: 3.5.0-beta.78632
+ * Version: 3.5.0-beta.78782
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -16795,7 +16795,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.5.0-beta.78632';
+  let version = '3.5.0-beta.78782';
   log.info(`UC SDK version: ${version}`);
 
   var sagas = [];
@@ -26090,10 +26090,10 @@ function middleware({ dispatch, getState }) {
   }
 
   /*
-     * Register a listener on FCS to dispatch an action when we receive a call.
-     * @method onReceived
-     * @param  {Object} call An FCS call object.
-     */
+   * Register a listener on FCS to dispatch an action when we receive a call.
+   * @method onReceived
+   * @param  {Object} call An FCS call object.
+   */
   callShim.onIncomingCall = function (callId, callInfo) {
     dispatch(_actions3.callsActions.callIncoming(callId, callInfo));
   };
