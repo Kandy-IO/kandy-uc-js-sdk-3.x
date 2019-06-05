@@ -110,5 +110,3 @@ As a pre-requisite of using time-limited calls, Kandy server configuration will 
 
 The algorithm that should be used to encrypt the token is the AES/ECB/PKCS5Padding cipher. The key used for it, which is configured as part of the realm, should be 128 bits (16 characters).
 
-
-

@@ -27,5 +27,3 @@ const kandy = create({
 
 In the above example we create a codec remover that will remove the VP8 and VP9 codecs. Then we create an instance of Kandy by adding the new SDP handler to the configuration.
 
-
-

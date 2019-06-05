@@ -38,5 +38,3 @@ You can learn more about other configuration options in [Configuration Quickstar
 
 The next step is to authenticate on the SDK. You can use your KBS subscribers's credentials to do that. You can learn more about authenticating on the SDK in the [User Connect Quickstart](User%20Connect)
 
-
-
