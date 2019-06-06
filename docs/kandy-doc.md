@@ -91,6 +91,48 @@ interact with the server without worrying about authenticating.
 
 ### connect
 
+Connect by providing an OAuth token.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.username` **[string][2]** The username without the application's domain.
+    -   `credentials.oauthToken` **[string][2]** An OAuth token provided by an outside service.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+});
+```
+
+### connect
+
+Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.username` **[string][2]** The username without the application's domain.
+    -   `credentials.accessToken` **[string][2]** An access token for the user with the provided user Id.
+    -   `credentials.refreshToken` **[string][2]?** A refresh token for the same user.
+    -   `credentials.expires` **[number][6]?** The time in seconds until the access token will expire.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
+  expires: 3600
+});
+```
+
+### connect
+
 Connect by providing a refresh token.
 
 **Parameters**
@@ -128,48 +170,6 @@ client.connect({
   username: 'alfred@example.com',
   password: '********'
   authname: '********'
-});
-```
-
-### connect
-
-Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][2]** An access token for the user with the provided user Id.
-    -   `credentials.refreshToken` **[string][2]?** A refresh token for the same user.
-    -   `credentials.expires` **[number][6]?** The time in seconds until the access token will expire.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
-  expires: 3600
-});
-```
-
-### connect
-
-Connect by providing an OAuth token.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][2]** An OAuth token provided by an outside service.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
 
