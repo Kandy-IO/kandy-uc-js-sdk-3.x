@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.uc.js
- * Version: 3.5.0-beta.26
+ * Version: 3.5.0-beta.27
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -63103,7 +63103,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.5.0-beta.26';
+  let version = '3.5.0-beta.27';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
@@ -66216,7 +66216,8 @@ function* receiveMessage() {
     const sender = message.From;
     const destination = [sender];
     const messageId = message.id;
-    const type = message.type === 'internal' ? 'im' : message.type;
+    const cimType = message.type;
+    const sdkType = cimType === 'internal' ? 'im' : message.type;
 
     if (message.txt) {
       parts.push({ type: 'text', text: message.txt });
@@ -66226,7 +66227,7 @@ function* receiveMessage() {
       const { protocol, server, version, port } = config.server;
       const url = `${protocol}://${server}:${port}/${version}/rm/thread/${sender}`;
       const queryParams = {
-        type: type,
+        type: cimType,
         id: messageId
       };
 
@@ -66281,7 +66282,7 @@ function* receiveMessage() {
     // Dispatch the messageReceived action so we can update the conversation
     yield (0, _effects3.put)(_actions.messageActions.messageReceived(destination, parts, messageId, sender, Date.now(), {
       newConversation: newConversation,
-      type: type
+      type: sdkType
     }));
   }
 }
