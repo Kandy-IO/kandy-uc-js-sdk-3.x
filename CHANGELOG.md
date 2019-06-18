@@ -10,6 +10,9 @@ Kandy.js change log.
 ### Compatibility Warning
 - Removed the first parameter (contactId) from kandy.contacts.update() API. The user will need to remove such parameter from any calls made to this API and ensure that contactId is now being supplied as part of the contact object which is passed to this API. `KAA-1600`
 
+### Fixed
+- Fixed an issue where files were not being received when sending them through a rich message `KAA-1782`
+
 ## 3.4.1 - 2019-04-26
 
 ### Fixed
