@@ -206,5 +206,3 @@ kandy.contacts.refresh()
 kandy.user.get(userId)
 ```
 
-
-
