@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.uc.js
- * Version: 3.5.0-beta.51
+ * Version: 3.6.0-beta.60
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -40947,6 +40947,33 @@ function WebRtcAdaptorImpl(_ref) {
             _ref2$muted = _ref2.muted,
             muted = _ref2$muted === undefined ? false : _ref2$muted;
 
+        /**
+         * Sets the output speaker for audio from the HTMLElement to the default
+         *    speaker.
+         * The default speaker should have been set previously using the
+         *    `setDefaultDevices` API.
+         * The element must support `.setSinkId` to be able to change speaker.
+         * @method setSelectedSpeaker
+         * @param  {HTMLElement} element
+         */
+        function setSelectedSpeaker(element) {
+            var speakerId = self.getSelectedSpeakerId();
+            if (!speakerId) {
+                logger.debug('No default speaker set. Not changing sinkId.');
+                return;
+            }
+
+            if (typeof element.setSinkId !== 'undefined') {
+                element.setSinkId(speakerId).then(function () {
+                    logger.debug('Default speaker set.', speakerId);
+                }).catch(function (error) {
+                    logger.debug('Could not set default speaker. ' + speakerId, error);
+                });
+            } else {
+                logger.debug('Renderer does not support changing speaker.');
+            }
+        }
+
         var videoRenderer, renderer, safeStreamId;
 
         if (!stream || !container) {
@@ -40981,6 +41008,12 @@ function WebRtcAdaptorImpl(_ref) {
                     logger.debug('Autoplay video was prevented.', error);
                 });
             }
+
+            // Always set the output speaker for all renderer elements. This
+            //    works-around certain scenarios where audio comes from the
+            //    wrong speaker after re-renders (eg. unhold, stop video).
+            // Reference: KAA-1824
+            setSelectedSpeaker(videoRenderer);
         }
 
         if (audio && split) {
@@ -40997,18 +41030,14 @@ function WebRtcAdaptorImpl(_ref) {
             }
             renderer.autoplay = 'true';
             renderer.srcObject = stream;
+
+            // Always set the output speaker for all renderer elements. This
+            //    works-around certain scenarios where audio comes from the
+            //    wrong speaker after re-renders (eg. unhold, stop video).
+            // Reference: KAA-1824
+            setSelectedSpeaker(renderer);
         } else {
             renderer = videoRenderer;
-        }
-
-        // Set call speaker if a default is set and it's supported.
-        var speakerId = self.getSelectedSpeakerId();
-        if (speakerId && typeof renderer.setSinkId !== 'undefined') {
-            renderer.setSinkId(speakerId).then(function () {
-                logger.debug('Default speaker set.', speakerId);
-            }).catch(function (error) {
-                logger.debug('Could not set default speaker. ' + speakerId, error);
-            });
         }
 
         return renderer;
@@ -49458,12 +49487,22 @@ Object.defineProperty(exports, "__esModule", {
 });
 /**
  * Possible subscription states.
+ * @name SUBSCRIPTION_STATE
  * @type {Object}
  */
 const SUBSCRIPTION_STATE = exports.SUBSCRIPTION_STATE = {
   FULL: 'FULL',
   PARTIAL: 'PARTIAL',
   NONE: 'NONE'
+
+  /**
+   * Possible disconnect reasons.
+   * @name DISCONNECT_REASONS
+   * @type {Object}
+   */
+};const DISCONNECT_REASONS = exports.DISCONNECT_REASONS = {
+  GONE: 'GONE',
+  LOST_CONNECTION: 'LOST_CONNECTION'
 };
 
 /***/ }),
@@ -49657,13 +49696,13 @@ function disconnect() {
  * Create a disconnectFinished action that possibly takes an error object on failure.
  *
  * @method disconnectFinished
- * @param {Object} $0
- * @param {string} [$0.error] An error message. Only present if an error occurred.
- * @param {Boolean} [$0.forced] Whether the disconnect was forcefully disconnected.
+ * @param {Object} params
+ * @param {string} [params.error] An error message. Only present if an error occurred.
+ * @param {string} [params.reason] Why the disconnectFinished action is being dispatched.
  * @return {Object} A flux standard action.
  */
-function disconnectFinished({ error, forced } = {}) {
-  var action = {
+function disconnectFinished({ error, reason } = {}) {
+  let action = {
     type: actionTypes.DISCONNECT_FINISHED,
     payload: {}
   };
@@ -49672,7 +49711,10 @@ function disconnectFinished({ error, forced } = {}) {
     action.error = true;
     action.payload = error;
   }
-  action.payload.forced = forced;
+
+  if (reason) {
+    action.payload.reason = reason;
+  }
 
   return action;
 }
@@ -50091,6 +50133,17 @@ function api({ dispatch, getState }) {
     subscriptionStates: _constants.SUBSCRIPTION_STATE,
 
     /**
+     * Possible reasons for disconnecting.
+     *
+     * @public
+     * @memberof Authentication
+     * @requires connect
+     * @property {string} GONE Connection was terminated by the server
+     * @property {string} LOST_CONNECTION Internet connection was lost
+     */
+    disconnectReasons: _constants.DISCONNECT_REASONS,
+
+    /**
      * Sets the authentication tokens necessary to make requests to the platform. The access token
      * provided establishes what can be accessed by the SDK. The identity token represents who is authenticated.
      *
@@ -50134,7 +50187,7 @@ Object.defineProperty(exports, "__esModule", {
  * @requires connect
  * @event auth:change
  * @param {Object} params
- * @param {boolean} params.forced For a disconnection, whether the change was forced by the system.
+ * @param {string} params.reason The cause of the authentication change, provided in the event of an unsolicited disconnection. See the `disconnectReasons` API for possible values.
  */
 const AUTH_CHANGE = exports.AUTH_CHANGE = 'auth:change';
 
@@ -50208,7 +50261,10 @@ eventsMap[actionTypes.UPDATE_SUBSCRIPTION_FINISH] = authChangedEvent;
 
 eventsMap[actionTypes.DISCONNECT_FINISHED] = function (action) {
   let discEvent = authChangedEvent(action);
-  discEvent.args.forced = action.payload.forced;
+  if (action.payload.reason === 'GONE') {
+    discEvent.args.forced = true;
+  }
+  discEvent.args.reason = action.payload.reason;
   return discEvent;
 };
 
@@ -50379,7 +50435,7 @@ reducers[actionTypes.DISCONNECT] = {
 };
 
 reducers[actionTypes.DISCONNECT_FINISHED] = {
-  next() {
+  next(state, action) {
     return {
       isConnected: false,
       isPending: false,
@@ -51324,8 +51380,10 @@ var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/ex
 var _extends3 = _interopRequireDefault(_extends2);
 
 exports.connectFlow = connectFlow;
+exports.connect = connect;
 exports.subscribe = subscribe;
 exports.extendSubscription = extendSubscription;
+exports.disconnect = disconnect;
 exports.updateTokenSaga = updateTokenSaga;
 exports.onConnectionLostEntry = onConnectionLostEntry;
 exports.onConnectionLost = onConnectionLost;
@@ -51358,29 +51416,31 @@ var _errors = __webpack_require__("../kandy/src/errors/index.js");
 
 var _errors2 = _interopRequireDefault(_errors);
 
+var _constants = __webpack_require__("../kandy/src/auth/constants.js");
+
 var _effects2 = __webpack_require__("../kandy/src/request/effects.js");
 
 var _effects3 = _interopRequireDefault(_effects2);
 
 var _effects4 = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _constants = __webpack_require__("../kandy/src/constants.js");
+var _constants2 = __webpack_require__("../kandy/src/constants.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Libraries.
+// Auth plugin.
+const platform = _constants2.platforms.UC;
+
+// Constants
 
 
 // Helpers.
 
 
 // Other plugins.
-const platform = _constants.platforms.UC;
-
-// Constants
-// Auth plugin.
 
 const log = (0, _logs.getLogManager)().getLogger('AUTH');
 
@@ -51404,11 +51464,17 @@ function* connectFlow() {
       // If disconnect was called before connect finished, then cancel the connect.
       yield (0, _effects4.cancel)(task);
     } else if (finishOrError.type === actionTypes.CONNECT_FINISHED && finishOrError.error) {
-      // If an error occurred during connection, then connect flow stops.
+      // If an error occurred during connection, then connect flow resets
       continue;
     } else if (finishOrError.type === actionTypes.CONNECT_FINISHED && !finishOrError.error) {
       // If connection finished successfully, then wait for a disconnect.
-      yield (0, _effects4.take)([actionTypes.DISCONNECT]);
+      const disconnectAction = yield (0, _effects4.take)([actionTypes.DISCONNECT, actionTypes.DISCONNECT_FINISHED]);
+
+      // if disconnect has finished, we dont need to do a teardown of auth state, or disconnect the websocket, so reset connectFlow
+      if (disconnectAction.type === actionTypes.DISCONNECT_FINISHED) {
+        continue;
+      }
+
       yield (0, _effects4.call)(disconnect);
     }
   }
@@ -51832,7 +51898,7 @@ function* onConnectionLostEntry() {
  * @method onConnectionLost
  */
 function* onConnectionLost() {
-  yield (0, _effects4.put)(actions.disconnect());
+  yield (0, _effects4.put)(actions.disconnectFinished({ reason: _constants.DISCONNECT_REASONS.LOST_CONNECTION }));
 }
 
 /***/ }),
@@ -51882,7 +51948,7 @@ exports.default = [{ name: 'logs', fn: _logs2.default }, { name: 'config', fn: _
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ICE_MEDIA_STATES = exports.FCS_ICE_MEDIA_STATES = exports.WEBRTC_DEVICE_KINDS = exports.CALL_DIRECTION = exports.STATUS_CODES = exports.COMPLEX_OPERATION_MESSAGES = exports.COMPLEX_OPERATIONS = exports.OPERATIONS = exports.CALL_MEDIA_STATES = exports.CALL_STATES = exports.CALL_STATES_FCS = exports.FCS_CALL_STATES = undefined;
+exports.ICE_MEDIA_STATES = exports.FCS_ICE_MEDIA_STATES = exports.WEBRTC_DEVICE_KINDS = exports.BANDWIDTH_DEFAULTS = exports.CALL_DIRECTION = exports.STATUS_CODES = exports.COMPLEX_OPERATION_MESSAGES = exports.COMPLEX_OPERATIONS = exports.OPERATIONS = exports.CALL_MEDIA_STATES = exports.CALL_STATES = exports.CALL_STATES_FCS = exports.FCS_CALL_STATES = undefined;
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
@@ -52034,6 +52100,14 @@ const CALL_STATES = exports.CALL_STATES = {
 };const CALL_DIRECTION = exports.CALL_DIRECTION = {
   INCOMING: 'incoming',
   OUTGOING: 'outgoing'
+
+  /**
+   * The default bandwidth limits to use for a track type.
+   * @name BANDWIDTH_DEFAULTS
+   */
+};const BANDWIDTH_DEFAULTS = exports.BANDWIDTH_DEFAULTS = {
+  AUDIO: 5000,
+  VIDEO: 5000
 
   /*
    * A conversion from MediaDeviceInfo.kind values to their more common terms.
@@ -55735,6 +55809,8 @@ const callPrefix = '@@KANDY/CALL/';
 const MAKE_CALL = exports.MAKE_CALL = callPrefix + 'MAKE';
 const MAKE_CALL_FINISH = exports.MAKE_CALL_FINISH = callPrefix + 'MAKE_FINISH';
 
+const MAKE_ANONYMOUS_CALL = exports.MAKE_ANONYMOUS_CALL = callPrefix + 'MAKE_ANONYMOUS_CALL';
+
 const CALL_INCOMING = exports.CALL_INCOMING = callPrefix + 'INCOMING';
 
 const CALL_RINGING = exports.CALL_RINGING = callPrefix + 'RINGING';
@@ -55797,6 +55873,9 @@ const DIRECT_TRANSFER_FINISH = exports.DIRECT_TRANSFER_FINISH = callPrefix + 'DI
 
 const JOIN = exports.JOIN = callPrefix + 'JOIN';
 const JOIN_FINISH = exports.JOIN_FINISH = callPrefix + 'JOIN_FINISH';
+
+const REPLACE_TRACK = exports.REPLACE_TRACK = callPrefix + 'REPLACE_TRACK';
+const REPLACE_TRACK_FINISH = exports.REPLACE_TRACK_FINISH = callPrefix + 'REPLACE_TRACK_FINISH';
 
 /**
  * Turn action types.
@@ -63103,7 +63182,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.5.0-beta.51';
+  let version = '3.6.0-beta.60';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
