@@ -2596,7 +2596,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.",
+                    "value": "Connect by providing a refresh token.",
                     "position": {
                       "start": {
                         "line": 1,
@@ -2605,8 +2605,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 135,
-                        "offset": 134
+                        "column": 38,
+                        "offset": 37
                       },
                       "indent": []
                     }
@@ -2620,8 +2620,8 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 135,
-                    "offset": 134
+                    "column": 38,
+                    "offset": 37
                   },
                   "indent": []
                 }
@@ -2635,8 +2635,8 @@
               },
               "end": {
                 "line": 1,
-                "column": 135,
-                "offset": 134
+                "column": 38,
+                "offset": 37
               }
             }
           },
@@ -2686,31 +2686,18 @@
             },
             {
               "title": "param",
-              "description": "An access token for the user with the provided user Id.",
+              "description": "A refresh token for the same user.",
               "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
-              },
-              "name": "credentials.accessToken"
-            },
-            {
-              "title": "param",
-              "description": "A refresh token for the same user.",
-              "lineNumber": 10,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "string"
-                }
               },
               "name": "credentials.refreshToken"
             },
             {
               "title": "param",
               "description": "The time in seconds until the access token will expire.",
-              "lineNumber": 11,
+              "lineNumber": 10,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -2722,17 +2709,17 @@
             },
             {
               "title": "example",
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',\n  expires: 3600\n});",
-              "lineNumber": 12
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});",
+              "lineNumber": 11
             }
           ],
           "loc": {
             "start": {
-              "line": 74,
+              "line": 94,
               "column": 4
             },
             "end": {
-              "line": 93,
+              "line": 111,
               "column": 7
             }
           },
@@ -2752,7 +2739,7 @@
           "augments": [],
           "examples": [
             {
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',\n  expires: 3600\n});"
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});"
             }
           ],
           "params": [
@@ -2880,69 +2867,8 @@
                 },
                 {
                   "title": "param",
-                  "name": "credentials.accessToken",
-                  "lineNumber": 9,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "An access token for the user with the provided user Id.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 56,
-                                "offset": 55
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 56,
-                            "offset": 55
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 56,
-                        "offset": 55
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
                   "name": "credentials.refreshToken",
-                  "lineNumber": 10,
+                  "lineNumber": 9,
                   "description": {
                     "type": "root",
                     "children": [
@@ -2996,17 +2922,14 @@
                     }
                   },
                   "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "string"
-                    }
+                    "type": "NameExpression",
+                    "name": "string"
                   }
                 },
                 {
                   "title": "param",
                   "name": "credentials.expires",
-                  "lineNumber": 11,
+                  "lineNumber": 10,
                   "description": {
                     "type": "root",
                     "children": [
@@ -3541,7 +3464,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Connect by providing a refresh token.",
+                    "value": "Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.",
                     "position": {
                       "start": {
                         "line": 1,
@@ -3550,8 +3473,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 38,
-                        "offset": 37
+                        "column": 135,
+                        "offset": 134
                       },
                       "indent": []
                     }
@@ -3565,8 +3488,8 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 38,
-                    "offset": 37
+                    "column": 135,
+                    "offset": 134
                   },
                   "indent": []
                 }
@@ -3580,8 +3503,8 @@
               },
               "end": {
                 "line": 1,
-                "column": 38,
-                "offset": 37
+                "column": 135,
+                "offset": 134
               }
             }
           },
@@ -3631,18 +3554,31 @@
             },
             {
               "title": "param",
-              "description": "A refresh token for the same user.",
+              "description": "An access token for the user with the provided user Id.",
               "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
+              },
+              "name": "credentials.accessToken"
+            },
+            {
+              "title": "param",
+              "description": "A refresh token for the same user.",
+              "lineNumber": 10,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
               },
               "name": "credentials.refreshToken"
             },
             {
               "title": "param",
               "description": "The time in seconds until the access token will expire.",
-              "lineNumber": 10,
+              "lineNumber": 11,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -3654,17 +3590,17 @@
             },
             {
               "title": "example",
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});",
-              "lineNumber": 11
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',\n  expires: 3600\n});",
+              "lineNumber": 12
             }
           ],
           "loc": {
             "start": {
-              "line": 94,
+              "line": 74,
               "column": 4
             },
             "end": {
-              "line": 111,
+              "line": 93,
               "column": 7
             }
           },
@@ -3684,7 +3620,7 @@
           "augments": [],
           "examples": [
             {
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});"
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',\n  expires: 3600\n});"
             }
           ],
           "params": [
@@ -3812,8 +3748,69 @@
                 },
                 {
                   "title": "param",
-                  "name": "credentials.refreshToken",
+                  "name": "credentials.accessToken",
                   "lineNumber": 9,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "An access token for the user with the provided user Id.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 56,
+                                "offset": 55
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 56,
+                            "offset": 55
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 56,
+                        "offset": 55
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.refreshToken",
+                  "lineNumber": 10,
                   "description": {
                     "type": "root",
                     "children": [
@@ -3867,14 +3864,17 @@
                     }
                   },
                   "type": {
-                    "type": "NameExpression",
-                    "name": "string"
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
                   }
                 },
                 {
                   "title": "param",
                   "name": "credentials.expires",
-                  "lineNumber": 10,
+                  "lineNumber": 11,
                   "description": {
                     "type": "root",
                     "children": [
