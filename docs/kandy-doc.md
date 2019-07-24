@@ -114,6 +114,27 @@ client.connect({
 
 ### connect
 
+Connect with user credentials.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.username` **[string][2]** The username including the application's domain.
+    -   `credentials.password` **[string][2]** The user's password.
+    -   `credentials.authname` **[string][2]?** The user's authorization name.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  password: '********'
+  authname: '********'
+});
+```
+
+### connect
+
 Connect by providing a refresh token.
 
 **Parameters**
@@ -152,30 +173,21 @@ client.connect({
 });
 ```
 
-### connect
+### disconnect
 
-Connect with user credentials.
+Disconnects from the backend. This will close the websocket and you will stop receiving events.
+
+### updateToken
+
+If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
 
 **Parameters**
 
 -   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username including the application's domain.
-    -   `credentials.password` **[string][2]** The user's password.
-    -   `credentials.authname` **[string][2]?** The user's authorization name.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
-});
-```
-
-### disconnect
-
-Disconnects from the backend. This will close the websocket and you will stop receiving events.
+    -   `credentials.accessToken` **[string][2]** The new access token.
+    -   `credentials.username` **[string][2]** The username without the application's domain.
+    -   `credentials.accessToken` **[string][2]** An access token for the user with the provided user Id.
+-   `credentials` **[Object][5]** The credentials object.
 
 ### updateToken
 
@@ -195,18 +207,6 @@ client.updateToken({
   oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
-
-### updateToken
-
-If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.accessToken` **[string][2]** The new access token.
-    -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][2]** An access token for the user with the provided user Id.
--   `credentials` **[Object][5]** The credentials object.
 
 ### getUserInfo
 
