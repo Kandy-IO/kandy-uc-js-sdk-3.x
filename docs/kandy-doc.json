@@ -2596,7 +2596,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Connect with user credentials.",
+                    "value": "Connect by providing a refresh token.",
                     "position": {
                       "start": {
                         "line": 1,
@@ -2605,8 +2605,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 31,
-                        "offset": 30
+                        "column": 38,
+                        "offset": 37
                       },
                       "indent": []
                     }
@@ -2620,8 +2620,8 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 31,
-                    "offset": 30
+                    "column": 38,
+                    "offset": 37
                   },
                   "indent": []
                 }
@@ -2635,8 +2635,8 @@
               },
               "end": {
                 "line": 1,
-                "column": 31,
-                "offset": 30
+                "column": 38,
+                "offset": 37
               }
             }
           },
@@ -2656,7 +2656,7 @@
               "title": "requires",
               "description": null,
               "lineNumber": 5,
-              "name": "userCredentialsAuth"
+              "name": "accessTokenAuth"
             },
             {
               "title": "method",
@@ -2676,7 +2676,7 @@
             },
             {
               "title": "param",
-              "description": "The username including the application's domain.",
+              "description": "The username without the application's domain.",
               "lineNumber": 8,
               "type": {
                 "type": "NameExpression",
@@ -2686,40 +2686,40 @@
             },
             {
               "title": "param",
-              "description": "The user's password.",
+              "description": "A refresh token for the same user.",
               "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
               },
-              "name": "credentials.password"
+              "name": "credentials.refreshToken"
             },
             {
               "title": "param",
-              "description": "The user's authorization name.",
+              "description": "The time in seconds until the access token will expire.",
               "lineNumber": 10,
               "type": {
                 "type": "OptionalType",
                 "expression": {
                   "type": "NameExpression",
-                  "name": "string"
+                  "name": "number"
                 }
               },
-              "name": "credentials.authname"
+              "name": "credentials.expires"
             },
             {
               "title": "example",
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});",
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});",
               "lineNumber": 11
             }
           ],
           "loc": {
             "start": {
-              "line": 38,
+              "line": 94,
               "column": 4
             },
             "end": {
-              "line": 55,
+              "line": 111,
               "column": 7
             }
           },
@@ -2739,7 +2739,7 @@
           "augments": [],
           "examples": [
             {
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});"
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});"
             }
           ],
           "params": [
@@ -2816,7 +2816,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "The username including the application's domain.",
+                            "value": "The username without the application's domain.",
                             "position": {
                               "start": {
                                 "line": 1,
@@ -2825,8 +2825,8 @@
                               },
                               "end": {
                                 "line": 1,
-                                "column": 49,
-                                "offset": 48
+                                "column": 47,
+                                "offset": 46
                               },
                               "indent": []
                             }
@@ -2840,8 +2840,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 49,
-                            "offset": 48
+                            "column": 47,
+                            "offset": 46
                           },
                           "indent": []
                         }
@@ -2855,8 +2855,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 49,
-                        "offset": 48
+                        "column": 47,
+                        "offset": 46
                       }
                     }
                   },
@@ -2867,7 +2867,7 @@
                 },
                 {
                   "title": "param",
-                  "name": "credentials.password",
+                  "name": "credentials.refreshToken",
                   "lineNumber": 9,
                   "description": {
                     "type": "root",
@@ -2877,7 +2877,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "The user's password.",
+                            "value": "A refresh token for the same user.",
                             "position": {
                               "start": {
                                 "line": 1,
@@ -2886,8 +2886,8 @@
                               },
                               "end": {
                                 "line": 1,
-                                "column": 21,
-                                "offset": 20
+                                "column": 35,
+                                "offset": 34
                               },
                               "indent": []
                             }
@@ -2901,8 +2901,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 21,
-                            "offset": 20
+                            "column": 35,
+                            "offset": 34
                           },
                           "indent": []
                         }
@@ -2916,8 +2916,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 21,
-                        "offset": 20
+                        "column": 35,
+                        "offset": 34
                       }
                     }
                   },
@@ -2928,7 +2928,7 @@
                 },
                 {
                   "title": "param",
-                  "name": "credentials.authname",
+                  "name": "credentials.expires",
                   "lineNumber": 10,
                   "description": {
                     "type": "root",
@@ -2938,7 +2938,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "The user's authorization name.",
+                            "value": "The time in seconds until the access token will expire.",
                             "position": {
                               "start": {
                                 "line": 1,
@@ -2947,8 +2947,8 @@
                               },
                               "end": {
                                 "line": 1,
-                                "column": 31,
-                                "offset": 30
+                                "column": 56,
+                                "offset": 55
                               },
                               "indent": []
                             }
@@ -2962,8 +2962,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 31,
-                            "offset": 30
+                            "column": 56,
+                            "offset": 55
                           },
                           "indent": []
                         }
@@ -2977,8 +2977,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 31,
-                        "offset": 30
+                        "column": 56,
+                        "offset": 55
                       }
                     }
                   },
@@ -2986,7 +2986,7 @@
                     "type": "OptionalType",
                     "expression": {
                       "type": "NameExpression",
-                      "name": "string"
+                      "name": "number"
                     }
                   }
                 }
@@ -3898,7 +3898,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Connect by providing a refresh token.",
+                    "value": "Connect with user credentials.",
                     "position": {
                       "start": {
                         "line": 1,
@@ -3907,8 +3907,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 38,
-                        "offset": 37
+                        "column": 31,
+                        "offset": 30
                       },
                       "indent": []
                     }
@@ -3922,8 +3922,8 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 38,
-                    "offset": 37
+                    "column": 31,
+                    "offset": 30
                   },
                   "indent": []
                 }
@@ -3937,8 +3937,8 @@
               },
               "end": {
                 "line": 1,
-                "column": 38,
-                "offset": 37
+                "column": 31,
+                "offset": 30
               }
             }
           },
@@ -3958,7 +3958,7 @@
               "title": "requires",
               "description": null,
               "lineNumber": 5,
-              "name": "accessTokenAuth"
+              "name": "userCredentialsAuth"
             },
             {
               "title": "method",
@@ -3978,7 +3978,7 @@
             },
             {
               "title": "param",
-              "description": "The username without the application's domain.",
+              "description": "The username including the application's domain.",
               "lineNumber": 8,
               "type": {
                 "type": "NameExpression",
@@ -3988,40 +3988,40 @@
             },
             {
               "title": "param",
-              "description": "A refresh token for the same user.",
+              "description": "The user's password.",
               "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
               },
-              "name": "credentials.refreshToken"
+              "name": "credentials.password"
             },
             {
               "title": "param",
-              "description": "The time in seconds until the access token will expire.",
+              "description": "The user's authorization name.",
               "lineNumber": 10,
               "type": {
                 "type": "OptionalType",
                 "expression": {
                   "type": "NameExpression",
-                  "name": "number"
+                  "name": "string"
                 }
               },
-              "name": "credentials.expires"
+              "name": "credentials.authname"
             },
             {
               "title": "example",
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});",
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});",
               "lineNumber": 11
             }
           ],
           "loc": {
             "start": {
-              "line": 94,
+              "line": 38,
               "column": 4
             },
             "end": {
-              "line": 111,
+              "line": 55,
               "column": 7
             }
           },
@@ -4041,7 +4041,7 @@
           "augments": [],
           "examples": [
             {
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});"
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});"
             }
           ],
           "params": [
@@ -4118,7 +4118,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "The username without the application's domain.",
+                            "value": "The username including the application's domain.",
                             "position": {
                               "start": {
                                 "line": 1,
@@ -4127,8 +4127,8 @@
                               },
                               "end": {
                                 "line": 1,
-                                "column": 47,
-                                "offset": 46
+                                "column": 49,
+                                "offset": 48
                               },
                               "indent": []
                             }
@@ -4142,8 +4142,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 47,
-                            "offset": 46
+                            "column": 49,
+                            "offset": 48
                           },
                           "indent": []
                         }
@@ -4157,8 +4157,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 47,
-                        "offset": 46
+                        "column": 49,
+                        "offset": 48
                       }
                     }
                   },
@@ -4169,7 +4169,7 @@
                 },
                 {
                   "title": "param",
-                  "name": "credentials.refreshToken",
+                  "name": "credentials.password",
                   "lineNumber": 9,
                   "description": {
                     "type": "root",
@@ -4179,7 +4179,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "A refresh token for the same user.",
+                            "value": "The user's password.",
                             "position": {
                               "start": {
                                 "line": 1,
@@ -4188,8 +4188,8 @@
                               },
                               "end": {
                                 "line": 1,
-                                "column": 35,
-                                "offset": 34
+                                "column": 21,
+                                "offset": 20
                               },
                               "indent": []
                             }
@@ -4203,8 +4203,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 35,
-                            "offset": 34
+                            "column": 21,
+                            "offset": 20
                           },
                           "indent": []
                         }
@@ -4218,8 +4218,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 35,
-                        "offset": 34
+                        "column": 21,
+                        "offset": 20
                       }
                     }
                   },
@@ -4230,7 +4230,7 @@
                 },
                 {
                   "title": "param",
-                  "name": "credentials.expires",
+                  "name": "credentials.authname",
                   "lineNumber": 10,
                   "description": {
                     "type": "root",
@@ -4240,7 +4240,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "The time in seconds until the access token will expire.",
+                            "value": "The user's authorization name.",
                             "position": {
                               "start": {
                                 "line": 1,
@@ -4249,8 +4249,8 @@
                               },
                               "end": {
                                 "line": 1,
-                                "column": 56,
-                                "offset": 55
+                                "column": 31,
+                                "offset": 30
                               },
                               "indent": []
                             }
@@ -4264,8 +4264,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 56,
-                            "offset": 55
+                            "column": 31,
+                            "offset": 30
                           },
                           "indent": []
                         }
@@ -4279,8 +4279,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 56,
-                        "offset": 55
+                        "column": 31,
+                        "offset": 30
                       }
                     }
                   },
@@ -4288,7 +4288,7 @@
                     "type": "OptionalType",
                     "expression": {
                       "type": "NameExpression",
-                      "name": "number"
+                      "name": "string"
                     }
                   }
                 }
