@@ -5,18 +5,31 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.6.0 - 2019-08-01
+
+### Fixed
+
+- User now automatically disconnects gracefully when internet connection is lost for too long. `KAA-1591`
+- Fixed an issue where call audio would be played out of the wrong speaker after a midcall operation that re-rendered media. `KAA-1824`
+- Fixed an issue where specifying min and max resolutions when making or answering a call got mixed up. `KAA-1886`
+- Fixed many API documentation issues across all SDK's plugins.
+- Fixed version numbering associated with public documentation. `KAA-1823`
+
 ## 3.5.0 - 2019-06-28
 
 ### Changed
+
 - Removed the first parameter (contactId) from kandy.contacts.update() API, thus deprecating it. The user should now use the update(contact) API and ensure that contactId is now being supplied as part of the contact object which is passed to this API. `KAA-1783` `KAA-1600`
 
 ### Fixed
+
 - Fixed an issue where the `fetchMessages` function was not available on `Conversations` returned by `kandy.conversation.getAll()`. `KAA-1795`
 - Fixed an issue where files were not being received when sending them through a rich message `KAA-1782`
 
 ## 3.4.1 - 2019-04-26
 
 ### Fixed
+
 - Made a hotfix release just to update the version because something went wrong with NPM and it requires a new version.
 
 ## 3.4.0 - 2019-04-26
@@ -28,6 +41,7 @@ Kandy.js change log.
 - Added a DEBUG log at the start of every public API invocation, which will better help with future investigations `KAA-1353`
 
 ### Changed
+
 - The `subscription:change` event is no longer emmitted when there is an error. User will have to subscribe to `subscription:error` as well. `KAA-1351`
 - No longer stores call stats in localstorage by default. Use the `recordCallStats` configuration to turn this back on. `KAA-1552`
 
