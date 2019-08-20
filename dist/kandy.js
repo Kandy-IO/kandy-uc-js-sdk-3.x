@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.uc.js
- * Version: 3.7.0-beta.111
+ * Version: 3.7.0-beta.120
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -59959,7 +59959,8 @@ function* removeCallLogs(action) {
 
   let response = yield (0, _effects2.default)({
     url,
-    method: 'DELETE'
+    method: 'DELETE',
+    responseType: 'text'
   }, requestInfo.requestOptions);
 
   if (response.error) {
@@ -59987,7 +59988,7 @@ function* removeCallLogs(action) {
     yield (0, _effects3.put)(actions.removeCallLogsFinish({ error }));
   } else {
     log.info('Successfully removed log(s) from call history.');
-    yield (0, _effects3.put)(actions.removeCallLogsFinish({ recordId: action.payload.body }));
+    yield (0, _effects3.put)(actions.removeCallLogsFinish({ recordId: action.payload }));
   }
 }
 
@@ -63174,7 +63175,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.7.0-beta.111';
+  let version = '3.7.0-beta.120';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
@@ -66319,7 +66320,12 @@ function* receiveMessage() {
       const queryParams = {
         type: cimType,
         id: messageId
-      };
+
+        // Remove the default Content-Type header of 'app/json', which would
+        //    cause CORS issues for this request.
+      };if ((0, _fp.has)('requestOptions.headers.Content-Type', config)) {
+        delete config.requestOptions.headers['Content-Type'];
+      }
 
       const response = yield (0, _effects2.default)({ url, queryParams }, config.requestOptions);
 
@@ -72131,12 +72137,19 @@ exports.default = reducers;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _values = __webpack_require__("../../node_modules/babel-runtime/core-js/object/values.js");
+
+var _values2 = _interopRequireDefault(_values);
+
 exports.getContacts = getContacts;
 exports.getContact = getContact;
 exports.getUsers = getUsers;
 exports.getUser = getUser;
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * Redux-saga selector functions.
@@ -72165,10 +72178,11 @@ function getContact(state, id) {
 /**
  * Gets the users from state.
  * @method getUsers
- * @return {Object}
+ * @return {Array<User>} An array of all the User objects.
  */
 function getUsers(state) {
-  return (0, _fp.cloneDeep)(state.users.users);
+  let allUsers = (0, _fp.cloneDeep)(state.users.users);
+  return (0, _values2.default)(allUsers);
 }
 
 /**
