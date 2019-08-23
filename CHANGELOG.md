@@ -7,11 +7,11 @@ Kandy.js change log.
 
 ## 3.7.0 - beta
 
-### Fixed 
+### Fixed
 
 - Fixed an issue where the `kandy.call.history.clear()` is not clearing history data and returning an empty array. `KAA-1873`
 - Fixed implementation of public API 'getAll' (for 'users' plugin) to return an array of all users instead of an object of all users, so that it aligns with current API documentation. `KAA-1923`
-
+- Fixed a Messaging issue preventing users from receiving JSON messages. `KAA-1870`
 
 ## 3.6.0 - 2018-08-01
 
@@ -20,7 +20,6 @@ Kandy.js change log.
 - User now automatically disconnects gracefully when internet connection is lost for too long. `KAA-1591`
 - Fixed an issue where call audio would be played out of the wrong speaker after a midcall operation that re-rendered media. `KAA-1824`
 - Fixed an issue where specifying min and max resolutions when making or answering a call got mixed up. `KAA-1886`
-- Fixed a Messaging issue preventing users from receiving JSON messages. `KAA-1870`
 
 ## 3.5.0 - 2019-06-28
 
