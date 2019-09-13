@@ -91,6 +91,27 @@ interact with the server without worrying about authenticating.
 
 ### connect
 
+Connect with user credentials.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.username` **[string][2]** The username including the application's domain.
+    -   `credentials.password` **[string][2]** The user's password.
+    -   `credentials.authname` **[string][2]?** The user's authorization name.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  password: '********'
+  authname: '********'
+});
+```
+
+### connect
+
 Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.
 
 **Parameters**
@@ -128,27 +149,6 @@ Connect by providing an OAuth token.
 client.connect({
   username: 'alfred@example.com',
   oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-});
-```
-
-### connect
-
-Connect with user credentials.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username including the application's domain.
-    -   `credentials.password` **[string][2]** The user's password.
-    -   `credentials.authname` **[string][2]?** The user's authorization name.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
 });
 ```
 
