@@ -7,6 +7,10 @@ Kandy.js change log.
 
 ## 3.8.0 - beta
 
+### Fixed
+
+- Fixed the ordering and nesting of types & namespaces in public documentation. `KAA-1880`
+
 ## 3.7.0 - 2019-08-30
 
 ### Fixed
