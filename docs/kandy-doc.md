@@ -258,22 +258,41 @@ interact with the server without worrying about authenticating.
 
 ### connect
 
-Connect with user credentials.
+Connect by providing a refresh token.
 
 **Parameters**
 
 -   `credentials` **[Object][3]** The credentials object.
-    -   `credentials.username` **[string][4]** The username including the application's domain.
-    -   `credentials.password` **[string][4]** The user's password.
-    -   `credentials.authname` **[string][4]?** The user's authorization name.
+    -   `credentials.username` **[string][4]** The username without the application's domain.
+    -   `credentials.refreshToken` **[string][4]** A refresh token for the same user.
+    -   `credentials.expires` **[number][7]?** The time in seconds until the access token will expire.
 
 **Examples**
 
 ```javascript
 client.connect({
   username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+  expires: 3600
+});
+```
+
+### connect
+
+Connect by providing an OAuth token.
+
+**Parameters**
+
+-   `credentials` **[Object][3]** The credentials object.
+    -   `credentials.username` **[string][4]** The username without the application's domain.
+    -   `credentials.oauthToken` **[string][4]** An OAuth token provided by an outside service.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
 
@@ -302,41 +321,22 @@ client.connect({
 
 ### connect
 
-Connect by providing an OAuth token.
+Connect with user credentials.
 
 **Parameters**
 
 -   `credentials` **[Object][3]** The credentials object.
-    -   `credentials.username` **[string][4]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][4]** An OAuth token provided by an outside service.
+    -   `credentials.username` **[string][4]** The username including the application's domain.
+    -   `credentials.password` **[string][4]** The user's password.
+    -   `credentials.authname` **[string][4]?** The user's authorization name.
 
 **Examples**
 
 ```javascript
 client.connect({
   username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-});
-```
-
-### connect
-
-Connect by providing a refresh token.
-
-**Parameters**
-
--   `credentials` **[Object][3]** The credentials object.
-    -   `credentials.username` **[string][4]** The username without the application's domain.
-    -   `credentials.refreshToken` **[string][4]** A refresh token for the same user.
-    -   `credentials.expires` **[number][7]?** The time in seconds until the access token will expire.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-  expires: 3600
+  password: '********'
+  authname: '********'
 });
 ```
 
@@ -1188,6 +1188,31 @@ object will be sent to the destinations provided
 
 Returns **[Object][3]** a Conversation object
 
+### Message
+
+A Message object represents an individual message. Messages have parts
+which represent pieces of a message, such as a text part or a file part. Once
+all the desired parts have been added, a message can be sent with the send()
+function.
+
+Type: [Object][3]
+
+#### send
+
+Sends the message.
+
+#### addPart
+
+Add an additional part to a message.
+
+**Parameters**
+
+-   `part` **[Object][3]** The part to add to the message.
+    -   `part.type` **[string][4]** The type of part. Can be "text", "json", "file", or "location".
+    -   `part.text` **[string][4]?** The text of the part. Must be a part of type "text".
+    -   `part.json` **[Object][3]?** The json of the part. Must be a part of type "json".
+    -   `part.file` **File?** The file of the part. Must be a part of type "file".
+
 ### Conversation
 
 A Conversation object represents a conversation between either two users, or a
@@ -1278,31 +1303,6 @@ Messages can then be retrieved using getMessages.
 **Parameters**
 
 -   `amount` **[number][7]** An amount of messages to fetch. (optional, default `50`)
-
-### Message
-
-A Message object represents an individual message. Messages have parts
-which represent pieces of a message, such as a text part or a file part. Once
-all the desired parts have been added, a message can be sent with the send()
-function.
-
-Type: [Object][3]
-
-#### send
-
-Sends the message.
-
-#### addPart
-
-Add an additional part to a message.
-
-**Parameters**
-
--   `part` **[Object][3]** The part to add to the message.
-    -   `part.type` **[string][4]** The type of part. Can be "text", "json", "file", or "location".
-    -   `part.text` **[string][4]?** The text of the part. Must be a part of type "text".
-    -   `part.json` **[Object][3]?** The json of the part. Must be a part of type "json".
-    -   `part.file` **File?** The file of the part. Must be a part of type "file".
 
 ## Notification
 
