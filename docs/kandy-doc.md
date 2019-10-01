@@ -258,6 +258,29 @@ interact with the server without worrying about authenticating.
 
 ### connect
 
+Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.
+
+**Parameters**
+
+-   `credentials` **[Object][3]** The credentials object.
+    -   `credentials.username` **[string][4]** The username without the application's domain.
+    -   `credentials.accessToken` **[string][4]** An access token for the user with the provided user Id.
+    -   `credentials.refreshToken` **[string][4]?** A refresh token for the same user.
+    -   `credentials.expires` **[number][7]?** The time in seconds until the access token will expire.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
+  expires: 3600
+});
+```
+
+### connect
+
 Connect by providing a refresh token.
 
 **Parameters**
@@ -274,27 +297,6 @@ client.connect({
   username: 'alfred@example.com',
   refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
   expires: 3600
-});
-```
-
-### connect
-
-Connect with user credentials.
-
-**Parameters**
-
--   `credentials` **[Object][3]** The credentials object.
-    -   `credentials.username` **[string][4]** The username including the application's domain.
-    -   `credentials.password` **[string][4]** The user's password.
-    -   `credentials.authname` **[string][4]?** The user's authorization name.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
 });
 ```
 
@@ -319,42 +321,28 @@ client.connect({
 
 ### connect
 
-Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.
+Connect with user credentials.
 
 **Parameters**
 
 -   `credentials` **[Object][3]** The credentials object.
-    -   `credentials.username` **[string][4]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][4]** An access token for the user with the provided user Id.
-    -   `credentials.refreshToken` **[string][4]?** A refresh token for the same user.
-    -   `credentials.expires` **[number][7]?** The time in seconds until the access token will expire.
+    -   `credentials.username` **[string][4]** The username including the application's domain.
+    -   `credentials.password` **[string][4]** The user's password.
+    -   `credentials.authname` **[string][4]?** The user's authorization name.
 
 **Examples**
 
 ```javascript
 client.connect({
   username: 'alfred@example.com',
-  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
-  expires: 3600
+  password: '********'
+  authname: '********'
 });
 ```
 
 ### disconnect
 
 Disconnects from the backend. This will close the websocket and you will stop receiving events.
-
-### updateToken
-
-If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
-
-**Parameters**
-
--   `credentials` **[Object][3]** The credentials object.
-    -   `credentials.accessToken` **[string][4]** The new access token.
-    -   `credentials.username` **[string][4]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][4]** An access token for the user with the provided user Id.
--   `credentials` **[Object][3]** The credentials object.
 
 ### updateToken
 
@@ -374,6 +362,18 @@ client.updateToken({
   oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
+
+### updateToken
+
+If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
+
+**Parameters**
+
+-   `credentials` **[Object][3]** The credentials object.
+    -   `credentials.accessToken` **[string][4]** The new access token.
+    -   `credentials.username` **[string][4]** The username without the application's domain.
+    -   `credentials.accessToken` **[string][4]** An access token for the user with the provided user Id.
+-   `credentials` **[Object][3]** The credentials object.
 
 ### getUserInfo
 
