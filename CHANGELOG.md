@@ -11,6 +11,10 @@ Kandy.js change log.
 
 - Fixed the ordering and nesting of types & namespaces in public documentation. `KAA-1880`
 
+### Changed
+
+- Changed the public API documentation groupings to namespaces. `KAA-1918`
+
 ## 3.7.0 - 2019-08-30
 
 ### Fixed
