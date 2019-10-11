@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.uc.js
- * Version: 3.9.0-beta.158
+ * Version: 3.9.0-beta.159
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -58840,7 +58840,7 @@ exports.normalizeSipUri = normalizeSipUri;
  * @returns {string} The extracted domain. Empty string of none found.
  */
 function extractDomainFromAddress(addressString) {
-  const indexOfAtSymbol = addressString.indexOf('@');
+  const indexOfAtSymbol = addressString.lastIndexOf('@');
   if (indexOfAtSymbol !== 0 && indexOfAtSymbol !== addressString.length - 1) {
     // If '@' symbol found in middle of addressString, split it.
     if (indexOfAtSymbol !== -1) {
@@ -63229,7 +63229,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.9.0-beta.158';
+  let version = '3.9.0-beta.159';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
