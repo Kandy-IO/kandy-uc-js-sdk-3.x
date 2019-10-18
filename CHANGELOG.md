@@ -10,6 +10,7 @@ Kandy.js change log.
 ### Fixed
 
 - Fixed an issue where the SIP number normalization was unnecessarily removing an '@' symbol. `KAA-1793`
+- Fixed an issue where sending a message would show up as still pending. `KAA-2049`
 
 ## 3.8.0 - 2019-09-27
 
