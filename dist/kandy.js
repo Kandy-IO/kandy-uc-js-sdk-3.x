@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.uc.js
- * Version: 3.9.0-beta.171
+ * Version: 3.9.0-beta.172
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -62222,6 +62222,68 @@ const connCheckMethods = exports.connCheckMethods = {
 
 /***/ }),
 
+/***/ "../kandy/src/docs/docs.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * The User ID ie: joe@test.3s5j.att.com
+ *
+ * @public
+ * @static
+ * @module UserID
+ * @typedef {string} UserID
+ * @memberof user
+ * @requires cpaas_user_id
+ */
+
+/**
+ * The User ID ie: joe@test.3s5j.att.com
+ *
+ * @public
+ * @static
+ * @module UserID
+ * @typedef {string} UserID
+ * @memberof call
+ * @requires cpaas_user_id
+ */
+
+/**
+ * The SIP URI ie: sip:joe@domain.com
+ *
+ * @public
+ * @static
+ * @module SIP_URI
+ * @typedef {string} SIP_URI
+ * @memberof call
+ * @requires link_user_id
+ */
+
+/**
+ * The Phone Numer ie: +18885559876
+ *
+ * @public
+ * @static
+ * @module PhoneNumber
+ * @typedef {string} PhoneNumber
+ * @memberof call
+ * @requires cpaas_pstn
+ */
+
+/**
+ * The TEL URI ie: tel:+18885559876
+ *
+ * @public
+ * @static
+ * @module TEL_URI
+ * @typedef {string} TEL_URI
+ * @memberof call
+ * @requires link_pstn
+ */
+
+
+/***/ }),
+
 /***/ "../kandy/src/errors/codes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -63217,7 +63279,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.9.0-beta.171';
+  let version = '3.9.0-beta.172';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
@@ -63603,16 +63665,16 @@ var _link9 = __webpack_require__("../kandy/src/users/link.js");
 
 var _link10 = _interopRequireDefault(_link9);
 
+__webpack_require__("../kandy/src/docs/docs.js");
+
 var _codecRemover = __webpack_require__("../fcs/src/js/sdp/codecRemover.js");
 
 var _codecRemover2 = _interopRequireDefault(_codecRemover);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// TODO: Update when new Link is done.
-const defaultPlugins = [..._basePlugins2.default, { name: 'authentication', fn: _uc2.default }, { name: 'call', fn: _oldLink2.default }, { name: 'callHistory', fn: _callHistory2.default }, { name: 'clickToCall', fn: _clickToCall2.default }, { name: 'connectivity', fn: _link2.default }, { name: 'messaging', fn: _uc4.default }, { name: 'mwi', fn: _link4.default }, { name: 'notifications', fn: _link6.default }, { name: 'presence', fn: _link8.default }, { name: 'sipEvents', fn: _sipEvents2.default }, { name: 'users', fn: _link10.default }];
-
 // Plugins
+const defaultPlugins = [..._basePlugins2.default, { name: 'authentication', fn: _uc2.default }, { name: 'call', fn: _oldLink2.default }, { name: 'callHistory', fn: _callHistory2.default }, { name: 'clickToCall', fn: _clickToCall2.default }, { name: 'connectivity', fn: _link2.default }, { name: 'messaging', fn: _uc4.default }, { name: 'mwi', fn: _link4.default }, { name: 'notifications', fn: _link6.default }, { name: 'presence', fn: _link8.default }, { name: 'sipEvents', fn: _sipEvents2.default }, { name: 'users', fn: _link10.default }]; // TODO: Update when new Link is done.
 
 
 function root(options = {}, plugins = []) {
