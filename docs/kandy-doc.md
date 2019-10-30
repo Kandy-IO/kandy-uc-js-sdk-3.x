@@ -37,7 +37,7 @@ Configuration options for the Logs feature.
 **Parameters**
 
 -   `logs` **[Object][4]** Logs configs.
-    -   `logs.logLevel` **[string][5]** Log level to be set. See [levels][6]. (optional, default `'debug'`)
+    -   `logs.logLevel` **[string][5]** Log level to be set. See [logger.levels][6]. (optional, default `'debug'`)
     -   `logs.flatten` **[boolean][7]** Whether all logs should be output in a string-only format. (optional, default `false`)
     -   `logs.logActions` **[Object][4]?** Options specifically for action logs when logLevel is at DEBUG+ levels. Set this to false to not output action logs.
         -   `logs.logActions.actionOnly` **[boolean][7]** Only output information about the action itself. Omits the SDK context for when it occurred. (optional, default `true`)
@@ -365,46 +365,6 @@ Removes a global event listener from SDK instance.
 
 ### connect
 
-Connect by providing an OAuth token, to any backend services that the SDK instance deals with.
-
-**Parameters**
-
--   `credentials` **[Object][4]** The credentials object.
-    -   `credentials.username` **[string][5]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][5]** An OAuth token provided by an outside service.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-});
-```
-
-### connect
-
-Connect with user credentials to any backend services that the SDK instance deals with.
-
-**Parameters**
-
--   `credentials` **[Object][4]** The credentials object.
-    -   `credentials.username` **[string][5]** The username including the application's domain.
-    -   `credentials.password` **[string][5]** The user's password.
-    -   `credentials.authname` **[string][5]?** The user's authorization name.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
-});
-```
-
-### connect
-
 Connect by providing a refresh token, to any backend services that the SDK instance deals with.
 
 **Parameters**
@@ -445,6 +405,46 @@ client.connect({
   accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
   refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
   expires: 3600
+});
+```
+
+### connect
+
+Connect with user credentials to any backend services that the SDK instance deals with.
+
+**Parameters**
+
+-   `credentials` **[Object][4]** The credentials object.
+    -   `credentials.username` **[string][5]** The username including the application's domain.
+    -   `credentials.password` **[string][5]** The user's password.
+    -   `credentials.authname` **[string][5]?** The user's authorization name.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  password: '********'
+  authname: '********'
+});
+```
+
+### connect
+
+Connect by providing an OAuth token, to any backend services that the SDK instance deals with.
+
+**Parameters**
+
+-   `credentials` **[Object][4]** The credentials object.
+    -   `credentials.username` **[string][5]** The username without the application's domain.
+    -   `credentials.oauthToken` **[string][5]** An OAuth token provided by an outside service.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
 
@@ -1224,31 +1224,6 @@ object will be sent to the destinations provided
 
 Returns **[Object][4]** a Conversation object
 
-### Message
-
-A Message object represents an individual message. Messages have parts
-which represent pieces of a message, such as a text part or a file part. Once
-all the desired parts have been added, a message can be sent with the send()
-function.
-
-Type: [Object][4]
-
-#### send
-
-Sends the message.
-
-#### addPart
-
-Add an additional part to a message.
-
-**Parameters**
-
--   `part` **[Object][4]** The part to add to the message.
-    -   `part.type` **[string][5]** The type of part. Can be "text", "json", "file", or "location".
-    -   `part.text` **[string][5]?** The text of the part. Must be a part of type "text".
-    -   `part.json` **[Object][4]?** The json of the part. Must be a part of type "json".
-    -   `part.file` **File?** The file of the part. Must be a part of type "file".
-
 ### Conversation
 
 A Conversation object represents a conversation between either two users, or a
@@ -1340,6 +1315,31 @@ Messages can then be retrieved using getMessages.
 
 -   `amount` **[number][8]** An amount of messages to fetch. (optional, default `50`)
 
+### Message
+
+A Message object represents an individual message. Messages have parts
+which represent pieces of a message, such as a text part or a file part. Once
+all the desired parts have been added, a message can be sent with the send()
+function.
+
+Type: [Object][4]
+
+#### send
+
+Sends the message.
+
+#### addPart
+
+Add an additional part to a message.
+
+**Parameters**
+
+-   `part` **[Object][4]** The part to add to the message.
+    -   `part.type` **[string][5]** The type of part. Can be "text", "json", "file", or "location".
+    -   `part.text` **[string][5]?** The text of the part. Must be a part of type "text".
+    -   `part.json` **[Object][4]?** The json of the part. Must be a part of type "json".
+    -   `part.file` **File?** The file of the part. Must be a part of type "file".
+
 ## DEVICE_ERROR
 
 An error occurred while performing a device operation.
@@ -1429,12 +1429,11 @@ The 'presence' namespace provides an interface for an application to set the
 
 Presence information is persisted by the server. When the SDK is initialized,
    there will be no information available. Presence information will become
-   available either by using [presence.fetch][15] or
-   by subscribing for updates about other Users, using
-   [presence.subscribe][16].
+   available either by using [presence.fetch][15] or by subscribing for
+   updates about other Users, using [presence.subscribe][16].
 
-Available presence information can be retrieved using
-   [presence.get][17] or [presence.getAll][18].
+Available presence information can be retrieved using [presence.get][17] or
+   [presence.getAll][18].
 
 ### statuses
 
@@ -1472,14 +1471,13 @@ Possible activity values.
 
 Updates the presence information for the current user.
 
-See [presence.statuses][19] and
-   [presence.activities][20] for valid values.
+See [presence.statuses][19] and [presence.activities][20] for valid
+   values.
 
 The SDK will emit a
    [presence:selfChange][21] event
    when the operation completes. The updated presence information is
-   available and can be retrieved with
-   [presence.getSelf][22].
+   available and can be retrieved with [presence.getSelf][22].
 
 Other users subscribed for this user's presence will receive a
    [presence:change][23] event.
@@ -1510,8 +1508,7 @@ Returns **[Array][9]&lt;[Object][4]>** List of user presence information.
 
 Retrieves the presence information for the current user.
 
-This information is set using the [presnece.update][24]
-   API.
+This information is set using the [presence.update][24] API.
 
 Returns **[Object][4]** Presence information for the current user.
 
@@ -1521,8 +1518,7 @@ Fetches presence information for the given users. This will refresh the
    available information with any new information from the server.
 
 Available presence information an be retrieved using the
-   [presence.get][17] or
-   [presence.getAll][18] APIs.
+   [presence.get][17] or [presence.getAll][18] APIs.
 
 **Parameters**
 
@@ -1744,9 +1740,8 @@ Information about an available User can be retrieved using the
 
 Retrieves information about a User, if available.
 
-See the [user.fetch][28] and
-   [user.search][29] APIs for details about making Users'
-   information available.
+See the [user.fetch][28] and [user.search][29] APIs for details about
+   making Users' information available.
 
 **Parameters**
 
@@ -1758,9 +1753,8 @@ Returns **User** The User object for the specified user.
 
 Retrieves information about all available Users.
 
-See the [user.fetch][28] and
-   [user.search][29] APIs for details about making Users'
-   information available.
+See the [user.fetch][28] and [user.search][29] APIs for details about
+   making Users' information available.
 
 Returns **[Array][9]&lt;User>** An array of all the User objects.
 
@@ -1814,7 +1808,7 @@ Returns voicemail data from the store.
 
 [5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[6]: Logger.levels
+[6]: #loggerlevels
 
 [7]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
@@ -1832,34 +1826,34 @@ Returns voicemail data from the store.
 
 [14]: #configconfiglogs
 
-[15]: Presence.fetch
+[15]: #presencefetch
 
-[16]: Presence.subscribe
+[16]: #presencesubscribe
 
-[17]: Presence.get
+[17]: #presenceget
 
-[18]: Presence.getAll
+[18]: #presencegetall
 
-[19]: Presence.statuses
+[19]: #presencestatuses
 
-[20]: Presence.activities
+[20]: #presenceactivities
 
-[21]: Presence.event:presence:selfChange
+[21]: #presenceeventpresenceselfchange
 
-[22]: Presence.getSelf
+[22]: #presencegetself
 
-[23]: Presence.event:presence:change
+[23]: #presenceeventpresencechange
 
-[24]: Presence.update
+[24]: #presenceupdate
 
-[25]: #sdphandlerfunction
+[25]: call.SdpHandlerFunction
 
-[26]: Users.event:directory:change
+[26]: #usereventdirectorychange
 
-[27]: Users.get
+[27]: user.get
 
-[28]: Users.fetch
+[28]: #userfetch
 
-[29]: Users.search
+[29]: #usersearch
 
-[30]: Users.getAll
+[30]: user.getAll

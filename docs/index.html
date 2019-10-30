@@ -1195,15 +1195,15 @@
                     <li class='h5'><span>Types</span></li>
                     
                       <li><a
-                        href='#conversationmessage'
-                        class='regular pre-open'>
-                        <span style="color:blue">ⓣ</span> Message
-                      </a></li>
-                    
-                      <li><a
                         href='#conversationconversation'
                         class='regular pre-open'>
                         <span style="color:blue">ⓣ</span> Conversation
+                      </a></li>
+                    
+                      <li><a
+                        href='#conversationmessage'
+                        class='regular pre-open'>
+                        <span style="color:blue">ⓣ</span> Message
                       </a></li>
                     
                     </ul>
@@ -2105,7 +2105,7 @@ values you can use when instantiating the SDK using the <a href="#create">create
     (default <code>&#39;debug&#39;</code>)
   </td>
   <td class='break-word'><span>Log level to be set. See 
-<a href="Logger.levels">levels</a>
+<a href="#loggerlevels">logger.levels</a>
 .
 </span></td>
 </tr>
@@ -4948,222 +4948,6 @@ client.on(<span class="hljs-string">'dummy:event'</span>, <span class="hljs-func
 
   
 
-  <p>Connect by providing an OAuth token, to any backend services that the SDK instance deals with.</p>
-
-
-  <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    The credentials object.
-
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>The username without the application's domain.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.oauthToken</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>An OAuth token provided by an outside service.
-</span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>client.connect({
-  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
-  <span class="hljs-attr">oauthToken</span>: <span class="hljs-string">'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'</span>
-});</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='apiconnect'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>connect(credentials)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>Connect with user credentials to any backend services that the SDK instance deals with.</p>
-
-
-  <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    The credentials object.
-
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>The username including the application's domain.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.password</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>The user's password.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.authname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
-  </td>
-  <td class='break-word'><span>The user's authorization name.
-</span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>client.connect({
-  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
-  <span class="hljs-attr">password</span>: <span class="hljs-string">'********'</span>
-  authname: <span class="hljs-string">'********'</span>
-});</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='apiconnect'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>connect(credentials)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
   <p>Connect by providing a refresh token, to any backend services that the SDK instance deals with.</p>
 
 
@@ -5375,6 +5159,222 @@ You can optionally provide a refresh token and the SDK will automatically get ne
   <span class="hljs-attr">accessToken</span>: <span class="hljs-string">'AT0V1fswAiJadokx1iJMQdG04pRf'</span>,
   <span class="hljs-attr">refreshToken</span>: <span class="hljs-string">'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'</span>,
   <span class="hljs-attr">expires</span>: <span class="hljs-number">3600</span>
+});</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='apiconnect'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>connect(credentials)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Connect with user credentials to any backend services that the SDK instance deals with.</p>
+
+
+  <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    The credentials object.
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>The username including the application's domain.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.password</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>The user's password.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.authname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>The user's authorization name.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>client.connect({
+  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
+  <span class="hljs-attr">password</span>: <span class="hljs-string">'********'</span>
+  authname: <span class="hljs-string">'********'</span>
+});</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='apiconnect'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>connect(credentials)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Connect by providing an OAuth token, to any backend services that the SDK instance deals with.</p>
+
+
+  <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    The credentials object.
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>The username without the application's domain.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.oauthToken</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>An OAuth token provided by an outside service.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>client.connect({
+  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
+  <span class="hljs-attr">oauthToken</span>: <span class="hljs-string">'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'</span>
 });</pre>
     
   
@@ -11897,227 +11897,6 @@ and its messages, and return conversation objects when requested.</p>
       <div class='py1 quiet mt1 prose-big'>Types</div>
       <div class="clearfix">
   
-    <div class='border-bottom' id='conversationmessage'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>Message</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>A Message object represents an individual message. Messages have parts
-which represent pieces of a message, such as a text part or a file part. Once
-all the desired parts have been added, a message can be sent with the send()
-function.</p>
-
-
-  <div class='pre p1 fill-light mt0'>Message</div>
-  
-    <p>
-      Type:
-      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
-    </p>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-    
-      <div class='py1 quiet mt1 prose-big'>Functions</div>
-      <div class="clearfix">
-  
-    <div class='border-bottom' id='conversationmessagesend'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>send()</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>Sends the message.</p>
-
-
-  <div class='pre p1 fill-light mt0'>send()</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='conversationmessageaddpart'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>addPart(part)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>Add an additional part to a message.</p>
-
-
-  <div class='pre p1 fill-light mt0'>addPart(part: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>part</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    The part to add to the message.
-
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>part.type</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>The type of part. Can be "text", "json", "file", or "location".
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>part.text</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
-  </td>
-  <td class='break-word'><span>The text of the part. Must be a part of type "text".
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>part.json</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?</code>
-  </td>
-  <td class='break-word'><span>The json of the part. Must be a part of type "json".
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>part.file</span> <code class='quiet'>File?</code>
-  </td>
-  <td class='break-word'><span>The file of the part. Must be a part of type "file".
-</span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-</div>
-
-    
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
     <div class='border-bottom' id='conversationconversation'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
@@ -12701,6 +12480,227 @@ Messages can then be retrieved using getMessages.</p>
 	    An amount of messages to fetch.
 
           </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+    
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='conversationmessage'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>Message</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>A Message object represents an individual message. Messages have parts
+which represent pieces of a message, such as a text part or a file part. Once
+all the desired parts have been added, a message can be sent with the send()
+function.</p>
+
+
+  <div class='pre p1 fill-light mt0'>Message</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+    
+      <div class='py1 quiet mt1 prose-big'>Functions</div>
+      <div class="clearfix">
+  
+    <div class='border-bottom' id='conversationmessagesend'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>send()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Sends the message.</p>
+
+
+  <div class='pre p1 fill-light mt0'>send()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='conversationmessageaddpart'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>addPart(part)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Add an additional part to a message.</p>
+
+
+  <div class='pre p1 fill-light mt0'>addPart(part: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>part</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    The part to add to the message.
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>part.type</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>The type of part. Can be "text", "json", "file", or "location".
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>part.text</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>The text of the part. Must be a part of type "text".
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>part.json</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?</code>
+  </td>
+  <td class='break-word'><span>The json of the part. Must be a part of type "json".
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>part.file</span> <code class='quiet'>File?</code>
+  </td>
+  <td class='break-word'><span>The file of the part. Must be a part of type "file".
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
           
         </div>
       
@@ -14323,11 +14323,10 @@ User's presence information and to track other Users' presence
 information.</p>
 <p>Presence information is persisted by the server. When the SDK is initialized,
 there will be no information available. Presence information will become
-available either by using <a href="Presence.fetch">presence.fetch</a> or
-by subscribing for updates about other Users, using
-<a href="Presence.subscribe">presence.subscribe</a>.</p>
-<p>Available presence information can be retrieved using
-<a href="Presence.get">presence.get</a> or <a href="Presence.getAll">presence.getAll</a>.</p>
+available either by using <a href="#presencefetch">presence.fetch</a> or by subscribing for
+updates about other Users, using <a href="#presencesubscribe">presence.subscribe</a>.</p>
+<p>Available presence information can be retrieved using <a href="#presenceget">presence.get</a> or
+<a href="#presencegetall">presence.getAll</a>.</p>
 
 
   <div class='pre p1 fill-light mt0'>presence</div>
@@ -14600,15 +14599,14 @@ client.presence.update(statuses.OPEN, activities.AVAILABLE)</pre>
   
 
   <p>Updates the presence information for the current user.</p>
-<p>See <a href="Presence.statuses">presence.statuses</a> and
-<a href="Presence.activities">presence.activities</a> for valid values.</p>
+<p>See <a href="#presencestatuses">presence.statuses</a> and <a href="#presenceactivities">presence.activities</a> for valid
+values.</p>
 <p>The SDK will emit a
-<a href="Presence.event:presence:selfChange">presence:selfChange</a> event
+<a href="#presenceeventpresenceselfchange">presence:selfChange</a> event
 when the operation completes. The updated presence information is
-available and can be retrieved with
-<a href="Presence.getSelf">presence.getSelf</a>.</p>
+available and can be retrieved with <a href="#presencegetself">presence.getSelf</a>.</p>
 <p>Other users subscribed for this user's presence will receive a
-<a href="Presence.event:presence:change">presence:change</a> event.</p>
+<a href="#presenceeventpresencechange">presence:change</a> event.</p>
 
 
   <div class='pre p1 fill-light mt0'>update(status: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, activity: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, note: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?)</div>
@@ -14815,8 +14813,7 @@ available and can be retrieved with
   
 
   <p>Retrieves the presence information for the current user.</p>
-<p>This information is set using the <a href="Presence.update">presnece.update</a>
-API.</p>
+<p>This information is set using the <a href="#presenceupdate">presence.update</a> API.</p>
 
 
   <div class='pre p1 fill-light mt0'>getSelf(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
@@ -14875,8 +14872,7 @@ API.</p>
   <p>Fetches presence information for the given users. This will refresh the
 available information with any new information from the server.</p>
 <p>Available presence information an be retrieved using the
-<a href="Presence.get">presence.get</a> or
-<a href="Presence.getAll">presence.getAll</a> APIs.</p>
+<a href="#presenceget">presence.get</a> or <a href="#presencegetall">presence.getAll</a> APIs.</p>
 
 
   <div class='pre p1 fill-light mt0'>fetch(user: (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>))</div>
@@ -14938,7 +14934,7 @@ available information with any new information from the server.</p>
 
   <p>Subscribe to another User's presence updates.</p>
 <p>When the User updates their presence information, the SDK will emit a
-<a href="Presence.event:presence:change">presence:change</a> event.</p>
+<a href="#presenceeventpresencechange">presence:change</a> event.</p>
 
 
   <div class='pre p1 fill-light mt0'>subscribe(users: (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>))</div>
@@ -15182,8 +15178,8 @@ available information with any new information from the server.</p>
   
 
   <p>The current user's presence information has changed.</p>
-<p>The changed information can be retrieved using the
-<a href="Presence.getSelf">presence.getSelf</a> API.</p>
+<p>The changed information can be retrieved using the <a href="#presencegetself">presence.getSelf</a>
+API.</p>
 
 
   <div class='pre p1 fill-light mt0'>presence:selfChange</div>
@@ -15416,7 +15412,7 @@ available information with any new information from the server.</p>
   </div>
   
 
-  <p>A set of <a href="#sdphandlerfunction">SdpHandlerFunction</a>s for manipulating SDP information.
+  <p>A set of <a href="call.SdpHandlerFunction">SdpHandlerFunction</a>s for manipulating SDP information.
 These handlers are used to customize low-level call behaviour for very specific
 environments and/or scenarios. They can be provided during SDK instantiation
 to be used for all calls.</p>
@@ -16687,11 +16683,11 @@ client.media.setDefaultDevices({
   
 
   <p>Fetches information about a User.</p>
-<p>The SDK will emit a <a href="Users.event:directory:change">directory:change</a>
+<p>The SDK will emit a <a href="#usereventdirectorychange">directory:change</a>
 event after the operation completes. The User's information will then
 be available.</p>
 <p>Information about an available User can be retrieved using the
-<a href="Users.get">user.get</a> API.</p>
+<a href="user.get">user.get</a> API.</p>
 
 
   <div class='pre p1 fill-light mt0'>fetch(userId: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
@@ -16752,12 +16748,12 @@ be available.</p>
   
 
   <p>Fetches information about the current User from directory.
-Compared to <a href="Users.fetch">user.fetch</a> API, this API retrieves additional user related information.</p>
-<p>The SDK will emit a <a href="Users.event:directory:change">directory:change</a>
+Compared to <a href="#userfetch">user.fetch</a> API, this API retrieves additional user related information.</p>
+<p>The SDK will emit a <a href="#usereventdirectorychange">directory:change</a>
 event after the operation completes. The User's information will then
 be available.</p>
 <p>Information about an available User can be retrieved using the
-<a href="Users.get">user.get</a> API.</p>
+<a href="user.get">user.get</a> API.</p>
 
 
   <div class='pre p1 fill-light mt0'>fetchSelfInfo()</div>
@@ -16804,9 +16800,8 @@ be available.</p>
   
 
   <p>Retrieves information about a User, if available.</p>
-<p>See the <a href="Users.fetch">user.fetch</a> and
-<a href="Users.search">user.search</a> APIs for details about making Users'
-information available.</p>
+<p>See the <a href="#userfetch">user.fetch</a> and <a href="#usersearch">user.search</a> APIs for details about
+making Users' information available.</p>
 
 
   <div class='pre p1 fill-light mt0'>get(userId: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): User</div>
@@ -16877,9 +16872,8 @@ information available.</p>
   
 
   <p>Retrieves information about all available Users.</p>
-<p>See the <a href="Users.fetch">user.fetch</a> and
-<a href="Users.search">user.search</a> APIs for details about making Users'
-information available.</p>
+<p>See the <a href="#userfetch">user.fetch</a> and <a href="#usersearch">user.search</a> APIs for details about
+making Users' information available.</p>
 
 
   <div class='pre p1 fill-light mt0'>getAll(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;User></div>
@@ -16936,10 +16930,10 @@ information available.</p>
   
 
   <p>Searches the domain's directory for Users.</p>
-<p>The SDK will emit a <a href="Users.event:directory:change">directory:change</a>
+<p>The SDK will emit a <a href="#usereventdirectorychange">directory:change</a>
 event after the operation completes. The search results will be
 provided as part of the event, and will also be available using the
-<a href="Users.get">user.get</a> and <a href="Users.getAll">user.getAll</a> APIs.</p>
+<a href="user.get">user.get</a> and <a href="user.getAll">user.getAll</a> APIs.</p>
 
 
   <div class='pre p1 fill-light mt0'>search(filters: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
