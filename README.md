@@ -1,21 +1,21 @@
-# @kandy-io/uc-sdk
+# @kandy-io/uc-sdk-3.x
 
 ## Install
 
 ### Using npm :
 
-`$ npm install @kandy-io/uc-sdk`
+`$ npm install @kandy-io/uc-sdk-3.x`
 
 #### Install a particular build :
 
 To install a particular build branch or beta branch with the Github URL, run:
 
-`$ npm install https://github.com/Kandy-IO/kandy-uc-js-sdk#<build number or "beta"> --save`
+`$ npm install https://github.com/Kandy-IO/kandy-uc-js-sdk-3.x#<build number or "beta"> --save`
 
 ### In the browser :
 ```html
-<script src="https://unpkg.com/@kandy-io/uc-sdk@3.8.0/dist/kandy.js"
-  integrity="sha384-vDqUsubAsbJZPyWrNTWvHDlHTZjNTsjbCZJEyBu1V9ax9G0hJILtz4lZQII2l1B4"
+<script src="https://unpkg.com/@kandy-io/uc-sdk@3.9.0/dist/kandy.js"
+  integrity="sha384-b71TDstd+RKBAjbjvR4vM60Uq/NjmQqZVlHEOPBPz3iHEOfEpWjcYZEzMR3+mmYz"
   crossorigin="anonymous">
 </script>
 ```
@@ -23,6 +23,6 @@ To install a particular build branch or beta branch with the Github URL, run:
 
 The information about tutorials and documents can be found in the links below
 
-* `Documents`: [docs](https://kandy-io.github.io/kandy-uc-js-sdk/docs)
+* `Documents`: [docs](https://kandy-io.github.io/kandy-uc-js-sdk-3.x/docs)
 
-* `Tutorials`: [Getting Started](https://Kandy-IO.github.io/kandy-uc-js-sdk/tutorials/#/Getting%20Started)
+* `Tutorials`: [Getting Started](https://Kandy-IO.github.io/kandy-uc-js-sdk-3.x/tutorials/#/Getting%20Started)
