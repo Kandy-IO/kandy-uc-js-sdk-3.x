@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.uc.js
- * Version: 3.9.0-beta.179
+ * Version: 3.9.0-beta.180
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -62242,7 +62242,6 @@ const connCheckMethods = exports.connCheckMethods = {
  *
  * @public
  * @static
- * @module UserID
  * @typedef {string} UserID
  * @memberof call
  * @requires cpaas_user_id
@@ -62253,7 +62252,6 @@ const connCheckMethods = exports.connCheckMethods = {
  *
  * @public
  * @static
- * @module SIP_URI
  * @typedef {string} SIP_URI
  * @memberof call
  * @requires link_user_id
@@ -62264,7 +62262,6 @@ const connCheckMethods = exports.connCheckMethods = {
  *
  * @public
  * @static
- * @module PhoneNumber
  * @typedef {string} PhoneNumber
  * @memberof call
  * @requires cpaas_pstn
@@ -62275,7 +62272,6 @@ const connCheckMethods = exports.connCheckMethods = {
  *
  * @public
  * @static
- * @module TEL_URI
  * @typedef {string} TEL_URI
  * @memberof call
  * @requires link_pstn
@@ -63279,7 +63275,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.9.0-beta.179';
+  let version = '3.9.0-beta.180';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
