@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.uc.js
- * Version: 3.9.0-beta.188
+ * Version: 3.9.0-beta.189
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -50197,7 +50197,7 @@ const AUTH_CHANGE = exports.AUTH_CHANGE = 'auth:change';
  * @requires connect
  * @event auth:error
  * @param {Object} params
- * @param {BasicError} params.error The Basic error object.
+ * @param {api.BasicError} params.error The Basic error object.
  *
  */
 const AUTH_ERROR = exports.AUTH_ERROR = 'auth:error';
@@ -50215,7 +50215,7 @@ const AUTH_ERROR = exports.AUTH_ERROR = 'auth:error';
  * @param {Object} params
  * @param {number} params.attemptNum The attempt number of this resubscription.
  * @param {boolean} params.isFailure Whether the resubscription failed or not.
- * @param {BasicError} [params.error] The Basic error object.
+ * @param {api.BasicError} [params.error] The Basic error object.
  */
 const AUTH_RESUB = exports.AUTH_RESUB = 'auth:resub';
 
@@ -54617,7 +54617,7 @@ const CALL_SCREENSHARE_CHANGE = exports.CALL_SCREENSHARE_CHANGE = 'call:screensh
  * @event call:error
  * @param {Object} params
  * @param {string} params.callId The id of the call.
- * @param {BasicError} params.error The Basic error object.
+ * @param {api.BasicError} params.error The Basic error object.
  */
 const CALL_ERROR = exports.CALL_ERROR = 'call:error';
 
@@ -54639,7 +54639,7 @@ const LOCAL_VIDEO_CHANGE = exports.LOCAL_VIDEO_CHANGE = 'videoPreview:change';
  * @requires call
  * @event videoPreview:error
  * @param {Object} params
- * @param {BasicError} params.error Information about the error.
+ * @param {api.BasicError} params.error Information about the error.
  */
 const LOCAL_VIDEO_ERROR = exports.LOCAL_VIDEO_ERROR = 'videoPreview:error';
 
@@ -54676,7 +54676,7 @@ const DEVICE_CHANGE = exports.DEVICE_CHANGE = 'devices:change';
  * @event media:permissions
  * @param {Object} params
  * @param {Object} params.devices The devices to request permission for.
- * @param {BasicError} params.error The Basic error object.
+ * @param {api.BasicError} params.error The Basic error object.
  * @param {boolean} params.granted Whether premission was granted?
  */
 const MEDIA_PERMISSIONS = exports.MEDIA_PERMISSIONS = 'media:permissions';
@@ -54688,7 +54688,7 @@ const MEDIA_PERMISSIONS = exports.MEDIA_PERMISSIONS = 'media:permissions';
  * @requires call
  * @requires callMe
  * @param {Object} params
- * @param {BasicError} params.error The Basic error object.
+ * @param {api.BasicError} params.error The Basic error object.
  */
 const DEVICE_ERROR = exports.DEVICE_ERROR = 'devices:error';
 
@@ -54723,7 +54723,7 @@ const BRIDGE_CHANGE = exports.BRIDGE_CHANGE = 'audioBridge:change';
  * @memberof AudioBridge
  * @event audioBridge:error
  * @param {Object} params
- * @param {BasicError} params.error The Basic error object.
+ * @param {api.BasicError} params.error The Basic error object.
  */
 const BRIDGE_ERROR = exports.BRIDGE_ERROR = 'audioBridge:error';
 
@@ -59356,7 +59356,7 @@ const CALL_HISTORY_CHANGE = exports.CALL_HISTORY_CHANGE = 'callHistory:change';
  * @memberof callHistory
  * @event callHistory:error
  * @param {Object} params
- * @param {BasicError} params.error The Basic error object.
+ * @param {api.BasicError} params.error The Basic error object.
  */
 const CALL_HISTORY_ERROR = exports.CALL_HISTORY_ERROR = 'callHistory:error';
 
@@ -60333,7 +60333,7 @@ const CLICK_TO_CALL_STARTED = exports.CLICK_TO_CALL_STARTED = 'clickToCall:start
  * @event clickToCall:error
  * @param {Object} params
  * @param {string} params.callId A unique id representing the call made
- * @param {BasicError} params.error The Basic error object.
+ * @param {api.BasicError} params.error The Basic error object.
  *
  */
 const CLICK_TO_CALL_ERROR = exports.CLICK_TO_CALL_ERROR = 'clickToCall:error';
@@ -62237,7 +62237,6 @@ const connCheckMethods = exports.connCheckMethods = {
  *
  * @public
  * @static
- * @module UserID
  * @typedef {string} UserID
  * @memberof user
  * @requires cpaas_user_id
@@ -63281,7 +63280,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.9.0-beta.188';
+  let version = '3.9.0-beta.189';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
@@ -63582,7 +63581,7 @@ var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
  * @memberof sdpHandlers
  * @method createCodecRemover
  * @param {Array<string>} codecs A list of codec names to remove from the SDP.
- * @returns {SdpHandlerFunction} The resulting SDP handler that will remove the codec.
+ * @returns {call.SdpHandlerFunction} The resulting SDP handler that will remove the codec.
  * @example
  * import { create, sdpHandlers } from 'kandy';
  * const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
@@ -64924,7 +64923,7 @@ function api(context) {
      * @param {Object} [options] An optional configuration object to query for more specific results.
      * If this object is not passed, the function will query for "im" conversation with that recipient.
      * @param {string} [options.type] The type of conversation to retrieve. Can be one of "im", "sms" or "other".
-     * @returns {Conversation} A Conversation object.
+     * @returns {conversation.Conversation} A Conversation object.
      */
     /**
      * Get a conversation object matching the user IDs provided.
@@ -64940,7 +64939,7 @@ function api(context) {
      * @param {Object} [options] An optional configuration object to query for more specific results.
      * If this object is not passed, the function will query for "im" conversations associated with those destinations.
      * @param {string} [options.type] The type of conversation to retrieve. Can be one of "im", "sms" or "other".
-     * @returns {Conversation} A Conversation object.
+     * @returns {conversation.Conversation} A Conversation object.
      */
     /**
      * Get a conversation object matching the user ID provided.
@@ -65037,7 +65036,7 @@ function api(context) {
      * @memberof conversation
      * @requires internalAndSmsMessaging
      * @method getAll
-     * @returns {Array<Conversation>} An array of conversation objects.
+     * @returns {Array<conversation.Conversation>} An array of conversation objects.
      */
     getAll: function () {
       log.debug(_logs.API_LOG_TAG + 'conversation.getAll');
@@ -65105,7 +65104,7 @@ const MESSAGES_CHANGE = exports.MESSAGES_CHANGE = 'messages:change';
  * @memberof conversation
  * @event messages:error
  * @param {Object} params
- * @param {BasicError} params.error The Basic error object.
+ * @param {api.BasicError} params.error The Basic error object.
  */
 const MESSAGES_ERROR = exports.MESSAGES_ERROR = 'messages:error';
 
@@ -65334,9 +65333,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * A Conversation object represents a conversation between either two users, or a
  * user and a group. A Conversation can create messages via the conversation's
- * createMessage() function.
+ * {@link conversation.Conversation.createMessage createMessage()} function.
  * @public
- * @module Conversation
+ * @static
  * @typedef {Object} Conversation
  * @memberof conversation
  * @requires richMessagingWithoutLocation
@@ -65349,9 +65348,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * A Conversation object represents a conversation between either two users, or a
  * user and a group. A Conversation can create messages via the conversation's
- * createMessage() function.
+ * {@link conversation.Conversation.createMessage createMessage()} function.
  * @public
- * @module Conversation
+ * @static
  * @typedef {Object} Conversation
  * @memberof conversation
  * @requires simpleMessagingOnly
@@ -65361,10 +65360,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * A Message object represents an individual message. Messages have parts
  * which represent pieces of a message, such as a text part or a file part. Once
- * all the desired parts have been added, a message can be sent with the send()
+ * all the desired parts have been added, a message can be sent with the {@link conversation.Message.send send()}
  * function.
  * @public
- * @module Message
+ * @static
  * @typedef {Object} Message
  * @memberof conversation
  */
@@ -65452,7 +65451,7 @@ const conversationBase = {
      * @param {string} [part.text] The text of the part. Must be a part of type "text".
      * @param {Object} [part.json] The json of the part. Must be a part of type "json".
      * @param {File} [part.file] The file of the part. Must be a part of type "file".
-     * @returns {Message} The newly created Message object.
+     * @returns {conversation.Message} The newly created Message object.
      *
      * @example
      * conversation.createMessage({type: 'text', text: 'This is the message'});
@@ -65467,7 +65466,7 @@ const conversationBase = {
      * @param {Object} part The part to add to the message.
      * @param {string} part.type The type of part. Must be "text".
      * @param {string} part.text The text of the part. Must be a part of type "text".
-     * @returns {Message} The newly created Message object.
+     * @returns {conversation.Message} The newly created Message object.
      *
      * @example
      * conversation.createMessage({type: 'text', text: 'This is the message'});
@@ -67098,7 +67097,7 @@ const MWI_CHANGE = exports.MWI_CHANGE = 'voicemail:change';
  * @memberof voicemail
  * @event voicemail:error
  * @param {Object} params
- * @param {BasicError} params.error The Basic error object.
+ * @param {api.BasicError} params.error The Basic error object.
  */
 const MWI_ERROR = exports.MWI_ERROR = 'voicemail:error';
 
@@ -67777,7 +67776,7 @@ const NOTI_CHANGE = exports.NOTI_CHANGE = 'notifications:change';
  * @memberof notification
  * @event notifications:error
  * @param {Object} params
- * @param {BasicError} params.error The Basic error object.
+ * @param {api.BasicError} params.error The Basic error object.
  * @param {string} params.channel The channel for the notification.
  */
 const NOTI_ERROR = exports.NOTI_ERROR = 'notifications:error';
@@ -69012,7 +69011,7 @@ const SELF_CHANGE = exports.SELF_CHANGE = 'presence:selfChange';
  * @requires presence
  * @event presence:error
  * @param {Object} params
- * @param {BasicError} params.error The Basic error object.
+ * @param {api.BasicError} params.error The Basic error object.
  */
 const ERROR = exports.ERROR = 'presence:error';
 
@@ -70487,7 +70486,7 @@ const EVENT_SUBSCRIPTION_CHANGED = exports.EVENT_SUBSCRIPTION_CHANGED = 'sip:sub
  * @memberof sip
  * @event sip:error
  * @param {Object} params
- * @param {BasicError} params.error The Basic error object.
+ * @param {api.BasicError} params.error The Basic error object.
  */
 const EVENT_ERROR = exports.EVENT_ERROR = 'sip:error';
 
@@ -71752,7 +71751,7 @@ function usersAPI({ dispatch, getState, primitives }) {
    * The User data object.
    *
    * @public
-   * @module User
+   * @static
    * @typedef {Object} User
    * @memberof user
    * @property {string} userId The User ID of the user.
@@ -71834,7 +71833,7 @@ function usersAPI({ dispatch, getState, primitives }) {
      * @memberof user
      * @method get
      * @param {string} userId The User ID of the user.
-     * @returns {User} The User object for the specified user.
+     * @returns {user.User} The User object for the specified user.
      */
     get(userId) {
       log.debug(_logs.API_LOG_TAG + 'user.get: ', userId);
@@ -71850,7 +71849,7 @@ function usersAPI({ dispatch, getState, primitives }) {
      * @public
      * @memberof user
      * @method getAll
-     * @returns {Array<User>} An array of all the User objects.
+     * @returns {Array<user.User>} An array of all the User objects.
      */
     getAll() {
       log.debug(_logs.API_LOG_TAG + 'user.getAll');
@@ -72027,7 +72026,7 @@ const CONTACTS_CHANGE = exports.CONTACTS_CHANGE = 'contacts:change';
  * @memberof user
  * @event directory:change
  * @param {Object} params
- * @param {Array<User>} params.results The Users' information returned by the
+ * @param {Array<user.User>} params.results The Users' information returned by the
  *    operation.
  */
 const DIRECTORY_CHANGE = exports.DIRECTORY_CHANGE = 'directory:change';
