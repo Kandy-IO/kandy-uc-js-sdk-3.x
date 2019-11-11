@@ -389,6 +389,27 @@ client.connect({
 
 ### connect
 
+Connect with user credentials to any backend services that the SDK instance deals with.
+
+**Parameters**
+
+-   `credentials` **[Object][4]** The credentials object.
+    -   `credentials.username` **[string][5]** The username including the application's domain.
+    -   `credentials.password` **[string][5]** The user's password.
+    -   `credentials.authname` **[string][5]?** The user's authorization name.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  password: '********'
+  authname: '********'
+});
+```
+
+### connect
+
 Connect by providing a refresh token, to any backend services that the SDK instance deals with.
 
 **Parameters**
@@ -424,27 +445,6 @@ Connect by providing an OAuth token, to any backend services that the SDK instan
 client.connect({
   username: 'alfred@example.com',
   oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-});
-```
-
-### connect
-
-Connect with user credentials to any backend services that the SDK instance deals with.
-
-**Parameters**
-
--   `credentials` **[Object][4]** The credentials object.
-    -   `credentials.username` **[string][5]** The username including the application's domain.
-    -   `credentials.password` **[string][5]** The user's password.
-    -   `credentials.authname` **[string][5]?** The user's authorization name.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
 });
 ```
 
@@ -1224,11 +1224,36 @@ object will be sent to the destinations provided
 
 Returns **[Object][4]** a Conversation object
 
+### Message
+
+A Message object represents an individual message. Messages have parts
+which represent pieces of a message, such as a text part or a file part. Once
+all the desired parts have been added, a message can be sent with the [send()][16]
+function.
+
+Type: [Object][4]
+
+#### send
+
+Sends the message.
+
+#### addPart
+
+Add an additional part to a message.
+
+**Parameters**
+
+-   `part` **[Object][4]** The part to add to the message.
+    -   `part.type` **[string][5]** The type of part. Can be "text", "json", "file", or "location".
+    -   `part.text` **[string][5]?** The text of the part. Must be a part of type "text".
+    -   `part.json` **[Object][4]?** The json of the part. Must be a part of type "json".
+    -   `part.file` **File?** The file of the part. Must be a part of type "file".
+
 ### Conversation
 
 A Conversation object represents a conversation between either two users, or a
 user and a group. A Conversation can create messages via the conversation's
-[createMessage()][16] function.
+[createMessage()][17] function.
 
 Type: [Object][4]
 
@@ -1255,7 +1280,7 @@ Create and return a message object. You must specify the part. If this is a simp
 conversation.createMessage({type: 'text', text: 'This is the message'});
 ```
 
-Returns **[conversation.Message][17]** The newly created Message object.
+Returns **[conversation.Message][18]** The newly created Message object.
 
 #### clearMessages
 
@@ -1314,31 +1339,6 @@ Messages can then be retrieved using getMessages.
 **Parameters**
 
 -   `amount` **[number][8]** An amount of messages to fetch. (optional, default `50`)
-
-### Message
-
-A Message object represents an individual message. Messages have parts
-which represent pieces of a message, such as a text part or a file part. Once
-all the desired parts have been added, a message can be sent with the [send()][18]
-function.
-
-Type: [Object][4]
-
-#### send
-
-Sends the message.
-
-#### addPart
-
-Add an additional part to a message.
-
-**Parameters**
-
--   `part` **[Object][4]** The part to add to the message.
-    -   `part.type` **[string][5]** The type of part. Can be "text", "json", "file", or "location".
-    -   `part.text` **[string][5]?** The text of the part. Must be a part of type "text".
-    -   `part.json` **[Object][4]?** The json of the part. Must be a part of type "json".
-    -   `part.file` **File?** The file of the part. Must be a part of type "file".
 
 ## DEVICE_ERROR
 
@@ -1826,11 +1826,11 @@ Returns voicemail data from the store.
 
 [15]: #conversationconversation
 
-[16]: #conversationconversationcreatemessage
+[16]: #conversationmessagesend
 
-[17]: #conversationmessage
+[17]: #conversationconversationcreatemessage
 
-[18]: #conversationmessagesend
+[18]: #conversationmessage
 
 [19]: #configconfiglogs
 
