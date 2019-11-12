@@ -365,20 +365,22 @@ Removes a global event listener from SDK instance.
 
 ### connect
 
-Connect by providing an OAuth token, to any backend services that the SDK instance deals with.
+Connect with user credentials to any backend services that the SDK instance deals with.
 
 **Parameters**
 
 -   `credentials` **[Object][4]** The credentials object.
-    -   `credentials.username` **[string][5]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][5]** An OAuth token provided by an outside service.
+    -   `credentials.username` **[string][5]** The username including the application's domain.
+    -   `credentials.password` **[string][5]** The user's password.
+    -   `credentials.authname` **[string][5]?** The user's authorization name.
 
 **Examples**
 
 ```javascript
 client.connect({
   username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+  password: '********'
+  authname: '********'
 });
 ```
 
@@ -400,6 +402,25 @@ client.connect({
   username: 'alfred@example.com',
   refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
   expires: 3600
+});
+```
+
+### connect
+
+Connect by providing an OAuth token, to any backend services that the SDK instance deals with.
+
+**Parameters**
+
+-   `credentials` **[Object][4]** The credentials object.
+    -   `credentials.username` **[string][5]** The username without the application's domain.
+    -   `credentials.oauthToken` **[string][5]** An OAuth token provided by an outside service.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
 
@@ -427,30 +448,21 @@ client.connect({
 });
 ```
 
-### connect
+### disconnect
 
-Connect with user credentials to any backend services that the SDK instance deals with.
+Disconnects from the backend. This will close the websocket and you will stop receiving events.
+
+### updateToken
+
+If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
 
 **Parameters**
 
 -   `credentials` **[Object][4]** The credentials object.
-    -   `credentials.username` **[string][5]** The username including the application's domain.
-    -   `credentials.password` **[string][5]** The user's password.
-    -   `credentials.authname` **[string][5]?** The user's authorization name.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
-});
-```
-
-### disconnect
-
-Disconnects from the backend. This will close the websocket and you will stop receiving events.
+    -   `credentials.accessToken` **[string][5]** The new access token.
+    -   `credentials.username` **[string][5]** The username without the application's domain.
+    -   `credentials.accessToken` **[string][5]** An access token for the user with the provided user Id.
+-   `credentials` **[Object][4]** The credentials object.
 
 ### updateToken
 
@@ -470,18 +482,6 @@ client.updateToken({
   oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
-
-### updateToken
-
-If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
-
-**Parameters**
-
--   `credentials` **[Object][4]** The credentials object.
-    -   `credentials.accessToken` **[string][5]** The new access token.
-    -   `credentials.username` **[string][5]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][5]** An access token for the user with the provided user Id.
--   `credentials` **[Object][4]** The credentials object.
 
 ### getUserInfo
 
