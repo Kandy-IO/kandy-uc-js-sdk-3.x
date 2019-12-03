@@ -459,6 +459,18 @@ If you're authenticating with tokens that expire and have not provided a refresh
 **Parameters**
 
 -   `credentials` **[Object][4]** The credentials object.
+    -   `credentials.accessToken` **[string][5]** The new access token.
+    -   `credentials.username` **[string][5]** The username without the application's domain.
+    -   `credentials.accessToken` **[string][5]** An access token for the user with the provided user Id.
+-   `credentials` **[Object][4]** The credentials object.
+
+### updateToken
+
+If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
+
+**Parameters**
+
+-   `credentials` **[Object][4]** The credentials object.
     -   `credentials.username` **[string][5]** The username without the application's domain.
     -   `credentials.oauthToken` **[string][5]** An OAuth token provided by an outside service.
 
@@ -470,18 +482,6 @@ client.updateToken({
   oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
-
-### updateToken
-
-If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
-
-**Parameters**
-
--   `credentials` **[Object][4]** The credentials object.
-    -   `credentials.accessToken` **[string][5]** The new access token.
-    -   `credentials.username` **[string][5]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][5]** An access token for the user with the provided user Id.
--   `credentials` **[Object][4]** The credentials object.
 
 ### getUserInfo
 
@@ -1492,6 +1492,29 @@ Possible activity values.
 -   `VACATION` **[string][5]** 
 -   `ON_THE_PHONE` **[string][5]** 
 -   `UNKNOWN` **[string][5]** 
+
+### PresenceStatus
+
+The PresenceStatus type defines the user's current status in terms of the user's availability to
+communicate/respond to other users in the network.
+An instance of this type can be obtained by invoking the [presence.get][26] function.
+
+Reporting when a user is on the phone is enabled (by default), which means that presence update notifications
+will be sent whenever a user is in a call, as well as when the call has ended.
+This is a user preference enabled or disabled on server side, and it can only be changed on the server side.
+
+The status is set to [open][28] as soon as a user subscribes for the presence service.
+
+Type: [Object][4]
+
+**Properties**
+
+-   `userId` **[string][5]** The unique identifier for the user associated with this presence status.
+-   `status` **[string][5]** The current status the user has set for themselves. For supported values see [presence.statuses][28].
+-   `activity` **[string][5]** The current activity of the user.
+         For supported values see [presence.activities][29].
+-   `note` **[string][5]** Additional message acompanying the status & activity.
+-   `loading` **[boolean][7]** Whether the presence information has been loaded or is in the process of loading.
 
 ### update
 
