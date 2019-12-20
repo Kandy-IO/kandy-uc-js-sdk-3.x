@@ -5,6 +5,18 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.11.0 - 2019-12-20
+
+### Added
+
+- Added new Logger functionality to allow applications to customize the format of information that the SDK logs.
+  - See `config.logs.handler`, `config.logs.logActions.handler`, `logger.LogHandler`, and `logger.LogEntry`.
+  - An application can now provide a `LogHandler` function to the SDK via configuration. The SDK will use this function for logging information. By default, the SDK will continue to log information to the console.
+
+### Fixed
+
+- Fixed an issue where call was failing when the user(caller) has no user@domain format. `KAA-2131`
+
 ## Deprecated
 
 This 3.x version of the SDK is deprecated and will stop being supported as of November 1, 2020. [Please upgrade to 4.x](https://github.com/Kandy-IO/kandy-uc-js-sdk). `KAA-2104`
