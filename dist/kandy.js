@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.uc.js
- * Version: 3.12.0-beta.291
+ * Version: 3.12.0-beta.292
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -55011,7 +55011,8 @@ reducers[actionTypes.CALL_INCOMING] = {
       silenced: false,
       direction: 'incoming',
       isScreensharing: false,
-      id: action.payload.callId
+      id: action.payload.callId,
+      wrtcsSessionId: action.payload.callInfo.wrtcsSessionId
     }, action.payload.callInfo);
     return (0, _fp.concat)(state, newCall);
   }
@@ -56086,7 +56087,6 @@ function shim(context) {
         }
       }
       log.debug(`Call state change. ID: ${callId}, state: ${_constants.FCS_CALL_STATES[state]}, context: ${transition}`);
-
       // Go to the redux level.
       api.onCallStateChange(callId, _constants.FCS_CALL_STATES[state], transition, callInfo);
     };
@@ -56125,7 +56125,8 @@ function shim(context) {
       callerName: call.callerName,
       to: getUsername(),
       remoteVideoState: call.getRemoteVideoState(),
-      remoteParticipant: call.remoteParticipant
+      remoteParticipant: call.remoteParticipant,
+      wrtcsSessionId: call.getId()
       // TODO: Get more info from the call.
       // TODO: Make call info consistent between
       //      making call and receiving call.
@@ -56214,6 +56215,7 @@ function shim(context) {
           // Register for state changes.
           fcsCall.onStateChange = onStateChange(callId);
           fcsCall.onMediaStateChange = onMediaStateChange(callId);
+          options.wrtcsSessionId = fcsCall.getId();
           // Go back to the redux level.
           resolve({ callId, options });
         }
@@ -63006,7 +63008,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.12.0-beta.291';
+  let version = '3.12.0-beta.292';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
