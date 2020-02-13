@@ -414,46 +414,6 @@ Removes a global event listener from SDK instance.
 
 ### connect
 
-Connect by providing a refresh token, to any backend services that the SDK instance deals with.
-
-**Parameters**
-
--   `credentials` **[Object][6]** The credentials object.
-    -   `credentials.username` **[string][7]** The username without the application's domain.
-    -   `credentials.refreshToken` **[string][7]** A refresh token for the same user.
-    -   `credentials.expires` **[number][11]?** The time in seconds until the access token will expire.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-  expires: 3600
-});
-```
-
-### connect
-
-Connect by providing an OAuth token, to any backend services that the SDK instance deals with.
-
-**Parameters**
-
--   `credentials` **[Object][6]** The credentials object.
-    -   `credentials.username` **[string][7]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][7]** An OAuth token provided by an outside service.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-});
-```
-
-### connect
-
 Connect with user credentials to any backend services that the SDK instance deals with.
 
 **Parameters**
@@ -479,6 +439,25 @@ client.connect({
 
 ### connect
 
+Connect by providing an OAuth token, to any backend services that the SDK instance deals with.
+
+**Parameters**
+
+-   `credentials` **[Object][6]** The credentials object.
+    -   `credentials.username` **[string][7]** The username without the application's domain.
+    -   `credentials.oauthToken` **[string][7]** An OAuth token provided by an outside service.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+});
+```
+
+### connect
+
 Connect by providing an access token to any backend services that the SDK instance deals with.
 You can optionally provide a refresh token and the SDK will automatically get new access tokens.
 
@@ -497,6 +476,27 @@ client.connect({
   username: 'alfred@example.com',
   accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
   refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
+  expires: 3600
+});
+```
+
+### connect
+
+Connect by providing a refresh token, to any backend services that the SDK instance deals with.
+
+**Parameters**
+
+-   `credentials` **[Object][6]** The credentials object.
+    -   `credentials.username` **[string][7]** The username without the application's domain.
+    -   `credentials.refreshToken` **[string][7]** A refresh token for the same user.
+    -   `credentials.expires` **[number][11]?** The time in seconds until the access token will expire.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
   expires: 3600
 });
 ```
@@ -1277,57 +1277,6 @@ object will be sent to the destinations provided
 
 Returns **[Object][6]** a Conversation object
 
-### Message
-
-A Message object is a means by which a sender can deliver information to a recipient.
-
-Creating and sending a message:
-
-A message object can be obtained through the [Conversation.createMessage][19] API on an existing conversation.
-
-Messages have Parts which represent pieces of a message, such as a text part, a json object part or a file part.
-Once all the desired parts have been added to the message using the [Message.addPart][20] function,
-the message can then be sent using the [Message.send][21] function.
-
-Once the sender sends a message, this message is saved in sender's state as an object.
-Similarly, once the recipient gets a message, this message is saved in recipient's state.
-
-Retrieving a delivered message:
-
-Once a message is delivered successfully, it can be
-obtained through the [Conversation.getMessages][22] or [Conversation.getMessage][23] API on an existing conversation.
-
-Below are the properties pertaining to the message object, returned by Conversation.getMessage(s) APIs, for either sender or recipient.
-
-Type: [Object][6]
-
-**Properties**
-
--   `timestamp` **[number][11]** A Unix timestamp in seconds marking the time when the message was created by sender.
--   `parts` **[Array][12]&lt;conversation.Part>** An array of Part Objects.
--   `sender` **[string][7]** The primary contact address of the sender.
--   `destination` **[Array][12]&lt;[string][7]>** An array of primary contact addresses associated with various destinations to which the message is meant to be delivered.
--   `messageId` **[string][7]** The unique id of the message. The message object (stored in sender's state) has a different id
-    than the one associated with the message object stored in recipient's state.
--   `type` **[string][7]** The type of message that was sent. See [conversation.chatTypes][24] for valid types.
-    This property applies only to message objects stored in sender's state.
-
-#### send
-
-Sends the message.
-
-#### addPart
-
-Add an additional part to a message.
-
-**Parameters**
-
--   `part` **[Object][6]** The part to add to the message.
-    -   `part.type` **[string][7]** The type of part. Can be "text", "json", "file", or "location".
-    -   `part.text` **[string][7]?** The text of the part. Must be a part of type "text".
-    -   `part.json` **[Object][6]?** The json of the part. Must be a part of type "json".
-    -   `part.file` **File?** The file of the part. Must be a part of type "file".
-
 ### Conversation
 
 A Conversation object represents a conversation between either two users, or a
@@ -1359,7 +1308,7 @@ Create and return a message object. You must specify the part. If this is a simp
 conversation.createMessage({type: 'text', text: 'This is the message'});
 ```
 
-Returns **[conversation.Message][25]** The newly created Message object.
+Returns **[conversation.Message][20]** The newly created Message object.
 
 #### clearMessages
 
@@ -1418,6 +1367,57 @@ Messages can then be retrieved using getMessages.
 **Parameters**
 
 -   `amount` **[number][11]** An amount of messages to fetch. (optional, default `50`)
+
+### Message
+
+A Message object is a means by which a sender can deliver information to a recipient.
+
+Creating and sending a message:
+
+A message object can be obtained through the [Conversation.createMessage][19] API on an existing conversation.
+
+Messages have Parts which represent pieces of a message, such as a text part, a json object part or a file part.
+Once all the desired parts have been added to the message using the [Message.addPart][21] function,
+the message can then be sent using the [Message.send][22] function.
+
+Once the sender sends a message, this message is saved in sender's state as an object.
+Similarly, once the recipient gets a message, this message is saved in recipient's state.
+
+Retrieving a delivered message:
+
+Once a message is delivered successfully, it can be
+obtained through the [Conversation.getMessages][23] or [Conversation.getMessage][24] API on an existing conversation.
+
+Below are the properties pertaining to the message object, returned by Conversation.getMessage(s) APIs, for either sender or recipient.
+
+Type: [Object][6]
+
+**Properties**
+
+-   `timestamp` **[number][11]** A Unix timestamp in seconds marking the time when the message was created by sender.
+-   `parts` **[Array][12]&lt;conversation.Part>** An array of Part Objects.
+-   `sender` **[string][7]** The primary contact address of the sender.
+-   `destination` **[Array][12]&lt;[string][7]>** An array of primary contact addresses associated with various destinations to which the message is meant to be delivered.
+-   `messageId` **[string][7]** The unique id of the message. The message object (stored in sender's state) has a different id
+    than the one associated with the message object stored in recipient's state.
+-   `type` **[string][7]** The type of message that was sent. See [conversation.chatTypes][25] for valid types.
+    This property applies only to message objects stored in sender's state.
+
+#### send
+
+Sends the message.
+
+#### addPart
+
+Add an additional part to a message.
+
+**Parameters**
+
+-   `part` **[Object][6]** The part to add to the message.
+    -   `part.type` **[string][7]** The type of part. Can be "text", "json", "file", or "location".
+    -   `part.text` **[string][7]?** The text of the part. Must be a part of type "text".
+    -   `part.json` **[Object][6]?** The json of the part. Must be a part of type "json".
+    -   `part.file` **File?** The file of the part. Must be a part of type "file".
 
 ## DEVICE_ERROR
 
@@ -2064,17 +2064,17 @@ Returns voicemail data from the store.
 
 [19]: #conversationconversationcreatemessage
 
-[20]: #conversationmessageaddpart
+[20]: #conversationmessage
 
-[21]: #conversationmessagesend
+[21]: #conversationmessageaddpart
 
-[22]: #conversationconversationgetmessages
+[22]: #conversationmessagesend
 
-[23]: #conversationconversationgetmessage
+[23]: #conversationconversationgetmessages
 
-[24]: conversation.chatTypes
+[24]: #conversationconversationgetmessage
 
-[25]: #conversationmessage
+[25]: conversation.chatTypes
 
 [26]: #configconfiglogs
 
