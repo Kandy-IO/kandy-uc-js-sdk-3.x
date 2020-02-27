@@ -21,6 +21,11 @@ Kandy.js change log.
   - The resync feature requires Kandy Link 4.7.1+.
 - Added the wrtcsSessionId to the call state. `KAA-2172`
 
+### Fixed
+
+- Fixed an issue where the `conversation.subscribe` listener not being triggered. `KAA-2200`
+
+
 ## 3.12.0 - 2020-01-31
 
 ### Fixed

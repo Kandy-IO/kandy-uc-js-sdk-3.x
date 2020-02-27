@@ -42689,7 +42689,7 @@
               },
               "end": {
                 "line": 64,
-                "column": 42
+                "column": 51
               }
             },
             "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
@@ -44733,13 +44733,13 @@
                   },
                   {
                     "title": "param",
-                    "description": "The conversation participant.",
+                    "description": "The conversation participants.",
                     "lineNumber": 7,
                     "type": {
                       "type": "NameExpression",
                       "name": "string"
                     },
-                    "name": "subscriber.conversationId"
+                    "name": "subscriber.destination"
                   },
                   {
                     "title": "param",
@@ -44850,7 +44850,7 @@
                     "properties": [
                       {
                         "title": "param",
-                        "name": "subscriber.conversationId",
+                        "name": "subscriber.destination",
                         "lineNumber": 7,
                         "description": {
                           "type": "root",
@@ -44860,7 +44860,7 @@
                               "children": [
                                 {
                                   "type": "text",
-                                  "value": "The conversation participant.",
+                                  "value": "The conversation participants.",
                                   "position": {
                                     "start": {
                                       "line": 1,
@@ -44869,8 +44869,8 @@
                                     },
                                     "end": {
                                       "line": 1,
-                                      "column": 30,
-                                      "offset": 29
+                                      "column": 31,
+                                      "offset": 30
                                     },
                                     "indent": []
                                   }
@@ -44884,8 +44884,8 @@
                                 },
                                 "end": {
                                   "line": 1,
-                                  "column": 30,
-                                  "offset": 29
+                                  "column": 31,
+                                  "offset": 30
                                 },
                                 "indent": []
                               }
@@ -44899,8 +44899,8 @@
                             },
                             "end": {
                               "line": 1,
-                              "column": 30,
-                              "offset": 29
+                              "column": 31,
+                              "offset": 30
                             }
                           }
                         },
@@ -45951,7 +45951,7 @@
               },
               "end": {
                 "line": 64,
-                "column": 42
+                "column": 51
               }
             },
             "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"

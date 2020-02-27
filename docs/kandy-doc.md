@@ -1353,7 +1353,7 @@ Subscribe to this conversations messages array.
 **Parameters**
 
 -   `subscriber` **[Function][15]** A subscriber function to be triggered when the messages array of this conversation is updated.
-    -   `subscriber.conversationId` **[string][7]** The conversation participant.
+    -   `subscriber.destination` **[string][7]** The conversation participants.
     -   `subscriber.messageId` **[string][7]** The ID of the message that caused the event.
 
 Returns **[Function][15]** The unsubscribe function.
