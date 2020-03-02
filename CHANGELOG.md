@@ -7,6 +7,10 @@ Kandy.js change log.
 
 ## 3.14.0 - beta
 
+### Fixed
+
+- Fixed an issue where the SDK would attempt to revoke an oAuth token upon disconnecting. `KAA-2213`
+
 ## 3.13.0 - 2020-02-28
 
 ### Changed
@@ -26,7 +30,6 @@ Kandy.js change log.
 ### Fixed
 
 - Fixed an issue where the `conversation.subscribe` listener not being triggered. `KAA-2200`
-
 
 ## 3.12.0 - 2020-01-31
 
