@@ -9,6 +9,7 @@ Kandy.js change log.
 
 ### Fixed
 
+- Fixed an intermittent Call issue where a queued, remote, slow-start operation may not be processed properly and hang. `KAA-2079`
 - Fixed an issue where the SDK would attempt to revoke an oAuth token upon disconnecting. `KAA-2213`
 
 ## 3.13.0 - 2020-02-28
