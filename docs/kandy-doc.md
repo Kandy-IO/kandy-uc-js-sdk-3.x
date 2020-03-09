@@ -414,31 +414,6 @@ Removes a global event listener from SDK instance.
 
 ### connect
 
-Connect with user credentials to any backend services that the SDK instance deals with.
-
-**Parameters**
-
--   `credentials` **[Object][6]** The credentials object.
-    -   `credentials.username` **[string][7]** The username including the application's domain.
-    -   `credentials.password` **[string][7]** The user's password.
-    -   `credentials.authname` **[string][7]?** The user's authorization name.
--   `options` **[Object][6]?** The options object for non-credential options.
-    -   `options.forceLogOut` **[boolean][10]?** Force the oldest connection to log out if too many simultaneous connections. Link only.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
-}, {
-  forceLogOut: true
-});
-```
-
-### connect
-
 Connect by providing a refresh token, to any backend services that the SDK instance deals with.
 
 **Parameters**
@@ -484,6 +459,31 @@ client.connect({
 
 ### connect
 
+Connect with user credentials to any backend services that the SDK instance deals with.
+
+**Parameters**
+
+-   `credentials` **[Object][6]** The credentials object.
+    -   `credentials.username` **[string][7]** The username including the application's domain.
+    -   `credentials.password` **[string][7]** The user's password.
+    -   `credentials.authname` **[string][7]?** The user's authorization name.
+-   `options` **[Object][6]?** The options object for non-credential options.
+    -   `options.forceLogOut` **[boolean][10]?** Force the oldest connection to log out if too many simultaneous connections. Link only.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  password: '********'
+  authname: '********'
+}, {
+  forceLogOut: true
+});
+```
+
+### connect
+
 Connect by providing an OAuth token, to any backend services that the SDK instance deals with.
 
 **Parameters**
@@ -512,18 +512,6 @@ If you're authenticating with tokens that expire and have not provided a refresh
 **Parameters**
 
 -   `credentials` **[Object][6]** The credentials object.
-    -   `credentials.accessToken` **[string][7]** The new access token.
-    -   `credentials.username` **[string][7]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][7]** An access token for the user with the provided user Id.
--   `credentials` **[Object][6]** The credentials object.
-
-### updateToken
-
-If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
-
-**Parameters**
-
--   `credentials` **[Object][6]** The credentials object.
     -   `credentials.username` **[string][7]** The username without the application's domain.
     -   `credentials.oauthToken` **[string][7]** An OAuth token provided by an outside service.
 
@@ -535,6 +523,18 @@ client.updateToken({
   oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
+
+### updateToken
+
+If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
+
+**Parameters**
+
+-   `credentials` **[Object][6]** The credentials object.
+    -   `credentials.accessToken` **[string][7]** The new access token.
+    -   `credentials.username` **[string][7]** The username without the application's domain.
+    -   `credentials.accessToken` **[string][7]** An access token for the user with the provided user Id.
+-   `credentials` **[Object][6]** The credentials object.
 
 ### getUserInfo
 
