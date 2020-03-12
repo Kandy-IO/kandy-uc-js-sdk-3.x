@@ -9,6 +9,7 @@ Kandy.js change log.
 
 ### Fixed
 
+- Adding isVideoNegotiationAvailable flag to call objects for incoming and outgoing calls. `KAA-2203`
 - Fixed an intermittent Call issue where a queued, remote, slow-start operation may not be processed properly and hang. `KAA-2079`
 - Fixed an issue where the SDK would attempt to revoke an oAuth token upon disconnecting. `KAA-2213`
 
