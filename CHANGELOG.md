@@ -5,7 +5,7 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
-## 3.14.0 - beta
+## 3.14.0 - 2020-03-27
 
 ### Fixed
 
@@ -14,6 +14,7 @@ Kandy.js change log.
 - Fixed an issue where the SDK would attempt to revoke an oAuth token upon disconnecting. `KAA-2213`
 - Fixed an issue where call requests would not use the updated token after it is updated using the `updateToken` API. `KAA-2233`
 - Fixed an intermittent Call issue where a call would audit twice per interval if the ICE candidate gathering process took too long. `KAA-2234`
+- Fixed an issue where the `conversation.subscribe` listener not being triggered. `KAA-2200`
 
 ## 3.13.0 - 2020-02-28
 
@@ -30,10 +31,6 @@ Kandy.js change log.
   - The new call configuration `resyncOnConnect` is disabled by default.
   - The resync feature requires Kandy Link 4.7.1+.
 - Added the wrtcsSessionId to the call state. `KAA-2172`
-
-### Fixed
-
-- Fixed an issue where the `conversation.subscribe` listener not being triggered. `KAA-2200`
 
 ## 3.12.0 - 2020-01-31
 
