@@ -7,6 +7,10 @@ Kandy.js change log.
 
 ## 3.15.0 - beta
 
+### Added
+
+- Added support for providing a Client Correlator with a user's subscription. `KAA-2204`
+
 ## 3.14.0 - 2020-03-27
 
 ### Fixed
