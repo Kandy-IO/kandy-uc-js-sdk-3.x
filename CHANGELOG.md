@@ -11,6 +11,10 @@ Kandy.js change log.
 
 - Added support for providing a Client Correlator with a user's subscription. `KAA-2204`
 
+### Changed
+
+- The SDK will no longer revoke tokens (provided through the API or generated internally) when disconnecting the user. `KAA-2213`
+
 ## 3.14.0 - 2020-03-27
 
 ### Fixed
