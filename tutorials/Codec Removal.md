@@ -13,15 +13,15 @@ To facilitate this common task, the SDK provides a codec removal handler that ca
 
 The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of a Kandy instance.
 
-```  javascript
-import { create, sdpHandlers } from 'kandy';
+```javascript 
+import { create, sdpHandlers } from 'kandy'
 
 const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
 
 const kandy = create({
-    call: {
-        sdpHandlers: [codecRemover]
-    }
+  call: {
+    sdpHandlers: [codecRemover]
+  }
 })
 ```
 

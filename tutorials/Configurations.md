@@ -9,7 +9,7 @@ permalink: /quickstarts/javascript/uc/Configurations
 
 The first step for any application is to initialize Kandy.js. When doing this, you can customize certain features by providing a configurations object. Kandy's configuration object is separated by feature, and is provided to the Kandy Factory as seen in the example below.
 
-```  javascript
+```javascript 
 // Initialize an instance of Kandy.js.
 import { create } from kandy
 const kandy = create({
@@ -32,10 +32,10 @@ In most cases, the default values will suffice for an application, but specifyin
 
 The Logs configs are used to change the severity of logging output from Kandy.js. This allows for more logged messages, such as debug information, warnings, and errors, which can help to explain what Kandy is doing.
 
-``` javascript
+```javascript
 logs: {
-    // Set the log level to 'debug' to output more detailed logs. Default is 'warn'.
-    logLevel: 'debug'
+  // Set the log level to 'debug' to output more detailed logs. Default is 'warn'.
+  logLevel: 'debug'
 }
 ```
 
@@ -43,7 +43,7 @@ logs: {
 
 The Call configs are used to initialize call/network settings and to set the starting behaviour of a call. They are split into call behaviour configs (under a `callDefaults` object), and call initialization configs. These configs will be used as the default for a call if they are not provided when the call is made.
 
-``` javascript
+```javascript
 call: {
     callDefaults: {
         // Set the default behaviour for a call to an audio call where video
@@ -63,7 +63,7 @@ call: {
 
 The Authentication configs are used to specify the backend service that Kandy.js should connect to. It is important to always include these configurations.
 
-``` javascript
+```javascript
 authentication: {
     subscription: {
         // Specify the connection information for REST requests.
@@ -78,7 +78,7 @@ authentication: {
 
 The Connectivity configs are used to customize the behaviour of the websocket and connectivity checks. These settings should only be needed if the default configs are not sufficient, and you want to tweak the behaviour for your application's scenario.
 
-``` javascript
+```javascript
 connectivity: {
     // Specify that a ping should be sent every 30 seconds, and an error should
     //      be reported after 3 missed pong responses.
