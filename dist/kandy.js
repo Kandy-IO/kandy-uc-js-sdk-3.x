@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.uc.js
- * Version: 3.15.0-beta.389
+ * Version: 3.15.0-beta.390
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -61260,7 +61260,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.15.0-beta.389';
+  return '3.15.0-beta.390';
 }
 
 /***/ }),
@@ -61712,7 +61712,7 @@ function* websocketLifecycle(wsConnectAction) {
 
   // Whether we're disconnecting or have lost connection,
   //      we want to cancel these tasks either way.
-  yield (0, _effects.cancel)(emitTask, pingFlow);
+  yield (0, _effects.cancel)([emitTask, pingFlow]);
 
   if (action.type === actionTypes.WS_DISCONNECT) {
     // If we're disconnecting, close the websocket to end it's lifecycle.
@@ -64074,13 +64074,16 @@ const factoryDefaults = {
     destroy() {
       // TODO: Give plugins a chance to clean up, disconnect from WS, etc
       // Needs to happen before the sagas are cancelled
+      // TODO: Is it possible for the store to auto-unsubscribe any listeners
+      //    (from client.state.subscribe API)? If not, may be easier to simply
+      //    protect from issues.
 
       // Cancel all the sagas
       if (taskDescriptor) taskDescriptor.cancel();
 
       // Clear the state
       function destroyStateReducer(state, action) {
-        return null;
+        return {};
       }
       store.replaceReducer(destroyStateReducer);
 
