@@ -150,6 +150,7 @@ For more information on keepalive see here: [https://en.wikipedia.org/wiki/Keepa
     -   `connectivity.autoReconnect` **[Boolean][10]** Flag to determine whether the SDK will attempt to automatically reconnect after connectivity disruptions. (optional, default `true`)
     -   `connectivity.maxMissedPings` **[Number][11]** Maximum pings sent (without receiving a response) before reporting an error. (optional, default `3`)
     -   `connectivity.checkConnectivity` **[Boolean][10]** Flag to determine whether the SDK should check connectivity. (optional, default `true`)
+    -   `connectivity.webSocketOAuthMode` **[string][7]** query will send the bearer access token to authenticate the websocket and none will not send it. (optional, default `query`)
 
 ### config.notifications
 
@@ -420,27 +421,6 @@ Removes a global event listener from SDK instance.
 
 ### connect
 
-Connect by providing an OAuth token, to any backend services that the SDK instance deals with.
-
-**Parameters**
-
--   `credentials` **[Object][6]** The credentials object.
-    -   `credentials.username` **[string][7]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][7]** An OAuth token provided by an outside service.
--   `options` **[Object][6]?** The options object for non-credential options.
-    -   `options.clientCorrelator` **[string][7]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-});
-```
-
-### connect
-
 Connect by providing a refresh token, to any backend services that the SDK instance deals with.
 
 **Parameters**
@@ -459,6 +439,27 @@ client.connect({
   username: 'alfred@example.com',
   refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
   expires: 3600
+});
+```
+
+### connect
+
+Connect by providing an OAuth token, to any backend services that the SDK instance deals with.
+
+**Parameters**
+
+-   `credentials` **[Object][6]** The credentials object.
+    -   `credentials.username` **[string][7]** The username without the application's domain.
+    -   `credentials.oauthToken` **[string][7]** An OAuth token provided by an outside service.
+-   `options` **[Object][6]?** The options object for non-credential options.
+    -   `options.clientCorrelator` **[string][7]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
 
@@ -600,6 +601,27 @@ Possible reasons for disconnecting.
 
 -   `GONE` **[string][7]** Connection was terminated by the server
 -   `LOST_CONNECTION` **[string][7]** Internet connection was lost
+
+### setCredentials
+
+Sets the user credentials necessary to make requests to the platform.
+
+**Parameters**
+
+-   `credentials` **[Object][6]** The credentials object.
+    -   `credentials.username` **[string][7]** The username including the application's domain.
+    -   `credentials.password` **[string][7]** The user's password.
+    -   `credentials.authname` **[string][7]?** The user's authorization name.
+
+**Examples**
+
+```javascript
+client.setCredentials({
+  username: 'alfred@example.com',
+  password: '********'
+  authname: '********'
+});
+```
 
 ### BasicError
 
@@ -750,7 +772,7 @@ Returns **[Array][12]** A list of call log records, ordered by latest first.
 
 Gets the cached call history data and returns stringified data.
 
-Returns **[Array][12]** A list of call log records from the cache, ordered by latest first.
+Returns **[string][7]** A stringified list of call log records from the cache, ordered by latest first.
 
 ### setCache
 
@@ -758,7 +780,7 @@ Sets the cached call history data, expects stringified data as it will be parsed
 
 **Parameters**
 
--   `data` **any** The data to restore in the cache.
+-   `data` **[string][7]** The stringified call history data to store in the cache.
 
 ## Calls
 
