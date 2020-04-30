@@ -17,7 +17,7 @@ Note that there are different SDKs for different kinds of solutions. The SDK you
 
 You need to configure the SDK to point to the proper backend. Specifically, you need to put this information in the `authentication` configuration. Here's an example that contains the required configuration for KBS.
 
-```  javascript
+```javascript 
 // Initialize an instance of Kandy.js.
 import { create } from kandy
 const kandy = create({

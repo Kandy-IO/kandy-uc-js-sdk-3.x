@@ -13,20 +13,20 @@ SMS Messaging in Kandy.js is almost identical to Messaging. There is only one di
 
 When creating or retrieving a SMS Conversation, you have to specify that it is of `type: 'sms'`, like so:
 
-``` javascript
+```javascript
 /*
  *  SMS Chat functionality.
  */
 
 // We will only track one conversation in this demo.
-var currentConvo;
+var currentConvo
 
 // Create a new conversation with another cell device.
 function createConvo() {
-  var participant = document.getElementById('cell-device').value;
+  var participant = document.getElementById('cell-device').value
 
   // Pass in a cell number to create a conversation with that number.
-  currentConvo = kandy.conversation.get(participant, {type: 'sms'});
+  currentConvo = kandy.conversation.get(participant, { type: 'sms' })
 
   log('Conversation created with: ' + participant)
 }

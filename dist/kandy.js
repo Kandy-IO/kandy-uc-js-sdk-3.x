@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.uc.js
- * Version: 3.14.0
+ * Version: 3.15.0
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -50354,6 +50354,7 @@ function api({ dispatch, getState }) {
      * @param {string} [credentials.authname] The user's authorization name.
      * @param {Object} [options] The options object for non-credential options.
      * @param {boolean} [options.forceLogOut] Force the oldest connection to log out if too many simultaneous connections. Link only.
+     * @param {string} [options.clientCorrelator] Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
      * @example
      * client.connect({
      *   username: 'alfred@example.com',
@@ -50374,6 +50375,8 @@ function api({ dispatch, getState }) {
      * @param {string} credentials.domainApiKey The Api key for the application's domain.
      * @param {string} credentials.username The username without the application's domain.
      * @param {string} credentials.password The user's password.
+     * @param {Object} [options] The options object for non-credential options.
+     * @param {string} [options.clientCorrelator] Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
      * @example
      * client.connect({
      *   domainApiKey: 'DAK1111111111111111111',
@@ -50394,6 +50397,8 @@ function api({ dispatch, getState }) {
      * @param {string} credentials.accessToken An access token for the user with the provided user Id.
      * @param {string} [credentials.refreshToken] A refresh token for the same user.
      * @param {number} [credentials.expires] The time in seconds until the access token will expire.
+     * @param {Object} [options] The options object for non-credential options.
+     * @param {string} [options.clientCorrelator] Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
      * @example
      * client.connect({
      *   username: 'alfred@example.com',
@@ -50419,6 +50424,7 @@ function api({ dispatch, getState }) {
      * @param {string} credentials.hmacToken An HMAC token for the user with the provided user ID.
      * @param {Object} [options] The options object for non-credential options.
      * @param {boolean} [options.forceLogOut] Force the oldest connection to log out if too many simultaneous connections.
+     * @param {string} [options.clientCorrelator] Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
      * @example
      * const hmacToken = HmacSHA1Algorithm({
      *   authenticationTokenRequest: {
@@ -50445,6 +50451,8 @@ function api({ dispatch, getState }) {
      * @param {string} credentials.username The username without the application's domain.
      * @param {string} credentials.refreshToken A refresh token for the same user.
      * @param {number} [credentials.expires] The time in seconds until the access token will expire.
+     * @param {Object} [options] The options object for non-credential options.
+     * @param {string} [options.clientCorrelator] Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
      * @example
      * client.connect({
      *   username: 'alfred@example.com',
@@ -50462,6 +50470,8 @@ function api({ dispatch, getState }) {
      * @param {Object} credentials The credentials object.
      * @param {string} credentials.username The username without the application's domain.
      * @param {string} credentials.oauthToken An OAuth token provided by an outside service.
+     * @param {Object} [options] The options object for non-credential options.
+     * @param {string} [options.clientCorrelator] Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
      * @example
      * client.connect({
      *   username: 'alfred@example.com',
@@ -51330,7 +51340,8 @@ function* subscribe(connection, credentials, extras = {}) {
       useTurn: connection.useTurn || true,
       notificationType: connection.notificationType || 'WebSocket',
       supported: ['RingingFeedback'],
-      forceLogOut: (extras.forceLogOut || false).toString()
+      forceLogOut: (extras.forceLogOut || false).toString(),
+      clientCorrelator: extras.clientCorrelator
     }
   });
 
@@ -51487,7 +51498,11 @@ function* resubscribe(connection, subscription) {
   let requestOptions = {};
   requestOptions.method = 'PUT';
 
-  requestOptions.url = `${connection.server.protocol}://${connection.server.server}:${connection.server.port}` + subscription.url;
+  if (subscription.clientCorrelator) {
+    requestOptions.url = `${connection.server.protocol}://${connection.server.server}:${connection.server.port}` + `/rest/version/${connection.server.version}` + `/user/${connection.username}/subscription/clientCorrelator/${subscription.clientCorrelator}`;
+  } else {
+    requestOptions.url = `${connection.server.protocol}://${connection.server.server}:${connection.server.port}` + subscription.url;
+  }
 
   requestOptions.headers = {
     Accept: 'application/json',
@@ -52272,7 +52287,6 @@ function* extendSubscription() {
 function* disconnect() {
   log.info('Disconnecting user.');
   const connection = yield (0, _effects4.select)(_selectors.getConnectionInfo, platform);
-  const { protocol, server, version, port } = connection.server;
 
   const wsState = yield (0, _effects4.select)(_selectors2.getConnectionState, platform);
   if (wsState.connected) {
@@ -52284,38 +52298,9 @@ function* disconnect() {
 
   const subscribeResponse = yield (0, _effects4.call)(_requests.unsubscribe, connection, subscription.url);
 
-  if (connection.accessToken) {
-    const tokenResponse = yield (0, _effects3.default)({
-      url: `${protocol}://${server}:${port}/${version}/auth/revoke_token`
-    }, connection.requestOptions);
-
-    if (tokenResponse.error) {
-      if (tokenResponse.payload.body) {
-        // Handle errors from the server.
-        log.debug('Disconnect error encountered.', tokenResponse.payload.body.error);
-        yield (0, _effects4.put)(actions.disconnectFinished({
-          error: new _errors2.default({
-            message: `There was an error revoking the token. Error: ${tokenResponse.payload.body.error.human}`,
-            code: _errors.authCodes.UC_DISCONNECT_FAIL
-          })
-        }));
-      } else {
-        // Handle errors from the request plugin.
-        log.debug('Disconnect error encountered.', tokenResponse.payload.result);
-        yield (0, _effects4.put)(actions.disconnectFinished({
-          error: new _errors2.default({
-            message: 'Request to revoke token failed. Access and refresh tokens removed from state.',
-            code: _errors.authCodes.UC_DISCONNECT_FAIL
-          })
-        }));
-      }
-    } else if (subscribeResponse.error) {
-      // Handle errors from the unsubscription.
-      yield (0, _effects4.put)(actions.disconnectFinished(subscribeResponse));
-    } else {
-      log.debug('Successfully disconnected user.');
-      yield (0, _effects4.put)(actions.disconnectFinished());
-    }
+  if (subscribeResponse.error) {
+    // Handle errors from the unsubscription.
+    yield (0, _effects4.put)(actions.disconnectFinished(subscribeResponse));
   } else {
     log.debug('Successfully disconnected user.');
     yield (0, _effects4.put)(actions.disconnectFinished());
@@ -61275,7 +61260,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.14.0';
+  return '3.15.0';
 }
 
 /***/ }),
@@ -61660,7 +61645,9 @@ const log = _logs.logManager.getLogger('CONNECTIVITY');
 
 // Libraries.
 function* wsConnectFlow() {
+  log.info('Creating channel for handling websocket actions ...');
   const chan = yield (0, _effects.actionChannel)(actionTypes.WS_ATTEMPT_CONNECT);
+  log.info('Channel successfuly created.');
   yield (0, _effects.takeEvery)(chan, websocketLifecycle);
 }
 
@@ -61673,6 +61660,7 @@ function* websocketLifecycle(wsConnectAction) {
   const wsInfo = wsConnectAction.payload;
   const { platform, isReconnect } = wsConnectAction.meta;
 
+  log.info(`Connecting to websocket on platform: ${platform} ...`);
   // Try to open the websocket.
   let websocket = yield (0, _effects.call)(connectWebsocket, wsInfo, platform);
 
@@ -61702,8 +61690,10 @@ function* websocketLifecycle(wsConnectAction) {
   // determine which pingFlow is appropriate
   let pingFlow;
   if (websocket.kandy.method.responsibleParty === _constants.connCheckResponsibility.SERVER) {
+    log.debug(`Starting a serverPing flow on ${platform} ...`);
     pingFlow = yield (0, _effects.fork)(serverPingFlow, websocket, platform);
   } else {
+    log.debug(`Starting a clientPing flow on ${platform} ...`);
     pingFlow = yield (0, _effects.fork)(clientPingFlow, websocket, platform);
   }
 
@@ -61718,6 +61708,7 @@ function* websocketLifecycle(wsConnectAction) {
 
   // Wait for a disconnect or lost connection action.
   const action = yield (0, _effects.take)(closeWebsocketPattern);
+  log.debug(`Cancelling outstanding tasks upon receiving action: ${action.type}`);
 
   // Whether we're disconnecting or have lost connection,
   //      we want to cancel these tasks either way.
@@ -61725,12 +61716,15 @@ function* websocketLifecycle(wsConnectAction) {
 
   if (action.type === actionTypes.WS_DISCONNECT) {
     // If we're disconnecting, close the websocket to end it's lifecycle.
+    log.debug('Closing websocket connection ...');
     yield (0, _effects.call)(_websocket.closeWebsocket, websocket);
     yield (0, _effects.put)(actions.wsDisconnectFinished(undefined, platform));
+    log.info('Successfully closed websocket connection.');
   } else {
     // If this is a Link websocket, we need to ensure the URL is using the
     //     "latest" access token from state.
     if (wsConnectAction.meta.platform === _constants.platforms.UC) {
+      log.info('Updating access token ...');
       let { notificationChannel } = yield (0, _effects.select)(_selectors2.getSubscriptionInfo);
       let { accessToken, oauthToken } = yield (0, _effects.select)(_selectors2.getConnectionInfo);
       wsInfo.url = notificationChannel;
@@ -61747,6 +61741,7 @@ function* websocketLifecycle(wsConnectAction) {
 
     // If we've lost connection, re-dispatch the initial action, so that we can
     //      start the lifecycle over.
+    log.debug('Attempting to reconnect to websocket ...');
     yield (0, _effects.put)(actions.wsAttemptConnect(wsInfo, wsConnectAction.meta.platform, true));
   }
 }
@@ -61766,6 +61761,7 @@ function* serverPingFlow(ws) {
     let pingInterval = yield (0, _effects.select)(_selectors.getPingInterval);
     pingInterval = typeof pingInterval !== 'undefined' ? pingInterval : 120000;
     const maxIdleDuration = pingInterval * maxMissedPings;
+    log.debug(`serverPing: Using ping interval: ${pingInterval} with maximum idle duration: ${maxIdleDuration}`);
 
     // wait for incoming server pings or disconnect actions on an interval
     const { serverPing, disconnect } = yield (0, _effects.race)({
@@ -61776,6 +61772,7 @@ function* serverPingFlow(ws) {
 
     // is disconnect action received then exit
     if (disconnect) {
+      log.debug('Got disconnect action. Exiting from serverPing flow ...');
       break;
     }
 
@@ -61791,21 +61788,25 @@ function* serverPingFlow(ws) {
       }
 
       const message = { connAck: {} };
+      log.debug(`Received a server ping which uses interval: ${pingIntervalMillis} ms. ${platform} is replying with message: ${message}`);
       const error = _sendWSMessage(ws, (0, _stringify2.default)(message));
 
       // if the pong websocket message has an error then try to reconnect
       if (error) {
+        log.error(`Got error when attempting to reply: ${error.message}`);
         if (autoReconnect) {
+          log.info('Trying to auto reconnect ...');
           yield (0, _effects.put)(actions.lostConnection(undefined, platform));
         }
         break;
       }
     } else {
       if (Date.now() - timeOfLastPing >= maxIdleDuration) {
-        log.warn('closing websocket due to inactivity. (have not received pong from server)', platform);
+        log.warn('Closing websocket due to inactivity. (have not received pong from server)', platform);
 
         // try to reconnect or exit
         if (autoReconnect) {
+          log.debug(`${platform} is attempting to auto reconnect ...`);
           yield (0, _effects.put)(actions.lostConnection(undefined, platform));
         }
         break;
@@ -61847,22 +61848,23 @@ function* clientPingFlow(ws) {
       } else if (method.type === _constants.connCheckMethods.KEEP_ALIVE) {
         message = { message_type: 'ping' };
       } else {
-        log.error(`invalid connectivity method ${method}`);
+        log.error(`Invalid connectivity method: ${method}`);
         break;
       }
 
-      log.debug(`${platform} sending a ${method.type}.`);
+      log.debug(`${platform} is sending a ${method.type} every ${intervalInSeconds} sec.`);
 
       const error = _sendWSMessage(ws, (0, _stringify2.default)(message));
       if (error) {
-        log.error('Exception in pingFlow: ' + error.message);
+        log.error('Exception in clientPing flow: ' + error.message);
         if (autoReconnect) {
+          log.debug(`${platform} is attempting to auto reconnect ...`);
           yield (0, _effects.put)(actions.lostConnection(undefined, platform));
         }
         break;
       }
     } else {
-      log.debug('Set to not check websocket connectivity. Waiting for connectivity status change');
+      log.debug('Set to not check websocket connectivity. Waiting for connectivity status change ...');
 
       // If we shouldn't ping, wait until we receive a trigger to (maybe) ping.
       const shouldCheckConnectivity = yield (0, _effects.take)(action => action.type === 'CHANGE_CONNECTIVITY_CHECKING' && action.payload);
@@ -61885,6 +61887,7 @@ function* clientPingFlow(ws) {
 
     // If we received a disconnect action, stop the pings and exit.
     if (disconnect) {
+      log.debug('Got disconnect action. Exiting from clientPing flow ...');
       break;
     }
 
@@ -61900,11 +61903,12 @@ function* clientPingFlow(ws) {
         });
         // If we received a disconnect action, stop the pings and exit.
         if (disconnect) {
+          log.debug('Got disconnect action. Exiting from clientPing flow ...');
           break;
         }
       } else {
         if (Date.now() - timeOfLastPong >= maxIdleDuration) {
-          log.warn('closing websocket due to inactivity. (have not received pong from server)', platform);
+          log.warn('Closing websocket due to inactivity. (have not received pong from server)', platform);
 
           // its been too long since the last pong, attempt to reconnect or exit
           if (autoReconnect) {
@@ -61966,12 +61970,12 @@ function* connectWebsocket(wsInfo, platform) {
     try {
       // Try to open the websocket. Blocking call.
       websocket = yield (0, _effects.call)(_websocket.openWebsocket, wsInfo);
-      log.debug('Successfully connected to websocket.', platform);
+      log.info(`Successfully connected to websocket on: ${platform}`);
       break;
     } catch (err) {
       connectionAttempt++;
       websocket = err;
-      log.debug(`Failed websocket connection (#${connectionAttempt}): ${websocket.message}.`, platform);
+      log.debug(`Failed to connect to websocket on ${platform}. (Attempt #${connectionAttempt}). Message: ${websocket.message}.`);
 
       // If we want to try to reconnect, delay a certain about of time before trying.
       if (connectionAttempt < configs.reconnectLimit || !configs.reconnectLimit) {
@@ -61980,7 +61984,7 @@ function* connectWebsocket(wsInfo, platform) {
           delayTime = configs.reconnectDelay * Math.pow(configs.reconnectTimeMultiplier, connectionAttempt - 1);
           delayTime = delayTime < configs.reconnectTimeLimit ? delayTime : configs.reconnectTimeLimit;
         }
-        log.debug(`Websocket reconnect attempt after ${delayTime}ms.`, platform);
+        log.debug(`Websocket reconnect attempt after ${delayTime} ms on ${platform}`);
 
         // Wait for either the delay period or a trigger to stop connection attempts.
         let { disconnect } = yield (0, _effects.race)({
@@ -61992,7 +61996,7 @@ function* connectWebsocket(wsInfo, platform) {
           break;
         }
       } else {
-        log.debug('Stopping websocket connection attempts.', platform);
+        log.debug(`Stopping websocket connection attempts on ${platform}.`);
       }
     }
   }
@@ -63872,6 +63876,9 @@ const factoryDefaults = {
     }
   };
 
+  // Remove undefined plugins. Those are plugins that failed to load for some reason.
+  plugins = plugins.filter(plugin => Boolean(plugin));
+
   // Run all the plugins to build the context.
   // Set up each plugin component individually.
   plugins.forEach(function (plugin) {
@@ -64067,13 +64074,16 @@ const factoryDefaults = {
     destroy() {
       // TODO: Give plugins a chance to clean up, disconnect from WS, etc
       // Needs to happen before the sagas are cancelled
+      // TODO: Is it possible for the store to auto-unsubscribe any listeners
+      //    (from client.state.subscribe API)? If not, may be easier to simply
+      //    protect from issues.
 
       // Cancel all the sagas
       if (taskDescriptor) taskDescriptor.cancel();
 
       // Clear the state
       function destroyStateReducer(state, action) {
-        return null;
+        return {};
       }
       store.replaceReducer(destroyStateReducer);
 
@@ -64533,6 +64543,7 @@ var _config2 = _interopRequireDefault(_config);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// Logs generated as a result of invoking the public API will contain this tag
 const API_LOG_TAG = exports.API_LOG_TAG = 'API invoked: ';
 
 /**
@@ -64565,6 +64576,7 @@ const SET_LEVEL = exports.SET_LEVEL = prefix + 'SET_LEVEL';
 const LEVELS_CHANGE = exports.LEVELS_CHANGE = prefix + 'LEVELS_CHANGE';
 
 const SET_HANDLER = exports.SET_HANDLER = prefix + 'SET_HANDLER';
+const HANDLERS_CHANGE = exports.HANDLERS_CHANGE = prefix + 'HANDLERS_CHANGE';
 
 /***/ }),
 
@@ -64580,6 +64592,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.setLevel = setLevel;
 exports.levelsChanged = levelsChanged;
 exports.setHandler = setHandler;
+exports.handlersChanged = handlersChanged;
 
 var _actionTypes = __webpack_require__("../../packages/kandy/src/logs/interface/actionTypes.js");
 
@@ -64601,7 +64614,7 @@ function setLevel(level, type) {
 }
 
 /**
- * Action for a setting all of the Loggers' log level.
+ * Action for setting all of the Loggers' log level.
  * @method levelsChanged
  * @param  {Object} levelMap Mapping of logger type to level.
  * @return {Object}
@@ -64624,6 +64637,19 @@ function setHandler(handler, type) {
   return {
     type: actionTypes.SET_HANDLER,
     payload: { handler, type }
+  };
+}
+
+/**
+ * Action for setting all of the Loggers' log handler.
+ * @method handlersChanged
+ * @param  {Object} handlerMap Mapping of logger type to handler.
+ * @return {Object}
+ */
+function handlersChanged(handlerMap) {
+  return {
+    type: actionTypes.HANDLERS_CHANGE,
+    payload: handlerMap
   };
 }
 
@@ -64948,8 +64974,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Logs generated as a result of invoking the public API will contain this tag
-
 // Libraries.
 
 
@@ -65048,6 +65072,7 @@ exports.setHandlerEntry = setHandlerEntry;
 exports.setLogLevel = setLogLevel;
 exports.setLogHandler = setLogHandler;
 exports.getLevelMap = getLevelMap;
+exports.getHandlerMap = getHandlerMap;
 
 var _actionTypes = __webpack_require__("../../packages/kandy/src/logs/interface/actionTypes.js");
 
@@ -65145,6 +65170,11 @@ function* setLogHandler(action) {
       _index.logManager.getLoggers().forEach(logger => {
         logger.setHandler(handler);
       });
+
+      // Notify that all Logger handlers [may] have changed (because changing
+      //    the default handler will affect all Loggers without their own
+      //    handler explicitly set).
+      yield (0, _effects.put)(actions.handlersChanged(getHandlerMap(_index.logManager)));
     } else {
       // Update the Manager's default handler for this type.
       _index.logManager.setHandler(type, handler);
@@ -65152,6 +65182,9 @@ function* setLogHandler(action) {
       _index.logManager.getLoggers(type).forEach(logger => {
         logger.setHandler(handler);
       });
+
+      // Notify that the one type's handler has changed.
+      yield (0, _effects.put)(actions.handlersChanged({ [type]: handler }));
     }
   } catch (err) {
     const log = _index.logManager.getLogger('LOGS');
@@ -65180,6 +65213,29 @@ function getLevelMap(logManager) {
   });
 
   return levels;
+}
+
+/**
+ * Helper function.
+ * Gets the log handler for every Logger type (and default).
+ * @method getHandlerMap
+ * @return {Object} Mapping of Logger type to its log handler.
+ */
+function getHandlerMap(logManager) {
+  // Get unique types from all Loggers.
+  const loggers = logManager.getLoggers();
+  const types = [...new _set2.default(loggers.map(logger => logger.type))];
+
+  const handlers = {};
+  // Add the default level to the beginning.
+  handlers[defaultType] = logManager.getHandler();
+
+  // Get the handler for each Logger type.
+  types.forEach(type => {
+    handlers[type] = logManager.getHandler(type);
+  });
+
+  return handlers;
 }
 
 /***/ }),
@@ -69162,6 +69218,7 @@ function* pushNotificationsRegistration(connection, {
   }
 
   body = (0, _stringify2.default)(body);
+  log.debug(`Sending PUSH register request: ${method} ${url}`);
 
   const response = yield (0, _effects2.default)({ url, method, body }, requestOptions);
 
@@ -69172,36 +69229,38 @@ function* pushNotificationsRegistration(connection, {
   }
 
   if (response.error) {
+    log.info('Failed to register device token for PUSH notifications.');
     if (registrationResponse) {
       // Handle errors from the server.
       let statusCode = registrationResponse.statusCode;
-      log.debug(`Failed to register device token for push notifications. Status: ${statusCode}`);
+      log.debug(`Device registration request for PUSH notifications failed with status code: ${statusCode}`);
 
       return {
         error: true,
         status: statusCode,
-        text: `Failed to register device token. Error: ${statusCode}`
+        text: `Failed to register device token for PUSH notifications. Code: ${statusCode}`
       };
     } else {
       // Handle errors from the request helper.
       let { message } = response.payload.result;
-      log.debug(`Device registration request failed: ${message}.`);
+      log.debug(`Device registration request for PUSH notifications failed with message: ${message}.`);
 
       return {
         error: true,
         status: response.payload.result.code,
-        text: `Failed to register device token. Error: ${response.payload.result.message}`
+        text: `Failed to register device token for PUSH notifications. Error: ${response.payload.result.message}`
       };
     }
   } else if (registrationResponse && registrationResponse.statusCode !== 0) {
+    log.info(`Failed to register device token for PUSH notifications. Code: ${registrationResponse.statuscode}`);
     // TODO: Is this else-if needed?
     return {
       error: true,
       status: registrationResponse.statuscode,
-      text: `Failed to register device token. Error: ${registrationResponse.statusCode}`
+      text: `Failed to register device token for PUSH notifications. Error: ${registrationResponse.statusCode}`
     };
   } else {
-    log.debug('Successfully registered device token for push notifications.', registrationResponse.statusCode);
+    log.info('Successfully registered device token for PUSH notifications.');
     return (0, _extends3.default)({
       error: false
     }, registrationResponse);
@@ -69222,32 +69281,34 @@ function* pushNotificationsDeRegistration(connection, { registration }) {
   const method = 'DELETE';
   const responseType = 'none';
 
+  log.debug(`Sending PUSH unregister request: ${method} ${url}`);
   const response = yield (0, _effects2.default)({ url, method, responseType }, requestOptions);
 
   if (response.error) {
+    log.info('Failed to unregister device token for PUSH notifications.');
     if (response.payload.body) {
       // Handle errors from the server.
       let { statusCode } = response.payload.body;
-      log.debug(`Failed to unregister device token for push. Status: ${statusCode}.`);
+      log.debug(`Failed to unregister device token for PUSH notifications. Status code: ${statusCode}.`);
       // TODO: Proper errors.
       return {
         error: true,
         status: statusCode,
-        text: `Failed to unregister device token. Code: ${statusCode}.`
+        text: `Failed to unregister device token for PUSH notifications. Code: ${statusCode}.`
       };
     } else {
       // Handle errors from the request helper.
       let { message } = response.payload.result;
-      log.debug(`Device token unregistration request failed: ${message}`);
+      log.debug(`Device token unregistration request failed for PUSH notifications: ${message}`);
       // TODO: Proper error.
       return {
         error: true,
         status: response.payload.result.code,
-        text: `Device token deregistration request failed: ${message}`
+        text: `Device token unregistration request failed for PUSH notifications: ${message}`
       };
     }
   } else {
-    log.debug('Successfully un-registered device token for push notifications.');
+    log.info('Successfully unregistered device token for PUSH notifications.');
     // Successful de-register has no response.
     return {
       error: false
@@ -69263,14 +69324,21 @@ function* pushNotificationsDeRegistration(connection, { registration }) {
  */
 function* fetchSDP(connection, partialUrl) {
   const { server, requestOptions } = connection;
+  const method = 'GET';
+  const url = `${server.protocol}://${server.server}:${server.port}${partialUrl}`;
+  log.debug(`Sending request to fecth SDP: ${method} ${url}`);
+
   const response = yield (0, _effects2.default)({
-    url: `${server.protocol}://${server.server}:${server.port}${partialUrl}`,
-    method: 'GET'
+    url,
+    method
   }, requestOptions);
 
   if (!response.error) {
+    log.info('SDP fetched successfully.');
     // TODO: test and see what this format actually is.
     return response.payload.body;
+  } else {
+    log.debug(`Failed to fetch SDP. Error is: ${(0, _stringify2.default)(response.error)}`);
   }
 }
 
@@ -69347,6 +69415,7 @@ function* enableWebsocketChannel(action) {
 
   // TODO: Handle possible error case when connecting websockets.
   //      Otherwise, plain dispatch to update state.
+  log.info(`Enabling WEBSOCKET notification channel ...`);
   yield (0, _effects.put)(actions.enableNotificationChannelFinish(action.meta.channel, {
     params: action.payload
   }));
@@ -69382,19 +69451,22 @@ function* processNotification() {
   const externalNotifications = yield (0, _effects.actionChannel)(actionTypes.PROCESS_NOTIFICATION, _reduxSaga.buffers.expanding(INITIAL_BUFFER_SIZE));
   while (true) {
     const action = yield (0, _effects.take)(externalNotifications);
+    log.info(`Received notification on channel ${action.meta.channel} for platform: ${action.meta.platform}; Handling...`);
 
     // Only process notifications from enabled channels, ie. "silence" the channel.
     let channel = yield (0, _effects.select)(_selectors2.getNotificationsInfo, action.meta.channel);
     if (!channel.channelEnabled) {
-      log.debug('Notification received on disabled channel. Ignoring it.', action.meta.channel);
+      log.debug(`Notification received on disabled channel: ${action.meta.channel}. Ignoring it ...`);
       continue;
     }
 
     // Find the unique ID of the received notification.
     let notificationId;
+    let notificationType;
     switch (action.meta.platform) {
       case _constants.platforms.LINK:
         notificationId = action.payload.notificationMessage.eventId;
+        notificationType = action.payload.notificationMessage.eventType;
         break;
       case _constants.platforms.UC:
         // A Link notification can be in either the Link format or the SPiDR format (for calls).
@@ -69412,11 +69484,14 @@ function* processNotification() {
           }
         }
         if (!notificationId) {
-          log.error('Received notification without a findable ID.', (0, _keys2.default)(notification));
+          log.error('Received notification without a findable ID: ', (0, _keys2.default)(notification));
         }
         break;
       default:
         log.debug('Received notification from unknown platform.');
+    }
+    if (notificationType) {
+      log.debug(`The received notification is of type ${notificationType}.`);
     }
 
     let formattedPayload = action.payload;
@@ -69438,8 +69513,11 @@ function* processNotification() {
         addIdToCache(notificationId);
 
         const { platform, channel } = action.meta;
+        log.debug('Added notification ID to the ID cache. Informing listeners ...');
+        // Inform all other plugins by sending a NOTIFICATION_RECEIVED action
         yield (0, _effects.put)(actions.notificationReceived(formattedPayload, platform, channel));
       } else {
+        log.info('Notification was a duplicate; ignoring.');
         const error = new Error(`Notification id ${notificationId} is duplicate.`);
         // TODO: Tech-debt; this action should be a notificationReceived error action.
         //      But that requires all sagas listening for notifications to filter out
@@ -69463,7 +69541,7 @@ function* normalizeSDP(payload) {
   payload = (0, _extends3.default)({}, payload);
 
   if (payload.notificationMessage.sessionParams.sdpFormat === 'compressed') {
-    log.debug('sdpFormat: compressed. Deflating compressed SDP...');
+    log.debug('Found SDP format: compressed. Deflating compressed SDP...');
     // convert based64 encoded string into bytes
     const sdpCompressedBytes = atob(payload.notificationMessage.sessionParams.sdp);
     // uncompress the bytes
@@ -69471,12 +69549,12 @@ function* normalizeSDP(payload) {
     // convert uncompress bytes back into string
     const sdpString = String.fromCharCode.apply(null, new Uint16Array(sdpUnCompressedBytes));
     payload.notificationMessage.sessionParams.sdp = sdpString;
+    log.debug(`Returning uncompressed SDP as part of payload: ${sdpString}`);
     return payload;
   } else if (payload.notificationMessage.sessionParams.sdpFormat === 'url') {
-    log.debug('sdpFormat: url. Fetching SDP...');
     const connection = yield (0, _effects.select)(_selectors.getConnectionInfo);
     const { pushRegistration } = yield (0, _effects.select)(_selectors2.getNotificationConfig);
-
+    log.debug(`Found SDP format: url. pushRegistration: ${pushRegistration}`);
     // If a push registration endpoint was configured, use that instead of default.
     if (pushRegistration) {
       connection.server = (0, _fp.defaults)(connection.server, pushRegistration);
@@ -69484,7 +69562,7 @@ function* normalizeSDP(payload) {
       connection.port = (0, _fp.defaults)(connection.port, pushRegistration);
       connection.version = (0, _fp.defaults)(connection.version, pushRegistration);
     }
-
+    log.info('Fetching SDP...');
     const response = yield (0, _effects.call)(requests.fetchSDP, connection, payload.notificationMessage.sessionParams.sdp);
     payload.notificationMessage.sessionParams.sdp = response.eventDataResponse.sdp;
     return payload;
@@ -69578,7 +69656,7 @@ function* registerPushDeviceToken(action) {
     connection.version = (0, _fp.defaults)(connection.version, pushRegistration);
   }
 
-  log.debug('Registering device token for push notifications.');
+  log.info('Registering device token for PUSH notifications...');
   const response = yield (0, _effects.call)(requests.pushNotificationsRegistration, connection, (0, _extends3.default)({}, action.payload));
 
   if (response.error) {
@@ -69624,7 +69702,7 @@ function* unregisterPushDeviceToken(action) {
     connection.version = (0, _fp.defaults)(connection.version, pushRegistration);
   }
 
-  log.debug('Un-registering device token for push notifications.');
+  log.info('Un-registering device token for PUSH notifications...');
   const response = yield (0, _effects.call)(requests.pushNotificationsDeRegistration, connection, {
     registration: action.payload.registration
   });
@@ -70974,20 +71052,18 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const log = _logs.logManager.getLogger('REQUEST');
-
 /**
  * Enum declaring the valid request response data types that are available to be handled
  */
-
-
-// State setters.
 const responseTypes = (0, _freeze2.default)({
   json: 'json',
   blob: 'blob',
   text: 'text',
   none: 'none'
 });
+
+// State setters.
+
 
 const contentTypes = (0, _freeze2.default)({
   jsonType: 'application/json',
@@ -71065,13 +71141,31 @@ function* handleRequest(action) {
  * @return {Promise} A promise that resolves with a custom response object.
  */
 async function makeRequest(options, requestId) {
-  // Extract and remove the url property.
+  const log = _logs.logManager.getLogger('REQUEST', requestId);
+
+  // Extract and remove the non-fetch API properties.
   const { url, queryParams, responseType = 'json' } = options,
         fetchOptions = (0, _objectWithoutProperties3.default)(options, ['url', 'queryParams', 'responseType']);
 
+  if (!url || typeof url !== 'string') {
+    const invalidUrlMessage = `Invalid request url; expected url of type string but received ${url} instead`;
+    log.error(invalidUrlMessage);
+    return {
+      body: undefined,
+      error: 'REQUEST_URL',
+      message: invalidUrlMessage
+    };
+  }
+
+  // Grab that last part of the URL (after the last /) to be logged.
+  let endUrl = url.match(/([^/]*)$/)[0];
+  // Cut it short if it's too long, since this should be human-readable.
+  endUrl = endUrl.length > 15 ? endUrl.substring(0, 15) + '...' : endUrl;
+  log.info(`Making ${fetchOptions.method} ${endUrl} request.`);
+
   if (!responseTypes.hasOwnProperty(responseType)) {
     // Invalid data type requested
-    log.debug('responseType value was invalid');
+    log.info('Cannot make request; responseType value was invalid.');
     return {
       body: undefined,
       error: 'RESPONSE_TYPE',
@@ -71083,7 +71177,7 @@ async function makeRequest(options, requestId) {
   try {
     response = await fetch(url + (0, _utils.toQueryString)(queryParams), fetchOptions);
   } catch (err) {
-    log.debug(`Fetch request ${requestId} failed: ${err.message}.`);
+    log.info(`Failed to make request, caused by ${err.message}`);
     return {
       body: false,
       error: 'FETCH',
@@ -71110,7 +71204,7 @@ async function makeRequest(options, requestId) {
     let error = !response.ok;
 
     if (error) {
-      log.debug(`Response indicates that request ${requestId} failed`);
+      log.info(`Received error response for request (status ${response.status}).`);
       /*
        * Handle a special-case error where the response body is a HTML page...
        * Throw away the body and so it is simply reported as 'Forbidden'.
@@ -71142,6 +71236,8 @@ async function makeRequest(options, requestId) {
        * Avoid parsing the response because there isn't one.
        */
       responseBody = {};
+
+      log.info(`Finished request with successful response (status ${response.status}).`);
       return {
         body: responseBody,
         error: false,
@@ -71195,6 +71291,7 @@ async function makeRequest(options, requestId) {
         }
       }
 
+      log.info(`Finished request with successful response (status ${response.status}).`);
       return {
         body: responseBody,
         error: false,
@@ -71202,7 +71299,7 @@ async function makeRequest(options, requestId) {
       };
     }
   } catch (err) {
-    log.debug(`Error parsing response. Response for request ${requestId}: "${err.message}"`);
+    log.info(`Failed to parse response, caused by ${err.message}`);
     return {
       body: false,
       error: 'REQUEST',
@@ -74470,7 +74567,13 @@ function defaultLogHandler(entry) {
   // Compile the meta info of the log for a prefix.
   const { timestamp, level, target } = entry;
   let { method } = entry;
-  const logInfo = `${timestamp} - ${target.type} - ${level}`;
+
+  // Find a short name to reference which Logger this log is from.
+  //    This is mostly to cut down the ID if it's too long for a human to read.
+  const shortId = target.id && target.id.length > 8 ? target.id.substring(0, 6) : target.id;
+  const shortName = shortId ? `${target.type}/${shortId}` : target.type;
+
+  const logInfo = `${timestamp} - ${shortName} - ${level}`;
 
   // Assume that the first message parameter is a string.
   const [log, ...extra] = entry.messages;
@@ -74564,7 +74667,9 @@ function createManager(options = {}) {
      * @param  {string} [id] A unique identifier for the logger.
      * @return {Logger}
      */
-  };function getLogger(type, id) {
+  };function getLogger(type, id = '') {
+    id = String(id);
+
     // Combine the name and ID to create the "full" logger name.
     const loggerName = id ? `${type}-${id}` : type;
 

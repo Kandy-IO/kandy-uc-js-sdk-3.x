@@ -77,6 +77,7 @@ It should be noted that Anonymous calls are meant as outgoing-only calls. The An
 The tokens used for a Anonymous call act as verification that the call is valid, and that it should be allowed. There are two security features encoded in the tokens for this: a timestamp and a secret key.
 
 Token generation is done in two steps:
+
 1. Creating the token, then
 2. Encrypting the token.
 
