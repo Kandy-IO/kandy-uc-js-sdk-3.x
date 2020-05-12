@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.uc.js
- * Version: 3.16.0-beta.404
+ * Version: 3.16.0-beta.405
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -50819,6 +50819,7 @@ function* subscribe(connection, credentials, extras = {}) {
   //      options for this request. Priority is for the options defined here.
   requestOptions = (0, _utils.mergeValues)(extras, requestOptions);
 
+  log.info(`Subscribing user ${credentials.username}`);
   // Send the subscription request.
   const response = yield (0, _effects2.default)(requestOptions);
 
@@ -50867,7 +50868,7 @@ function* subscribe(connection, credentials, extras = {}) {
 
     let subscribedServices = subscribeResponse.subscriptionParams.service;
     let servicesInfo = yield (0, _effects3.call)(_services.parseSpidrServices, connection.service, subscribedServices);
-    log.debug(`Subscribed user. Service subscription status: ${servicesInfo.status}`);
+    log.debug(`Successfully subscribed user. Service subscription status: ${servicesInfo.status}`);
 
     return (0, _extends3.default)({
       error: false,
@@ -50894,9 +50895,11 @@ function* unsubscribe(connection, subscriptionURL) {
   requestOptions.headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json'
+  };
 
-    // Send the unsubscribe request.
-  };const response = yield (0, _effects2.default)(requestOptions, connection.requestOptions);
+  log.info('Unsubscribing user.');
+  // Send the unsubscribe request.
+  const response = yield (0, _effects2.default)(requestOptions, connection.requestOptions);
 
   if (response.error) {
     if (response.payload.body && response.payload.body.subscribeResponse) {
@@ -50931,16 +50934,19 @@ function* unsubscribe(connection, subscriptionURL) {
     let platform = yield (0, _effects3.select)(_selectors.getPlatform);
 
     if (platform === _constants.platforms.LINK && unsubResponse.statusCode === 0) {
+      log.info('Successfully unsubscribed user.');
       // Link success response.
       return (0, _extends3.default)({
         error: false
       }, unsubResponse);
     } else if (platform === _constants.platforms.UC && unsubResponse.statusCode === 0) {
+      log.info('Successfully unsubscribed user.');
       // Link success response.
       return (0, _extends3.default)({
         error: false
       }, unsubResponse);
     } else {
+      log.info('Failed to unsubscribe user. Status Code: ', unsubResponse.statusCode);
       // Unknown statusCode, consider as failure.
       return {
         error: new _errors2.default({
@@ -50989,6 +50995,7 @@ function* resubscribe(connection, subscription) {
     }
   });
 
+  log.info('Resubscribing user.');
   // Send the subscription update request.
   const response = yield (0, _effects2.default)(requestOptions, connection.requestOptions);
 
@@ -51026,7 +51033,7 @@ function* resubscribe(connection, subscription) {
     if (resubResponse.statusCode === 0 || resubResponse.statusCode === 2) {
       let subscribedServices = resubResponse.subscriptionParams.service;
       let servicesInfo = yield (0, _effects3.call)(_services.parseSpidrServices, subscription.service, subscribedServices);
-      log.debug(`Resubscribed user. Service resubscription status: ${servicesInfo.status}`);
+      log.debug(`Successfully resubscribed user. Service resubscription status: ${servicesInfo.status}`);
 
       // Success.
       return (0, _extends3.default)({
@@ -51034,6 +51041,7 @@ function* resubscribe(connection, subscription) {
         servicesInfo
       }, resubResponse);
     } else {
+      log.info('Failed to resubscribe user. Status Code: ', resubResponse.statusCode);
       // Unknown statusCode, consider as failure.
       return {
         error: new _errors2.default({
@@ -51214,6 +51222,8 @@ function* refreshToken(action, config) {
   if (credentials.expires) {
     queryParams.expires = credentials.expires;
   }
+
+  log.info('Refreshing access token ...');
 
   const response = yield (0, _effects2.default)({
     url: `${protocol}://${server}:${port}/${version}/auth/refresh_token`,
@@ -51551,7 +51561,7 @@ function* connect(action) {
 
     if (tokenInfo.error) {
       // If token generation failed, stop the connection process.
-      log.debug('Something went wrong while attempting to create an accessToken from the supplied refreshToken.');
+      log.info('Something went wrong while attempting to create an accessToken from the supplied refreshToken. Error: ', tokenInfo.error);
       yield (0, _effects4.put)(actions.connectFinished(tokenInfo));
       return;
     }
@@ -51567,6 +51577,7 @@ function* connect(action) {
       username: credentials.username
     };
   } else {
+    log.info('The login signature is not valid.');
     // Other connect scenarios not supported.
     yield (0, _effects4.put)(actions.connectFinished({
       error: new _errors2.default({
@@ -51581,9 +51592,11 @@ function* connect(action) {
     // Use the token to subscribe.
     yield (0, _effects4.call)(subscribe, config, tokenInfo);
   } catch (error) {
+    log.info('Failed to connect. Error: ', error);
     yield (0, _effects4.put)(actions.connectFinished({ error }));
   } finally {
     if (yield (0, _effects4.cancelled)()) {
+      log.info('Disconnecting.');
       yield (0, _effects4.call)(disconnect);
     }
   }
@@ -51663,6 +51676,7 @@ function* subscribe(config, tokenInfo) {
 
   // If the subscription failed, dispatch an error action and stop here.
   if (response.error) {
+    log.info('Failed to subscribe user. Error: ', response.error);
     yield (0, _effects4.put)(actions.connectFinished(response));
     return;
   }
@@ -51686,11 +51700,14 @@ function* subscribe(config, tokenInfo) {
   const websocketInfo = (0, _extends3.default)({}, config.websocket, {
     url: subscription.notificationChannel,
     params: params
+  });
 
-    // Request the websocket connection.
-  });const wsOpenOrError = yield (0, _effects.connectWebsocket)(websocketInfo, platform);
+  log.info('Connecting to websocket.');
+  // Request the websocket connection.
+  const wsOpenOrError = yield (0, _effects.connectWebsocket)(websocketInfo, platform);
 
   if (wsOpenOrError.error) {
+    log.info('Failed to connect to websocket. Error: ', wsOpenOrError.error);
     yield (0, _effects4.put)(actions.connectFinished({
       error: new _errors2.default({
         message: 'Websocket connection failed.',
@@ -51710,6 +51727,7 @@ function* subscribe(config, tokenInfo) {
     }, platform, false));
 
     if (refreshToken) {
+      log.debug('Refreshing token');
       yield (0, _effects4.fork)(refreshTokenSaga);
     }
   }
@@ -51763,11 +51781,13 @@ function* extendSubscription() {
       const response = yield (0, _effects4.call)(_requests.resubscribe, connection, subscription);
 
       if (response.error) {
+        log.info('Failed to resubscribe user. Error: ', response.error);
         yield (0, _effects4.put)(actions.resubscribeFinished({
           error: response.error,
           attemptNum
         }, platform));
       } else {
+        log.info('Successfully resubscribed user.');
         // TODO: Check response.serviceInfo for full/partial resubscription.
         yield (0, _effects4.put)(actions.resubscribeFinished({ attemptNum }, platform));
       }
@@ -51780,24 +51800,26 @@ function* extendSubscription() {
  * @method disconnect
  */
 function* disconnect() {
-  log.info('Disconnecting user.');
   const connection = yield (0, _effects4.select)(_selectors.getConnectionInfo, platform);
 
   const wsState = yield (0, _effects4.select)(_selectors2.getConnectionState, platform);
   if (wsState.connected) {
+    log.info('Disconnecting websocket.');
     // Dispatch a WS disconnect action and wait for a response
     yield (0, _effects.disconnectWebsocket)(undefined, platform);
   }
 
   const subscription = yield (0, _effects4.select)(_selectors.getSubscriptionInfo);
 
+  log.info('Unsubscribing user.');
   const subscribeResponse = yield (0, _effects4.call)(_requests.unsubscribe, connection, subscription.url);
 
   if (subscribeResponse.error) {
+    log.info('Failed to unsubscribe. Error: ', subscribeResponse.error);
     // Handle errors from the unsubscription.
     yield (0, _effects4.put)(actions.disconnectFinished(subscribeResponse));
   } else {
-    log.debug('Successfully disconnected user.');
+    log.info('Successfully unsubscribed user.');
     yield (0, _effects4.put)(actions.disconnectFinished());
   }
 }
@@ -51822,6 +51844,7 @@ function* refreshTokenSaga() {
     if (disconnect) {
       return;
     } else {
+      log.info('Refreshing user token.');
       const response = yield (0, _effects3.default)({
         url: `${protocol}://${server}:${port}/${version}/auth/refresh_token`,
         queryParams: {
@@ -51832,10 +51855,11 @@ function* refreshTokenSaga() {
 
       if (response.error) {
         let info = response.payload.body ? response.payload.body : response.payload.result;
-        log.warn('Attempt to refresh the accessToken failed. This may be due to server or permissions issues.', info);
+        log.info(`Attempt to refresh the accessToken failed. Error: ${response.error} This may be due to server or permissions issues. Info: `, info);
         yield (0, _effects4.put)(actions.disconnect());
         return;
       } else {
+        log.info('Successfully refreshed user token.');
         const {
           access_token: accessToken,
           refresh_token: refreshToken,
@@ -51890,6 +51914,7 @@ function* updateTokenSaga() {
       log.debug('updateToken called without the necessary parameters');
     }
 
+    log.info('Refreshing token for platform: ', platform);
     yield (0, _effects4.put)(actions.refreshTokensFinished({
       connection: (0, _extends3.default)({}, action.payload.credentials, {
         requestOptions
@@ -60860,7 +60885,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.16.0-beta.404';
+  return '3.16.0-beta.405';
 }
 
 /***/ }),
