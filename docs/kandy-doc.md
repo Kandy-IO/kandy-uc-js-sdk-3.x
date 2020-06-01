@@ -51,7 +51,7 @@ The format of logs can also be customized by providing a
            to the console.
     -   `logs.enableFcsLogs` **[boolean][10]** Enable the detailed call logger
            for v3.X. Requires log level debug. (optional, default `true`)
-    -   `logs.logActions` **[Object][6]?** Options specifically for action logs when
+    -   `logs.logActions` **([Object][6] \| [boolean][10])?** Options specifically for action logs when
            logLevel is at DEBUG+ levels. Set this to false to not output action logs.
         -   `logs.logActions.handler` **[logger.LogHandler][9]?** The function to receive action
                log entries from the SDK. If not provided, a default handler will be used
@@ -63,6 +63,8 @@ The format of logs can also be customized by providing a
                inspected on the console. (optional, default `false`)
         -   `logs.logActions.diff` **[boolean][10]** Include a diff of what SDK
                context was changed by the action. (optional, default `false`)
+        -   `logs.logActions.level` **[string][7]** Log level to be set
+               on the action logs (optional, default `'debug'`)
         -   `logs.logActions.exposePayloads` **[boolean][10]** Allow action payloads
                to be exposed in the logs, potentially displaying sensitive information. (optional, default `false`)
 
@@ -75,9 +77,8 @@ Configuration options for the Authentication feature.
 -   `authentication` **[Object][6]** Authentication configs.
     -   `authentication.subscription` **[Object][6]** 
         -   `authentication.subscription.server` **[string][7]** Hostname of the server to be used for subscription requests.
-        -   `authentication.subscription.protocol` **[string][7]** Protocol to be used for subscription requests. (optional, default `https`)
+        -   `authentication.subscription.protocol` **[string][7]** Protocol to be used for subscription requests. (optional, default `'https'`)
         -   `authentication.subscription.port` **[Number][11]** Port to be used for subscription requests. (optional, default `443`)
-        -   `authentication.subscription.version` **[string][7]** Version of the REST API to be used. (optional, default `1`)
         -   `authentication.subscription.expires` **[Number][11]** Time duration, in seconds, until a subscription should expire. (optional, default `3600`)
         -   `authentication.subscription.service` **[Array][12]?** Services to subscribe to for notifications. Default value is ['call', 'IM', 'presence'].
         -   `authentication.subscription.localization` **[string][7]**  (optional, default `English_US`)
@@ -85,7 +86,7 @@ Configuration options for the Authentication feature.
         -   `authentication.subscription.notificationType` **[string][7]**  (optional, default `Websocket`)
     -   `authentication.websocket` **[Object][6]** 
         -   `authentication.websocket.server` **[string][7]** Hostname of the server to be used for websocket notifications.
-        -   `authentication.websocket.protocol` **[string][7]** Protocol to be used for websocket notifications. (optional, default `wss`)
+        -   `authentication.websocket.protocol` **[string][7]** Protocol to be used for websocket notifications. (optional, default `'wss'`)
         -   `authentication.websocket.port` **[Number][11]** Port to be used for websocket notifications. (optional, default `443`)
     -   `authentication.earlyRefreshMargin` **[Number][11]**  (optional, default `300`)
 
@@ -421,16 +422,14 @@ Removes a global event listener from SDK instance.
 
 ### connect
 
-Connect with user credentials to any backend services that the SDK instance deals with.
+Connect by providing an OAuth token, to any backend services that the SDK instance deals with.
 
 **Parameters**
 
 -   `credentials` **[Object][6]** The credentials object.
-    -   `credentials.username` **[string][7]** The username including the application's domain.
-    -   `credentials.password` **[string][7]** The user's password.
-    -   `credentials.authname` **[string][7]?** The user's authorization name.
+    -   `credentials.username` **[string][7]** The username without the application's domain.
+    -   `credentials.oauthToken` **[string][7]** An OAuth token provided by an outside service.
 -   `options` **[Object][6]?** The options object for non-credential options.
-    -   `options.forceLogOut` **[boolean][10]?** Force the oldest connection to log out if too many simultaneous connections. Link only.
     -   `options.clientCorrelator` **[string][7]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
 
 **Examples**
@@ -438,10 +437,7 @@ Connect with user credentials to any backend services that the SDK instance deal
 ```javascript
 client.connect({
   username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
-}, {
-  forceLogOut: true
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
 
@@ -473,27 +469,6 @@ client.connect({
 
 ### connect
 
-Connect by providing an OAuth token, to any backend services that the SDK instance deals with.
-
-**Parameters**
-
--   `credentials` **[Object][6]** The credentials object.
-    -   `credentials.username` **[string][7]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][7]** An OAuth token provided by an outside service.
--   `options` **[Object][6]?** The options object for non-credential options.
-    -   `options.clientCorrelator` **[string][7]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-});
-```
-
-### connect
-
 Connect by providing a refresh token, to any backend services that the SDK instance deals with.
 
 **Parameters**
@@ -512,6 +487,32 @@ client.connect({
   username: 'alfred@example.com',
   refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
   expires: 3600
+});
+```
+
+### connect
+
+Connect with user credentials to any backend services that the SDK instance deals with.
+
+**Parameters**
+
+-   `credentials` **[Object][6]** The credentials object.
+    -   `credentials.username` **[string][7]** The username including the application's domain.
+    -   `credentials.password` **[string][7]** The user's password.
+    -   `credentials.authname` **[string][7]?** The user's authorization name.
+-   `options` **[Object][6]?** The options object for non-credential options.
+    -   `options.forceLogOut` **[boolean][10]?** Force the oldest connection to log out if too many simultaneous connections. Link only.
+    -   `options.clientCorrelator` **[string][7]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  password: '********'
+  authname: '********'
+}, {
+  forceLogOut: true
 });
 ```
 
@@ -1838,7 +1839,7 @@ Prompt the user for permission to use their audio and/or video devices.
 A set of [SdpHandlerFunction][40]s for manipulating SDP information.
 These handlers are used to customize low-level call behaviour for very specific
 environments and/or scenarios. They can be provided during SDK instantiation
-to be used for all calls.
+to be used for all calls, or with the [call.setSdpHandlers][41] Call API post-instantiation.
 
 **Examples**
 
@@ -1847,9 +1848,14 @@ import { create, sdpHandlers } from 'kandy';
 const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
 const client = create({
   call: {
-    sdpHandlers: [ <Your-SDP-Handler-Function>, ...]
+    sdpHandlers: [ codecRemover, <Your-SDP-Handler-Function>, ...]
   }
 })
+```
+
+```javascript
+// Through the Call API post-instantiation
+client.call.setSdpHandlers([ codecRemover, <Your-SDP-Handler-Function>, ...])
 ```
 
 ### createCodecRemover
@@ -1993,12 +1999,12 @@ Type: [Object][6]
 
 Fetches information about a User.
 
-The SDK will emit a [users:change][41]
+The SDK will emit a [users:change][42]
    event after the operation completes. The User's information will then
    be available.
 
 Information about an available User can be retrieved using the
-   [user.get][42] API.
+   [user.get][43] API.
 
 **Parameters**
 
@@ -2007,36 +2013,36 @@ Information about an available User can be retrieved using the
 ### fetchSelfInfo
 
 Fetches information about the current User from directory.
-Compared to [user.fetch][43] API, this API retrieves additional user related information.
+Compared to [user.fetch][44] API, this API retrieves additional user related information.
 
-The SDK will emit a [users:change][41]
+The SDK will emit a [users:change][42]
    event after the operation completes. The User's information will then
    be available.
 
 Information about an available User can be retrieved using the
-   [user.get][42] API.
+   [user.get][43] API.
 
 ### get
 
 Retrieves information about a User, if available.
 
-See the [user.fetch][43] and [user.search][44] APIs for details about
+See the [user.fetch][44] and [user.search][45] APIs for details about
    making Users' information available.
 
 **Parameters**
 
 -   `userId` **user.UserID** The User ID of the user.
 
-Returns **[user.User][45]** The User object for the specified user.
+Returns **[user.User][46]** The User object for the specified user.
 
 ### getAll
 
 Retrieves information about all available Users.
 
-See the [user.fetch][43] and [user.search][44] APIs for details about
+See the [user.fetch][44] and [user.search][45] APIs for details about
    making Users' information available.
 
-Returns **[Array][12]&lt;[user.User][45]>** An array of all the User objects.
+Returns **[Array][12]&lt;[user.User][46]>** An array of all the User objects.
 
 ### search
 
@@ -2045,10 +2051,10 @@ Searches the domain's directory for Users.
 Directory searching only supports one filter. If multiple filters are provided, only one of the filters will be used for the search.
 A search with no filters provided will return all users.
 
-The SDK will emit a [directory:change][46]
+The SDK will emit a [directory:change][47]
    event after the operation completes. The search results will be
    provided as part of the event, and will also be available using the
-   [user.get][42] and [user.getAll][47] APIs.
+   [user.get][43] and [user.getAll][48] APIs.
 
 **Parameters**
 
@@ -2156,16 +2162,18 @@ Returns voicemail data from the store.
 
 [40]: call.SdpHandlerFunction
 
-[41]: #usereventuserschange
+[41]: call.setSdpHandlers
 
-[42]: #userget
+[42]: #usereventuserschange
 
-[43]: #userfetch
+[43]: #userget
 
-[44]: #usersearch
+[44]: #userfetch
 
-[45]: #useruser
+[45]: #usersearch
 
-[46]: #usereventdirectorychange
+[46]: #useruser
 
-[47]: #usergetall
+[47]: #usereventdirectorychange
+
+[48]: #usergetall
