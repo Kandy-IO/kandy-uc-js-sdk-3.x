@@ -7,6 +7,10 @@ Kandy.js change log.
 
 ## 3.17.0 - beta
 
+### Fixed
+
+- Fixed an Authentication issue where the `connect` API would not include the `clientCorrelator` and `forceLogOut` options in a new subscription. `KAA-2204`
+
 ## 3.16.0 - 2020-05-29
 
 ### Fixed

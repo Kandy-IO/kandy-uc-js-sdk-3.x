@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.uc.js
- * Version: 3.17.0-beta.444
+ * Version: 3.17.0-beta.445
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -50892,6 +50892,11 @@ const log = _logs.logManager.getLogger('AUTH');
 
 // Libraries.
 function* subscribe(connection, credentials, extras = {}) {
+  /*
+   * TODO: Clean-up / fix the function signature. The requestOptions (eg. headers)
+   *    are mixed with the API options (eg. client correlator) when they're used
+   *    for unrelated purposes.
+   */
   let subscribeType = connection.isAnonymous ? 'anonymous' : 'user';
   let requestOptions = {};
   requestOptions.method = 'POST';
@@ -51626,7 +51631,7 @@ function* connectFlow() {
  * @param  {Object} action A CONNECT action.
  */
 function* connect(action) {
-  const credentials = action.payload.credentials;
+  const { credentials, options } = action.payload;
 
   // Retrieve the connection info.
   const config = yield (0, _effects4.select)(_selectors.getAuthConfig);
@@ -51689,7 +51694,7 @@ function* connect(action) {
 
   try {
     // Use the token to subscribe.
-    yield (0, _effects4.call)(subscribe, config, tokenInfo);
+    yield (0, _effects4.call)(subscribe, config, tokenInfo, options);
   } catch (error) {
     log.info('Failed to connect. Error: ', error);
     yield (0, _effects4.put)(actions.connectFinished({ error }));
@@ -51711,8 +51716,11 @@ function* connect(action) {
  * @param  {string}    tokenInfo.accessToken  Access Token either from the user or the server.
  * @param  {string}    tokenInfo.refreshToken Refresh Token either from the user or the server.
  * @param  {number}    tokenInfo.tokenExpires Expires time for the access token.
+ * @param  {Object}    [options] Options provided as part of the API.
+ * @param  {boolean}   [options.forceLogout]
+ * @param  {string}    [options.clientCorrelator]
  */
-function* subscribe(config, tokenInfo) {
+function* subscribe(config, tokenInfo, options) {
   const { username, accessToken, refreshToken, tokenExpires, oauthToken } = tokenInfo;
 
   let requestOptions = {};
@@ -51770,8 +51778,15 @@ function* subscribe(config, tokenInfo) {
     userInfo
   }, platform, false));
 
+  /*
+   * Merge the API options together with the requestOptions. This doesn't make
+   *    sense, but this is how the `gatewaySubscribe` function takes these
+   *    parameters.
+   */
+  const extras = (0, _extends3.default)({}, options, requestOptions);
+
   log.info(`Subscribing user ${username}.`);
-  const response = yield (0, _effects4.call)(_requests.subscribe, connection, { username }, requestOptions);
+  const response = yield (0, _effects4.call)(_requests.subscribe, connection, { username }, extras);
 
   // If the subscription failed, dispatch an error action and stop here.
   if (response.error) {
@@ -61175,7 +61190,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.17.0-beta.444';
+  return '3.17.0-beta.445';
 }
 
 /***/ }),
