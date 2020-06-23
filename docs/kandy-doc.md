@@ -422,15 +422,13 @@ Removes a global event listener from SDK instance.
 
 ### connect
 
-Connect by providing an access token to any backend services that the SDK instance deals with.
-You can optionally provide a refresh token and the SDK will automatically get new access tokens.
+Connect by providing a refresh token, to any backend services that the SDK instance deals with.
 
 **Parameters**
 
 -   `credentials` **[Object][6]** The credentials object.
     -   `credentials.username` **[string][7]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][7]** An access token for the user with the provided user Id.
-    -   `credentials.refreshToken` **[string][7]?** A refresh token for the same user.
+    -   `credentials.refreshToken` **[string][7]** A refresh token for the same user.
     -   `credentials.expires` **[number][11]?** The time in seconds until the access token will expire.
 -   `options` **[Object][6]?** The options object for non-credential options.
     -   `options.clientCorrelator` **[string][7]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
@@ -440,30 +438,8 @@ You can optionally provide a refresh token and the SDK will automatically get ne
 ```javascript
 client.connect({
   username: 'alfred@example.com',
-  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
   expires: 3600
-});
-```
-
-### connect
-
-Connect by providing an OAuth token, to any backend services that the SDK instance deals with.
-
-**Parameters**
-
--   `credentials` **[Object][6]** The credentials object.
-    -   `credentials.username` **[string][7]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][7]** An OAuth token provided by an outside service.
--   `options` **[Object][6]?** The options object for non-credential options.
-    -   `options.clientCorrelator` **[string][7]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
 
@@ -495,13 +471,36 @@ client.connect({
 
 ### connect
 
-Connect by providing a refresh token, to any backend services that the SDK instance deals with.
+Connect by providing an OAuth token, to any backend services that the SDK instance deals with.
 
 **Parameters**
 
 -   `credentials` **[Object][6]** The credentials object.
     -   `credentials.username` **[string][7]** The username without the application's domain.
-    -   `credentials.refreshToken` **[string][7]** A refresh token for the same user.
+    -   `credentials.oauthToken` **[string][7]** An OAuth token provided by an outside service.
+-   `options` **[Object][6]?** The options object for non-credential options.
+    -   `options.clientCorrelator` **[string][7]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+});
+```
+
+### connect
+
+Connect by providing an access token to any backend services that the SDK instance deals with.
+You can optionally provide a refresh token and the SDK will automatically get new access tokens.
+
+**Parameters**
+
+-   `credentials` **[Object][6]** The credentials object.
+    -   `credentials.username` **[string][7]** The username without the application's domain.
+    -   `credentials.accessToken` **[string][7]** An access token for the user with the provided user Id.
+    -   `credentials.refreshToken` **[string][7]?** A refresh token for the same user.
     -   `credentials.expires` **[number][11]?** The time in seconds until the access token will expire.
 -   `options` **[Object][6]?** The options object for non-credential options.
     -   `options.clientCorrelator` **[string][7]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
@@ -511,7 +510,8 @@ Connect by providing a refresh token, to any backend services that the SDK insta
 ```javascript
 client.connect({
   username: 'alfred@example.com',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
   expires: 3600
 });
 ```
@@ -1313,6 +1313,57 @@ object will be sent to the destinations provided
 
 Returns **[Object][6]** a Conversation object
 
+### Message
+
+A Message object is a means by which a sender can deliver information to a recipient.
+
+Creating and sending a message:
+
+A message object can be obtained through the [Conversation.createMessage][20] API on an existing conversation.
+
+Messages have Parts which represent pieces of a message, such as a text part, a json object part or a file part.
+Once all the desired parts have been added to the message using the [Message.addPart][21] function,
+the message can then be sent using the [Message.send][22] function.
+
+Once the sender sends a message, this message is saved in sender's state as an object.
+Similarly, once the recipient gets a message, this message is saved in recipient's state.
+
+Retrieving a delivered message:
+
+Once a message is delivered successfully, it can be
+obtained through the [Conversation.getMessages][23] or [Conversation.getMessage][24] API on an existing conversation.
+
+Below are the properties pertaining to the message object, returned by Conversation.getMessage(s) APIs, for either sender or recipient.
+
+Type: [Object][6]
+
+**Properties**
+
+-   `timestamp` **[number][11]** A Unix timestamp in seconds marking the time when the message was created by sender.
+-   `parts` **[Array][12]&lt;conversation.Part>** An array of Part Objects.
+-   `sender` **[string][7]** The primary contact address of the sender.
+-   `destination` **[Array][12]&lt;[string][7]>** An array of primary contact addresses associated with various destinations to which the message is meant to be delivered.
+-   `messageId` **[string][7]** The unique id of the message. The message object (stored in sender's state) has a different id
+    than the one associated with the message object stored in recipient's state.
+-   `type` **[string][7]** The type of message that was sent. See [conversation.chatTypes][25] for valid types.
+    This property applies only to message objects stored in sender's state.
+
+#### send
+
+Sends the message.
+
+#### addPart
+
+Add an additional part to a message.
+
+**Parameters**
+
+-   `part` **[Object][6]** The part to add to the message.
+    -   `part.type` **[string][7]** The type of part. Can be "text", "json", "file", or "location".
+    -   `part.text` **[string][7]?** The text of the part. Must be a part of type "text".
+    -   `part.json` **[Object][6]?** The json of the part. Must be a part of type "json".
+    -   `part.file` **File?** The file of the part. Must be a part of type "file".
+
 ### Conversation
 
 A Conversation object represents a conversation between either two users, or a
@@ -1344,7 +1395,7 @@ Create and return a message object. You must specify the part. If this is a simp
 conversation.createMessage({type: 'text', text: 'This is the message'});
 ```
 
-Returns **[conversation.Message][21]** The newly created Message object.
+Returns **[conversation.Message][26]** The newly created Message object.
 
 #### clearMessages
 
@@ -1403,57 +1454,6 @@ Messages can then be retrieved using getMessages.
 **Parameters**
 
 -   `amount` **[number][11]** An amount of messages to fetch. (optional, default `50`)
-
-### Message
-
-A Message object is a means by which a sender can deliver information to a recipient.
-
-Creating and sending a message:
-
-A message object can be obtained through the [Conversation.createMessage][20] API on an existing conversation.
-
-Messages have Parts which represent pieces of a message, such as a text part, a json object part or a file part.
-Once all the desired parts have been added to the message using the [Message.addPart][22] function,
-the message can then be sent using the [Message.send][23] function.
-
-Once the sender sends a message, this message is saved in sender's state as an object.
-Similarly, once the recipient gets a message, this message is saved in recipient's state.
-
-Retrieving a delivered message:
-
-Once a message is delivered successfully, it can be
-obtained through the [Conversation.getMessages][24] or [Conversation.getMessage][25] API on an existing conversation.
-
-Below are the properties pertaining to the message object, returned by Conversation.getMessage(s) APIs, for either sender or recipient.
-
-Type: [Object][6]
-
-**Properties**
-
--   `timestamp` **[number][11]** A Unix timestamp in seconds marking the time when the message was created by sender.
--   `parts` **[Array][12]&lt;conversation.Part>** An array of Part Objects.
--   `sender` **[string][7]** The primary contact address of the sender.
--   `destination` **[Array][12]&lt;[string][7]>** An array of primary contact addresses associated with various destinations to which the message is meant to be delivered.
--   `messageId` **[string][7]** The unique id of the message. The message object (stored in sender's state) has a different id
-    than the one associated with the message object stored in recipient's state.
--   `type` **[string][7]** The type of message that was sent. See [conversation.chatTypes][26] for valid types.
-    This property applies only to message objects stored in sender's state.
-
-#### send
-
-Sends the message.
-
-#### addPart
-
-Add an additional part to a message.
-
-**Parameters**
-
--   `part` **[Object][6]** The part to add to the message.
-    -   `part.type` **[string][7]** The type of part. Can be "text", "json", "file", or "location".
-    -   `part.text` **[string][7]?** The text of the part. Must be a part of type "text".
-    -   `part.json` **[Object][6]?** The json of the part. Must be a part of type "json".
-    -   `part.file` **File?** The file of the part. Must be a part of type "file".
 
 ## DEVICE_ERROR
 
@@ -1860,22 +1860,31 @@ client.call.setSdpHandlers([ codecRemover, <Your-SDP-Handler-Function>, ...])
 
 ### createCodecRemover
 
-In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party.
+In some scenarios it's necessary to remove certain codecs being offered by the SDK to remote parties.
 While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.
 
-To facilitate this common task, the SDK provides a codec removal handler creator that can be used for this purpose.
+To facilitate this common task, the createCodecRemover function creates a codec removal handler that can be used for this purpose.
 
-The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.
+Note that SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.
 
 **Parameters**
 
--   `codecs` **[Array][12]&lt;[string][7]>** A list of codec names to remove from the SDP.
+-   `codecs` **([Array][12]&lt;CodecSelector> | [Array][12]&lt;[string][7]>)** A list of codec selectors to remove from the SDP. If passing a list of strings, they will be converted into
+                                                         codec selectors that correspond to those names without any extra FMTP parameters.
 
 **Examples**
 
 ```javascript
 import { create, sdpHandlers } from 'kandy';
-const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
+const codecRemover = sdpHandlers.createCodecRemover([
+  'VP8',
+  'VP9',
+  {
+    name: 'H264',
+    fmtpParams: ['profile-level-id=4d0032', 'packetization-mode=1']
+  }
+])
+
 const client = create({
   call: {
     sdpHandlers: [codecRemover]
@@ -1884,6 +1893,18 @@ const client = create({
 ```
 
 Returns **call.SdpHandlerFunction** The resulting SDP handler that will remove the codec.
+
+### CodecSelector
+
+An object that represents a selector to match codecs of an RTP map in SDP.
+
+Type: [Object][6]
+
+**Properties**
+
+-   `name` **[string][7]** The name of the codec.
+-   `fmtpParams` **[Array][12]&lt;[string][7]>** An array of strings to match against the "a=fmtp" format parameters for the corresponding codec.
+                                         All of the elements in the array must be contained in the "a=fmtp" attribute in order to be a match.
 
 ## setDefaultDevices
 
@@ -2122,17 +2143,17 @@ Returns voicemail data from the store.
 
 [20]: #conversationconversationcreatemessage
 
-[21]: #conversationmessage
+[21]: #conversationmessageaddpart
 
-[22]: #conversationmessageaddpart
+[22]: #conversationmessagesend
 
-[23]: #conversationmessagesend
+[23]: #conversationconversationgetmessages
 
-[24]: #conversationconversationgetmessages
+[24]: #conversationconversationgetmessage
 
-[25]: #conversationconversationgetmessage
+[25]: conversation.chatTypes
 
-[26]: conversation.chatTypes
+[26]: #conversationmessage
 
 [27]: #configconfiglogs
 
