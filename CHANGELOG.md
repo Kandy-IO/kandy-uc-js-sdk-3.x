@@ -13,6 +13,8 @@ Kandy.js change log.
 
 ### Fixed
 
+- Fixed a Call issue where the `changeInputDevices` API would not act on the correct call. `KAA-2404`
+  - Please note that there are still known issues for changing video when there are multiple active video calls. See `KAA-2420`.
 - Fixed an Authentication issue where the `connect` API would not include the `clientCorrelator` and `forceLogOut` options in a new subscription. `KAA-2204`
 - Fixed an issue with `sdpHandlers.createCodecRemover` where it wasn't handling multiple codecs selectors with the same name. `KAA-2416`
 
