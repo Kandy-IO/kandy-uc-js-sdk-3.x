@@ -51,7 +51,7 @@ The format of logs can also be customized by providing a
            to the console.
     -   `logs.enableFcsLogs` **[boolean][10]** Enable the detailed call logger
            for v3.X. Requires log level debug. (optional, default `true`)
-    -   `logs.logActions` **[Object][6]?** Options specifically for action logs when
+    -   `logs.logActions` **([Object][6] \| [boolean][10])?** Options specifically for action logs when
            logLevel is at DEBUG+ levels. Set this to false to not output action logs.
         -   `logs.logActions.handler` **[logger.LogHandler][9]?** The function to receive action
                log entries from the SDK. If not provided, a default handler will be used
@@ -63,6 +63,8 @@ The format of logs can also be customized by providing a
                inspected on the console. (optional, default `false`)
         -   `logs.logActions.diff` **[boolean][10]** Include a diff of what SDK
                context was changed by the action. (optional, default `false`)
+        -   `logs.logActions.level` **[string][7]** Log level to be set
+               on the action logs (optional, default `'debug'`)
         -   `logs.logActions.exposePayloads` **[boolean][10]** Allow action payloads
                to be exposed in the logs, potentially displaying sensitive information. (optional, default `false`)
 
@@ -75,9 +77,8 @@ Configuration options for the Authentication feature.
 -   `authentication` **[Object][6]** Authentication configs.
     -   `authentication.subscription` **[Object][6]** 
         -   `authentication.subscription.server` **[string][7]** Hostname of the server to be used for subscription requests.
-        -   `authentication.subscription.protocol` **[string][7]** Protocol to be used for subscription requests. (optional, default `https`)
+        -   `authentication.subscription.protocol` **[string][7]** Protocol to be used for subscription requests. (optional, default `'https'`)
         -   `authentication.subscription.port` **[Number][11]** Port to be used for subscription requests. (optional, default `443`)
-        -   `authentication.subscription.version` **[string][7]** Version of the REST API to be used. (optional, default `1`)
         -   `authentication.subscription.expires` **[Number][11]** Time duration, in seconds, until a subscription should expire. (optional, default `3600`)
         -   `authentication.subscription.service` **[Array][12]?** Services to subscribe to for notifications. Default value is ['call', 'IM', 'presence'].
         -   `authentication.subscription.localization` **[string][7]**  (optional, default `English_US`)
@@ -85,7 +86,7 @@ Configuration options for the Authentication feature.
         -   `authentication.subscription.notificationType` **[string][7]**  (optional, default `Websocket`)
     -   `authentication.websocket` **[Object][6]** 
         -   `authentication.websocket.server` **[string][7]** Hostname of the server to be used for websocket notifications.
-        -   `authentication.websocket.protocol` **[string][7]** Protocol to be used for websocket notifications. (optional, default `wss`)
+        -   `authentication.websocket.protocol` **[string][7]** Protocol to be used for websocket notifications. (optional, default `'wss'`)
         -   `authentication.websocket.port` **[Number][11]** Port to be used for websocket notifications. (optional, default `443`)
     -   `authentication.earlyRefreshMargin` **[Number][11]**  (optional, default `300`)
 
@@ -367,7 +368,7 @@ Update values in the global Config section of the store. The values pertain to t
 
 ### on
 
-Add an event listener for the specified event type. The event is emmited by the SDK instance.
+Add an event listener for the specified event type. The event is emitted by the SDK instance.
 
 **Parameters**
 
@@ -387,7 +388,7 @@ client.on('dummy:event', function (params) {
 
 ### off
 
-Removes an event listener for the specified event type. The event is emmited by the SDK instance.
+Removes an event listener for the specified event type. The event is emitted by the SDK instance.
 
 **Parameters**
 
@@ -473,27 +474,6 @@ client.connect({
 
 ### connect
 
-Connect by providing an OAuth token, to any backend services that the SDK instance deals with.
-
-**Parameters**
-
--   `credentials` **[Object][6]** The credentials object.
-    -   `credentials.username` **[string][7]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][7]** An OAuth token provided by an outside service.
--   `options` **[Object][6]?** The options object for non-credential options.
-    -   `options.clientCorrelator` **[string][7]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-});
-```
-
-### connect
-
 Connect by providing a refresh token, to any backend services that the SDK instance deals with.
 
 **Parameters**
@@ -512,6 +492,27 @@ client.connect({
   username: 'alfred@example.com',
   refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
   expires: 3600
+});
+```
+
+### connect
+
+Connect by providing an OAuth token, to any backend services that the SDK instance deals with.
+
+**Parameters**
+
+-   `credentials` **[Object][6]** The credentials object.
+    -   `credentials.username` **[string][7]** The username without the application's domain.
+    -   `credentials.oauthToken` **[string][7]** An OAuth token provided by an outside service.
+-   `options` **[Object][6]?** The options object for non-credential options.
+    -   `options.clientCorrelator` **[string][7]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
 
@@ -571,7 +572,7 @@ Returns **[boolean][10]** connection.isConnected Whether the authenticated user 
 
 Returns **[boolean][10]** connection.isPending Whether the authenticated user's connection is currently pending.
 
-Returns **[Object][6]** connection.error The error object if an error occured.
+Returns **[Object][6]** connection.error The error object if an error occurred.
 
 Returns **[string][7]** connection.error.message The error message.
 
@@ -632,7 +633,7 @@ Type: [Object][6]
 **Properties**
 
 -   `code` **[string][7]** The code of the error. If no code is known, this will be 'NO_CODE'.
--   `message` **[string][7]** A human-readable message to describe the error. If no message is known, this will be 'An error occured'.
+-   `message` **[string][7]** A human-readable message to describe the error. If no message is known, this will be 'An error occurred'.
 
 ## AudioBridge
 
@@ -1312,57 +1313,6 @@ object will be sent to the destinations provided
 
 Returns **[Object][6]** a Conversation object
 
-### Message
-
-A Message object is a means by which a sender can deliver information to a recipient.
-
-Creating and sending a message:
-
-A message object can be obtained through the [Conversation.createMessage][20] API on an existing conversation.
-
-Messages have Parts which represent pieces of a message, such as a text part, a json object part or a file part.
-Once all the desired parts have been added to the message using the [Message.addPart][21] function,
-the message can then be sent using the [Message.send][22] function.
-
-Once the sender sends a message, this message is saved in sender's state as an object.
-Similarly, once the recipient gets a message, this message is saved in recipient's state.
-
-Retrieving a delivered message:
-
-Once a message is delivered successfully, it can be
-obtained through the [Conversation.getMessages][23] or [Conversation.getMessage][24] API on an existing conversation.
-
-Below are the properties pertaining to the message object, returned by Conversation.getMessage(s) APIs, for either sender or recipient.
-
-Type: [Object][6]
-
-**Properties**
-
--   `timestamp` **[number][11]** A Unix timestamp in seconds marking the time when the message was created by sender.
--   `parts` **[Array][12]&lt;conversation.Part>** An array of Part Objects.
--   `sender` **[string][7]** The primary contact address of the sender.
--   `destination` **[Array][12]&lt;[string][7]>** An array of primary contact addresses associated with various destinations to which the message is meant to be delivered.
--   `messageId` **[string][7]** The unique id of the message. The message object (stored in sender's state) has a different id
-    than the one associated with the message object stored in recipient's state.
--   `type` **[string][7]** The type of message that was sent. See [conversation.chatTypes][25] for valid types.
-    This property applies only to message objects stored in sender's state.
-
-#### send
-
-Sends the message.
-
-#### addPart
-
-Add an additional part to a message.
-
-**Parameters**
-
--   `part` **[Object][6]** The part to add to the message.
-    -   `part.type` **[string][7]** The type of part. Can be "text", "json", "file", or "location".
-    -   `part.text` **[string][7]?** The text of the part. Must be a part of type "text".
-    -   `part.json` **[Object][6]?** The json of the part. Must be a part of type "json".
-    -   `part.file` **File?** The file of the part. Must be a part of type "file".
-
 ### Conversation
 
 A Conversation object represents a conversation between either two users, or a
@@ -1394,7 +1344,7 @@ Create and return a message object. You must specify the part. If this is a simp
 conversation.createMessage({type: 'text', text: 'This is the message'});
 ```
 
-Returns **[conversation.Message][26]** The newly created Message object.
+Returns **[conversation.Message][21]** The newly created Message object.
 
 #### clearMessages
 
@@ -1454,6 +1404,57 @@ Messages can then be retrieved using getMessages.
 
 -   `amount` **[number][11]** An amount of messages to fetch. (optional, default `50`)
 
+### Message
+
+A Message object is a means by which a sender can deliver information to a recipient.
+
+Creating and sending a message:
+
+A message object can be obtained through the [Conversation.createMessage][20] API on an existing conversation.
+
+Messages have Parts which represent pieces of a message, such as a text part, a json object part or a file part.
+Once all the desired parts have been added to the message using the [Message.addPart][22] function,
+the message can then be sent using the [Message.send][23] function.
+
+Once the sender sends a message, this message is saved in sender's state as an object.
+Similarly, once the recipient gets a message, this message is saved in recipient's state.
+
+Retrieving a delivered message:
+
+Once a message is delivered successfully, it can be
+obtained through the [Conversation.getMessages][24] or [Conversation.getMessage][25] API on an existing conversation.
+
+Below are the properties pertaining to the message object, returned by Conversation.getMessage(s) APIs, for either sender or recipient.
+
+Type: [Object][6]
+
+**Properties**
+
+-   `timestamp` **[number][11]** A Unix timestamp in seconds marking the time when the message was created by sender.
+-   `parts` **[Array][12]&lt;conversation.Part>** An array of Part Objects.
+-   `sender` **[string][7]** The primary contact address of the sender.
+-   `destination` **[Array][12]&lt;[string][7]>** An array of primary contact addresses associated with various destinations to which the message is meant to be delivered.
+-   `messageId` **[string][7]** The unique id of the message. The message object (stored in sender's state) has a different id
+    than the one associated with the message object stored in recipient's state.
+-   `type` **[string][7]** The type of message that was sent. See [conversation.chatTypes][26] for valid types.
+    This property applies only to message objects stored in sender's state.
+
+#### send
+
+Sends the message.
+
+#### addPart
+
+Add an additional part to a message.
+
+**Parameters**
+
+-   `part` **[Object][6]** The part to add to the message.
+    -   `part.type` **[string][7]** The type of part. Can be "text", "json", "file", or "location".
+    -   `part.text` **[string][7]?** The text of the part. Must be a part of type "text".
+    -   `part.json` **[Object][6]?** The json of the part. Must be a part of type "json".
+    -   `part.file` **File?** The file of the part. Must be a part of type "file".
+
 ## DEVICE_ERROR
 
 An error occurred while performing a device operation.
@@ -1490,50 +1491,6 @@ Possible levels for the SDK logger.
 -   `WARN` **[string][7]** Log issues that may cause problems or unexpected behaviour.
 -   `INFO` **[string][7]** Log useful information and messages to indicate the SDK's internal operations.
 -   `DEBUG` **[string][7]** Log information to help diagnose problematic behaviour.
-
-### LogHandler
-
-A LogHandler can be used to customize how the SDK should log information. By
-   default, the SDK will log information to the console, but a LogHandler can
-   be configured to change this behaviour.
-
-A LogHandler can be provided to the SDK as part of its configuration (see
-   [config.logs][27]). The SDK will then provide this
-   function with the logged information.
-
-Type: [Function][16]
-
-**Parameters**
-
--   `LogEntry` **[Object][6]** The LogEntry to be logged.
-
-**Examples**
-
-```javascript
-// Define a custom function to handle logs.
-function logHandler (logEntry) {
-  // Compile the meta info of the log for a prefix.
-  const { timestamp, level, target } = logEntry
-  let { method } = logEntry
-  const logInfo = `${timestamp} - ${target.type} - ${level}`
-
-  // Assume that the first message parameter is a string.
-  const [log, ...extra] = logEntry.messages
-
-  // For the timer methods, don't actually use the console methods.
-  //    The Logger already did the timing, so simply log out the info.
-  if (['time', 'timeLog', 'timeEnd'].includes(method)) {
-    method = 'debug'
-  }
-
-  console[method](`${logInfo} - ${log}`, ...extra)
-}
-
-// Provide the LogHandler as part of the SDK configurations.
-const configs = { ... }
-configs.logs.handler = logHandler
-const client = create(configs)
-```
 
 ### LogEntry
 
@@ -1582,6 +1539,50 @@ function defaultLogHandler (logEntry) {
 
   console[method](`${logInfo} - ${log}`, ...extra)
 }
+```
+
+### LogHandler
+
+A LogHandler can be used to customize how the SDK should log information. By
+   default, the SDK will log information to the console, but a LogHandler can
+   be configured to change this behaviour.
+
+A LogHandler can be provided to the SDK as part of its configuration (see
+   [config.logs][27]). The SDK will then provide this
+   function with the logged information.
+
+Type: [Function][16]
+
+**Parameters**
+
+-   `LogEntry` **[Object][6]** The LogEntry to be logged.
+
+**Examples**
+
+```javascript
+// Define a custom function to handle logs.
+function logHandler (logEntry) {
+  // Compile the meta info of the log for a prefix.
+  const { timestamp, level, target } = logEntry
+  let { method } = logEntry
+  const logInfo = `${timestamp} - ${target.type} - ${level}`
+
+  // Assume that the first message parameter is a string.
+  const [log, ...extra] = logEntry.messages
+
+  // For the timer methods, don't actually use the console methods.
+  //    The Logger already did the timing, so simply log out the info.
+  if (['time', 'timeLog', 'timeEnd'].includes(method)) {
+    method = 'debug'
+  }
+
+  console[method](`${logInfo} - ${log}`, ...extra)
+}
+
+// Provide the LogHandler as part of the SDK configurations.
+const configs = { ... }
+configs.logs.handler = logHandler
+const client = create(configs)
 ```
 
 ## Media
@@ -1837,8 +1838,12 @@ Prompt the user for permission to use their audio and/or video devices.
 
 A set of [SdpHandlerFunction][40]s for manipulating SDP information.
 These handlers are used to customize low-level call behaviour for very specific
-environments and/or scenarios. They can be provided during SDK instantiation
-to be used for all calls.
+environments and/or scenarios.
+
+Note that SDP handlers are exposed on the entry point of the SDK. They can be added during
+initialization of the SDK using the [config.call.sdpHandlers][41] configuration
+parameter. They can also be set after the SDK's creation by using the
+[call.setSdpHandlers][42] function.
 
 **Examples**
 
@@ -1847,29 +1852,51 @@ import { create, sdpHandlers } from 'kandy';
 const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
 const client = create({
   call: {
-    sdpHandlers: [ <Your-SDP-Handler-Function>, ...]
+    sdpHandlers: [ codecRemover, <Your-SDP-Handler-Function>, ...]
   }
 })
 ```
 
+```javascript
+// Through the Call API post-instantiation
+client.call.setSdpHandlers([ codecRemover, <Your-SDP-Handler-Function>, ...])
+```
+
 ### createCodecRemover
 
-In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party.
+This function creates an SDP handler that will remove codecs matching the selectors specified for SDP offers and answers.
+
+In some scenarios it's necessary to remove certain codecs being offered by the SDK to remote parties. For example, some legacy call services limit the SDP
+length (usually to 4KB) and will reject calls that have SDP size above this amount.
+
 While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.
 
-To facilitate this common task, the SDK provides a codec removal handler creator that can be used for this purpose.
-
-The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.
+To facilitate this common task, the createCodecRemover function creates a codec removal handler that can be used for this purpose. Applications can use this codec
+removal handler in combination with the [call.getAvailableCodecs][43] function in order to build logic to determine the best codecs to use
+for their application.
 
 **Parameters**
 
--   `codecs` **[Array][12]&lt;[string][7]>** A list of codec names to remove from the SDP.
+-   `codecs` **([Array][12]&lt;CodecSelector> | [Array][12]&lt;[string][7]>)** A list of codec selectors to remove from the SDP. If passing a list of strings, they will be converted into
+                                                         codec selectors that correspond to those names without any extra FMTP parameters.
 
 **Examples**
 
 ```javascript
 import { create, sdpHandlers } from 'kandy';
-const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
+
+const codecRemover = sdpHandlers.createCodecRemover([
+  // Remove all VP8 and VP9 codecs.
+  'VP8',
+  'VP9',
+
+  // Remove all H264 codecs with the specified FMTP parameters.
+  {
+    name: 'H264',
+    fmtpParams: ['profile-level-id=4d0032', 'packetization-mode=1']
+  }
+])
+
 const client = create({
   call: {
     sdpHandlers: [codecRemover]
@@ -1878,6 +1905,18 @@ const client = create({
 ```
 
 Returns **call.SdpHandlerFunction** The resulting SDP handler that will remove the codec.
+
+### CodecSelector
+
+An object that represents a selector to match codecs of an RTP map in SDP.
+
+Type: [Object][6]
+
+**Properties**
+
+-   `name` **[string][7]** The name of the codec.
+-   `fmtpParams` **[Array][12]&lt;[string][7]>** An array of strings to match against the "a=fmtp" format parameters for the corresponding codec.
+                                         All of the elements in the array must be contained in the "a=fmtp" attribute in order to be a match.
 
 ## setDefaultDevices
 
@@ -1993,12 +2032,12 @@ Type: [Object][6]
 
 Fetches information about a User.
 
-The SDK will emit a [users:change][41]
+The SDK will emit a [users:change][44]
    event after the operation completes. The User's information will then
    be available.
 
 Information about an available User can be retrieved using the
-   [user.get][42] API.
+   [user.get][45] API.
 
 **Parameters**
 
@@ -2007,36 +2046,36 @@ Information about an available User can be retrieved using the
 ### fetchSelfInfo
 
 Fetches information about the current User from directory.
-Compared to [user.fetch][43] API, this API retrieves additional user related information.
+Compared to [user.fetch][46] API, this API retrieves additional user related information.
 
-The SDK will emit a [users:change][41]
+The SDK will emit a [users:change][44]
    event after the operation completes. The User's information will then
    be available.
 
 Information about an available User can be retrieved using the
-   [user.get][42] API.
+   [user.get][45] API.
 
 ### get
 
 Retrieves information about a User, if available.
 
-See the [user.fetch][43] and [user.search][44] APIs for details about
+See the [user.fetch][46] and [user.search][47] APIs for details about
    making Users' information available.
 
 **Parameters**
 
 -   `userId` **user.UserID** The User ID of the user.
 
-Returns **[user.User][45]** The User object for the specified user.
+Returns **[user.User][48]** The User object for the specified user.
 
 ### getAll
 
 Retrieves information about all available Users.
 
-See the [user.fetch][43] and [user.search][44] APIs for details about
+See the [user.fetch][46] and [user.search][47] APIs for details about
    making Users' information available.
 
-Returns **[Array][12]&lt;[user.User][45]>** An array of all the User objects.
+Returns **[Array][12]&lt;[user.User][48]>** An array of all the User objects.
 
 ### search
 
@@ -2045,10 +2084,10 @@ Searches the domain's directory for Users.
 Directory searching only supports one filter. If multiple filters are provided, only one of the filters will be used for the search.
 A search with no filters provided will return all users.
 
-The SDK will emit a [directory:change][46]
+The SDK will emit a [directory:change][49]
    event after the operation completes. The search results will be
    provided as part of the event, and will also be available using the
-   [user.get][42] and [user.getAll][47] APIs.
+   [user.get][45] and [user.getAll][50] APIs.
 
 **Parameters**
 
@@ -2116,17 +2155,17 @@ Returns voicemail data from the store.
 
 [20]: #conversationconversationcreatemessage
 
-[21]: #conversationmessageaddpart
+[21]: #conversationmessage
 
-[22]: #conversationmessagesend
+[22]: #conversationmessageaddpart
 
-[23]: #conversationconversationgetmessages
+[23]: #conversationmessagesend
 
-[24]: #conversationconversationgetmessage
+[24]: #conversationconversationgetmessages
 
-[25]: conversation.chatTypes
+[25]: #conversationconversationgetmessage
 
-[26]: #conversationmessage
+[26]: conversation.chatTypes
 
 [27]: #configconfiglogs
 
@@ -2156,16 +2195,22 @@ Returns voicemail data from the store.
 
 [40]: call.SdpHandlerFunction
 
-[41]: #usereventuserschange
+[41]: #configconfigcall
 
-[42]: #userget
+[42]: call.setSdpHandlers
 
-[43]: #userfetch
+[43]: call.getAvailableCodecs
 
-[44]: #usersearch
+[44]: #usereventuserschange
 
-[45]: #useruser
+[45]: #userget
 
-[46]: #usereventdirectorychange
+[46]: #userfetch
 
-[47]: #usergetall
+[47]: #usersearch
+
+[48]: #useruser
+
+[49]: #usereventdirectorychange
+
+[50]: #usergetall

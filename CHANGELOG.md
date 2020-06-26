@@ -5,6 +5,19 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.17.0 - 2020-06-26
+
+### Added
+
+- Added documentation about `CodecSelectors` for `sdpHandlers.createCodecRemover`.
+
+### Fixed
+
+- Fixed a Call issue where the `changeInputDevices` API would not act on the correct call. `KAA-2404`
+  - Please note that there are still known issues for changing video when there are multiple active video calls. See `KAA-2420`.
+- Fixed an Authentication issue where the `connect` API would not include the `clientCorrelator` and `forceLogOut` options in a new subscription. `KAA-2204`
+- Fixed an issue with `sdpHandlers.createCodecRemover` where it wasn't handling multiple codecs selectors with the same name. `KAA-2416`
+
 ## 3.16.0 - 2020-05-29
 
 ### Fixed
@@ -354,7 +367,7 @@ Version 3.0 is a hard break in backwards compatibility for Kandy.js. This latest
 
 The summary of the breaking changes are (1) most API functions have been namespaced, (2) many API function names have been slightly changed, (3) many event names have been slightly changed, (4) event argument parameters have changed, and (5) renaming of SDK build files.
 
-For in-depth information about what has changed, please see: https://confluence.genband.com/display/KSDK/Kandy.js+3.0.0-beta+Breaking+Changes
+For in-depth information about what has changed, please see: <https://confluence.genband.com/display/KSDK/Kandy.js+3.0.0-beta+Breaking+Changes>
 
 ### Fixed
 
