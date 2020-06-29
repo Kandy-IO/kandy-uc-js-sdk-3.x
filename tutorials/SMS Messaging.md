@@ -22,7 +22,7 @@ When creating or retrieving a SMS Conversation, you have to specify that it is o
 var currentConvo
 
 // Create a new conversation with another cell device.
-function createConvo() {
+function createConvo () {
   var participant = document.getElementById('cell-device').value
 
   // Pass in a cell number to create a conversation with that number.
