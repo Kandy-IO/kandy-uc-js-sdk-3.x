@@ -7,6 +7,10 @@ Kandy.js change log.
 
 ## 3.18.0 - beta
 
+### Fixed
+
+- Fixed a Call issue where during call resynchronization (on WebSocket connect) the request to resync the call would not use the appropriate credentials. `KAA-2436`
+
 ## 3.17.0 - 2020-06-26
 
 ### Added
