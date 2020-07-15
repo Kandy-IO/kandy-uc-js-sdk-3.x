@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.uc.js
- * Version: 3.18.0-beta.474
+ * Version: 3.18.0-beta.475
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -61222,7 +61222,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.18.0-beta.474';
+  return '3.18.0-beta.475';
 }
 
 /***/ }),
@@ -66101,15 +66101,22 @@ eventsMap[actionTypes.CREATE_CONVERSATION] = function (action) {
 };
 
 eventsMap[actionTypes.SEND_MESSAGE_FINISH] = function (action) {
-  return {
-    type: eventTypes.MESSAGES_CHANGE,
-    args: {
-      destination: action.payload.destination,
-      type: action.payload.type,
-      messageId: action.payload.messageId,
-      sender: action.payload.sender
-    }
-  };
+  if (action.error) {
+    return {
+      type: eventTypes.MESSAGES_ERROR,
+      args: { error: action.payload }
+    };
+  } else {
+    return {
+      type: eventTypes.MESSAGES_CHANGE,
+      args: {
+        destination: action.payload.destination,
+        type: action.payload.type,
+        messageId: action.payload.messageId,
+        sender: action.payload.sender
+      }
+    };
+  }
 };
 
 eventsMap[actionTypes.MESSAGE_RECEIVED] = function (action) {
@@ -66944,17 +66951,31 @@ reducers[actionTypes.MESSAGE_RECEIVED] = {
   }
 };
 
-reducers[actionTypes.SEND_MESSAGE_FINISH] = (state, action) => {
-  return (0, _extends3.default)({}, state, {
-    conversations: state.conversations.map(conversation => {
-      if ((0, _fp.isEqual)(conversation.destination, action.payload.destination) && conversation.type === action.payload.type) {
-        return (0, _extends3.default)({}, conversation, {
-          messages: conversation.messages.map(message => sendMessageFinishHelper(message, action))
-        });
-      }
-      return conversation;
-    })
-  });
+reducers[actionTypes.SEND_MESSAGE_FINISH] = {
+  next(state, action) {
+    return (0, _extends3.default)({}, state, {
+      conversations: state.conversations.map(conversation => {
+        if ((0, _fp.isEqual)(conversation.destination, action.payload.destination) && conversation.type === action.payload.type) {
+          return (0, _extends3.default)({}, conversation, {
+            messages: conversation.messages.map(message => sendMessageFinishHelper(message, action))
+          });
+        }
+        return conversation;
+      })
+    });
+  },
+  throw(state, action) {
+    return (0, _extends3.default)({}, state, {
+      conversations: state.conversations.map(conversation => {
+        if ((0, _fp.isEqual)(conversation.destination, action.payload.destination) && conversation.type === action.payload.type) {
+          return (0, _extends3.default)({}, conversation, {
+            messages: conversation.messages.filter(message => message.timestamp !== action.payload.timestamp && !message.isPending)
+          });
+        }
+        return conversation;
+      })
+    });
+  }
 };
 
 // Remove all messages from the specified conversation.
@@ -67297,7 +67318,11 @@ const log = _logs.logManager.getLogger('MESSAGING');
  */
 function* send() {
   const sendMessageChannel = yield (0, _effects3.actionChannel)(actionTypes.SEND_MESSAGE);
+  // This is a complex saga.  Because we can have failures inside a nested loop
+  // which is inside the saga while loop, we need to use a variable to track
+  // if we need to reset the saga based on a failure inside nested loop.
   while (true) {
+    let resetSaga = false;
     const action = yield (0, _effects3.take)(sendMessageChannel);
     const config = yield (0, _effects3.select)(_selectors2.getConnectionInfo, platform);
     const { protocol, server, version, port } = config.server;
@@ -67327,8 +67352,25 @@ function* send() {
       } else if (part.type === 'file' && part.file) {
         usedParts.file = (0, _extends3.default)({}, part);
         const upload = yield (0, _effects3.call)(uploadFile, part.file);
+
         if (!upload.error && !upload.payload.body.error) {
           attachments.push(upload.payload.body.success.handle);
+        } else {
+          // We failed to upload the file
+          yield (0, _effects3.put)(_actions.messageActions.sendMessageFinish({
+            sender: userInfo.username,
+            destination: action.payload.destination,
+            type: type,
+            parts: action.payload.message.parts,
+            timestamp: action.payload.message.timestamp,
+            error: new _errors2.default({
+              message: 'Failed to send message with attachment.',
+              code: _errors.messagingCodes.FILE_UPLOAD_FAIL
+            })
+          }));
+          // Failure inside nested loop, request saga reset
+          resetSaga = true;
+          break;
         }
       } else if (part.type === 'json' && part.json) {
         // Ensure json is stringified for sending.
@@ -67347,17 +67389,37 @@ function* send() {
           type: 'application/vdn.kandy.json'
         });
         const upload = yield (0, _effects3.call)(uploadFile, jsonBlob);
+
         if (!upload.error && !upload.payload.body.error) {
           attachments.push(upload.payload.body.success.handle);
+        } else {
+          // We failed to upload the json blob
+          yield (0, _effects3.put)(_actions.messageActions.sendMessageFinish({
+            sender: userInfo.username,
+            destination: action.payload.destination,
+            type: type,
+            parts: action.payload.message.parts,
+            timestamp: action.payload.message.timestamp,
+            error: new _errors2.default({
+              message: 'Failed to send message with attachment.',
+              code: _errors.messagingCodes.FILE_UPLOAD_FAIL
+            })
+          }));
+          // Failure inside nested loop, request saga reset
+          resetSaga = true;
+          break;
         }
       }
+    }
+    if (resetSaga) {
+      continue;
     }
 
     if (!usedParts.text && !usedParts.file && !usedParts.json) {
       // We have no usable parts.
       yield (0, _effects3.put)(_actions.messageActions.sendMessageFinish({
         sender: userInfo.username,
-        destination: action.payload.recipient,
+        destination: action.payload.destination,
         type: type,
         parts: action.payload.message.parts,
         timestamp: action.payload.message.timestamp,
@@ -67366,7 +67428,7 @@ function* send() {
           code: _errors.messagingCodes.SEND_MESSAGE_FAIL
         })
       }));
-      return;
+      continue;
     }
     if (attachments.length > 0) {
       queryParams.attach = attachments;
@@ -67385,7 +67447,7 @@ function* send() {
 
       yield (0, _effects3.put)(_actions.messageActions.sendMessageFinish({
         sender: userInfo.username,
-        destination: action.payload.recipient,
+        destination: action.payload.destination,
         type: type,
         parts: action.payload.message.parts,
         timestamp: action.payload.message.timestamp,
