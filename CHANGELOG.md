@@ -5,6 +5,12 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.18.0 - 2020-07-31
+
+### Fixed
+
+- Fixed a Call issue where during call resynchronization (on WebSocket connect) the request to resync the call would not use the appropriate credentials. `KAA-2436`
+
 ## 3.17.0 - 2020-06-26
 
 ### Added
