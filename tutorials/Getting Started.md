@@ -11,7 +11,7 @@ In this quickstart, we will help you dip your toes into Kandy before you dive in
 
 ## Using Kandy.js
 
-To begin, you will need to include the Kandy javascript library in your application. The Kandy.js library can be found here: [Kandy.js](https://cdn.jsdelivr.net/gh/Kandy-IO/kandy-uc-js-sdk-3.x@494/dist/kandy.js).
+To begin, you will need to include the Kandy javascript library in your application. The Kandy.js library can be found here: [Kandy.js](https://cdn.jsdelivr.net/gh/Kandy-IO/kandy-uc-js-sdk-3.x@495/dist/kandy.js).
 
 Kandy.js will expose a factory function to your page called `create`. This function is used to create an instance of the SDK, as well as to configure that instance.
 
@@ -24,7 +24,7 @@ const kandy = create(configs);
 kandy.on( ... );
 ```
 
-After you've created your instance of Kandy, you can begin playing around with it to learn its functionality and see how it fits in your application. The [Kandy API reference documentation](../../references/uc#) will help to explain the details of the features available.
+After you've created your instance of Kandy, you can begin playing around with it to learn its functionality and see how it fits in your application. The Kandy API reference documentation will help to explain the details of the features available.
 
 ## Configurations
 
