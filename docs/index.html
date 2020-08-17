@@ -1385,7 +1385,8 @@ amount of information will depend on how the Logs feature is configured.</p>
 <p>The format of logs can also be customized by providing a
 <a href="#loggerloghandler">LogHandler</a>. This function will receive a
 <a href="#loggerlogentry">LogEntry</a> which it can handle as it sees fit. By
-default, the SDK will log information to the console.</p>
+default, the SDK will log information to the console. For more
+information, see the <a href="#logger">Logs feature</a> description.</p>
 
 
   <div class='pre p1 fill-light mt0'>config.logs</div>
@@ -4445,7 +4446,8 @@ client.on(<span class="hljs-string">'dummy:event'</span>, <span class="hljs-func
 
   
 
-  <p>Connect with user credentials to any backend services that the SDK instance deals with.</p>
+  <p>Connect by providing an access token to any backend services that the SDK instance deals with.
+You can optionally provide a refresh token and the SDK will automatically get new access tokens.</p>
 
 
   <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
@@ -4486,25 +4488,34 @@ client.on(<span class="hljs-string">'dummy:event'</span>, <span class="hljs-func
                 <tr>
   <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
   </td>
-  <td class='break-word'><span>The username including the application's domain.
+  <td class='break-word'><span>The username without the application's domain.
 </span></td>
 </tr>
 
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>credentials.password</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  <td class='break-word'><span class='code bold'>credentials.accessToken</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
   </td>
-  <td class='break-word'><span>The user's password.
+  <td class='break-word'><span>An access token for the user with the provided user Id.
 </span></td>
 </tr>
 
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>credentials.authname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  <td class='break-word'><span class='code bold'>credentials.refreshToken</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
-  <td class='break-word'><span>The user's authorization name.
+  <td class='break-word'><span>A refresh token for the same user.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.expires</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?</code>
+  </td>
+  <td class='break-word'><span>The time in seconds until the access token will expire.
 </span></td>
 </tr>
 
@@ -4536,15 +4547,6 @@ client.on(<span class="hljs-string">'dummy:event'</span>, <span class="hljs-func
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.forceLogOut</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
-  </td>
-  <td class='break-word'><span>Force the oldest connection to log out if too many simultaneous connections. Link only.
-</span></td>
-</tr>
-
-
-              
-                <tr>
   <td class='break-word'><span class='code bold'>options.clientCorrelator</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
   <td class='break-word'><span>Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
@@ -4573,10 +4575,9 @@ client.on(<span class="hljs-string">'dummy:event'</span>, <span class="hljs-func
       
       <pre class='p1 overflow-auto round fill-light'>client.connect({
   <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
-  <span class="hljs-attr">password</span>: <span class="hljs-string">'********'</span>
-  <span class="hljs-attr">authname</span>: <span class="hljs-string">'********'</span>
-}, {
-  <span class="hljs-attr">forceLogOut</span>: <span class="hljs-literal">true</span>
+  <span class="hljs-attr">accessToken</span>: <span class="hljs-string">'AT0V1fswAiJadokx1iJMQdG04pRf'</span>,
+  <span class="hljs-attr">refreshToken</span>: <span class="hljs-string">'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'</span>,
+  <span class="hljs-attr">expires</span>: <span class="hljs-number">3600</span>
 });</pre>
     
   
@@ -4740,8 +4741,7 @@ client.on(<span class="hljs-string">'dummy:event'</span>, <span class="hljs-func
 
   
 
-  <p>Connect by providing an access token to any backend services that the SDK instance deals with.
-You can optionally provide a refresh token and the SDK will automatically get new access tokens.</p>
+  <p>Connect with user credentials to any backend services that the SDK instance deals with.</p>
 
 
   <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
@@ -4782,34 +4782,25 @@ You can optionally provide a refresh token and the SDK will automatically get ne
                 <tr>
   <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
   </td>
-  <td class='break-word'><span>The username without the application's domain.
+  <td class='break-word'><span>The username including the application's domain.
 </span></td>
 </tr>
 
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>credentials.accessToken</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  <td class='break-word'><span class='code bold'>credentials.password</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
   </td>
-  <td class='break-word'><span>An access token for the user with the provided user Id.
+  <td class='break-word'><span>The user's password.
 </span></td>
 </tr>
 
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>credentials.refreshToken</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  <td class='break-word'><span class='code bold'>credentials.authname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
-  <td class='break-word'><span>A refresh token for the same user.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.expires</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?</code>
-  </td>
-  <td class='break-word'><span>The time in seconds until the access token will expire.
+  <td class='break-word'><span>The user's authorization name.
 </span></td>
 </tr>
 
@@ -4841,6 +4832,15 @@ You can optionally provide a refresh token and the SDK will automatically get ne
             <tbody class='mt1'>
               
                 <tr>
+  <td class='break-word'><span class='code bold'>options.forceLogOut</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
+  </td>
+  <td class='break-word'><span>Force the oldest connection to log out if too many simultaneous connections. Link only.
+</span></td>
+</tr>
+
+
+              
+                <tr>
   <td class='break-word'><span class='code bold'>options.clientCorrelator</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
   <td class='break-word'><span>Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
@@ -4869,9 +4869,10 @@ You can optionally provide a refresh token and the SDK will automatically get ne
       
       <pre class='p1 overflow-auto round fill-light'>client.connect({
   <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
-  <span class="hljs-attr">accessToken</span>: <span class="hljs-string">'AT0V1fswAiJadokx1iJMQdG04pRf'</span>,
-  <span class="hljs-attr">refreshToken</span>: <span class="hljs-string">'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'</span>,
-  <span class="hljs-attr">expires</span>: <span class="hljs-number">3600</span>
+  <span class="hljs-attr">password</span>: <span class="hljs-string">'********'</span>
+  <span class="hljs-attr">authname</span>: <span class="hljs-string">'********'</span>
+}, {
+  <span class="hljs-attr">forceLogOut</span>: <span class="hljs-literal">true</span>
 });</pre>
     
   
@@ -13421,13 +13422,28 @@ as part of the event argument.</p>
   </div>
   
 
-  <p>The internal logger is used to provide information about the SDK's behaviour.
-The logger can provide two types of logs: basic logs and action logs. Basic
-logs are simple lines of information about what the SDK is doing during operations.
-Action logs are complete information about a specific action that occurred
-within the SDK, providing debug information describing it.
-The amount of information logged can be configured as part of the SDK configuration.
-See <a href="#configconfiglogs">config.logs</a> .</p>
+  <p>The SDK has an internal logging system for providing information about its
+behaviour. The SDK will generate logs, at different levels for different
+types of information, which are routed to a
+"<a href="#loggerloghandler">Log Handler</a>" for consumption. An application
+can provide their own Log Handler (see
+<a href="#configconfiglogs">config.logs</a>) to customize how the logs are
+handled, or allow the default Log Handler to print the logs to the
+console.</p>
+<p>The SDK's default Log Handler is merely a thin wrapper around the browser's
+console API (ie. <code>window.console</code>). It receives the log generated by the
+SDK, called a "<a href="#loggerlogentry">Log Entry</a>", formats a
+human-readable message with it, then uses the console to log it at the
+appropriate level. This is important to be aware of, since your browser's
+console may affect how you see the SDK's default log messages. Since the
+default Log Handler uses the console's levels, the browser may filter
+which messages are shown depending on which levels it has configured. For
+a user that understands console log levels, this can be helpful for
+filtering the logs to only the relevant information. But it can equally
+be a hindrance by hiding the more detailed log messages (at the 'debug'
+level), since browser can have this level hidden by default. For this
+reason, we recommend providing a custom Log Handler to the SDK that is
+better suited for your application and its users.</p>
 
 
   <div class='pre p1 fill-light mt0'>logger</div>
@@ -13769,6 +13785,13 @@ configs.logs.handler = logHandler
   
 
   <p>Possible levels for the SDK logger.</p>
+<p>The SDK will provide <a href="#loggerlogentry">Log Entries</a> to the
+<a href="#loggerloghandler">Log Handler</a> for all logs at or above the set
+log level. 'debug' is considered the lowest level and 'silent' the
+highest level. For example, if the current level is 'info', then the
+<a href="#loggerloghandler">Log Handler</a> will receive
+<a href="#loggerlogentry">Log Entries</a> for logs at 'info', 'warn', and
+'error', but not for the 'debug' level.</p>
 
 
   <div class='pre p1 fill-light mt0'>levels()</div>
