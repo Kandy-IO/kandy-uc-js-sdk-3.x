@@ -9,6 +9,10 @@
   description: # Kandy Configurations
   link: /quickstarts/javascript/uc/Configurations
 
+- name: Logging
+  description: # SDK Logs
+  link: /quickstarts/javascript/uc/Logging
+
 - name: User Connect
   description: # Connecting and Disconnecting
   link: /quickstarts/javascript/uc/User%20Connect
