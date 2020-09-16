@@ -423,6 +423,32 @@ Removes a global event listener from SDK instance.
 
 ### connect
 
+Connect with user credentials to any backend services that the SDK instance deals with.
+
+**Parameters**
+
+-   `credentials` **[Object][7]** The credentials object.
+    -   `credentials.username` **[string][8]** The username including the application's domain.
+    -   `credentials.password` **[string][8]** The user's password.
+    -   `credentials.authname` **[string][8]?** The user's authorization name.
+-   `options` **[Object][7]?** The options object for non-credential options.
+    -   `options.forceLogOut` **[boolean][11]?** Force the oldest connection to log out if too many simultaneous connections. Link only.
+    -   `options.clientCorrelator` **[string][8]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  password: '********'
+  authname: '********'
+}, {
+  forceLogOut: true
+});
+```
+
+### connect
+
 Connect by providing a refresh token, to any backend services that the SDK instance deals with.
 
 **Parameters**
@@ -488,32 +514,6 @@ client.connect({
   accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
   refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
   expires: 3600
-});
-```
-
-### connect
-
-Connect with user credentials to any backend services that the SDK instance deals with.
-
-**Parameters**
-
--   `credentials` **[Object][7]** The credentials object.
-    -   `credentials.username` **[string][8]** The username including the application's domain.
-    -   `credentials.password` **[string][8]** The user's password.
-    -   `credentials.authname` **[string][8]?** The user's authorization name.
--   `options` **[Object][7]?** The options object for non-credential options.
-    -   `options.forceLogOut` **[boolean][11]?** Force the oldest connection to log out if too many simultaneous connections. Link only.
-    -   `options.clientCorrelator` **[string][8]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
-}, {
-  forceLogOut: true
 });
 ```
 
@@ -1511,11 +1511,25 @@ The SDK will provide [Log Entries][5] to the
 
 **Properties**
 
--   `SILENT` **[string][8]** Log nothing.
--   `ERROR` **[string][8]** Log only unhandled errors.
--   `WARN` **[string][8]** Log issues that may cause problems or unexpected behaviour.
--   `INFO` **[string][8]** Log useful information and messages to indicate the SDK's internal operations.
--   `DEBUG` **[string][8]** Log information to help diagnose problematic behaviour.
+-   `SILENT` **[string][8]** Nothing will be logged.
+-   `ERROR` **[string][8]** Unhandled error information will be logged. If
+       the SDK encounters an issue it cannot resolve, the error will be included
+       in the logs. This likely points to an issue with the SDK itself or an
+       issue with how the SDK is being used.
+-   `WARN` **[string][8]** Warning messages for the application developer will
+       be logged. If the SDK encounters an issue that it can recover and continue,
+       a warning about the issue will be included in the logs. These logs point
+       to issues that need to be handled by the application. For example, providing
+       an invalid configuration to the SDK will cause a warning log that explains
+       the issue.
+-   `INFO` **[string][8]** General information about the SDK's operations will
+       be logged, outlining how the SDK is handling the operations. Reading through
+       these logs should provide a high-level view of what the SDK is doing,
+       and why it is doing it.
+-   `DEBUG` **[string][8]** Detailed information about the SDK's operations,
+       meant for debugging issues, will be logged. Specific information and relevant
+       operation data are provided for understanding the scenario that the SDK
+       was in during the operation.
 
 ### LogHandler
 
