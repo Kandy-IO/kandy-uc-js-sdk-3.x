@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.uc.js
- * Version: 3.20.0-beta.533
+ * Version: 3.20.0-beta.534
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -59470,8 +59470,8 @@ function api({ dispatch, getState }) {
   const callHistoryApi = {
     /**
      * Fetches the list of call logs and stores them locally. The API
-     * `getCallLogs` can then be used to get the logs from local state after
-     * it has been updated.
+     * {@link #callhistoryget CallHistory.get} can then be used to get
+     * the logs from local state after it has been updated.
      * @public
      * @memberof callHistory
      * @requires callHistory
@@ -59571,7 +59571,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 /**
- * Call history state has been updated. See `getCallLogs()` to retrieve new state.
+ * Call history state has been updated. See {@link #callhistoryget CallHistory.get} to retrieve new state.
  * @public
  * @memberof callHistory
  * @event callHistory:change
@@ -61274,7 +61274,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.20.0-beta.533';
+  return '3.20.0-beta.534';
 }
 
 /***/ }),
@@ -62932,6 +62932,15 @@ const connCheckMethods = exports.connCheckMethods = {
  * @typedef {string} UserID
  * @memberof call
  * @requires cpaas_user_id
+ */
+
+/**
+ * The ID of a User (e.g. joe@test.3s5j.att.com)
+ * @public
+ * @static
+ * @typedef {string} UserID
+ * @memberof user
+ * @requires link_user_id
  */
 
 /**
