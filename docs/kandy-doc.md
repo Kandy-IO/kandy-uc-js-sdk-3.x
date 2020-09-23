@@ -444,13 +444,15 @@ client.connect({
 
 ### connect
 
-Connect by providing a refresh token, to any backend services that the SDK instance deals with.
+Connect by providing an access token to any backend services that the SDK instance deals with.
+You can optionally provide a refresh token and the SDK will automatically get new access tokens.
 
 **Parameters**
 
 -   `credentials` **[Object][7]** The credentials object.
     -   `credentials.username` **[string][8]** The username without the application's domain.
-    -   `credentials.refreshToken` **[string][8]** A refresh token for the same user.
+    -   `credentials.accessToken` **[string][8]** An access token for the user with the provided user Id.
+    -   `credentials.refreshToken` **[string][8]?** A refresh token for the same user.
     -   `credentials.expires` **[number][12]?** The time in seconds until the access token will expire.
 -   `options` **[Object][7]?** The options object for non-credential options.
     -   `options.clientCorrelator` **[string][8]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
@@ -460,7 +462,8 @@ Connect by providing a refresh token, to any backend services that the SDK insta
 ```javascript
 client.connect({
   username: 'alfred@example.com',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
   expires: 3600
 });
 ```
@@ -493,15 +496,13 @@ client.connect({
 
 ### connect
 
-Connect by providing an access token to any backend services that the SDK instance deals with.
-You can optionally provide a refresh token and the SDK will automatically get new access tokens.
+Connect by providing a refresh token, to any backend services that the SDK instance deals with.
 
 **Parameters**
 
 -   `credentials` **[Object][7]** The credentials object.
     -   `credentials.username` **[string][8]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][8]** An access token for the user with the provided user Id.
-    -   `credentials.refreshToken` **[string][8]?** A refresh token for the same user.
+    -   `credentials.refreshToken` **[string][8]** A refresh token for the same user.
     -   `credentials.expires` **[number][12]?** The time in seconds until the access token will expire.
 -   `options` **[Object][7]?** The options object for non-credential options.
     -   `options.clientCorrelator` **[string][8]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
@@ -511,8 +512,7 @@ You can optionally provide a refresh token and the SDK will automatically get ne
 ```javascript
 client.connect({
   username: 'alfred@example.com',
-  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
   expires: 3600
 });
 ```
@@ -1901,6 +1901,18 @@ const client = create({
 client.call.setSdpHandlers([ codecRemover, <Your-SDP-Handler-Function>, ...])
 ```
 
+### CodecSelector
+
+An object that represents a selector to match codecs of an RTP map in SDP.
+
+Type: [Object][7]
+
+**Properties**
+
+-   `name` **[string][8]** The name of the codec.
+-   `fmtpParams` **[Array][13]&lt;[string][8]>** An array of strings to match against the "a=fmtp" format parameters for the corresponding codec.
+                                         All of the elements in the array must be contained in the "a=fmtp" attribute in order to be a match.
+
 ### createCodecRemover
 
 This function creates an SDP handler that will remove codecs matching the selectors specified for SDP offers and answers.
@@ -1944,18 +1956,6 @@ const client = create({
 ```
 
 Returns **call.SdpHandlerFunction** The resulting SDP handler that will remove the codec.
-
-### CodecSelector
-
-An object that represents a selector to match codecs of an RTP map in SDP.
-
-Type: [Object][7]
-
-**Properties**
-
--   `name` **[string][8]** The name of the codec.
--   `fmtpParams` **[Array][13]&lt;[string][8]>** An array of strings to match against the "a=fmtp" format parameters for the corresponding codec.
-                                         All of the elements in the array must be contained in the "a=fmtp" attribute in order to be a match.
 
 ## setDefaultDevices
 
