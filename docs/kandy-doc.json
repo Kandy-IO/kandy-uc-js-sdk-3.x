@@ -14036,7 +14036,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Connect by providing a refresh token, to any backend services that the SDK instance deals with.",
+                    "value": "Connect by providing an OAuth token, to any backend services that the SDK instance deals with.",
                     "position": {
                       "start": {
                         "line": 1,
@@ -14045,8 +14045,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 96,
-                        "offset": 95
+                        "column": 95,
+                        "offset": 94
                       },
                       "indent": []
                     }
@@ -14060,8 +14060,8 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 96,
-                    "offset": 95
+                    "column": 95,
+                    "offset": 94
                   },
                   "indent": []
                 }
@@ -14075,8 +14075,8 @@
               },
               "end": {
                 "line": 1,
-                "column": 96,
-                "offset": 95
+                "column": 95,
+                "offset": 94
               }
             }
           },
@@ -14088,26 +14088,31 @@
               "type": null
             },
             {
+              "title": "deprecated",
+              "description": "Since version 4.19.0. Please see {@link apisetCredentials setCredentials} and {@link services.subscribe subscribe} for new method of connecting.",
+              "lineNumber": 4
+            },
+            {
               "title": "memberof",
               "description": "api",
-              "lineNumber": 4
+              "lineNumber": 5
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 5,
-              "name": "accessTokenAuth"
+              "lineNumber": 6,
+              "name": "oauthToken"
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 6,
+              "lineNumber": 7,
               "name": "connect"
             },
             {
               "title": "param",
               "description": "The credentials object.",
-              "lineNumber": 7,
+              "lineNumber": 8,
               "type": {
                 "type": "NameExpression",
                 "name": "Object"
@@ -14117,7 +14122,7 @@
             {
               "title": "param",
               "description": "The username without the application's domain.",
-              "lineNumber": 8,
+              "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -14126,26 +14131,13 @@
             },
             {
               "title": "param",
-              "description": "A refresh token for the same user.",
-              "lineNumber": 9,
+              "description": "An OAuth token provided by an outside service.",
+              "lineNumber": 10,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
               },
-              "name": "credentials.refreshToken"
-            },
-            {
-              "title": "param",
-              "description": "The time in seconds until the access token will expire.",
-              "lineNumber": 10,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "number"
-                }
-              },
-              "name": "credentials.expires"
+              "name": "credentials.oauthToken"
             },
             {
               "title": "param",
@@ -14175,28 +14167,28 @@
             },
             {
               "title": "example",
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});",
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});",
               "lineNumber": 13
             }
           ],
           "loc": {
             "start": {
-              "line": 118,
+              "line": 143,
               "column": 4
             },
             "end": {
-              "line": 137,
+              "line": 161,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 156,
+                "line": 162,
                 "column": 4
               },
               "end": {
-                "line": 161,
+                "line": 167,
                 "column": 5
               }
             },
@@ -14205,14 +14197,14 @@
           "augments": [],
           "examples": [
             {
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});"
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});"
             }
           ],
           "params": [
             {
               "title": "param",
               "name": "credentials",
-              "lineNumber": 7,
+              "lineNumber": 8,
               "description": {
                 "type": "root",
                 "children": [
@@ -14273,7 +14265,7 @@
                 {
                   "title": "param",
                   "name": "credentials.username",
-                  "lineNumber": 8,
+                  "lineNumber": 9,
                   "description": {
                     "type": "root",
                     "children": [
@@ -14333,68 +14325,7 @@
                 },
                 {
                   "title": "param",
-                  "name": "credentials.refreshToken",
-                  "lineNumber": 9,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "A refresh token for the same user.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 35,
-                                "offset": 34
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 35,
-                            "offset": 34
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 35,
-                        "offset": 34
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "credentials.expires",
+                  "name": "credentials.oauthToken",
                   "lineNumber": 10,
                   "description": {
                     "type": "root",
@@ -14404,7 +14335,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "The time in seconds until the access token will expire.",
+                            "value": "An OAuth token provided by an outside service.",
                             "position": {
                               "start": {
                                 "line": 1,
@@ -14413,8 +14344,8 @@
                               },
                               "end": {
                                 "line": 1,
-                                "column": 56,
-                                "offset": 55
+                                "column": 47,
+                                "offset": 46
                               },
                               "indent": []
                             }
@@ -14428,8 +14359,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 56,
-                            "offset": 55
+                            "column": 47,
+                            "offset": 46
                           },
                           "indent": []
                         }
@@ -14443,17 +14374,14 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 56,
-                        "offset": 55
+                        "column": 47,
+                        "offset": 46
                       }
                     }
                   },
                   "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "number"
-                    }
+                    "type": "NameExpression",
+                    "name": "string"
                   }
                 }
               ]
@@ -14595,6 +14523,142 @@
           "throws": [],
           "todos": [],
           "access": "public",
+          "deprecated": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Since version 4.19.0. Please see ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#apisetcredentials",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "setCredentials"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " and ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 79,
+                        "offset": 78
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "services.subscribe",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "subscribe"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 79,
+                        "offset": 78
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 115,
+                        "offset": 114
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " for new method of connecting.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 115,
+                        "offset": 114
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 145,
+                        "offset": 144
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 145,
+                    "offset": 144
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 145,
+                "offset": 144
+              }
+            }
+          },
           "memberof": "api",
           "kind": "function",
           "name": "connect",
@@ -14682,26 +14746,31 @@
               "type": null
             },
             {
+              "title": "deprecated",
+              "description": "Since version 4.19.0. Please see {@link apisetCredentials setCredentials} and {@link services.subscribe subscribe} for new method of connecting.",
+              "lineNumber": 5
+            },
+            {
               "title": "memberof",
               "description": "api",
-              "lineNumber": 5
+              "lineNumber": 6
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 6,
+              "lineNumber": 7,
               "name": "accessTokenAuth"
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 7,
+              "lineNumber": 8,
               "name": "connect"
             },
             {
               "title": "param",
               "description": "The credentials object.",
-              "lineNumber": 8,
+              "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
                 "name": "Object"
@@ -14711,7 +14780,7 @@
             {
               "title": "param",
               "description": "The username without the application's domain.",
-              "lineNumber": 9,
+              "lineNumber": 10,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -14721,7 +14790,7 @@
             {
               "title": "param",
               "description": "An access token for the user with the provided user Id.",
-              "lineNumber": 10,
+              "lineNumber": 11,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -14731,7 +14800,7 @@
             {
               "title": "param",
               "description": "A refresh token for the same user.",
-              "lineNumber": 11,
+              "lineNumber": 12,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -14744,7 +14813,7 @@
             {
               "title": "param",
               "description": "The time in seconds until the access token will expire.",
-              "lineNumber": 12,
+              "lineNumber": 13,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -14757,7 +14826,7 @@
             {
               "title": "param",
               "description": "The options object for non-credential options.",
-              "lineNumber": 13,
+              "lineNumber": 14,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -14770,7 +14839,7 @@
             {
               "title": "param",
               "description": "Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.",
-              "lineNumber": 14,
+              "lineNumber": 15,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -14783,27 +14852,27 @@
             {
               "title": "example",
               "description": "client.connect({\n  username: 'alfred@example.com',\n  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',\n  expires: 3600\n});",
-              "lineNumber": 15
+              "lineNumber": 16
             }
           ],
           "loc": {
             "start": {
-              "line": 62,
+              "line": 64,
               "column": 4
             },
             "end": {
-              "line": 84,
+              "line": 87,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 156,
+                "line": 162,
                 "column": 4
               },
               "end": {
-                "line": 161,
+                "line": 167,
                 "column": 5
               }
             },
@@ -14819,7 +14888,7 @@
             {
               "title": "param",
               "name": "credentials",
-              "lineNumber": 8,
+              "lineNumber": 9,
               "description": {
                 "type": "root",
                 "children": [
@@ -14880,7 +14949,7 @@
                 {
                   "title": "param",
                   "name": "credentials.username",
-                  "lineNumber": 9,
+                  "lineNumber": 10,
                   "description": {
                     "type": "root",
                     "children": [
@@ -14941,7 +15010,7 @@
                 {
                   "title": "param",
                   "name": "credentials.accessToken",
-                  "lineNumber": 10,
+                  "lineNumber": 11,
                   "description": {
                     "type": "root",
                     "children": [
@@ -15002,7 +15071,7 @@
                 {
                   "title": "param",
                   "name": "credentials.refreshToken",
-                  "lineNumber": 11,
+                  "lineNumber": 12,
                   "description": {
                     "type": "root",
                     "children": [
@@ -15066,7 +15135,7 @@
                 {
                   "title": "param",
                   "name": "credentials.expires",
-                  "lineNumber": 12,
+                  "lineNumber": 13,
                   "description": {
                     "type": "root",
                     "children": [
@@ -15132,7 +15201,7 @@
             {
               "title": "param",
               "name": "options",
-              "lineNumber": 13,
+              "lineNumber": 14,
               "description": {
                 "type": "root",
                 "children": [
@@ -15196,7 +15265,7 @@
                 {
                   "title": "param",
                   "name": "options.clientCorrelator",
-                  "lineNumber": 14,
+                  "lineNumber": 15,
                   "description": {
                     "type": "root",
                     "children": [
@@ -15266,6 +15335,142 @@
           "throws": [],
           "todos": [],
           "access": "public",
+          "deprecated": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Since version 4.19.0. Please see ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#apisetcredentials",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "setCredentials"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " and ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 79,
+                        "offset": 78
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "services.subscribe",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "subscribe"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 79,
+                        "offset": 78
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 115,
+                        "offset": 114
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " for new method of connecting.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 115,
+                        "offset": 114
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 145,
+                        "offset": 144
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 145,
+                    "offset": 144
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 145,
+                "offset": 144
+              }
+            }
+          },
           "memberof": "api",
           "kind": "function",
           "name": "connect",
@@ -15297,7 +15502,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Connect by providing an OAuth token, to any backend services that the SDK instance deals with.",
+                    "value": "Connect by providing a refresh token, to any backend services that the SDK instance deals with.",
                     "position": {
                       "start": {
                         "line": 1,
@@ -15306,8 +15511,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 95,
-                        "offset": 94
+                        "column": 96,
+                        "offset": 95
                       },
                       "indent": []
                     }
@@ -15321,8 +15526,8 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 95,
-                    "offset": 94
+                    "column": 96,
+                    "offset": 95
                   },
                   "indent": []
                 }
@@ -15336,8 +15541,8 @@
               },
               "end": {
                 "line": 1,
-                "column": 95,
-                "offset": 94
+                "column": 96,
+                "offset": 95
               }
             }
           },
@@ -15349,26 +15554,31 @@
               "type": null
             },
             {
+              "title": "deprecated",
+              "description": "Since version 4.19.0. Please see {@link apisetCredentials setCredentials} and {@link services.subscribe subscribe} for new method of connecting.",
+              "lineNumber": 4
+            },
+            {
               "title": "memberof",
               "description": "api",
-              "lineNumber": 4
+              "lineNumber": 5
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 5,
-              "name": "oauthToken"
+              "lineNumber": 6,
+              "name": "accessTokenAuth"
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 6,
+              "lineNumber": 7,
               "name": "connect"
             },
             {
               "title": "param",
               "description": "The credentials object.",
-              "lineNumber": 7,
+              "lineNumber": 8,
               "type": {
                 "type": "NameExpression",
                 "name": "Object"
@@ -15378,7 +15588,7 @@
             {
               "title": "param",
               "description": "The username without the application's domain.",
-              "lineNumber": 8,
+              "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -15387,18 +15597,31 @@
             },
             {
               "title": "param",
-              "description": "An OAuth token provided by an outside service.",
-              "lineNumber": 9,
+              "description": "A refresh token for the same user.",
+              "lineNumber": 10,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
               },
-              "name": "credentials.oauthToken"
+              "name": "credentials.refreshToken"
+            },
+            {
+              "title": "param",
+              "description": "The time in seconds until the access token will expire.",
+              "lineNumber": 11,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "number"
+                }
+              },
+              "name": "credentials.expires"
             },
             {
               "title": "param",
               "description": "The options object for non-credential options.",
-              "lineNumber": 10,
+              "lineNumber": 12,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -15411,7 +15634,7 @@
             {
               "title": "param",
               "description": "Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.",
-              "lineNumber": 11,
+              "lineNumber": 13,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -15423,28 +15646,28 @@
             },
             {
               "title": "example",
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});",
-              "lineNumber": 12
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});",
+              "lineNumber": 14
             }
           ],
           "loc": {
             "start": {
-              "line": 138,
+              "line": 122,
               "column": 4
             },
             "end": {
-              "line": 155,
+              "line": 142,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 156,
+                "line": 162,
                 "column": 4
               },
               "end": {
-                "line": 161,
+                "line": 167,
                 "column": 5
               }
             },
@@ -15453,14 +15676,14 @@
           "augments": [],
           "examples": [
             {
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});"
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});"
             }
           ],
           "params": [
             {
               "title": "param",
               "name": "credentials",
-              "lineNumber": 7,
+              "lineNumber": 8,
               "description": {
                 "type": "root",
                 "children": [
@@ -15521,7 +15744,7 @@
                 {
                   "title": "param",
                   "name": "credentials.username",
-                  "lineNumber": 8,
+                  "lineNumber": 9,
                   "description": {
                     "type": "root",
                     "children": [
@@ -15581,8 +15804,8 @@
                 },
                 {
                   "title": "param",
-                  "name": "credentials.oauthToken",
-                  "lineNumber": 9,
+                  "name": "credentials.refreshToken",
+                  "lineNumber": 10,
                   "description": {
                     "type": "root",
                     "children": [
@@ -15591,7 +15814,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "An OAuth token provided by an outside service.",
+                            "value": "A refresh token for the same user.",
                             "position": {
                               "start": {
                                 "line": 1,
@@ -15600,8 +15823,8 @@
                               },
                               "end": {
                                 "line": 1,
-                                "column": 47,
-                                "offset": 46
+                                "column": 35,
+                                "offset": 34
                               },
                               "indent": []
                             }
@@ -15615,8 +15838,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 47,
-                            "offset": 46
+                            "column": 35,
+                            "offset": 34
                           },
                           "indent": []
                         }
@@ -15630,8 +15853,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 47,
-                        "offset": 46
+                        "column": 35,
+                        "offset": 34
                       }
                     }
                   },
@@ -15639,13 +15862,77 @@
                     "type": "NameExpression",
                     "name": "string"
                   }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.expires",
+                  "lineNumber": 11,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The time in seconds until the access token will expire.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 56,
+                                "offset": 55
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 56,
+                            "offset": 55
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 56,
+                        "offset": 55
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "number"
+                    }
+                  }
                 }
               ]
             },
             {
               "title": "param",
               "name": "options",
-              "lineNumber": 10,
+              "lineNumber": 12,
               "description": {
                 "type": "root",
                 "children": [
@@ -15709,7 +15996,7 @@
                 {
                   "title": "param",
                   "name": "options.clientCorrelator",
-                  "lineNumber": 11,
+                  "lineNumber": 13,
                   "description": {
                     "type": "root",
                     "children": [
@@ -15779,6 +16066,142 @@
           "throws": [],
           "todos": [],
           "access": "public",
+          "deprecated": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Since version 4.19.0. Please see ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#apisetcredentials",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "setCredentials"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " and ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 79,
+                        "offset": 78
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "services.subscribe",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "subscribe"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 79,
+                        "offset": 78
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 115,
+                        "offset": 114
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " for new method of connecting.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 115,
+                        "offset": 114
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 145,
+                        "offset": 144
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 145,
+                    "offset": 144
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 145,
+                "offset": 144
+              }
+            }
+          },
           "memberof": "api",
           "kind": "function",
           "name": "connect",
@@ -15862,26 +16285,31 @@
               "type": null
             },
             {
+              "title": "deprecated",
+              "description": "Since version 4.19.0. Please see {@link apisetCredentials setCredentials} and {@link services.subscribe subscribe} for new method of connecting.",
+              "lineNumber": 4
+            },
+            {
               "title": "memberof",
               "description": "api",
-              "lineNumber": 4
+              "lineNumber": 5
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 5,
+              "lineNumber": 6,
               "name": "userCredentialsAuth"
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 6,
+              "lineNumber": 7,
               "name": "connect"
             },
             {
               "title": "param",
               "description": "The credentials object.",
-              "lineNumber": 7,
+              "lineNumber": 8,
               "type": {
                 "type": "NameExpression",
                 "name": "Object"
@@ -15891,7 +16319,7 @@
             {
               "title": "param",
               "description": "The username including the application's domain.",
-              "lineNumber": 8,
+              "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -15901,7 +16329,7 @@
             {
               "title": "param",
               "description": "The user's password.",
-              "lineNumber": 9,
+              "lineNumber": 10,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -15911,7 +16339,7 @@
             {
               "title": "param",
               "description": "The user's authorization name.",
-              "lineNumber": 10,
+              "lineNumber": 11,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -15924,7 +16352,7 @@
             {
               "title": "param",
               "description": "The options object for non-credential options.",
-              "lineNumber": 11,
+              "lineNumber": 12,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -15937,7 +16365,7 @@
             {
               "title": "param",
               "description": "Force the oldest connection to log out if too many simultaneous connections. Link only.",
-              "lineNumber": 12,
+              "lineNumber": 13,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -15950,7 +16378,7 @@
             {
               "title": "param",
               "description": "Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.",
-              "lineNumber": 13,
+              "lineNumber": 14,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -15963,7 +16391,7 @@
             {
               "title": "example",
               "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n}, {\n  forceLogOut: true\n});",
-              "lineNumber": 14
+              "lineNumber": 15
             }
           ],
           "loc": {
@@ -15972,18 +16400,18 @@
               "column": 4
             },
             "end": {
-              "line": 41,
+              "line": 42,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 156,
+                "line": 162,
                 "column": 4
               },
               "end": {
-                "line": 161,
+                "line": 167,
                 "column": 5
               }
             },
@@ -15999,7 +16427,7 @@
             {
               "title": "param",
               "name": "credentials",
-              "lineNumber": 7,
+              "lineNumber": 8,
               "description": {
                 "type": "root",
                 "children": [
@@ -16060,7 +16488,7 @@
                 {
                   "title": "param",
                   "name": "credentials.username",
-                  "lineNumber": 8,
+                  "lineNumber": 9,
                   "description": {
                     "type": "root",
                     "children": [
@@ -16121,7 +16549,7 @@
                 {
                   "title": "param",
                   "name": "credentials.password",
-                  "lineNumber": 9,
+                  "lineNumber": 10,
                   "description": {
                     "type": "root",
                     "children": [
@@ -16182,7 +16610,7 @@
                 {
                   "title": "param",
                   "name": "credentials.authname",
-                  "lineNumber": 10,
+                  "lineNumber": 11,
                   "description": {
                     "type": "root",
                     "children": [
@@ -16248,7 +16676,7 @@
             {
               "title": "param",
               "name": "options",
-              "lineNumber": 11,
+              "lineNumber": 12,
               "description": {
                 "type": "root",
                 "children": [
@@ -16312,7 +16740,7 @@
                 {
                   "title": "param",
                   "name": "options.forceLogOut",
-                  "lineNumber": 12,
+                  "lineNumber": 13,
                   "description": {
                     "type": "root",
                     "children": [
@@ -16376,7 +16804,7 @@
                 {
                   "title": "param",
                   "name": "options.clientCorrelator",
-                  "lineNumber": 13,
+                  "lineNumber": 14,
                   "description": {
                     "type": "root",
                     "children": [
@@ -16446,6 +16874,142 @@
           "throws": [],
           "todos": [],
           "access": "public",
+          "deprecated": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Since version 4.19.0. Please see ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#apisetcredentials",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "setCredentials"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " and ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 79,
+                        "offset": 78
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "services.subscribe",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "subscribe"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 79,
+                        "offset": 78
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 115,
+                        "offset": 114
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " for new method of connecting.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 115,
+                        "offset": 114
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 145,
+                        "offset": 144
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 145,
+                    "offset": 144
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 145,
+                "offset": 144
+              }
+            }
+          },
           "memberof": "api",
           "kind": "function",
           "name": "connect",
@@ -16529,53 +17093,58 @@
               "type": null
             },
             {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 4,
-              "name": "userCredentialsAuth"
+              "title": "deprecated",
+              "description": "Since version 4.19.0. Please see {@link services.unsubscribe unsubscribe} for new method of disconnecting.",
+              "lineNumber": 4
             },
             {
               "title": "requires",
               "description": null,
               "lineNumber": 5,
-              "name": "userCredentialsDAKAuth"
+              "name": "userCredentialsAuth"
             },
             {
               "title": "requires",
               "description": null,
               "lineNumber": 6,
+              "name": "userCredentialsDAKAuth"
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 7,
               "name": "accessTokenAuth"
             },
             {
               "title": "memberof",
               "description": "api",
-              "lineNumber": 7
+              "lineNumber": 8
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 8,
+              "lineNumber": 9,
               "name": "disconnect"
             }
           ],
           "loc": {
             "start": {
-              "line": 163,
+              "line": 169,
               "column": 4
             },
             "end": {
-              "line": 172,
+              "line": 179,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 173,
+                "line": 180,
                 "column": 4
               },
               "end": {
-                "line": 176,
+                "line": 183,
                 "column": 5
               }
             },
@@ -16590,6 +17159,100 @@
           "throws": [],
           "todos": [],
           "access": "public",
+          "deprecated": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Since version 4.19.0. Please see ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "services.unsubscribe",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "unsubscribe"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " for new method of disconnecting.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 107,
+                        "offset": 106
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 107,
+                    "offset": 106
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 107,
+                "offset": 106
+              }
+            }
+          },
           "memberof": "api",
           "kind": "function",
           "name": "disconnect",
@@ -16810,22 +17473,22 @@
           ],
           "loc": {
             "start": {
-              "line": 178,
+              "line": 185,
               "column": 4
             },
             "end": {
-              "line": 190,
+              "line": 197,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 207,
+                "line": 214,
                 "column": 4
               },
               "end": {
-                "line": 212,
+                "line": 219,
                 "column": 5
               }
             },
@@ -17353,22 +18016,22 @@
           ],
           "loc": {
             "start": {
-              "line": 191,
+              "line": 198,
               "column": 4
             },
             "end": {
-              "line": 206,
+              "line": 213,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 207,
+                "line": 214,
                 "column": 4
               },
               "end": {
-                "line": 212,
+                "line": 219,
                 "column": 5
               }
             },
@@ -17696,22 +18359,22 @@
           ],
           "loc": {
             "start": {
-              "line": 233,
+              "line": 240,
               "column": 4
             },
             "end": {
-              "line": 243,
+              "line": 250,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 244,
+                "line": 251,
                 "column": 4
               },
               "end": {
-                "line": 247,
+                "line": 254,
                 "column": 5
               }
             },
@@ -18064,22 +18727,22 @@
           ],
           "loc": {
             "start": {
-              "line": 249,
+              "line": 256,
               "column": 4
             },
             "end": {
-              "line": 262,
+              "line": 269,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 263,
+                "line": 270,
                 "column": 4
               },
               "end": {
-                "line": 272,
+                "line": 279,
                 "column": 5
               }
             },
@@ -18560,22 +19223,22 @@
           ],
           "loc": {
             "start": {
-              "line": 274,
+              "line": 281,
               "column": 4
             },
             "end": {
-              "line": 282,
+              "line": 289,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 283,
+                "line": 290,
                 "column": 4
               },
               "end": {
-                "line": 286,
+                "line": 293,
                 "column": 5
               }
             },
@@ -18776,22 +19439,22 @@
           ],
           "loc": {
             "start": {
-              "line": 288,
+              "line": 295,
               "column": 4
             },
             "end": {
-              "line": 297,
+              "line": 304,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 298,
+                "line": 305,
                 "column": 4
               },
               "end": {
-                "line": 298,
+                "line": 305,
                 "column": 42
               }
             },
@@ -19104,22 +19767,22 @@
           ],
           "loc": {
             "start": {
-              "line": 300,
+              "line": 307,
               "column": 4
             },
             "end": {
-              "line": 308,
+              "line": 315,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 309,
+                "line": 316,
                 "column": 4
               },
               "end": {
-                "line": 309,
+                "line": 316,
                 "column": 41
               }
             },
@@ -19405,22 +20068,22 @@
           ],
           "loc": {
             "start": {
-              "line": 341,
+              "line": 348,
               "column": 4
             },
             "end": {
-              "line": 358,
+              "line": 365,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 422,
+                "line": 429,
                 "column": 4
               },
               "end": {
-                "line": 436,
+                "line": 443,
                 "column": 5
               }
             },
