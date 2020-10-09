@@ -423,37 +423,6 @@ Removes a global event listener from SDK instance.
 
 ### connect
 
-Connect with user credentials to any backend services that the SDK instance deals with.
-
-**Parameters**
-
--   `credentials` **[Object][7]** The credentials object.
-    -   `credentials.username` **[string][8]** The username including the application's domain.
-    -   `credentials.password` **[string][8]** The user's password.
-    -   `credentials.authname` **[string][8]?** The user's authorization name.
--   `options` **[Object][7]?** The options object for non-credential options.
-    -   `options.forceLogOut` **[boolean][11]?** Force the oldest connection to log out if too many simultaneous connections. Link only.
-    -   `options.clientCorrelator` **[string][8]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
-}, {
-  forceLogOut: true
-});
-```
-
-**Meta**
-
--   **deprecated**: Since version 4.19.0. Please see [setCredentials][19] and [subscribe][20] for new method of connecting.
-
-
-### connect
-
 Connect by providing an OAuth token, to any backend services that the SDK instance deals with.
 
 **Parameters**
@@ -529,6 +498,37 @@ client.connect({
   accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
   refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
   expires: 3600
+});
+```
+
+**Meta**
+
+-   **deprecated**: Since version 4.19.0. Please see [setCredentials][19] and [subscribe][20] for new method of connecting.
+
+
+### connect
+
+Connect with user credentials to any backend services that the SDK instance deals with.
+
+**Parameters**
+
+-   `credentials` **[Object][7]** The credentials object.
+    -   `credentials.username` **[string][8]** The username including the application's domain.
+    -   `credentials.password` **[string][8]** The user's password.
+    -   `credentials.authname` **[string][8]?** The user's authorization name.
+-   `options` **[Object][7]?** The options object for non-credential options.
+    -   `options.forceLogOut` **[boolean][11]?** Force the oldest connection to log out if too many simultaneous connections. Link only.
+    -   `options.clientCorrelator` **[string][8]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  password: '********'
+  authname: '********'
+}, {
+  forceLogOut: true
 });
 ```
 
