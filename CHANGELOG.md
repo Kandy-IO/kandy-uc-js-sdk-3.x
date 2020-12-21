@@ -5,7 +5,7 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
-## 3.23.0 - beta
+## 3.23.0 - 2020-12-21
 
 ## 3.22.0 - 2020-11-27
 
@@ -101,7 +101,7 @@ Kandy.js change log.
 
 ### Added
 
-- Added a destroy function to allow users to wipe the SDK state and render the SDK unusuable. `KAA-2181`
+- Added a destroy function to allow users to wipe the SDK state and render the SDK unusable. `KAA-2181`
   - This is useful when a user is finished with the SDK and wants their data to not be available to the next SDK consumer. After destroy is called, the SDK must be recreated for an application to continue working.
 - Added four API's `kandy.notification.registerApplePush`,`kandy.notification.registerAndroidPush`, `kandy.notification.unregisterAndroidPush` and `kandy.notification.unregisterApplePush` to handle the push registration notifications for Apple and Android respectively.`KAA-2153`
 - Added a new call configuration to trigger a resync of all active calls upon connecting to the websocket. `KAA-2154`
@@ -183,7 +183,7 @@ This 3.x version of the SDK is deprecated and will stop being supported as of No
 - Fixed an issue causing some BasicError objects to have a misleading message rather than a message about the operation that failed. `KAA-1947`
 - Fixed a Messaging issue preventing users from receiving JSON messages. `KAA-1870`
 - Fixed an issue where the screensharing for the callee would fail to stop from the Chrome notification. `KAA-601`
-- Fixed an issue where the transfered call status was not being passed to the application properly. `KAA-1926`
+- Fixed an issue where the transferred call status was not being passed to the application properly. `KAA-1926`
 
 ## 3.6.0 - 2019-08-01
 
@@ -216,13 +216,13 @@ This 3.x version of the SDK is deprecated and will stop being supported as of No
 
 ### Added
 
-- Added the error event to the `subscription`, to prevent subscription change to emmited when there is a subscription failure `KAA-1351`
+- Added the error event to the `subscription`, to prevent subscription change to emitted when there is a subscription failure `KAA-1351`
 - Added a lastMessage property as part of conversation state object which holds the text for the last message in that conversation `KAA-903`
 - Added a DEBUG log at the start of every public API invocation, which will better help with future investigations `KAA-1353`
 
 ### Changed
 
-- The `subscription:change` event is no longer emmitted when there is an error. User will have to subscribe to `subscription:error` as well. `KAA-1351`
+- The `subscription:change` event is no longer emitted when there is an error. User will have to subscribe to `subscription:error` as well. `KAA-1351`
 - No longer stores call stats in localstorage by default. Use the `recordCallStats` configuration to turn this back on. `KAA-1552`
 
 ## 3.3.0 - 2019-03-29
