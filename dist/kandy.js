@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.uc.js
- * Version: 3.25.0-beta.624
+ * Version: 3.26.0-beta.625
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -61566,7 +61566,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.25.0-beta.624';
+  return '3.26.0-beta.625';
 }
 
 /***/ }),
@@ -75947,11 +75947,15 @@ const logLevels = exports.logLevels = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.logLevels = undefined;
+exports.logFormatter = exports.logLevels = undefined;
 
 var _logManager = __webpack_require__("../../packages/logger/src/logManager.js");
 
 var _logManager2 = _interopRequireDefault(_logManager);
+
+var _logFormatter = __webpack_require__("../../packages/logger/src/logFormatter.js");
+
+var _logFormatter2 = _interopRequireDefault(_logFormatter);
 
 var _constants = __webpack_require__("../../packages/logger/src/constants.js");
 
@@ -75968,6 +75972,44 @@ exports.default = _logManager2.default;
 
 const logLevels = exports.logLevels = _constants.logLevels;
 
+// Default log formatter used by the defaultLogHandler
+const logFormatter = exports.logFormatter = _logFormatter2.default;
+
+/***/ }),
+
+/***/ "../../packages/logger/src/logFormatter.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = defaultLogFormatter;
+/**
+ * Default function for the SDK to use for log formatting.
+ *    Uses entry information to form a prefix.
+ * @method defaultLogFormatter
+ * @param  {LogEntry} entry
+ */
+function defaultLogFormatter(entry) {
+  // Compile the meta info of the log for a prefix.
+  const { timestamp, level, target } = entry;
+
+  // Find a short name to reference which Logger this log is from.
+  //    This is mostly to cut down the ID if it's too long for a human to read.
+  const shortId = target.id && target.id.length > 8 ? target.id.substring(0, 6) : target.id;
+  const shortName = shortId ? `${target.type}/${shortId}` : target.type;
+
+  const logInfo = `${timestamp} - ${shortName} - ${level}`;
+
+  // Assume that the first message parameter is a string.
+  const log = entry.messages[0];
+
+  return `${logInfo} - ${log}`;
+}
+
 /***/ }),
 
 /***/ "../../packages/logger/src/logHandler.js":
@@ -75980,6 +76022,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = defaultLogHandler;
+
+var _logFormatter = __webpack_require__("../../packages/logger/src/logFormatter.js");
+
+var _logFormatter2 = _interopRequireDefault(_logFormatter);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 /**
  * Default function for the SDK to use for logging.
  *    Uses entry information to form a prefix, then logs to console.
@@ -75987,19 +76036,7 @@ exports.default = defaultLogHandler;
  * @param  {LogEntry} entry
  */
 function defaultLogHandler(entry) {
-  // Compile the meta info of the log for a prefix.
-  const { timestamp, level, target } = entry;
   let { method } = entry;
-
-  // Find a short name to reference which Logger this log is from.
-  //    This is mostly to cut down the ID if it's too long for a human to read.
-  const shortId = target.id && target.id.length > 8 ? target.id.substring(0, 6) : target.id;
-  const shortName = shortId ? `${target.type}/${shortId}` : target.type;
-
-  const logInfo = `${timestamp} - ${shortName} - ${level}`;
-
-  // Assume that the first message parameter is a string.
-  const [log, ...extra] = entry.messages;
 
   // For the time-related methods, don't actually use the console methods.
   //    The Logger already did the timing, so simply log out the info.
@@ -76007,7 +76044,9 @@ function defaultLogHandler(entry) {
     method = 'debug';
   }
 
-  console[method](`${logInfo} - ${log}`, ...extra);
+  const formattedString = (0, _logFormatter2.default)(entry);
+  const tail = entry.messages.slice(1);
+  console[method](formattedString, ...tail);
 }
 
 /***/ }),
