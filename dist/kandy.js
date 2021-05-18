@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.uc.js
- * Version: 3.28.0-beta.668
+ * Version: 3.28.0-beta.669
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -8117,7 +8117,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.28.0-beta.668';
+  return '3.28.0-beta.669';
 }
 
 /***/ }),
@@ -59169,6 +59169,11 @@ function api({ dispatch, getState }) {
 
     /**
      * Gets the cached call history data and returns stringified data.
+     *
+     * The data is provided in a format that can be used directly with the
+     *    {@link callHistory.setCache call.history.setCache} API. This allows an
+     *    application to persist the information across SDK instances when the
+     *    backend environment does not support the CallHistory feature.
      * @public
      * @memberof callHistory
      * @requires callHistory
@@ -59182,6 +59187,11 @@ function api({ dispatch, getState }) {
 
     /**
      * Sets the cached call history data, expects stringified data as it will be parsed.
+     *
+     * The data can be retreived from the {@link callHistory.getCache
+     *    call.history.getCache} API. This allows an
+     *    application to persist the information across SDK instances when the
+     *    backend environment does not support the CallHistory feature.
      * @public
      * @memberof callHistory
      * @requires callHistory
