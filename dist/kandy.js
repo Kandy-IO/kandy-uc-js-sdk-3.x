@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.uc.js
- * Version: 3.29.0-beta.698
+ * Version: 3.29.0-beta.699
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -8130,7 +8130,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.29.0-beta.698';
+  return '3.29.0-beta.699';
 }
 
 /***/ }),
@@ -27210,16 +27210,10 @@ function* disconnect() {
   const subscription = yield (0, _effects4.select)(_selectors.getSubscriptionInfo);
 
   log.info('Unsubscribing user.');
-  const subscribeResponse = yield (0, _effects4.call)(_requests.unsubscribe, connection, subscription.url);
+  yield (0, _effects4.call)(_requests.unsubscribe, connection, subscription.url);
 
-  if (subscribeResponse.error) {
-    log.info('Failed to unsubscribe. Error: ', subscribeResponse.error);
-    // Handle errors from the unsubscription.
-    yield (0, _effects4.put)(actions.disconnectFinished(subscribeResponse));
-  } else {
-    log.info('Successfully unsubscribed user.');
-    yield (0, _effects4.put)(actions.disconnectFinished());
-  }
+  log.info('Successfully unsubscribed user.');
+  yield (0, _effects4.put)(actions.disconnectFinished());
 }
 
 /**
@@ -28046,8 +28040,6 @@ exports.subscribe = subscribe;
 exports.unsubscribe = unsubscribe;
 exports.resubscribe = resubscribe;
 
-var _selectors = __webpack_require__(8);
-
 var _services = __webpack_require__(294);
 
 var _effects = __webpack_require__(23);
@@ -28064,11 +28056,9 @@ var _effects3 = __webpack_require__(5);
 
 var _utils = __webpack_require__(26);
 
-var _constants = __webpack_require__(9);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Other plugins.
+// Libraries.
 // Authentication plugin.
 const log = _logs.logManager.getLogger('AUTH');
 
@@ -28081,10 +28071,7 @@ const log = _logs.logManager.getLogger('AUTH');
  */
 
 
-// Constants
-
-
-// Libraries.
+// Other plugins.
 function* subscribe(connection, credentials, extras = {}) {
   /*
    * TODO: Clean-up / fix the function signature. The requestOptions (eg. headers)
@@ -28187,7 +28174,6 @@ function* subscribe(connection, credentials, extras = {}) {
  * @param  {string}    connection.server Server information for generating the URL.
  * @param  {string}    connection.requestOptions Common request options to be added.
  * @param  {string}    subscriptionURL URL of the user's subscription instance.
- * @return {Object}    Unsubscription response.
  */
 function* unsubscribe(connection, subscriptionURL) {
   const requestOptions = {};
@@ -28199,60 +28185,25 @@ function* unsubscribe(connection, subscriptionURL) {
   // Send the unsubscribe request.
   const response = yield (0, _effects2.default)(requestOptions);
 
+  /*
+   * No matter what the response was, we still want to handle the user as
+   *    unsubscribed afterwards. If the request fails, there isn't a point to
+   *    keep the user subscribed since they want to unsubscribe anyway.
+   * For debug purposes, log what the response was but handle it as a success.
+   */
   if (response.error) {
-    if (response.payload.body && response.payload.body.subscribeResponse) {
+    if (response.payload.body) {
       // Handle errors from the server.
       const { statusCode } = response.payload.body.subscribeResponse;
-      log.debug(`Failed to unsubscribe user with status code ${statusCode}.`);
-
-      return {
-        // TODO: Better error; more info.
-        error: new _errors2.default({
-          message: `Failed to unsubscribe user. Code: ${statusCode}.`,
-          code: _errors.authCodes.LINK_UNSUBSCRIBE_FAIL
-        })
-      };
+      log.debug(`Encountered error unsubscribing user with status code ${statusCode}.`);
     } else {
       // Handle errors from the request helper.
       const { message } = response.payload.result;
-      log.debug('Failed user unsubscription.', message);
-
-      return {
-        // TODO: Better error; more info.
-        error: new _errors2.default({
-          message: `Unsubscribe request failed: ${message}.`,
-          // TODO: Shared error codes.
-          code: _errors.authCodes.LINK_UNSUBSCRIBE_FAIL
-        })
-      };
+      log.debug('Encountered error unsubscribing user.', message);
     }
   } else {
     // Request was successful.
-    const unsubResponse = response.payload.body.subscribeResponse;
-    const platform = yield (0, _effects3.select)(_selectors.getPlatform);
-
-    if (platform === _constants.platforms.LINK && unsubResponse.statusCode === 0) {
-      log.info('Successfully unsubscribed user.');
-      // Link success response.
-      return (0, _extends3.default)({
-        error: false
-      }, unsubResponse);
-    } else if (platform === _constants.platforms.UC && unsubResponse.statusCode === 0) {
-      log.info('Successfully unsubscribed user.');
-      // Link success response.
-      return (0, _extends3.default)({
-        error: false
-      }, unsubResponse);
-    } else {
-      log.info('Failed to unsubscribe user. Status Code: ', unsubResponse.statusCode);
-      // Unknown statusCode, consider as failure.
-      return {
-        error: new _errors2.default({
-          message: `Unknown error; statusCode: ${unsubResponse.statusCode}.`,
-          code: _errors.authCodes.LINK_UNSUBSCRIBE_FAIL
-        })
-      };
-    }
+    log.debug('User unsubscribed successfully.');
   }
 }
 
