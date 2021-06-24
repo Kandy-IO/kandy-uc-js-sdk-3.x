@@ -14,6 +14,7 @@ Kandy.js change log.
 ### Fixed
 
 - Fixed Authentication behaviour where issues encountered while disconnecting should still unsubscribe the user locally but wouldn't.
+- Fixed a Call issue where the system believes audio is still being used by SDK after a call ends because of AudioContext usage. `KAA-2646`
 
 ## 3.28.0 - 2021-05-28
 
