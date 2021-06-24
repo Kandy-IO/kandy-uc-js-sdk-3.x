@@ -10,6 +10,7 @@ Kandy.js change log.
 ### Added
 
 - Added the ability to customize the `X-CPaaS-Agent` header's value by appending any custom string to its value. `KJS-162`
+- Added support for handling subscription gone notification. `KJS-174`
 
 ### Fixed
 
