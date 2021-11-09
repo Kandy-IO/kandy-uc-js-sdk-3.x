@@ -8,7 +8,7 @@
           "children": [
             {
               "type": "text",
-              "value": "The SDK creation factory. Create an instance of the SDK by calling this factory with the desired configurations.\nThe SDK instance will be refered as 'api' throughout the rest of the documentation content."
+              "value": "The SDK creation factory. Create an instance of the SDK by calling this factory with the desired configurations.\nThe SDK instance will be referred as 'api' throughout the rest of the documentation content."
             }
           ]
         }
@@ -1520,7 +1520,7 @@
             },
             {
               "title": "param",
-              "description": "Specifies whether to send an inital video stream or not.",
+              "description": "Specifies whether to send an initial video stream or not.",
               "lineNumber": 10,
               "type": {
                 "type": "OptionalType",
@@ -2061,7 +2061,7 @@
                             "children": [
                               {
                                 "type": "text",
-                                "value": "Specifies whether to send an inital video stream or not."
+                                "value": "Specifies whether to send an initial video stream or not."
                               }
                             ]
                           }
@@ -5280,7 +5280,7 @@
       },
       {
         "title": "param",
-        "description": "The devices, seperated by device type.",
+        "description": "The devices, separated by device type.",
         "lineNumber": 8,
         "type": {
           "type": "NameExpression",
@@ -5337,7 +5337,7 @@
                   "children": [
                     {
                       "type": "text",
-                      "value": "The devices, seperated by device type."
+                      "value": "The devices, separated by device type."
                     }
                   ]
                 }
@@ -5594,7 +5594,7 @@
       },
       {
         "title": "param",
-        "description": "Whether the initiazation was successful or not.",
+        "description": "Whether the initialization was successful or not.",
         "lineNumber": 9,
         "type": {
           "type": "NameExpression",
@@ -5604,7 +5604,7 @@
       },
       {
         "title": "param",
-        "description": "A unqiue code describing the result scenario.",
+        "description": "A unique code describing the result scenario.",
         "lineNumber": 10,
         "type": {
           "type": "NameExpression",
@@ -5694,7 +5694,7 @@
                       "children": [
                         {
                           "type": "text",
-                          "value": "Whether the initiazation was successful or not."
+                          "value": "Whether the initialization was successful or not."
                         }
                       ]
                     }
@@ -5717,7 +5717,7 @@
                       "children": [
                         {
                           "type": "text",
-                          "value": "A unqiue code describing the result scenario."
+                          "value": "A unique code describing the result scenario."
                         }
                       ]
                     }
@@ -14621,7 +14621,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "The data can be retreived from the "
+                    "value": "The data can be retrieved from the "
                   },
                   {
                     "type": "link",
@@ -15785,7 +15785,7 @@
                 "type": "NameExpression",
                 "name": "string"
               },
-              "name": "COMLETED"
+              "name": "COMPLETED"
             },
             {
               "title": "property",
@@ -15917,7 +15917,7 @@
             },
             {
               "title": "property",
-              "name": "COMLETED",
+              "name": "COMPLETED",
               "lineNumber": 9,
               "description": {
                 "type": "root",
@@ -18744,7 +18744,7 @@
             },
             {
               "title": "param",
-              "description": "The video resolution configuation object.",
+              "description": "The video resolution configuration object.",
               "lineNumber": 10,
               "type": {
                 "type": "OptionalType",
@@ -18757,7 +18757,7 @@
             },
             {
               "title": "param",
-              "description": "The height of the outoing video in pixels.",
+              "description": "The height of the outgoing video in pixels.",
               "lineNumber": 11,
               "type": {
                 "type": "OptionalType",
@@ -18770,7 +18770,7 @@
             },
             {
               "title": "param",
-              "description": "The width of the outoing video in pixels.",
+              "description": "The width of the outgoing video in pixels.",
               "lineNumber": 12,
               "type": {
                 "type": "OptionalType",
@@ -18870,7 +18870,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "The video resolution configuation object."
+                            "value": "The video resolution configuration object."
                           }
                         ]
                       }
@@ -18896,7 +18896,7 @@
                             "children": [
                               {
                                 "type": "text",
-                                "value": "The height of the outoing video in pixels."
+                                "value": "The height of the outgoing video in pixels."
                               }
                             ]
                           }
@@ -18922,7 +18922,7 @@
                             "children": [
                               {
                                 "type": "text",
-                                "value": "The width of the outoing video in pixels."
+                                "value": "The width of the outgoing video in pixels."
                               }
                             ]
                           }
@@ -30286,7 +30286,7 @@
             },
             {
               "title": "property",
-              "description": "A unique identifer for the target.",
+              "description": "A unique identifier for the target.",
               "lineNumber": 20,
               "type": {
                 "type": "OptionalType",
@@ -30495,7 +30495,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "A unique identifer for the target."
+                            "value": "A unique identifier for the target."
                           }
                         ]
                       }
@@ -34350,7 +34350,7 @@
             },
             {
               "title": "property",
-              "description": "Additional message acompanying the status & activity.",
+              "description": "Additional message accompanying the status & activity.",
               "lineNumber": 19,
               "type": {
                 "type": "NameExpression",
@@ -34510,7 +34510,7 @@
                     "children": [
                       {
                         "type": "text",
-                        "value": "Additional message acompanying the status & activity."
+                        "value": "Additional message accompanying the status & activity."
                       }
                     ]
                   }
