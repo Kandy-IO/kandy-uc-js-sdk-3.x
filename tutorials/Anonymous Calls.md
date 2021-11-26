@@ -27,7 +27,7 @@ A "time-limited" Anonymous call is the proper name for what "Anonymous Call" gen
 
 #### Unrestricted Anonymous Call
 
-An "Unrestricted" Anonymous Call does not require any verification for the call. This allows for a much simpler flow, but is unsecure, since it is more difficult to moderate the calls being made.
+An "Unrestricted" Anonymous Call does not require any verification for the call. This allows for a much simpler flow, but is insecure, since it is more difficult to moderate the calls being made.
 
 ## Making a Call
 
