@@ -10966,6 +10966,16 @@
                 "name": "string"
               },
               "name": "LOST_CONNECTION"
+            },
+            {
+              "title": "property",
+              "description": "WebSocket was overridden by the server",
+              "lineNumber": 8,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "WS_OVERRIDDEN"
             }
           ],
           "loc": {
@@ -10974,18 +10984,18 @@
               "column": 4
             },
             "end": {
-              "line": 315,
+              "line": 316,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 316,
+                "line": 317,
                 "column": 4
               },
               "end": {
-                "line": 316,
+                "line": 317,
                 "column": 41
               }
             },
@@ -11032,6 +11042,29 @@
                       {
                         "type": "text",
                         "value": "Internet connection was lost"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              }
+            },
+            {
+              "title": "property",
+              "name": "WS_OVERRIDDEN",
+              "lineNumber": 8,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "WebSocket was overridden by the server"
                       }
                     ]
                   }
@@ -11159,22 +11192,22 @@
           ],
           "loc": {
             "start": {
-              "line": 348,
+              "line": 349,
               "column": 4
             },
             "end": {
-              "line": 365,
+              "line": 366,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 429,
+                "line": 430,
                 "column": 4
               },
               "end": {
-                "line": 443,
+                "line": 444,
                 "column": 5
               }
             },
