@@ -548,7 +548,7 @@ client.connect({
 
 ### connect
 
-Connect by providing a refresh token, to any backend services that the SDK instance deals with.
+Connect by providing a refresh token to any backend services that the SDK instance deals with.
 
 #### Parameters
 
@@ -577,7 +577,7 @@ client.connect({
 
 ### connect
 
-Connect by providing an OAuth token, to any backend services that the SDK instance deals with.
+Connect by providing an oAuth token to any backend services that the SDK instance deals with.
 
 #### Parameters
 
@@ -618,10 +618,8 @@ If you're authenticating with tokens that expire and have not provided a refresh
 
 *   `credentials` **[Object][7]** The credentials object.
 
-    *   `credentials.accessToken` **[string][8]** The new access token.
     *   `credentials.username` **[string][8]** The username without the application's domain.
     *   `credentials.accessToken` **[string][8]** An access token for the user with the provided user Id.
-*   `credentials` **[Object][7]** The credentials object.
 
 ### updateToken
 
@@ -2210,7 +2208,7 @@ Returns **[Object][7]** Presence information for the current user.
 Fetches presence information for the given users. This will refresh the
 available information with any new information from the server.
 
-Available presence information an be retrieved using the
+Available presence information can be retrieved using the
 [presence.get][41] or [presence.getAll][42] APIs.
 
 #### Parameters
