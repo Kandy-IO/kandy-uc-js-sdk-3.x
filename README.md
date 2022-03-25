@@ -1,3 +1,5 @@
+The v3 stream of the Kandy UC JavaScript SDK has been deprecated and is not receiving regular updates. The latest version of the SDK can be found at https://github.com/Kandy-IO/kandy-uc-js-sdk.
+
 # Kandy UC JavaScript SDK 3.x
 
 ## Install
@@ -14,8 +16,8 @@ To install a particular build branch or beta branch with the Github URL, run:
 
 ### In the browser :
 ```html
-<script src="https://unpkg.com/@kandy-io/uc-sdk-3.x@3.37.1/dist/kandy.js"
-  integrity="sha384-FNlkH/9Df3b2YJTrbogluILqJ0vgeE/3nOsQVb+ulPjyI+TJthENzcoo8DGdaNPk"
+<script src="https://unpkg.com/@kandy-io/uc-sdk-3.x@3.38.0/dist/kandy.js"
+  integrity="sha384-8jP6a8Hxwurqt4ICCtd0iFKglOUkl5uCVVQcIf/eArdelE+wuOXU9orcVTWbMY89"
   crossorigin="anonymous">
 </script>
 ```

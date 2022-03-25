@@ -8167,11 +8167,11 @@
           "context": {
             "loc": {
               "start": {
-                "line": 162,
+                "line": 202,
                 "column": 4
               },
               "end": {
-                "line": 167,
+                "line": 207,
                 "column": 5
               }
             },
@@ -8583,11 +8583,11 @@
           "context": {
             "loc": {
               "start": {
-                "line": 162,
+                "line": 202,
                 "column": 4
               },
               "end": {
-                "line": 167,
+                "line": 207,
                 "column": 5
               }
             },
@@ -8863,7 +8863,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Connect by providing a refresh token, to any backend services that the SDK instance deals with."
+                    "value": "Connect by providing a refresh token to any backend services that the SDK instance deals with."
                   }
                 ]
               }
@@ -8975,22 +8975,22 @@
           ],
           "loc": {
             "start": {
-              "line": 122,
+              "line": 143,
               "column": 4
             },
             "end": {
-              "line": 142,
+              "line": 163,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 162,
+                "line": 202,
                 "column": 4
               },
               "end": {
-                "line": 167,
+                "line": 207,
                 "column": 5
               }
             },
@@ -9240,7 +9240,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Connect by providing an OAuth token, to any backend services that the SDK instance deals with."
+                    "value": "Connect by providing an oAuth token to any backend services that the SDK instance deals with."
                   }
                 ]
               }
@@ -9339,22 +9339,22 @@
           ],
           "loc": {
             "start": {
-              "line": 143,
+              "line": 164,
               "column": 4
             },
             "end": {
-              "line": 161,
+              "line": 182,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 162,
+                "line": 202,
                 "column": 4
               },
               "end": {
-                "line": 167,
+                "line": 207,
                 "column": 5
               }
             },
@@ -9615,35 +9615,41 @@
               "name": "accessTokenAuth"
             },
             {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 8,
+              "name": "accessTokenAuthCIM"
+            },
+            {
               "title": "memberof",
               "description": "api",
-              "lineNumber": 8
+              "lineNumber": 9
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 9,
+              "lineNumber": 10,
               "name": "disconnect"
             }
           ],
           "loc": {
             "start": {
-              "line": 169,
+              "line": 209,
               "column": 4
             },
             "end": {
-              "line": 179,
+              "line": 220,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 180,
+                "line": 221,
                 "column": 4
               },
               "end": {
-                "line": 183,
+                "line": 224,
                 "column": 5
               }
             },
@@ -9762,35 +9768,21 @@
               "name": "accessTokenAuth"
             },
             {
-              "title": "param",
-              "description": "The credentials object.",
+              "title": "requires",
+              "description": null,
               "lineNumber": 6,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "credentials"
-            },
-            {
-              "title": "param",
-              "description": "The new access token.",
-              "lineNumber": 7,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.accessToken"
+              "name": "accessTokenAuthCIM"
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 8,
+              "lineNumber": 7,
               "name": "updateToken"
             },
             {
               "title": "param",
               "description": "The credentials object.",
-              "lineNumber": 9,
+              "lineNumber": 8,
               "type": {
                 "type": "NameExpression",
                 "name": "Object"
@@ -9800,7 +9792,7 @@
             {
               "title": "param",
               "description": "The username without the application's domain.",
-              "lineNumber": 10,
+              "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -9810,7 +9802,7 @@
             {
               "title": "param",
               "description": "An access token for the user with the provided user Id.",
-              "lineNumber": 11,
+              "lineNumber": 10,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -9820,22 +9812,22 @@
           ],
           "loc": {
             "start": {
-              "line": 185,
+              "line": 226,
               "column": 4
             },
             "end": {
-              "line": 197,
+              "line": 237,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 214,
+                "line": 270,
                 "column": 4
               },
               "end": {
-                "line": 219,
+                "line": 275,
                 "column": 5
               }
             },
@@ -9848,7 +9840,7 @@
             {
               "title": "param",
               "name": "credentials",
-              "lineNumber": 6,
+              "lineNumber": 8,
               "description": {
                 "type": "root",
                 "children": [
@@ -9870,31 +9862,8 @@
               "properties": [
                 {
                   "title": "param",
-                  "name": "credentials.accessToken",
-                  "lineNumber": 7,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The new access token."
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
                   "name": "credentials.username",
-                  "lineNumber": 10,
+                  "lineNumber": 9,
                   "description": {
                     "type": "root",
                     "children": [
@@ -9917,7 +9886,7 @@
                 {
                   "title": "param",
                   "name": "credentials.accessToken",
-                  "lineNumber": 11,
+                  "lineNumber": 10,
                   "description": {
                     "type": "root",
                     "children": [
@@ -9938,29 +9907,6 @@
                   }
                 }
               ]
-            },
-            {
-              "title": "param",
-              "name": "credentials",
-              "lineNumber": 9,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The credentials object."
-                      }
-                    ]
-                  }
-                ]
-              },
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              }
             }
           ],
           "properties": [],
@@ -10085,22 +10031,22 @@
           ],
           "loc": {
             "start": {
-              "line": 198,
+              "line": 238,
               "column": 4
             },
             "end": {
-              "line": 213,
+              "line": 253,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 214,
+                "line": 270,
                 "column": 4
               },
               "end": {
-                "line": 219,
+                "line": 275,
                 "column": 5
               }
             },
@@ -10278,22 +10224,22 @@
           ],
           "loc": {
             "start": {
-              "line": 240,
+              "line": 296,
               "column": 4
             },
             "end": {
-              "line": 250,
+              "line": 306,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 251,
+                "line": 307,
                 "column": 4
               },
               "end": {
-                "line": 254,
+                "line": 310,
                 "column": 5
               }
             },
@@ -10492,22 +10438,22 @@
           ],
           "loc": {
             "start": {
-              "line": 256,
+              "line": 312,
               "column": 4
             },
             "end": {
-              "line": 269,
+              "line": 325,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 270,
+                "line": 326,
                 "column": 4
               },
               "end": {
-                "line": 279,
+                "line": 335,
                 "column": 5
               }
             },
@@ -10724,22 +10670,22 @@
           ],
           "loc": {
             "start": {
-              "line": 281,
+              "line": 337,
               "column": 4
             },
             "end": {
-              "line": 289,
+              "line": 345,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 290,
+                "line": 346,
                 "column": 4
               },
               "end": {
-                "line": 293,
+                "line": 349,
                 "column": 5
               }
             },
@@ -10866,22 +10812,22 @@
           ],
           "loc": {
             "start": {
-              "line": 295,
+              "line": 351,
               "column": 4
             },
             "end": {
-              "line": 304,
+              "line": 360,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 305,
+                "line": 361,
                 "column": 4
               },
               "end": {
-                "line": 305,
+                "line": 361,
                 "column": 42
               }
             },
@@ -11054,22 +11000,22 @@
           ],
           "loc": {
             "start": {
-              "line": 307,
+              "line": 363,
               "column": 4
             },
             "end": {
-              "line": 316,
+              "line": 372,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 317,
+                "line": 373,
                 "column": 4
               },
               "end": {
-                "line": 317,
+                "line": 373,
                 "column": 41
               }
             },
@@ -11266,22 +11212,22 @@
           ],
           "loc": {
             "start": {
-              "line": 349,
+              "line": 405,
               "column": 4
             },
             "end": {
-              "line": 366,
+              "line": 422,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 430,
+                "line": 503,
                 "column": 4
               },
               "end": {
-                "line": 444,
+                "line": 518,
                 "column": 5
               }
             },
@@ -35319,7 +35265,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Available presence information an be retrieved using the\n"
+                    "value": "Available presence information can be retrieved using the\n"
                   },
                   {
                     "type": "link",
